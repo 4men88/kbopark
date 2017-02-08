@@ -1,6 +1,7 @@
 package com.baseball.mypage.dao;
 
-import com.baseball.admin.model.AuctionDto;
+
+import com.baseball.auction.model.AuctionDto;
 import com.baseball.member.model.MemberDetailDto;
 import com.baseball.member.model.MemberDto;
 
