@@ -51,6 +51,7 @@ public class GudanServiceImpl implements GudanService {
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyMMdd");
 		Calendar cal = Calendar.getInstance();
+		cal.setFirstDayOfWeek(Calendar.MONDAY);
 		
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY); 
 		weekday.add(formatter.format(cal.getTime()));
@@ -70,6 +71,7 @@ public class GudanServiceImpl implements GudanService {
 		System.out.println("GudanServiceImpl tno >>> " + tno);
 		for(int i=0;i<7;i++) {
 			list.add(GudanDaoImpl.getGudanDao().weeklyArticle(tno, weekday.get(i)));
+			System.out.println(weekday.get(i));
 			System.out.println(list.get(i) == null? "³Î" :"³Î¾Æ´Ô");
 		}
 		
