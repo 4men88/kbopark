@@ -13,4 +13,5 @@ public interface GudanService {
 	GudanDto gudanArticle(int tno);
 	StadiumDto stadiumArticle(int sno);
 	List<ScheduleDto> weeklyArticle(int tno);
+	List<StadiumDto> weeklyStadium(int tno);
 }

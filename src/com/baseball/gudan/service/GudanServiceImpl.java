@@ -75,4 +75,21 @@ public class GudanServiceImpl implements GudanService {
 		return list;
 	}
 	
+	@Override
+	public List<StadiumDto> weeklyStadium(int tno) {
+		List<StadiumDto> stadiumlist = new ArrayList<StadiumDto>();
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyMMdd");
+		Calendar cal = Calendar.getInstance();
+		cal.setFirstDayOfWeek(Calendar.MONDAY);
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY); 
+		
+		String monday = "";
+		monday = formatter.format(cal.getTime());
+		
+		stadiumlist = GudanDaoImpl.getGudanDao().weeklyStadium(tno, monday);
+		
+		return stadiumlist;
+	}
+	
 }

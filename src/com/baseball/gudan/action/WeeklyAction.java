@@ -8,6 +8,7 @@ import javax.servlet.http.*;
 
 import com.baseball.action.Action;
 import com.baseball.gudan.model.GudanDto;
+import com.baseball.gudan.model.StadiumDto;
 import com.baseball.gudan.service.GudanServiceImpl;
 import com.baseball.schedule.scheduleDto.ScheduleDto;
 
@@ -25,8 +26,10 @@ public class WeeklyAction implements Action {
 		System.out.println("WeeklyAction " + tno + " " + gudanDto.getTno());
 		
 		List<ScheduleDto> playList = GudanServiceImpl.getGudanService().weeklyArticle(tno);
+		List<StadiumDto> stadiumList =  GudanServiceImpl.getGudanService().weeklyStadium(tno);
 		
 		request.setAttribute("playlist", playList);
+		request.setAttribute("playstadium", stadiumList);
 		return "/gudan/weekly.jsp";
 	}
 

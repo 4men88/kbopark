@@ -213,4 +213,50 @@ public class GudanDaoImpl implements GudanDao {
 		System.out.println("ÃÖÁ¾gudandaoimpl scheduledto >>> " + scheduleDto);
 		return scheduleDto;
 	}
+
+	@Override
+	public List<StadiumDto> weeklyStadium(int tno, String monday) {
+		List<StadiumDto> list = new ArrayList<StadiumDto>();
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		System.out.println("GudanDaoImpl tno monday >>> " + tno + " " + monday);
+		
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("select s.sno, sname, sloc, image, lat, lng, locid \n");
+			sql.append("from ( SELECT distinct sno \n");
+			sql.append("    FROM plan \n");
+			sql.append("    WHERE (tno1 = ? OR tno2 = ?) \n");
+			sql.append("    AND playdate BETWEEN to_date(?, 'yymmdd') AND to_date(?, 'yymmdd')) A, stadium s \n");
+			sql.append("where A.sno = s.sno");
+			
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, tno);
+			pstmt.setInt(2, tno);
+			pstmt.setString(3, monday);
+			pstmt.setString(4, (Integer.parseInt(monday)+7)+ "");
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				StadiumDto stadiumDto = new StadiumDto();
+				stadiumDto.setSno(rs.getInt("sno"));
+				stadiumDto.setSname(rs.getString("sname"));
+				stadiumDto.setSloc(rs.getString("sloc"));
+				stadiumDto.setImage(rs.getString("image"));
+				stadiumDto.setLat(rs.getDouble("lat"));
+				stadiumDto.setLng(rs.getDouble("lng"));
+				stadiumDto.setLocid(rs.getInt("locid"));
+				list.add(stadiumDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		System.out.println("stadiumlist size >> " + list.size());
+		return list;
+	}
 }
