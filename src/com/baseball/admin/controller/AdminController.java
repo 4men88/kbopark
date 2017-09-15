@@ -56,7 +56,8 @@ public class AdminController extends HttpServlet {
 			PageMove.forward(request, response, path);
 		
 		}else if("todaypl".equals(act)){
-			
+			path=AdminActionFactory.getMainScheduleAction().execute(request, response);
+			PageMove.forward(request, response, path);		
 		
 		}else if("mvnowrite".equals(act)){
 			path="/admin/notice/noticewrite.jsp"+ queryString;

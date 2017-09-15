@@ -11,6 +11,7 @@ import java.util.Map;
 import com.baseball.admin.model.NoticeDto;
 import com.baseball.board.model.BoardDto;
 import com.baseball.member.model.MemberDetailDto;
+import com.baseball.schedule.scheduleDto.ScheduleDto;
 import com.baseball.util.db.DBClose;
 import com.baseball.util.db.DBConnection;
 
@@ -486,5 +487,48 @@ public class AdminDaoImpl implements AdminDao {
 			DBClose.close(conn, pstmt, rs);
 		}
 		return list;
+	}
+
+	@Override
+	public List<ScheduleDto> getPlayToday() {
+		List<ScheduleDto> todaylist = new ArrayList<ScheduleDto>();
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("select a.tname home, a.emblem hemblem,t1.tname away,t1.emblem aemblem,\n");
+			sql.append("to_char(a.playdate,'yyyymmdd') playdate,to_char(a.playdate,'hh:mi') playtime\n");
+			sql.append("from\n");
+			sql.append("	(select t.tno,t.tname,t.emblem,p.playdate,p.tno2\n");
+			sql.append("	from team t ,plan p\n");
+			sql.append("	where p.tno1=t.tno) a, team t1\n");
+			sql.append("where t1.tno=a.tno2\n");
+			sql.append("and to_char(playdate,'yyyymmdd')=to_char(sysdate,'yyyymmdd')");
+			
+			pstmt = conn.prepareStatement(sql.toString());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ScheduleDto scheduleDto = new ScheduleDto();
+				scheduleDto.setHometeam(rs.getString("home"));
+				scheduleDto.setAwayteam(rs.getString("away"));
+				scheduleDto.setHomeemblem(rs.getString("hemblem"));
+				scheduleDto.setAwayemblem(rs.getString("aemblem"));
+				scheduleDto.setPlaydate(rs.getString("playdate"));
+				scheduleDto.setPlaytime(rs.getString("playtime"));
+				
+				todaylist.add(scheduleDto);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		return todaylist;
 	}
 }
