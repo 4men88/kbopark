@@ -15,15 +15,16 @@ public class LoginAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		String path="/member/login/login.jsp";
-		MemberDto memberDto = new MemberDto();
-		memberDto.setId("id");
-		memberDto.setPass("pass");
-		MemberDto memberDto1= MemberServiceImpl.getMemberService().logIn(memberDto); 
-		if(memberDto1!=null) {
+		String path="/wrongpath.jsp";
+		String id = request.getParameter("id");
+		String pass = request.getParameter("pass");
+		MemberDto memberDto= MemberServiceImpl.getMemberService().logIn(id,pass); 
+		if(memberDto!=null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("userinfo", memberDto1);
-			path = "/common/header-white.jsp";
+			session.setAttribute("userinfo", memberDto);
+			path = "login/loginok.jsp";
+		}else {
+			path="/login/loginfail.jsp";
 		}
 		return path;
 	}

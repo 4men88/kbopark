@@ -26,10 +26,7 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 
-	@Override
-	public MemberDto logIn(MemberDto memberDto) {
-		return MemberDaoImpl.getMemberDao().logIn(memberDto);
-	}
+
 
 	@Override
 	public int idCheck(String id) {
@@ -39,6 +36,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String idFind(MemberDetailDto memberDto) {
 		return MemberDaoImpl.getMemberDao().idFind(memberDto);
+	}
+
+	@Override
+	public MemberDto logIn(String id, String pass) {
+		
+		return MemberDaoImpl.getMemberDao().logIn(id, pass);
 	}
 
 }
