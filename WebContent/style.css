@@ -1,0 +1,64 @@
+@charset "EUC-KR";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+/* 공통 */
+* {
+	font-family:  "Nanum Gothic";
+}
+body, a {
+	color: #777777 !important;
+}
+*:hover {
+	text-decoration: none !important;
+}
+.border-b {
+	padding: 1px;
+	border-bottom: 1px solid rgb(233, 233, 233);
+}
+.border-r {
+	padding: 1px;
+	border-right: 1px solid rgb(233, 233, 233);
+}
+
+/* 푸터 */
+#footer, #footer a {
+	background-color: #F3F3F3;
+}
+#footer .border-b {
+	border-bottom: 1px solid #777777;
+}
+
+
+
+
+
+/* ----------작업중---------- */
+
+
+
+
+
+/* external css - 공통 */
+.text-pingendo {
+  color: #004EA3 !important;
+}
+.btn-pingendo {
+  color: #fff;
+  background-color: #004EA3;
+  border-color: #004EA3; }
+  .btn-pingendo:hover {
+    color: #fff;
+    background-color: #003c7d;
+    border-color: #003670; }
+  .btn-pingendo:focus, .btn-pingendo.focus {
+    box-shadow: 0 0 0 3px rgba(0, 78, 163, 0.5); }
+  .btn-pingendo.disabled, .btn-pingendo:disabled {
+    background-color: #004EA3;
+    border-color: #004EA3; }
+  .btn-pingendo:active, .btn-pingendo.active,
+  .show > .btn-pingendo.dropdown-toggle {
+    background-color: #003c7d;
+    background-image: none;
+    border-color: #003670; }
+
+    
