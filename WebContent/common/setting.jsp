@@ -23,7 +23,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!-- 선민 적용 css -->
-<link rel="stylesheet" href="<%=root%>/css/style.css" type="text/css">
+<link rel="stylesheet" href="<%=root%>/style.css" type="text/css">
 
 <!-- 17.11.17 스크립트 파일은 현재 body 하단, footer.jsp에 있습니다. -->
 </head>
