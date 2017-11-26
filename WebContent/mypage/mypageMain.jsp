@@ -38,7 +38,7 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Custom style -->
-<link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="utf-8">
+<link rel="stylesheet" href="./css/style.css" media="screen" title="no title" charset="utf-8">
 
 
 
