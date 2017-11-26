@@ -5,7 +5,7 @@ import com.baseball.member.model.MemberDto;
 
 public interface MemberService {
 	int registMember(MemberDetailDto memberdto);
-	MemberDto logIn(MemberDto memberDto);
+	MemberDto logIn(String id,String pass);
 	int idCheck(String id);
 	String idFind(MemberDetailDto memberDto);
 }

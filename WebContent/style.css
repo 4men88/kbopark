@@ -1,0 +1,259 @@
+@charset "EUC-KR";
+
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+/* 공통 */
+* {
+	font-family: "Nanum Gothic";
+}
+
+body, a {
+	color: #777777 !important;
+}
+
+*:hover {
+	text-decoration: none !important;
+}
+
+body>* {
+	background-size: cover;
+}
+
+.border-b {
+	padding: 1px;
+	border-bottom: 1px solid rgb(233, 233, 233);
+}
+
+.border-r {
+	padding: 1px;
+	border-right: 1px solid rgb(233, 233, 233);
+}
+
+/* 푸터 */
+#footer, #footer a {
+	background-color: #F3F3F3;
+}
+
+#footer .border-b {
+	border-bottom: 1px solid #777777;
+}
+
+/* 헤더 */
+#top-header {
+	font-size: 12px;
+}
+
+#main-header .container {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#main-header #search {
+	background-color: transparent;
+	box-shadow: none;
+}
+
+#main-header ul li a:hover {
+	color: #007bff !important;
+}
+
+#main-header .navbar-toggler-icon {
+	background-image:
+		url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 78, 165, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/*  ------------------------------- */
+
+/* 메인 */
+#main-carousel .carousel-control-prev-icon {
+	background-image:
+		url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23aaa' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+#main-carousel .carousel-control-next-icon {
+	background-image:
+		url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23aaa' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+#main-carousel .carousel-item img {
+	width: 100px;
+	height: 100px;
+	border: none !important;
+	background: transparent !important;
+}
+
+#main-auction img {
+	max-height: 220px;
+	min-height: 220px;
+	/* 	overflow: hidden; */
+}
+
+#main-ncsection .img-wrapper, #main-ncsection .img-wrapper-c {
+	min-height: 140px;
+	max-height: 140px;
+	overflow: hidden;
+}
+
+#main-ncsection .img-wrapper img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: auto;
+	min-height: 138px;
+}
+
+#main-ncsection .list-group-item:hover, #main-ncsection .list-group-item:hover h5
+	{
+	background-color: #004EA3;
+	color: white !important;
+}
+
+#main-gudan-logo img {
+	max-height: 100px;
+	margin-right: 0;
+}
+
+#main-carousel .home-team-m, #main-carousel .away-team-m {
+	display: inline;
+}
+
+#main-carousel .home-team, #main-carousel .away-team {
+	display: none;
+}
+
+.main-doosan-mobile {
+	display: inline;
+}
+
+.main-doosan-pc {
+	display: none;
+}
+
+@media ( min-width : 576px) {
+	#main-carousel .home-team-m, #main-carousel .away-team-m {
+		display: none;
+	}
+	#main-carousel .home-team, #main-carousel .away-team {
+		display: inline;
+	}
+	.main-doosan-mobile {
+		display: none;
+	}
+	.main-doosan-pc {
+		display: inline;
+	}
+	#main-gudan-logo img {
+		margin-right: 0.5rem !important;
+	}
+}
+
+/* 작업중 */
+
+/* external css - 공통 */
+.text-pingendo {
+	color: #004EA3 !important;
+}
+
+.btn-pingendo {
+	color: #fff;
+	background-color: #004EA3;
+	border-color: #004EA3;
+}
+
+.btn-pingendo:hover {
+	color: #fff;
+	background-color: #003c7d;
+	border-color: #003670;
+}
+
+.btn-pingendo:focus, .btn-pingendo.focus {
+	box-shadow: 0 0 0 3px rgba(0, 78, 163, 0.5);
+}
+
+.btn-pingendo.disabled, .btn-pingendo:disabled {
+	background-color: #004EA3;
+	border-color: #004EA3;
+}
+
+.btn-pingendo:active, .btn-pingendo.active, .show>.btn-pingendo.dropdown-toggle
+	{
+	background-color: #003c7d;
+	background-image: none;
+	border-color: #003670;
+}
+
+.opaque-overlay {
+	overflow: hidden;
+	position: relative;
+}
+
+.opaque-overlay>*:first-child:before {
+	content: '';
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	pointer-events: none;
+	background: rgba(52, 58, 64, 0.25);
+}
+
+.gradient-overlay {
+	overflow: hidden;
+	position: relative;
+}
+
+.gradient-overlay>*:first-child:before {
+	content: '';
+	width: 100%;
+	height: 100%;
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	pointer-events: none;
+	background: linear-gradient(to top, #343a40 0%, transparent 100%);
+}
+
+/* @media ( min-width : 768px) { */
+.box {
+	position: relative;
+	/*   display: inline-block; */
+	/*   width: 100px;
+  height: 100px; */
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	border-radius: 5px;
+	-webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+	transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.box::after {
+	content: "";
+	border-radius: 5px;
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	left: 0;
+	/*   width: 100%;
+  height: 100%; */
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+	opacity: 0;
+	-webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+	transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.box:hover {
+	-webkit-transform: scale(1.25, 1.25);
+	transform: scale(1.25, 1.25);
+	z-index: 3;
+}
+
+.box:hover::after {
+	opacity: 1;
+}
+
+/*--------------------------*/
+
+/*--------------아래는 테스트중-------------------*/
