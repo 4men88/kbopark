@@ -4,12 +4,6 @@
 <%@ include file="/common/header.jsp"%>
 <body>
 <script type="text/javascript">
-<style>
-.col-sm-6{
-	min-height: 100vh;
-}
-
-</style>
 
 </script>
 
