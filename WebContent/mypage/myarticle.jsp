@@ -60,7 +60,7 @@
  <!-- --------------------------내 글 정보------------------------------------------------------- -->
     <div id="content" class="col-sm-9" style="min-height:600px";>
       
-      
+     <div class="row">  
      <!--  ---------------------------------------내가 쓴 글------------------------------------------ -->  
       <div class="col-sm-6" style="float:left;">
    		 <h3 style="background-color:lavender;" align="center">내가 쓴 게시물</h3>
@@ -180,7 +180,7 @@
     	 
     	 
     	 </div>
-     		   	
+  </div>  	
   <!--     -----------------------aside---------------------- -->
     <div id="aside" class="col-sm-1" style="background-color:lavender;">
     	<h3>Aside</h3>
