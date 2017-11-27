@@ -27,27 +27,12 @@
 <link rel="stylesheet" href="/skin/custom.css">
 
 
-
-
-
 <body>
-<script type="text/javascript">
-
-<!-- Bootstrap -->
-
-<link href="css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Custom style -->
-<link rel="stylesheet" href="./css/style.css" media="screen" title="no title" charset="utf-8">
-
-
-
-</script>
 
 
 <div class="container-fluid">
- 
-    <div id="navibar" class="col-sm-2" style="background-color:#F8F8FF;">
+
+    <div id="menuarea" class="col-sm-2" style="background-color:#F8F8FF;">
     	<h3>navigator</h3>
     	<div><button type="button" class="btn btn-primary" onclick="" style="height:50px;width:100%;margin:5px;">마이페이지</button></div>
     	<div><button type="button" class="btn btn-primary" onclick="" style="height:50px;width:100%;margin:5px;">정보수정</button></div>
@@ -57,9 +42,10 @@
        	<div><button type="button" class="btn btn-primary" onclick="" style="height:50px;width:100%;margin:5px;">로그아웃</button></div>
       </div>
       
-    <div id="content" class="col-sm-9" style="min-height:600px";>
+    <div id="contentarea" class="col-sm-9" style="min-height:600px";>
+    <div class="row">
  <!-- --------------------------내 정보------------------------------------------------------- -->
-    	 <div class="col-sm-6" style="float:left;">
+    	 <div class="col-sm-6">
     	 <h3 style="background-color:lavender;"align="center">내 정보</h3>
          <form role="form">
         	<div class="form-group">
@@ -91,7 +77,7 @@
    
  <!-- --------------------------공지사항------------------------------------------------------- -->
    
-   		 <div class="col-sm-6" style="float:left;">
+   		 <div class="col-sm-6">
    		 <h3 style="background-color:lavender;" align="center">공지사항</h3>
    
    	<!--?require_once $footer?--><div class="dh-board">
@@ -161,7 +147,7 @@
    		 </div>
 	 <!-- --------------------------공지사항------------------------------------------------------- -->
     <!-- --------------------------내 경매------------------------------------------------------- -->
- <div class="col-sm-6" style="clear:both;float:left;">
+ <div class="col-sm-6">
  	<h3 style="background-color:lavender;"align="center">내 경매</h3>
  		<div>
 	 		 내가 올린 경매
@@ -192,7 +178,7 @@
 	
 	<!-- --------------------------내 글 목록------------------------------------------------------- -->
   	 
-  		 <div class="col-sm-6" style="float:left;">
+  		 <div class="col-sm-6">
   		  <h3 style="background-color:lavender;"align="center">게시물</h3>
   		  <div> 		   
   		
@@ -201,7 +187,7 @@
   		
   		
   		 
-   		 <div class="col-sm-6" style="float:left;">
+   		 <div class="col-sm-6">
    		 <h3 style="background-color:lavender;" align="center">내가 쓴 게시물</h3>
    
    	<!--?require_once $footer?--><div class="dh-board">
@@ -260,7 +246,7 @@
   
   		   <!-- --------------------------내 댓글 목록------------------------------------------------------- -->
    
-   		 <div class="col-sm-6" style="float:left;">
+   		 <div class="col-sm-6">
    		 <h3 style="background-color:lavender;" align="center">내가 쓴 댓글</h3>
    
    	<!--?require_once $footer?--><div class="dh-board">
@@ -318,9 +304,11 @@
   		
   		   	
     </div>
-    <div id="aside" class="col-sm-1" style="background-color:lavender;">
+     </div>
+    
+    <div id="rightarea" class="col-sm-1" style="background-color:lavender;">
     	<h3>Aside</h3>
     </div>
-
 </div>
+
 <%@ include file="/common/footer.jsp"%>

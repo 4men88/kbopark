@@ -31,18 +31,7 @@
 
 
 <body>
-<script type="text/javascript">
 
-<!-- Bootstrap -->
-
-<link href="css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Custom style -->
-<link rel="stylesheet" href="css/style.css" media="screen" title="no title" charset="utf-8">
-
-
-
-</script>
 
 
 <div class="container-fluid">
@@ -69,7 +58,7 @@
 								<div class="px-3">
 									<div class="row">
 										<div class="col-md-12 px-2">
-											<h3 class="mb-4 text-secondary">내가 올린 경매</h3>
+											<h3 class="mb-4 text-secondary">내가 올린 경매</h3><br><br>
 										</div>
 									</div>
 									<div class="row box px-2 text-center"
@@ -96,7 +85,7 @@
 								<div class="px-3">
 									<div class="row">
 										<div class="col-md-12 px-2">
-											<h3 class="mb-4 text-secondary">&nbsp;</h3>
+											<h3 class="mb-4 text-secondary">&nbsp;</h3><br><br>
 										</div>
 									</div>
 									<div class="row">
@@ -181,7 +170,7 @@
 							<div class="px-3">
 								<div class="row">
 									<div class="col-md-12 px-2">
-										<h3 class="mb-4 text-secondary">참여한 경매</h3>
+										<h3 class="mb-4 text-secondary">참여한 경매</h3><br><br>
 									</div>
 								</div>
 								<div class="row box px-2 text-center"
@@ -212,7 +201,7 @@
 							<div class="px-3">
 								<div class="row">
 									<div class="col-md-12 px-2">
-										<h3 class="mb-4 text-secondary">&nbsp;</h3>
+										<h3 class="mb-4 text-secondary">&nbsp;</h3><br><br>
 									</div>
 								</div>
 								<div class="row">
