@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.baseball.factory.MemberActionFactory;
 import com.baseball.member.model.MemberDetailDto;
@@ -34,7 +35,7 @@ public class MemberController extends HttpServlet {
 			PageMove.forward(request, response, path);
 //			System.out.println(path);
 		}else if("mvlogin".equals(act)){
-			path="/member/login/login.jsp";
+			path="/login/login.jsp";
 			PageMove.redirect(request, response, path);
 		}else if("idcheck".equals(act)){
 			path=MemberActionFactory.getIdCheckAction().execute(request, response);
@@ -58,8 +59,11 @@ public class MemberController extends HttpServlet {
 		}else if("login".equals(act)){
 			path=MemberActionFactory.getLoginAction().execute(request, response);
 			PageMove.forward(request, response, path);
-		}else if("".equals(act)){
-			
+		}else if("logout".equals(act)){
+			HttpSession session = request.getSession();
+			session.removeAttribute("userinfo");
+			session.invalidate();
+			PageMove.redirect(request, response, "/index.jsp");
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){

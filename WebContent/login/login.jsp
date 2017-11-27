@@ -3,20 +3,20 @@
 <!--header 영역 -->
 <%@ include file="/common/header.jsp"%>
 
-<%-- <script>
+<script>
 function login(){
 	if(document.getElementById("id").value==""){
 		alert("아이디를 입력하세요");
 	}else if(document.getElementById("pass").value==""){
 		alert("패스워드를 입력하세요");
 	}else{
-		document.loginform.action="<%=root%>/kbopark";
-		document.loginform.submit();
+		document.getElementById("loginform").action="<%=root%>/kbopark";
+		document.getElementById("loginform").submit();
 	}
 }
 </script>
 
-<form name="loginform" mathod="post" action="">
+<%--<form name="loginform" mathod="post" action="">
 <input type="hidden" name="act" id="act" value="login">
 아이디<input type="text" name="id" id="id" value="">
 비밀번호<input type="password" name="pass" id="pass" value="">
@@ -33,16 +33,17 @@ function login(){
 		<div class="col-md-4">
 			<h2 class="text-dark mb-5">로그인</h2>
 
-			<form class="" method="post" action="">
+			<form class="" id="loginform" name="loginform" method="post" action="">
+			<input type="hidden" name="act" id="act" value="login">
 				<div class="form-group">
-					<input type="text" name="id" class="form-control" placeholder="아이디">
+					<input type="text" id="id" name="id" class="form-control" placeholder="아이디">
 				</div>
 				<div class="form-group">
-					<input type="password" name="password" class="form-control"
+					<input type="password" id="pass" name="pass" class="form-control"
 						placeholder="비밀번호">
 				</div>
 
-				<button type="submit" class="btn btn-block btn-lg btn-primary mb-3">로그인</button>
+				<input type="button" class="btn btn-block btn-lg btn-primary mb-3" value="로그인" onclick="javascript:login();">
 
 				<div class="d-flex mb-3">
 					<div class="mr-auto px-2 my-0">
