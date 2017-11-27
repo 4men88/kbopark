@@ -17,9 +17,9 @@ function findid(){
 	}else if(document.getElementById("email1").value==''||document.getElementById("email2").value==''){
 		alert("이메일을 입력해주세요")
 	}else{
-		String fname=document.getElementById("fname").value;
-		String email1=document.getElementById("email1").value;
-		String email2=document.getElementById("email2").value;
+		fname=document.getElementById("fname").value;
+		email1=document.getElementById("email1").value;
+		email2=document.getElementById("email2").value;
 	
 		document.location.href ="<%=root%>/kbopark?act=findid&fname="+fname+"&email1="+email1+"&email2="+email2;
 	}

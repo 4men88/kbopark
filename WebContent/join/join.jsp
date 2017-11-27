@@ -77,7 +77,7 @@
 	    }
 </script>
  
-   <form name="memberform" method="post" action="">
+   <form class="" name="memberform" method="post" action="">
    <input type= "hidden" name = "act" id= "act" value="regist">
     <div class="container" align="center">
         <div align="left" style="width:650px; border:1px solid #cccccc; padding:20px">

@@ -16,16 +16,6 @@ function login(){
 }
 </script>
 
-<%--<form name="loginform" mathod="post" action="">
-<input type="hidden" name="act" id="act" value="login">
-아이디<input type="text" name="id" id="id" value="">
-비밀번호<input type="password" name="pass" id="pass" value="">
-<input type="button" name="" id="" value="로그인버튼" onclick="javascript:login();">
-<a href="">회원가입</a>
-<a href="">아이디찾기</a>
-<a href="">비밀번호 찾기</a>
-</form> --%>
-
 <div class="py-5 mx-auto" style="max-width: 1140px;">
 
 	<div class="row py-5 px-3">
@@ -54,9 +44,9 @@ function login(){
 						</div>
 					</div>
 					<div class="px-2 border-r">
-						<span>ID찾기</span>
+						<span><a href="">ID찾기</a></span>
 					</div>
-					<div class="px-2">비밀번호찾기</div>
+					<div class="px-2"><a href="">비밀번호찾기</a></div>
 				</div>
 
 			</form>

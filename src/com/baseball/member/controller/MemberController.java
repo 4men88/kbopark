@@ -14,9 +14,6 @@ import com.baseball.util.Constance;
 import com.baseball.util.PageMove;
 
 
-/**
- * Servlet implementation class MemberController
- */
 @WebServlet("/kbopark")
 public class MemberController extends HttpServlet {
 	
@@ -27,43 +24,54 @@ public class MemberController extends HttpServlet {
 		String root = request.getContextPath();
 		String act = request.getParameter("act");
 		String path = "/index.jsp";
-		if("mvjoin".equals(act)){
-			path="/member/join/join.jsp";
+		if("mvjoinsaa".equals(act)){ //회원가입 버튼을 눌렀을 때
+//			path="/join/join.jsp";
+			path="/asdjsp.jsp";
 			PageMove.redirect(request, response, path);
-		}else if("regist".equals(act)) {
+
+		}else if("regist".equals(act)) {//가입완료 번튼을 눌렀을때
 			path=MemberActionFactory.getRegisterAction().execute(request, response);
 			PageMove.forward(request, response, path);
-//			System.out.println(path);
-		}else if("mvlogin".equals(act)){
+
+		}else if("mvlogin".equals(act)){ //로그인 화면으로 갈때
 			path="/login/login.jsp";
 			PageMove.redirect(request, response, path);
-		}else if("idcheck".equals(act)){
+		
+		}else if("idcheck".equals(act)){ // 아이디 중복검사
 			path=MemberActionFactory.getIdCheckAction().execute(request, response);
 			PageMove.redirect(request, response, path);
-		}else if("mvidck".equals(act)){
-			path="/member/join/idcheck.jsp";
+		
+		}else if("mvidck".equals(act)){ //아이디 중복검사창으로 이동
+			path="/join/idcheck.jsp";
 			PageMove.redirect(request, response, path);
-		}else if("juso".equals(act)){
-			path="/member/join/Popup.jsp";
+		
+		}else if("juso".equals(act)){ //다음 주소API 사용(팝업창띄우기)
+			path="/join/Popup.jsp";
 			PageMove.redirect(request, response, path);
-		}else if("mvfindid".equals(act)){
-			path="/member/login/idfind.jsp";
+		
+		}else if("mvfindid".equals(act)){ //아이디 찾기 창으로 이동
+			path="/login/findid.jsp";
 			PageMove.redirect(request, response, path);
-		}else if("mvfindpass".equals(act)){
-			path="/member/login/pwdfind.jsp";
+		
+		}else if("mvfindpass".equals(act)){ //비밀번호 찾기창으로 이동
+			path="/login/pwdfind.jsp";
 			PageMove.redirect(request, response, path);
-		}else if("findid".equals(act)){
+		
+		}else if("findid".equals(act)){ // 아이디 찾기
 			System.out.println("아이디찾자");
 			path=MemberActionFactory.getIdfindAction().execute(request, response);
 			PageMove.forward(request, response, path);
-		}else if("login".equals(act)){
+		
+		}else if("login".equals(act)){ //로그인
 			path=MemberActionFactory.getLoginAction().execute(request, response);
 			PageMove.forward(request, response, path);
-		}else if("logout".equals(act)){
+		
+		}else if("logout".equals(act)){ //로그아웃
 			HttpSession session = request.getSession();
 			session.removeAttribute("userinfo");
-			session.invalidate();
+			session.invalidate(); //세션 삭제로직
 			PageMove.redirect(request, response, "/index.jsp");
+		
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){

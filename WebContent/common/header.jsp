@@ -23,8 +23,9 @@ if(memberDto!=null){
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<span style="margin-right: 20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <a href="<%=root %>/kbopark?act=mvlogin"
-						style="margin-right: 20px">로그인</a> <a href="<%=root %>/kbopark?act=mvjoin">회원가입</a>
+					<span style="margin-right: 20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<a href="<%=root %>/kbopark?act=mvlogin" style="margin-right: 20px">로그인</a>
+					<a href="<%=root %>/kbopark?act=mvjoinsaa">회원가입</a>
 				</div>
 			</div>
 		</div>

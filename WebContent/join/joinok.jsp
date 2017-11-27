@@ -3,7 +3,7 @@
 <%
 MemberDetailDto memberdto = (MemberDetailDto)request.getAttribute("registInfo");
  %>
-<%@ include file="/common/header-white.jsp" %>
+<%@ include file="/common/header.jsp" %>
 <center>
 <%=memberdto.getName() %>
 회원가입성공<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
