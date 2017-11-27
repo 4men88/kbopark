@@ -3,34 +3,17 @@
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
 
-<!-- 메인이미지(작업중) -->
-<div class="py-5 text-center opaque-overlay"
-	style="background-image: url(<%=root%>/img/main-background.jpg);">
-	<div class="container py-5">
-		<div class="row">
-			<div class="col-md-12 text-white">
-				<h1 class="display-3 mb-4">Hero image intro</h1>
-				<p class="lead mb-5">
-					Pingendo is a HTML editor for everyone. Easy for newbies, useful
-					for professionals. <br>Code quality is a must. Pingendo
-					generates clean, battle-tested, modular Bootstrap 4 code.
-				</p>
-				<a href="#" class="btn btn-lg mx-1 btn-secondary">A claim here</a> <a
-					href="#" class="btn btn-lg btn-primary mx-1">Your call to
-					action</a>
-			</div>
-		</div>
+<!-- 메인이미지>> 관리자가 선택할수있었으면.. -->
+<div id="main-section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 p-0">
+        <div class="img-wrapper">
+        <img src="<%=root%>/img/main-201707mvp.png" class="img-fluid">
+        </div></div>
+      </div>
 	</div>
 </div>
-
-<!-- 메인영상
-<div class="embed-responsive embed-responsive-16by9">
-
-	<iframe class="embed-responsive-item"
-		src="http://www.youtube.com/embed/jdijTw-XDwQ?autoplay=1&amp;autohide=0&amp;controls=0&amp;disablekb=1&amp;fs=0&amp;loop=1&amp;modestbranding=1&amp;rel=0&amp;showinfo=0&amp;enablejsapi=1&amp;wmode=transparent&amp;widgetid=1&amp;vq=hd1080"
-		allowfullscreen="1" frameborder="0" width="100%" height="100%"
-		style="pointer-events: none;"> </iframe>
-</div> -->
 
 <!-- 오늘의 경기 >> 경기일정 슬라이더로 -->
 
@@ -39,91 +22,167 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h4>오늘의 경기</h4>
-				<div class="border-b mb-5 mx-auto" style="width: 138px; border-bottom: 3px solid #3452FF;"></div>
+				<div class="border-b mb-5 mx-auto"
+					style="width: 138px; border-bottom: 3px solid #1496C8;"></div>
 			</div>
 		</div>
 
 		<div id="main-carousel" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<div class="row">
-						<div class="mx-auto" style="">
-							<div class="rounded-top col-12 text-white p-2" style="background-color: #202020; border: 1px solid #202020;">
-							<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
+					<div class="row text-white text-center">
+						<div class="mx-auto rounded carousel-size-wrapper"
+							style="background-image: url(<%=root%>/img/etc/grass.jpg);">
+
+							<div class="col-md-12 text-white p-2"
+								style="background-color: rgba(50, 50, 50, 0.75);">
+								<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
 							</div>
-							<div class="rounded-bottom col-12 p-3" style="background-color: #E6E6E6; border: 1px solid #E6E6E6">
-							<span class="home-team mx-3">SK 와이번즈</span>
-							<img src="<%=root%>/img/gudan/emblem/emblem-sk.png" class="img-thumbnail">
-							<span class="mx-3">VS</span>
-							<img src="<%=root%>/img/gudan/emblem/emblem-hanwha.png" class="img-thumbnail">
-							<span class="away-team mx-3">한화 이글스</span>
+
+							<div class="col-md-12 opaque-overlay py-2 px-3">
+								<div class="row">
+									<div class="col-md-5 p-0 col-12" style="text-align: left;">
+										<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
+											class="img-thumbnail"><label>SK 와이번즈</label>
+									</div>
+									<div class="col-md-2 p-0 col-12 align-self-center">
+										<h2 class="m-0">
+											<strong>VS</strong>
+										</h2>
+									</div>
+									<div class="col-md-5 p-0 col-12" style="text-align: right;">
+										<label>KT 위즈</label><img
+											src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
+											class="img-thumbnail">
+									</div>
+								</div>
 							</div>
-					</div>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<div class="row">
-						<div class="mx-auto" style="">
-							<div class="rounded-top col-12 text-white p-2" style="background-color: #202020; border: 1px solid #202020;">
-							<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
-							</div>
-							<div class="rounded-bottom col-12 p-3" style="background-color: #E6E6E6; border: 1px solid #E6E6E6">
-							<span class="home-team mx-3">SK 와이번즈</span>
-							<img src="<%=root%>/img/gudan/emblem/emblem-sk.png" class="img-thumbnail">
-							<span class="mx-3">VS</span>
-							<img src="<%=root%>/img/gudan/emblem/emblem-hanwha.png" class="img-thumbnail">
-							<span class="away-team mx-3">한화 이글스</span>
-							</div>
-					</div>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<div class="row">
-						<div class="mx-auto" style="">
-							<div class="rounded-top col-12 text-white p-2" style="background-color: #202020; border: 1px solid #202020;">
-							<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
-							</div>
-							<div class="rounded-bottom col-12 p-3" style="background-color: #E6E6E6; border: 1px solid #E6E6E6">
-							<span class="home-team mx-3">SK 와이번즈</span>
-							<img src="<%=root%>/img/gudan/emblem/emblem-sk.png" class="img-thumbnail">
-							<span class="mx-3">VS</span>
-							<img src="<%=root%>/img/gudan/emblem/emblem-hanwha.png" class="img-thumbnail">
-							<span class="away-team mx-3">한화 이글스</span>
-							</div>
-					</div>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<div class="row">
-						<div class="mx-auto" style="">
-							<div class="rounded-top col-12 text-white p-2" style="background-color: #202020; border: 1px solid #202020;">
-							<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
-							</div>
-							<div class="rounded-bottom col-12 p-3" style="background-color: #E6E6E6; border: 1px solid #E6E6E6">
-							<span class="home-team mx-3">SK 와이번즈</span>
-							<img src="<%=root%>/img/gudan/emblem/emblem-sk.png" class="img-thumbnail">
-							<span class="mx-3">VS</span>
-							<img src="<%=root%>/img/gudan/emblem/emblem-hanwha.png" class="img-thumbnail">
-							<span class="away-team mx-3">한화 이글스</span>
-							</div>
-					</div>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<div class="row">
-						<div class="mx-auto" style="">
-							<div class="rounded-top col-12 text-white p-2" style="background-color: #202020; border: 1px solid #202020;">
-							<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
-							</div>
-							<div class="rounded-bottom col-12 p-3" style="background-color: #E6E6E6; border: 1px solid #E6E6E6">
-							<span class="home-team mx-3">SK 와이번즈</span>
-							<img src="<%=root%>/img/gudan/emblem/emblem-sk.png" class="img-thumbnail">
-							<span class="mx-3">VS</span>
-							<img src="<%=root%>/img/gudan/emblem/emblem-hanwha.png" class="img-thumbnail">
-							<span class="away-team mx-3">한화 이글스</span>
-							</div>
-					</div>
 						</div>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="row text-white text-center">
+						<div class="mx-auto rounded carousel-size-wrapper"
+							style="background-image: url(<%=root%>/img/etc/grass.jpg);">
+
+							<div class="col-md-12 text-white p-2"
+								style="background-color: rgba(50, 50, 50, 0.75);">
+								<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
+							</div>
+
+							<div class="col-md-12 opaque-overlay py-2 px-3">
+								<div class="row">
+									<div class="col-md-5 p-0 col-12" style="text-align: left;">
+										<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
+											class="img-thumbnail"><label>한화 이글스</label>
+									</div>
+									<div class="col-md-2 p-0 col-12 align-self-center">
+										<h2 class="m-0">
+											<strong>VS</strong>
+										</h2>
+									</div>
+									<div class="col-md-5 p-0 col-12" style="text-align: right;">
+										<label>삼성 라이온즈</label><img
+											src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
+											class="img-thumbnail">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="row text-white text-center">
+						<div class="mx-auto rounded carousel-size-wrapper"
+							style="background-image: url(<%=root%>/img/etc/grass.jpg);">
+
+							<div class="col-md-12 text-white p-2"
+								style="background-color: rgba(50, 50, 50, 0.75);">
+								<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
+							</div>
+
+							<div class="col-md-12 opaque-overlay py-2 px-3">
+								<div class="row">
+									<div class="col-md-5 p-0 col-12" style="text-align: left;">
+										<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
+											class="img-thumbnail"><label>삼성 라이온즈</label>
+									</div>
+									<div class="col-md-2 p-0 col-12 align-self-center">
+										<h2 class="m-0">
+											<strong>VS</strong>
+										</h2>
+									</div>
+									<div class="col-md-5 p-0 col-12" style="text-align: right;">
+										<label>SK 와이번즈</label><img
+											src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
+											class="img-thumbnail">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="row text-white text-center">
+						<div class="mx-auto rounded carousel-size-wrapper"
+							style="background-image: url(<%=root%>/img/etc/grass.jpg);">
+
+							<div class="col-md-12 text-white p-2"
+								style="background-color: rgba(50, 50, 50, 0.75);">
+								<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
+							</div>
+
+							<div class="col-md-12 opaque-overlay py-2 px-3">
+								<div class="row">
+									<div class="col-md-5 p-0 col-12" style="text-align: left;">
+										<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
+											class="img-thumbnail"><label>기아 타이거즈</label>
+									</div>
+									<div class="col-md-2 p-0 col-12 align-self-center">
+										<h2 class="m-0">
+											<strong>VS</strong>
+										</h2>
+									</div>
+									<div class="col-md-5 p-0 col-12" style="text-align: right;">
+										<label>SK 와이번즈</label><img
+											src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
+											class="img-thumbnail">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<div class="row text-white text-center">
+						<div class="mx-auto rounded carousel-size-wrapper"
+							style="background-image: url(<%=root%>/img/etc/grass.jpg);">
+
+							<div class="col-md-12 text-white p-2"
+								style="background-color: rgba(50, 50, 50, 0.75);">
+								<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
+							</div>
+
+							<div class="col-md-12 opaque-overlay py-2 px-3">
+								<div class="row">
+									<div class="col-md-5 p-0 col-12" style="text-align: left;">
+										<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
+											class="img-thumbnail"><label>SK 와이번즈</label>
+									</div>
+									<div class="col-md-2 p-0 col-12 align-self-center">
+										<h2 class="m-0">
+											<strong>VS</strong>
+										</h2>
+									</div>
+									<div class="col-md-5 p-0 col-12" style="text-align: right;">
+										<label>SK 와이번즈</label><img
+											src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
+											class="img-thumbnail">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<a class="carousel-control-prev" href="#main-carousel" role="button"
 					data-slide="prev"> <span class="carousel-control-prev-icon"
@@ -135,7 +194,7 @@
 				</a>
 			</div>
 		</div>
-		</div>
+	</div>
 </div>
 
 

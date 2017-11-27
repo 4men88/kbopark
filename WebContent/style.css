@@ -61,9 +61,33 @@ body>* {
 		url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 78, 165, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-/*  ------------------------------- */
-
 /* 메인 */
+#main-section .img-wrapper {
+	max-height: 492px;
+	overflow: hidden;
+}
+#main-section .img-wrapper img {
+	top: 0;
+	left: 0;
+	width: auto;
+}
+@media (max-width: 768px) {
+#main-section .img-wrapper img {
+	min-height: 340px;
+}
+}
+@media (min-width: 768px) {
+#main-carousel .carousel-size-wrapper {
+	width: 536px;
+}
+}
+#main-carousel .carousel-item img {
+	width: auto;
+	height: 100px;
+	border: none !important;
+	background: transparent !important;
+}
+
 #main-carousel .carousel-control-prev-icon {
 	background-image:
 		url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23aaa' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
@@ -72,13 +96,6 @@ body>* {
 #main-carousel .carousel-control-next-icon {
 	background-image:
 		url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23aaa' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
-}
-
-#main-carousel .carousel-item img {
-	width: 100px;
-	height: 100px;
-	border: none !important;
-	background: transparent !important;
 }
 
 #main-auction img {
@@ -146,6 +163,7 @@ body>* {
 	}
 }
 
+/*  ------------------------------- */
 /* 작업중 */
 
 /* external css - 공통 */
@@ -253,7 +271,53 @@ body>* {
 .box:hover::after {
 	opacity: 1;
 }
-
 /*--------------------------*/
 
 /*--------------아래는 테스트중-------------------*/
+.dropdown-submenu {
+	position: relative;
+}
+
+.dropdown-submenu>.dropdown-menu {
+	top: 0;
+	left: 100%;
+	margin-top: -6px;
+	margin-left: -1px;
+	-webkit-border-radius: 0 6px 6px 6px;
+	-moz-border-radius: 0 6px 6px;
+	border-radius: 0 6px 6px 6px;
+}
+
+.dropdown-submenu:hover>.dropdown-menu {
+	display: block;
+}
+
+.dropdown-submenu>a:after {
+	display: block;
+	content: " ";
+	float: right;
+	width: 0;
+	height: 0;
+	border-color: transparent;
+	border-style: solid;
+	border-width: 5px 0 5px 5px;
+	border-left-color: #ccc;
+	margin-top: 5px;
+	margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+	border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+	float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+	left: -100%;
+	margin-left: 10px;
+	-webkit-border-radius: 6px 0 6px 6px;
+	-moz-border-radius: 6px 0 6px 6px;
+	border-radius: 6px 0 6px 6px;
+}
