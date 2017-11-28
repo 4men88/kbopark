@@ -30,8 +30,13 @@
 			document.getElementById("email3").value = selectObj.value
 	}
 	  
-	function openidck(){
-		  window.open("<%=root%>/kbopark?act=mvidck","idck","width=550,height=300,top=200,left=200,location=no,status=no,titlebar=no,toolbar=no,resizable=no,scrollbars=no");	  
+	function idcheck(){
+		if(document.getElementById("cid").value==""){
+		  	alert("아이디를 입력해주세요")
+		}else{
+			document.getElementById("idckfrom").action ="<%= root %>/kbopark";
+		  	document.getElementById("idckfrom").submit();
+		} 	
 	}
 	  
 	function zipsearch() {
@@ -153,5 +158,71 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     </form>
 <%@ include file="/common/footer.jsp" %>
+=======
+    </form>--%>
+    
+<%@ include file="/common/footer.jsp" %> 
+
+
+<!-- idcheck Modal >> idcheck.jsp로 뺄것 -->
+<div class="modal fade" id="idcheckModal" tabindex="-1" role="dialog"
+	aria-labelledby="idcheckModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content text-center">
+			<form name="idckform" id="idckform" method="get" action="">
+				<input type="hidden" name="act" value="idcheck">
+				<div class="modal-header">
+					<h5 class="modal-title" id="idcheckModalLabel">아이디 중복검사</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body px-2 py-5">
+					<label style="display: block;">사용하실 아이디를 입력해주세요</label>
+					<div class="form-group row">
+					<div class="col-1"></div>
+						<div class="col-sm-7 col-6">
+							<input type="text" class="form-control" name="cid"
+								id="cid" placeholder="">
+						</div>
+						<div class="col-sm-3 col-4">
+							<input type="button" class="btn btn-primary" value="중복검사" onclick="javascript:idcheck();">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer p-4" style="display: block;">
+					<label style="display: block;">아이디는 몇자이상 몇자이하입니다</label>
+					<button type="button" class="btn btn-primary">사용하기</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+				</div>
+			</form>
+		</div>
+
+	</div>
+</div>
+
+<!-- zipsearch Modal >> zipsearch.jsp로 뺄것 Modal -->
+<div class="modal fade" id="zipsearchModal" tabindex="-1" role="dialog"
+	aria-labelledby="zipsearchModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="zipsearchModalLabel">우편번호검색모달</h5>
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">...</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button>
+			</div>
+		</div>
+	</div>
+</div>
+>>>>>>> db36c1f690e9aba67bbf2ca68f71a6a233e67c74
