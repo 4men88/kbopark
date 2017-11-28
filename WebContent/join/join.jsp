@@ -31,8 +31,13 @@
 			document.getElementById("email3").value = selectObj.value
 	}
 	  
-	function openidck(){
-		  window.open("<%=root%>/kbopark?act=mvidck","idck","width=550,height=300,top=200,left=200,location=no,status=no,titlebar=no,toolbar=no,resizable=no,scrollbars=no");	  
+	function idcheck(){
+		if(document.getElementById("cid").value==""){
+		  	alert("아이디를 입력해주세요")
+		}else{
+			document.getElementById("idckfrom").action ="<%= root %>/kbopark";
+		  	document.getElementById("idckfrom").submit();
+		} 	
 	}
 	  
 	function zipsearch() {
@@ -315,7 +320,8 @@
 	aria-labelledby="idcheckModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content text-center">
-			<form>
+			<form name="idckform" id="idckform" method="get" action="">
+				<input type="hidden" name="act" value="idcheck">
 				<div class="modal-header">
 					<h5 class="modal-title" id="idcheckModalLabel">아이디 중복검사</h5>
 					<button type="button" class="close" data-dismiss="modal"
@@ -328,12 +334,11 @@
 					<div class="form-group row">
 					<div class="col-1"></div>
 						<div class="col-sm-7 col-6">
-							<input type="text" class="form-control"
-								id="idcheckFormControlInput1" placeholder="">
+							<input type="text" class="form-control" name="cid"
+								id="cid" placeholder="">
 						</div>
 						<div class="col-sm-3 col-4">
-							<button type="button" class="btn btn-primary" data-toggle="modal"
-								data-target="#idcheckModal">중복검사</button>
+							<input type="button" class="btn btn-primary" value="중복검사" onclick="javascript:idcheck();">
 						</div>
 					</div>
 				</div>
