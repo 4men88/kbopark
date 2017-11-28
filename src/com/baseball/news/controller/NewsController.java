@@ -19,6 +19,10 @@ public class NewsController extends HttpServlet {
 		
 		String path = "/index.jsp";
 		
+		if("".equals(act)) {
+			
+			System.out.println();
+		}
 	
 		
 	}

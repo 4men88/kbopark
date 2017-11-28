@@ -1,15 +1,16 @@
 package com.baseball.schedule.action;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.baseball.action.Action;
-import com.baseball.member.model.MemberDetailDto;
-import com.baseball.member.service.MemberServiceImpl;
 import com.baseball.schedule.scheduleDto.ScheduleDto;
+import com.baseball.schedule.service.ScheduleServiceImpl;
 
 public class ScheduleAction implements Action {
 
@@ -17,17 +18,13 @@ public class ScheduleAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		ScheduleDto scheduleDto = new ScheduleDto();
+		Map<String, String> map = new HashMap<String, String>();
 		
-		scheduleDto.setPlaydate(scheduleDto.getPlaydate());
-		scheduleDto.setEmblem(scheduleDto.getEmblem());
-		scheduleDto.setPstatus(scheduleDto.getPstatus());
-		scheduleDto.setScore1(scheduleDto.getScore1());
-		scheduleDto.setScore2(scheduleDto.getScore2());
-		scheduleDto.setSname(scheduleDto.getSname());
-		scheduleDto.setTname(scheduleDto.getTname());
-//		String path="/schedule/schedule.jsp?act=";
-		
+		ScheduleDto scheduleDto = ScheduleServiceImpl.getScheduleService().viewSchedule((ScheduleDto) map);
+
+		request.setAttribute("schedulemap", scheduleDto);
+
+		System.out.println("ScheduleAction" + scheduleDto);
 		
 		return "/schedule/schedule.jsp";
 	}
