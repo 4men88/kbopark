@@ -1,9 +1,12 @@
 package com.baseball.schedule.scheduledao;
 
+import java.util.Map;
+
 import com.baseball.schedule.scheduleDto.ScheduleDto;
 
 public interface ScheduleDao {
 
-	ScheduleDto getSchedule(ScheduleDto scheduleDto);
+	ScheduleDto getSchedule(Map<String, String> map);
+
 	
 }

@@ -6,7 +6,7 @@ import com.baseball.gudan.model.GudanDto;
 
 public class ScheduleDto {
 	
-	private Date playdate;//경기일자
+	private String playdate;//경기일자
 	private int score1;//홈 득점
 	private int score2;// 어웨이 득점
 	private String pstatus; //경기상태
@@ -51,11 +51,11 @@ public class ScheduleDto {
 	public void setPstatus(String pstatus) {
 		this.pstatus = pstatus;
 	}
-	public void setPlaydate(Date date) {
-		
-	}
-	public Date getPlaydate() {
+	public String getPlaydate() {
 		return playdate;
 	}
-
+	public void setPlaydate(String playdate) {
+		this.playdate = playdate;
+	}
+	
 }
