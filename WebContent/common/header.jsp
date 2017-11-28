@@ -34,7 +34,7 @@ if(memberDto!=null){
 				<div class="col-md-12">
 					<span style="margin-right: 20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 					<a href="<%=root %>/kbopark?act=mvlogin" style="margin-right: 20px">로그인</a>
-					<a href="<%=root %>/kbopark?act=mvjoinsaa">회원가입</a>
+					<a href="<%=root %>/kbopark?act=mvjoin">회원가입</a>
 				</div>
 			</div>
 		</div>
@@ -44,7 +44,7 @@ if(memberDto!=null){
 %>
 	<nav id="main-header" class="navbar navbar-expand-md border-b">
 		<div class="container py-2">
-			<a class="navbar-brand" href="#"> <img class="d-block"
+			<a class="navbar-brand" href="<%=root%>/index.jsp"> <img class="d-block"
 				src="<%=root%>/img/logo.png" style="height: 30px;"></a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarSupportedContent"

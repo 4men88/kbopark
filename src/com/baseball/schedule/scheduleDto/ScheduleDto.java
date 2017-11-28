@@ -54,7 +54,7 @@ public class ScheduleDto {
 	public void setPlaydate(Date date) {
 		
 	}
-	public Date getPlaydate(Date date) {
+	public Date getPlaydate() {
 		return playdate;
 	}
 

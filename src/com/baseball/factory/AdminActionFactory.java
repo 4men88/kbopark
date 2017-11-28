@@ -1,5 +1,19 @@
 package com.baseball.factory;
 
-public class AdminActionFactory {
+import com.baseball.admin.action.UserListAction;
 
+public class AdminActionFactory {
+	private static UserListAction userListAction;
+	
+	static {
+		
+		userListAction = new UserListAction();
+		
+	}
+
+	public static UserListAction getUserListAction() {
+		return userListAction;
+	}
+	
+	
 }

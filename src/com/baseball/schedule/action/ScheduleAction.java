@@ -19,8 +19,13 @@ public class ScheduleAction implements Action {
 		
 		ScheduleDto scheduleDto = new ScheduleDto();
 		
-		
-		
+		scheduleDto.setPlaydate(scheduleDto.getPlaydate());
+		scheduleDto.setEmblem(scheduleDto.getEmblem());
+		scheduleDto.setPstatus(scheduleDto.getPstatus());
+		scheduleDto.setScore1(scheduleDto.getScore1());
+		scheduleDto.setScore2(scheduleDto.getScore2());
+		scheduleDto.setSname(scheduleDto.getSname());
+		scheduleDto.setTname(scheduleDto.getTname());
 //		String path="/schedule/schedule.jsp?act=";
 		
 		
