@@ -7,34 +7,44 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class AdminController
- */
-@WebServlet("/AdminController")
+import com.baseball.util.Constance;
+import com.baseball.util.PageMove;
+
+@WebServlet("/admin")
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String act = request.getParameter("act");
+		String path = "/index.jsp";
+		
+		if("usermanage".equals(act)) {
+			path = "/admin/adminuser.jsp";
+			PageMove.redirect(request, response, path);
+		}else if("".equals(act)){
+			
+		}else if("".equals(act)){
+			
+		}else if("".equals(act)){
+			
+		}else if("".equals(act)){
+			
+		}else if("".equals(act)){
+			
+		}else if("".equals(act)){
+			
+		}else if("".equals(act)){
+			
+		}else if("".equals(act)){
+			
+		}
+		
+		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding(Constance.MAIN_ENCODING);
 		doGet(request, response);
 	}
 

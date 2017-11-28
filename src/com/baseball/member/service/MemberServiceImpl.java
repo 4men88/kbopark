@@ -1,5 +1,7 @@
 package com.baseball.member.service;
 
+import java.util.Map;
+
 import com.baseball.member.dao.MemberDaoImpl;
 import com.baseball.member.model.MemberDetailDto;
 import com.baseball.member.model.MemberDto;
@@ -38,10 +40,12 @@ public class MemberServiceImpl implements MemberService {
 		return MemberDaoImpl.getMemberDao().idFind(memberDto);
 	}
 
+
+
 	@Override
-	public MemberDto logIn(String id, String pass) {
+	public MemberDto logIn(Map<String, String> map) {
 		
-		return MemberDaoImpl.getMemberDao().logIn(id, pass);
+		return MemberDaoImpl.getMemberDao().logIn(map);
 	}
 
 }

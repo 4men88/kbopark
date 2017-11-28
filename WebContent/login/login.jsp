@@ -3,28 +3,18 @@
 <!--header 영역 -->
 <%@ include file="/common/header.jsp"%>
 
-<%-- <script>
+<script>
 function login(){
 	if(document.getElementById("id").value==""){
 		alert("아이디를 입력하세요");
 	}else if(document.getElementById("pass").value==""){
 		alert("패스워드를 입력하세요");
 	}else{
-		document.loginform.action="<%=root%>/kbopark";
-		document.loginform.submit();
+		document.getElementById("loginform").action="<%=root%>/kbopark";
+		document.getElementById("loginform").submit();
 	}
 }
 </script>
-
-<form name="loginform" mathod="post" action="">
-<input type="hidden" name="act" id="act" value="login">
-아이디<input type="text" name="id" id="id" value="">
-비밀번호<input type="password" name="pass" id="pass" value="">
-<input type="button" name="" id="" value="로그인버튼" onclick="javascript:login();">
-<a href="">회원가입</a>
-<a href="">아이디찾기</a>
-<a href="">비밀번호 찾기</a>
-</form> --%>
 
 <div class="py-5 mx-auto" style="max-width: 1140px;">
 
@@ -33,16 +23,17 @@ function login(){
 		<div class="col-md-4">
 			<h2 class="text-dark mb-5">로그인</h2>
 
-			<form class="" method="post" action="">
+			<form class="" id="loginform" name="loginform" method="post" action="">
+			<input type="hidden" name="act" id="act" value="login">
 				<div class="form-group">
-					<input type="text" name="id" class="form-control" placeholder="아이디">
+					<input type="text" id="id" name="id" class="form-control" placeholder="아이디">
 				</div>
 				<div class="form-group">
-					<input type="password" name="password" class="form-control"
+					<input type="password" id="pass" name="pass" class="form-control"
 						placeholder="비밀번호">
 				</div>
 
-				<button type="submit" class="btn btn-block btn-lg btn-primary mb-3">로그인</button>
+				<input type="button" class="btn btn-block btn-lg btn-primary mb-3" value="로그인" onclick="javascript:login();">
 
 				<div class="d-flex mb-3">
 					<div class="mr-auto px-2 my-0">
@@ -53,9 +44,9 @@ function login(){
 						</div>
 					</div>
 					<div class="px-2 border-r">
-						<span>ID찾기</span>
+						<span><a href="">ID찾기</a></span>
 					</div>
-					<div class="px-2">비밀번호찾기</div>
+					<div class="px-2"><a href="">비밀번호찾기</a></div>
 				</div>
 
 			</form>

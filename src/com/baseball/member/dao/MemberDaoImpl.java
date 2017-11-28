@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Map;
 
 import com.baseball.member.model.MemberDetailDto;
 import com.baseball.member.model.MemberDto;
@@ -66,10 +67,10 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public MemberDto logIn(String id,String pass) {
-		MemberDto memberDto = null;
+	public MemberDto logIn(Map<String,String> map) {
+		MemberDto memberDto=null;
 		Connection conn=null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			
@@ -77,15 +78,18 @@ public class MemberDaoImpl implements MemberDao {
 			StringBuffer sql = new StringBuffer();
 			sql.append("select mid,name,email1,email2\n");
 			sql.append("from member\n");
-			sql.append("where mid='"+id+"' and pass='"+pass+"'");
-			stmt = conn.createStatement();
-			rs=stmt.executeQuery(sql.toString());
+			sql.append("where mid=? and pass=?");
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, map.get("id"));
+			pstmt.setString(2, map.get("pass"));
+			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				memberDto = new MemberDto();
 				memberDto.setId(rs.getString("mid"));
 				memberDto.setName(rs.getString("name"));
 				memberDto.setEmail1(rs.getString("email1"));
 				memberDto.setEmail1(rs.getString("email2"));
+				System.out.println(memberDto.getId());
 				
 			}
 			
@@ -93,7 +97,7 @@ public class MemberDaoImpl implements MemberDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			DBClose.close(conn, stmt);
+			DBClose.close(conn, pstmt,rs);
 		}
 		return memberDto;
 	}
