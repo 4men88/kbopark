@@ -164,6 +164,19 @@ body>* {
 }
 
 /*  ------------------------------- */
+
+/* 회원 */
+@media (max-width: 576px) {
+#joinForm .tellabel {
+		display: none;
+	}
+}
+
+
+
+
+
+
 /* 경매 */
 #auc-recommended .nav-tabs .nav-item a {
 	height: 100%;
