@@ -24,9 +24,8 @@ public class MemberController extends HttpServlet {
 		String root = request.getContextPath();
 		String act = request.getParameter("act");
 		String path = "/index.jsp";
-		if("mvjoinsaa".equals(act)){ //회원가입 버튼을 눌렀을 때
-//			path="/join/join.jsp";
-			path="/asdjsp.jsp";
+		if("mvjoin".equals(act)){ //회원가입 버튼을 눌렀을 때
+			path="/join/join.jsp";
 			PageMove.redirect(request, response, path);
 
 		}else if("regist".equals(act)) {//가입완료 번튼을 눌렀을때

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import com.baseball.factory.AdminActionFactory;
 import com.baseball.util.Constance;
 import com.baseball.util.PageMove;
 
@@ -20,8 +20,8 @@ public class AdminController extends HttpServlet {
 		String path = "/index.jsp";
 		
 		if("usermanage".equals(act)) {
-			path = "/admin/adminuser.jsp";
-			PageMove.redirect(request, response, path);
+			path = AdminActionFactory.getUserListAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){

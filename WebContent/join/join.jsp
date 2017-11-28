@@ -68,11 +68,11 @@
 	                }
 
 	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                document.getElementById('zip1').value = data.zonecode; //5자리 새우편번호 사용
-	                document.getElementById('addr1').value = fullAddr;
+	                document.getElementById('inputzipcode').value = data.zonecode; //5자리 새우편번호 사용
+	                document.getElementById('inputAddress1').value = fullAddr;
 
 	                // 커서를 상세주소 필드로 이동한다.
-	                document.getElementById('addr2').focus();
+	                document.getElementById('inputAddress2').focus();
 	            }
 	        }).open();
 	    }
@@ -176,8 +176,8 @@
 							placeholder="" readonly>
 					</div>
 					<div class="col-sm-2 pl-0 col-4 align-self-center">
-						<button type="button" class="btn btn-primary" data-toggle="modal"
-							data-target="#zipsearchModal">주소검색</button>
+						<input type="button" class="btn btn-primary" data-toggle=""
+							data-target="" value="주소검색" onclick="javascript:zipsearch();">
 					</div>
 				</div>
 
