@@ -25,9 +25,9 @@
 	<ul class="nav nav-tabs nav-justified" role="tablist">
 		<li class="nav-item"><a class="nav-link active" data-toggle="tab"
 			href="#menu1">BEST PICK</a></li>
-		<li class="nav-item"><a class="nav-link" data-toggle="tab"
-			href="#menu2">마감임박</a></li>
-		<li class="nav-item"><a class="nav-link" data-toggle="tab"
+		<li class="nav-item"><a class="nav-link"  data-toggle="tab"
+			href="AuctionController?act=aend">마감임박</a></li>
+		<li class="nav-item"><a class="nav-link"  data-toggle="tab"
 			href="#menu3">인기물품</a></li>
 		<li class="nav-item"><a class="nav-link" data-toggle="tab"
 			href="#menu4">신규물품</a></li>
