@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.baseball.factory.AdminActionFactory;
 import com.baseball.util.Constance;
 import com.baseball.util.PageMove;
@@ -44,7 +43,9 @@ public class AdminController extends HttpServlet {
 	}
 
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		request.setCharacterEncoding(Constance.MAIN_ENCODING);
 		doGet(request, response);
 	}
