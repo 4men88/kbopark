@@ -5,13 +5,14 @@
 
 <!-- 메인이미지>> 관리자가 선택할수있었으면.. -->
 <div id="main-section">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-12 p-0">
-        <div class="img-wrapper">
-        <img src="<%=root%>/img/main-201707mvp.png" class="img-fluid">
-        </div></div>
-      </div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12 p-0">
+				<div class="img-wrapper">
+					<img src="<%=root%>/img/main-201707mvp.png" class="img-fluid">
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 

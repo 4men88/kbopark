@@ -7,34 +7,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class ScheduleController
- */
+import com.baseball.util.PageMove;
+
 @WebServlet("/ScheduleController")
 public class ScheduleController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ScheduleController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	
+	
+		String root = request.getContextPath();
+		String act = request.getParameter("act");
+		System.out.println("ScheduleController act ==" + act);
+		
+		String path = "/index.jsp";
+		
+		if("viewschedule".equals(act)) {
+			path = "/schedule/schedule.jsp";
+			PageMove.redirect(request, response, path);
+		} else if("".equals(act)) {
+			
+		}
+		
+		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

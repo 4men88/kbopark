@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+<<<<<<< HEAD
 import com.baseball.util.Constance;
 import com.baseball.util.PageMove;
 
@@ -45,6 +46,17 @@ public class AdminController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding(Constance.MAIN_ENCODING);
+=======
+@WebServlet("/AdminController")
+public class AdminController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+>>>>>>> 44cd3c1215c2cd389cef54073731891aeeeafdab
 		doGet(request, response);
 	}
 
