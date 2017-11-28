@@ -310,44 +310,41 @@
 <%@ include file="/common/footer.jsp" %> 
 
 
-<!-- 아래 작업중 -->
 <!-- idcheck Modal >> idcheck.jsp로 뺄것 -->
 <div class="modal fade" id="idcheckModal" tabindex="-1" role="dialog"
 	aria-labelledby="idcheckModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-
-
-
-			<div class="modal-header">
-				<h5 class="modal-title" id="idcheckModalLabel">아이디중복확인모달</h5>
-				<button type="button" class="close" data-dismiss="modal"
-					aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-
-			<div class="modal-body">...</div>
-
-
-			<div class="modal-footer">
-				<!-- 				<div class="align-self-center" style="width: 100%;">
-				<button type="button" class="btn btn-primary">사용하기</button>
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-				</div> -->
-
-				<div class="row">
-					<div class="col align-self-start"></div>
-					<div class="col align-self-center">
-				<button type="button" class="btn btn-primary">사용하기</button>
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>					
-					
-					</div>
-					<div class="col align-self-end"></div>
+		<div class="modal-content text-center">
+			<form>
+				<div class="modal-header">
+					<h5 class="modal-title" id="idcheckModalLabel">아이디 중복검사</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
 				</div>
-			</div>
-
+				<div class="modal-body px-2 py-5">
+					<label style="display: block;">사용하실 아이디를 입력해주세요</label>
+					<div class="form-group row">
+					<div class="col-1"></div>
+						<div class="col-sm-7 col-6">
+							<input type="text" class="form-control"
+								id="idcheckFormControlInput1" placeholder="">
+						</div>
+						<div class="col-sm-3 col-4">
+							<button type="button" class="btn btn-primary" data-toggle="modal"
+								data-target="#idcheckModal">중복검사</button>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer p-4" style="display: block;">
+					<label style="display: block;">아이디는 몇자이상 몇자이하입니다</label>
+					<button type="button" class="btn btn-primary">사용하기</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+				</div>
+			</form>
 		</div>
+
 	</div>
 </div>
 
