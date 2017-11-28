@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> b2e0c443f51b123f9e9e209ac3d37c10605a80b8
 import com.baseball.util.Constance;
 import com.baseball.util.PageMove;
 
@@ -46,6 +50,7 @@ public class AdminController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding(Constance.MAIN_ENCODING);
+<<<<<<< HEAD
 =======
 @WebServlet("/AdminController")
 public class AdminController extends HttpServlet {
@@ -57,6 +62,8 @@ public class AdminController extends HttpServlet {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 >>>>>>> 44cd3c1215c2cd389cef54073731891aeeeafdab
+=======
+>>>>>>> b2e0c443f51b123f9e9e209ac3d37c10605a80b8
 		doGet(request, response);
 	}
 
