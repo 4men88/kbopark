@@ -1,6 +1,8 @@
 package com.baseball.member.action;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,13 +20,25 @@ public class LoginAction implements Action {
 		String path="/wrongpath.jsp";
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
-		MemberDto memberDto= MemberServiceImpl.getMemberService().logIn(id,pass); 
+//		System.out.println(id+""+pass);
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("id", id);
+		map.put("pass", pass);
+//		System.out.println(map.get("id"));
+		MemberDto memberDto= MemberServiceImpl.getMemberService().logIn(map);
+		System.out.println(memberDto.getEmail1());
 		if(memberDto!=null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("userinfo", memberDto);
-			path = "login/loginok.jsp";
+			if("gksdjf".equals(memberDto.getId())) {
+				HttpSession session = request.getSession();
+				session.setAttribute("userInfo", memberDto);
+				path = "/admin/adhome.jsp";
+			}else {
+				HttpSession session = request.getSession();
+				session.setAttribute("userInfo", memberDto);
+				path = "/index.jsp";
+			}
 		}else {
-			path="/login/loginfail.jsp";
+			path = "/login/loginfail.jsp";
 		}
 		return path;
 	}

@@ -12,17 +12,36 @@ function viewSchedule(){
 </script>
 
 <header class="sticky-top" style="background-color: white;">
+<%
+if(memberDto!=null){
+%>
 	<div id="top-header" class="py-2 text-right border-b">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<span style="margin-right: 20px;">키트리님 반갑습니다</span> <a href="#"
-						style="margin-right: 20px">로그인</a> <a href="#">회원가입</a>
+					<span style="margin-right: 20px;"><%=memberDto.getName()%>님 반갑습니다</span>
+					<a href="<%=root %>/kbopark?act=logout" style="margin-right: 20px">로그아웃</a><a href="">마이페이지</a>
 				</div>
 			</div>
 		</div>
 	</div>
-
+<%
+}else{
+%>
+	<div id="top-header" class="py-2 text-right border-b">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<span style="margin-right: 20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<a href="<%=root %>/kbopark?act=mvlogin" style="margin-right: 20px">로그인</a>
+					<a href="<%=root %>/kbopark?act=mvjoinsaa">회원가입</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<%
+}
+%>
 	<nav id="main-header" class="navbar navbar-expand-md border-b">
 		<div class="container py-2">
 			<a class="navbar-brand" href="#"> <img class="d-block"
