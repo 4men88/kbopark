@@ -163,7 +163,6 @@ body>* {
 	}
 }
 
-/*  ------------------------------- */
 
 /* 회원 */
 @media (max-width: 576px) {
@@ -173,16 +172,34 @@ body>* {
 }
 
 
-
-
-
+/*  ------------------------------- */
 
 /* 경매 */
 #auc-recommended .nav-tabs .nav-item a {
 	height: 100%;
 }
 
+.auction-category .list-group-item {
+	background-color: transparent;
+	border: none;
+}
+.auction-category .pagination .active .page-link {
+	color: white !important;
+}
 
+#current-category .breadcrumb-item.active {
+	font-weight: 700;
+}
+
+.auction-category nav a:hover {
+	color: #343a40 !important;
+}
+.auction-category nav a:active {
+	background-color: #007BFF;
+	color: white !important;
+}	
+	
+	
 /* 작업중 */
 
 
@@ -363,3 +380,66 @@ body>* {
 	-moz-border-radius: 6px 0 6px 6px;
 	border-radius: 6px 0 6px 6px;
 }
+
+
+
+/*
+ * Style tweaks
+ * --------------------------------------------------
+ */
+html,
+body {
+  overflow-x: hidden; Prevent scroll on narrow devices
+}
+
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 767px) {
+  .row-offcanvas {
+    position: relative;
+    transition: all .25s ease-out;
+  }
+
+  .row-offcanvas-right {
+    right: 0;
+  }
+
+  .row-offcanvas-left {
+    left: 0;
+  }
+
+  .row-offcanvas-right .sidebar-offcanvas {
+    right: -100%; /* 12 columns */
+  }
+
+  .row-offcanvas-right.active .sidebar-offcanvas {
+    right: -50%; /* 6 columns */
+  }
+
+  .row-offcanvas-left .sidebar-offcanvas {
+    left: -100%; /* 12 columns */
+  }
+
+  .row-offcanvas-left.active .sidebar-offcanvas {
+    left: -50%; /* 6 columns */
+  }
+
+  .row-offcanvas-right.active {
+    right: 50%; /* 6 columns */
+  }
+
+  .row-offcanvas-left.active {
+    left: 50%; /* 6 columns */
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 50%; /* 6 columns */
+    height: 100%;
+  }
+}
+
+
