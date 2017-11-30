@@ -442,4 +442,26 @@ body {
   }
 }
 
+/*----------------*/
+.table-container {
+    display: table;
+    border-collapse: collapse;
+}
+.column {
+    float: left;
+    overflow: hidden;
+    width: 120px;
+}
+.cell {
+    display: table-cell;
+    border: 1px solid red;
+    width: 120px;
+    height: 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
 
+#auction-maincarousel .list-group-item {
+	padding: 1.25rem 1.25rem;
+}
