@@ -21,9 +21,12 @@ public class AuctionController extends HttpServlet {
 		String act = request.getParameter("act");
 		String path = "/auction.jsp";
 		
-		if("act".equals("aend"))
+		if(act.equals("aend"))
 		{
+			System.out.println("1");
 			path = AuctionActionFactory.getAuctionMainListAction().execute(request, response);
+			System.out.println("2");
+			PageMove.forward(request, response, path);
 		}
 		else if("".equals(act)) 
 		{

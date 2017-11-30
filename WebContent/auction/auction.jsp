@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR" import="com.baseball.auction.model.AuctionDetailDto,java.util.List"%>
 <!--header 영역 -->
 <%@ include file="/common/header.jsp"%>
 
@@ -10,8 +10,12 @@
 작업중 ㅠㅠ
 
 
+<%
+	List<AuctionDetailDto> auctionDetailDto = (List<AuctionDetailDto>)request.getAttribute("auctionDetailDto");
+%>
 
 <div class="container py-5 my-5">
+
 	<div class="navbar-template text-center"></div>
 </div>
 
@@ -20,13 +24,18 @@
 
 <!-- 추천별 경매물품 섹션: best pick: 관리자가 초이스한 상품들 -->
 <div id="auc-recommended" class="py-5">
+<script type="text/javascript">
+function endList(){
+	document.location.href = "<%=root%>/AuctionController?act=aend";
+}
+</script>
 <div class="container py-5">
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs nav-justified" role="tablist">
 		<li class="nav-item"><a class="nav-link active" data-toggle="tab"
 			href="#menu1">BEST PICK</a></li>
 		<li class="nav-item"><a class="nav-link"  data-toggle="tab"
-			href="AuctionController?act=aend">마감임박</a></li>
+			href="#menu2" onclick ="javascript:endList();">마감임박</a></li>
 		<li class="nav-item"><a class="nav-link"  data-toggle="tab"
 			href="#menu3">인기물품</a></li>
 		<li class="nav-item"><a class="nav-link" data-toggle="tab"
@@ -101,7 +110,7 @@
 				</div>
 			</div>
 		</div>
-
+<!--  -->
 		<div id="menu2" class="container tab-pane fade">
 						<div class="row p-2 text-center">
 
