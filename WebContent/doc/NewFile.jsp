@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<center>
-안녕하세요
-</center>
+
 </body>
 </html>

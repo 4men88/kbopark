@@ -9,6 +9,57 @@ public class MemberDetailDto extends MemberDto {
 	private String zip2;
 	private String addr1;
 	private String addr2;
+	private int tno;
+	private int rookie;
+	
+	
+	
+	
+	public String getZip2() {
+		return zip2;
+	}
+
+	public void setZip2(String zip2) {
+		this.zip2 = zip2;
+	}
+
+	public int getTno() {
+		return tno;
+	}
+
+	public void setTno(int tid) {
+		this.tno = tno;
+	}
+
+	public int getRookie() {
+		return rookie;
+	}
+
+	public void setRookie(int rookie) {
+		this.rookie = rookie;
+	}
+
+	public int getPenalty() {
+		return penalty;
+	}
+
+	public void setPenalty(int penalty) {
+		this.penalty = penalty;
+	}
+
+	public String getMstatus() {
+		return mstatus;
+	}
+
+	public void setMstatus(String mstatus) {
+		this.mstatus = mstatus;
+	}
+
+	private int penalty;
+	private String mstatus;
+	
+	
+	
 
 	public String getTel1() {
 		return tel1;
@@ -42,13 +93,6 @@ public class MemberDetailDto extends MemberDto {
 		this.zip1 = zip1;
 	}
 
-	public String getZip2() {
-		return zip2;
-	}
-
-	public void setZip2(String zip2) {
-		this.zip2 = zip2;
-	}
 
 	public String getAddr1() {
 		return addr1;
