@@ -41,8 +41,9 @@ public class MemberDaoImpl implements MemberDao {
 			sql.append("	into member(mid,pass,name,email1,email2,joindate)\n");
 			sql.append("		values(?,?,?,?,?,sysdate)\n");
 			sql.append("	into member_detail(mid,tel1,tel2,tel3,zip1,addr1,addr2,tno,rookie,penalty,mtype,mstatus)\n");
-			sql.append("		values(?,?,?,?,?,?,?,?,0,0,1,1)\n");
+			sql.append("		values(?,?,?,?,?,?,?,?,0,0,'1','1')\n");
 			sql.append("select * from dual");
+			
 			pstmt = conn.prepareStatement(sql.toString());
 			int idx=0;
 			pstmt.setString(++idx, memberdto.getId());

@@ -26,6 +26,7 @@ System.out.println("sdfsdf"+list.get(1).getId());
 </tr>
 </table>
 <div style="height:15px;  border-bottom: 1px solid black"> </div>
+<form name="" id="" method="">
 <table width="1000px">
 <tr>
 <td align="center">이름</td>
@@ -45,6 +46,7 @@ if(size!=0){
 	<td align="center"><%= memberDetailDto.getRookie()%></td>
 	<td align="center"><%= memberDetailDto.getPenalty()%></td>
 	<td align="center"><%= memberDetailDto.getMstatus()%></td>
+	<td align="center"><input type="button" name="<%= memberDetailDto.getId()%>" id="<%= memberDetailDto.getId()%>" value="삭제">
 	</tr>
 <%
 	}
@@ -55,5 +57,6 @@ if(size!=0){
 }
 %>
 </table>
+</form>
 </center>
 <%@ include file="/admin/adcom/adfooter.jsp" %>
