@@ -28,7 +28,7 @@
 		
 	function changemail(selectObj){
 			//alert(selectObj.value)
-			document.getElementById("email3").value = selectObj.value
+			document.getElementById("email2").value = selectObj.value
 	}
 	  
 	function idcheck(){
@@ -81,6 +81,7 @@
 	            }
 	        }).open();
 	    }
+
 </script>
  
 <div class="py-5 mx-auto" style="max-width: 1140px;">
@@ -101,7 +102,7 @@
 					<label for="inputId" class="col-sm-2 col-12 col-form-label">아이디</label>
 					<div class="col-sm-8 col-8">
 						<input type="text" class="form-control" id="inputId"
-							placeholder="" readonly>
+							placeholder="">
 					</div>
 					<div class="col-sm-2 pl-0 col-4">
 						<button type="button" class="btn btn-primary" data-toggle="modal"
@@ -128,18 +129,18 @@
 					<label for="inputEmail1" class="col-sm-2 col-form-label">이메일</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control mb-2 mb-sm-0"
-							id="inputEmail1" placeholder="">
+							id="email1" placeholder="">
 					</div>
 					<div class="col-sm-4">
 						<div class="input-group mb-2 mb-sm-0">
 							<div class="input-group-addon">@</div>
-							<input type="text" class="form-control" id="inputEmail2"
+							<input type="text" class="form-control" id="email2"
 								placeholder="">
 						</div>
 					</div>
 					<div class="col-sm-3">
-						<select id="inputEmailAddress" class="form-control">
-							<option selected>직접입력</option>
+						<select id="inputEmailAddress" class="form-control" onchange="javascript:changemail(this);">
+							<option selected="selected">직접입력</option>
 							<option>kitri.re.kr</option>
 							<option>naver.com</option>
 							<option>daum.net</option>
@@ -205,20 +206,19 @@
 					<label for="inputTeam" class="col-sm-2 col-form-label">선호구단</label>
 					<div class="col-sm-4">
 						<select id="inputTeamState" class="form-control">
-							<option selected>두산 베어스</option>
-							<option>롯데 자이언츠</option>
-							<option>KIA 타이거즈</option>
-							<option>NC 다이노스</option>
-							<option>SK 와이번스</option>
-							<option>LG 트윈스</option>
-							<option>넥센 히어로즈</option>
-							<option>한화 이글스</option>
-							<option>삼성 라이온즈</option>
-							<option>KT 위즈</option>
+							<option selected="selected" value="2">두산 베어스</option>
+							<option value="3">롯데 자이언츠</option>
+							<option value="1">KIA 타이거즈</option>
+							<option value="4">NC 다이노스</option>
+							<option value="5">SK 와이번스</option>
+							<option value="6">LG 트윈스</option>
+							<option value="7">넥센 히어로즈</option>
+							<option value="8">한화 이글스</option>
+							<option value="9">삼성 라이온즈</option>
+							<option value="10">KT 위즈</option>
 						</select>
 					</div>
 				</div>
-
 
 				<div class="border-b mb-2 px-3"></div>
 

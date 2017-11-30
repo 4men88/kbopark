@@ -17,7 +17,7 @@ public class LoginAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		String path="/wrongpath.jsp";
+		String path="/index.jsp";
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
 //		System.out.println(id+""+pass);
@@ -26,7 +26,6 @@ public class LoginAction implements Action {
 		map.put("pass", pass);
 //		System.out.println(map.get("id"));
 		MemberDto memberDto= MemberServiceImpl.getMemberService().logIn(map);
-		System.out.println(memberDto.getEmail1());
 		if(memberDto!=null) {
 			if("gksdjf".equals(memberDto.getId())) {
 				HttpSession session = request.getSession();
@@ -37,9 +36,9 @@ public class LoginAction implements Action {
 				session.setAttribute("userInfo", memberDto);
 				path = "/index.jsp";
 			}
-		}else {
-			path = "/login/loginfail.jsp";
-		}
+		} else 
+			path = "/index.jsp?id="+id;
+		
 		return path;
 	}
 	

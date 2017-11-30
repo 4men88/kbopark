@@ -9,7 +9,7 @@ public class MemberDetailDto extends MemberDto {
 	private String zip2;
 	private String addr1;
 	private String addr2;
-	private int tid;
+	private int tno;
 	private int rookie;
 	
 	
@@ -23,12 +23,12 @@ public class MemberDetailDto extends MemberDto {
 		this.zip2 = zip2;
 	}
 
-	public int getTid() {
-		return tid;
+	public int getTno() {
+		return tno;
 	}
 
-	public void setTid(int tid) {
-		this.tid = tid;
+	public void setTno(int tid) {
+		this.tno = tno;
 	}
 
 	public int getRookie() {

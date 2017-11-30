@@ -24,7 +24,7 @@ public class RegisterAction implements Action {
 		memberdto.setAddr1(request.getParameter("addr1"));
 		memberdto.setAddr2(request.getParameter("addr2"));
 		memberdto.setZip1(request.getParameter("zip1"));
-		memberdto.setZip2(request.getParameter("zip2"));
+		memberdto.setTno(Integer.parseInt(request.getParameter("inputTeamState")));
 		memberdto.setTel1(request.getParameter("tel1"));
 		memberdto.setTel2(request.getParameter("tel2"));
 		memberdto.setTel3(request.getParameter("tel3"));
