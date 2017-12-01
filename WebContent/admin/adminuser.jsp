@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-<<<<<<< HEAD
     pageEncoding="EUC-KR" import="com.baseball.member.model.MemberDetailDto,java.util.*"%>
 <%@ include file="/admin/adcom/adheader.jsp" %>
 <%
@@ -61,10 +60,4 @@ if(size!=0){
 </form>
 </center>
 <%@ include file="/admin/adcom/adfooter.jsp" %>
-=======
-    pageEncoding="EUC-KR"%>
-<%--<%@ include file="/admin/adcom/adheader.jsp" 
-회원관리
 
-<%@ include file="/admin/adcom/adfooter.jsp" %>--%>
->>>>>>> e09b44669a89fcd0040fe31a2af7564cfbaa207e
