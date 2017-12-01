@@ -15,13 +15,8 @@
 %>
 
 <div class="container py-5 my-5">
-
 	<div class="navbar-template text-center"></div>
 </div>
-
-
-
-
 <!-- 추천별 경매물품 섹션: best pick: 관리자가 초이스한 상품들 -->
 <div id="auc-recommended" class="py-5">
 <script type="text/javascript">
