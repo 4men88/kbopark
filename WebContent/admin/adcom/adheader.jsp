@@ -49,6 +49,7 @@ if(memberDto!=null){
 					<li class="nav-item mx-1"><a class="nav-link" href="">경매관리</a></li>
 					<li class="nav-item mx-1"><a class="nav-link" href="">구단정보관리</a></li>
 					<li class="nav-item mx-1"><a class="nav-link" href="">게시판관리</a></li>
+					<li class="nav-item mx-1"><a class="nav-link" href="">공지사항</a></li>
 				</ul>
 				<form class="form-inline m-0">
 					<input class="form-control mr-2" type="text" style="">
