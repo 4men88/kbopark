@@ -60,3 +60,4 @@ if(size!=0){
 </form>
 </center>
 <%@ include file="/admin/adcom/adfooter.jsp" %>
+
