@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR" import="com.baseball.auction.model.AuctionDetailDto,java.util.List"%>
 <!--header 영역 -->
 <%@ include file="/common/header.jsp"%>
 
@@ -7,6 +7,7 @@
 <!-- 유니폼, 경기용품, 응원용품, 기타잡화 유니폼 -> 상의, 하의, 모자,기타 응원용품 -> 피켓, LED피켓, 기타 경기용품 ->
 야구공, 배트, 벨트, 헬멧, 글러브, 배팅장갑, 수비장갑, 팔보호대, 안면보호대, 무릎보호대, 발목보호대 야구화, 기타 잡화용품
 -> 사진, 티켓, 카드, 기타
+<<<<<<< HEAD
 작업중 ㅠㅠ -->
 <div id="auction-maincarousel">
 	<div class="container-fluid">
@@ -71,10 +72,23 @@
 			</div>
 		</div>
 	</div>
+=======
+작업중 ㅠㅠ
+
+
+<%
+	List<AuctionDetailDto> auctionDetailDto = (List<AuctionDetailDto>)request.getAttribute("auctionDetailDto");
+%>
+
+<div class="container py-5 my-5">
+
+	<div class="navbar-template text-center"></div>
+>>>>>>> e09b44669a89fcd0040fe31a2af7564cfbaa207e
 </div>
 
 <!-- 추천별 경매물품 섹션: best pick: 관리자가 초이스한 상품들 -->
 <div id="auc-recommended" class="py-5">
+<<<<<<< HEAD
 	<div class="container py-5">
 		<!-- Nav tabs -->
 		<ul class="nav nav-tabs nav-justified" role="tablist">
@@ -107,6 +121,43 @@
 									<strong>현재입찰가 : 70,000원</strong>
 								</p>
 							</div>
+=======
+<script type="text/javascript">
+function endList(){
+	document.location.href = "<%=root%>/AuctionController?act=aend";
+}
+</script>
+<div class="container py-5">
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs nav-justified" role="tablist">
+		<li class="nav-item"><a class="nav-link active" data-toggle="tab"
+			href="#menu1">BEST PICK</a></li>
+		<li class="nav-item"><a class="nav-link"  data-toggle="tab"
+			href="#menu2" onclick ="javascript:endList();">마감임박</a></li>
+		<li class="nav-item"><a class="nav-link"  data-toggle="tab"
+			href="#menu3">인기물품</a></li>
+		<li class="nav-item"><a class="nav-link" data-toggle="tab"
+			href="#menu4">신규물품</a></li>
+	</ul>
+
+	<!-- Tab panes -->
+	<div class="tab-content">
+		<div id="menu1" class="container tab-pane active">
+			<div class="row p-2 text-center">
+
+				<div class="col-md-3">
+					<div class="row p-2">
+						<div class="col-md-12 col-4 align-self-center">
+							<img src="<%=root%>/img/auction/auc1.jpg" class="img-fluid">
+						</div>
+						<div class="col-md-12 col-8 align-self-center">
+							<p class="mb-2">
+								<strong>KBO 2017 공인구</strong><br>입찰자수 : 22명<br>남은시간 : 5일 3시간 20분
+							</p>
+							<p style="color: red;">
+								<strong>현재입찰가 : 70,000원</strong>
+							</p>
+>>>>>>> e09b44669a89fcd0040fe31a2af7564cfbaa207e
 						</div>
 					</div>
 
@@ -160,6 +211,7 @@
 					</div>
 				</div>
 			</div>
+<<<<<<< HEAD
 
 			<div id="menu2" class="container tab-pane fade">
 				<div class="row p-2 text-center">
@@ -178,6 +230,25 @@
 									<strong>현재입찰가 : 50,000원</strong>
 								</p>
 							</div>
+=======
+		</div>
+<!--  -->
+		<div id="menu2" class="container tab-pane fade">
+						<div class="row p-2 text-center">
+
+				<div class="col-md-3">
+					<div class="row p-2">
+						<div class="col-md-12 col-4 align-self-center">
+							<img src="<%=root%>/img/auction/auc1.jpg" class="img-fluid">
+						</div>
+						<div class="col-md-12 col-8 align-self-center">
+							<p class="mb-2">
+								<strong>KBO 2017 공인구</strong><br>입찰자수 : 21명<br>남은시간 : 3일 2시간 20분
+							</p>
+							<p style="color: red;">
+								<strong>현재입찰가 : 50,000원</strong>
+							</p>
+>>>>>>> e09b44669a89fcd0040fe31a2af7564cfbaa207e
 						</div>
 					</div>
 
