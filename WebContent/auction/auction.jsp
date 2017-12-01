@@ -26,7 +26,7 @@
 <div id="auc-recommended" class="py-5">
 <script type="text/javascript">
 function endList(){
-	document.location.href = "<%=root%>/AuctionController?act=aend";
+	document.location.href = "<%=root%>/auction?act=aend";
 }
 </script>
 <div class="container py-5">
