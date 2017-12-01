@@ -2,37 +2,37 @@
 	pageEncoding="EUC-KR"%>
 <!--header 영역 -->
 <%@ include file="/common/header.jsp"%>
+
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="<%=root%>/js/httpRequest.js"></script>
 <script type="text/javascript">
 	
 	function register(){
-			//var name = document.memberform.name.value;
-			//alert(name);
-			if(document.getElementById("name").value==""){
-				alert("이름을 입력하세요!!!");
-				return;
-			}else if(document.getElementById("id").value==""){
-				alert("아이디를 입력하세요!!!");
-				return;
-			}else if(document.getElementById("pass").value==""){
-				alert("비밀번호를 입력하세요!!!");
-				return;
-			}else if(document.getElementById("pass").value != document.getElementById("passok").value){
-				alert("비밀번호가 일치하지 않습니다!!");
-				return;
-			}else{
-				document.memberform.action = "<%=root %>/kbopark";
-				document.memberform.submit();
+
+		if(document.getElementById("name").value==""){
+			alert("이름을 입력하세요!!!");
+			return;
+		}else if(document.getElementById("id").value==""){
+			alert("아이디를 입력하세요!!!");
+			return;
+		}else if(document.getElementById("pass").value==""){
+			alert("비밀번호를 입력하세요!!!");
+			return;
+		}else if(document.getElementById("pass").value != document.getElementById("passok").value){
+			alert("비밀번호가 일치하지 않습니다!!");
+			return;
+		}else if(document.getElementById("tno").value ==""){
+			alert("선호구단을 선택해 주세요!!");
+			return;
+		}else{
+			document.getElementById("joinForm").action = "<%=root %>/kbopark";
+			document.getElementById("joinForm").submit();
 			}
 		}
 		
 	function changemail(selectObj){
 			//alert(selectObj.value)
 			document.getElementById("email2").value = selectObj.value
-	}
-	  
-	function openidck(){
-		  window.open("<%=root%>/kbopark?act=mvidck","idck","width=550,height=300,top=200,left=200,location=no,status=no,titlebar=no,toolbar=no,resizable=no,scrollbars=no");	  
 	}
 	  
 	function zipsearch() {
@@ -68,14 +68,50 @@
 	                }
 
 	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                document.getElementById('inputzipcode').value = data.zonecode; //5자리 새우편번호 사용
-	                document.getElementById('inputAddress1').value = fullAddr;
+	                document.getElementById('zip1').value = data.zonecode; //5자리 새우편번호 사용
+	                document.getElementById('addr1').value = fullAddr;
 
 	                // 커서를 상세주소 필드로 이동한다.
-	                document.getElementById('inputAddress2').focus();
+	                document.getElementById('addr2').focus();
 	            }
 	        }).open();
 	    }
+	
+	
+	 function idcheck(){
+		  idckresult = document.getElementById("idckresult");
+		  var sid = document.getElementById("id").value;
+		  var len = sid.length;
+		  if(len<4||len>16){
+			  idckresult.innerHTML = "<font color='gray' size='2'>아이디는 4자이상 16자 이하입니다</font>";
+		  }else{
+			  var params = "act=idcheck&id="+sid
+			  sendRequest("<%=root%>/kbopark", params, idCheckResult, "GET");
+			  
+		  }
+
+		  
+	  }
+	  
+	  function idCheckResult(){
+		  if(httpRequest.readyState == 4) {
+				if(httpRequest.status == 200) {
+					var txt = httpRequest.responseText;
+					var result=txt.split(",");
+					var idcount = parseInt(result[0]);
+					var searchid = result[1];
+					var resulttxt="";
+					if(idcount==0){
+						idflag = true;
+						resulttxt="<font color='gray' size='2'>"+searchid+"는 사용가능합니다</font>";
+					}else{
+						idflag = false;
+						resulttxt="<font color='gray' size='2'>해당아이디는 존재합니다</font>";
+					}
+					idckresult.innerHTML = resulttxt;
+				}	
+			}
+		}
 
 </script>
  
@@ -85,36 +121,41 @@
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
 			<h2 class="text-dark mb-5 px-3">회원가입</h2>
-			<form id="joinForm" class="">
+			<form id="joinForm" name="joinForm" method="post">
+			<input type="hidden" name="act" id="act" value="regist">
 				<div class="form-group row px-3">
 					<label for="inputName" class="col-sm-2 col-12 col-form-label">이름</label>
 					<div class="col-sm-4 col-12">
-						<input type="text" class="form-control" id="inputName"
+						<input type="text" class="form-control" id="name" name="name"
 							placeholder="">
 					</div>
 				</div>
 				<div class="form-group row px-3">
 					<label for="inputId" class="col-sm-2 col-12 col-form-label">아이디</label>
 					<div class="col-sm-8 col-8">
-						<input type="text" class="form-control" id="inputId"
+						<input type="text" class="form-control" id="id" name="id"
 							placeholder="">
 					</div>
+					
 					<div class="col-sm-2 pl-0 col-4">
-						<button type="button" class="btn btn-primary" data-toggle="modal"
-							data-target="#idcheckModal">중복확인</button>
+						<input type="button" class="btn btn-primary" value="중복확인" onclick="javascript:idcheck();">
 					</div>
+				</div>
+				<div class="form-group row px-3">
+				<label for="inputId" class="col-sm-2 col-12 col-form-label"></label>
+				<div class="col-sm-8 col-8" id="idckresult"></div>
 				</div>
 				<div class="form-group row px-3">
 					<label for="inputPassword1" class="col-sm-2 col-form-label">비밀번호</label>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputPassword1"
+						<input type="password" class="form-control" id="pass" name="pass"
 							placeholder="비밀번호를입력해주세요">
 					</div>
 				</div>
 				<div class="form-group row px-3">
 					<div class="col-sm-2"></div>
 					<div class="col-sm-10">
-						<input type="password" class="form-control" id="inputPassword2"
+						<input type="password" class="form-control" id="passok" name="passok"
 							placeholder="비밀번호를 다시한번입력해주세요">
 					</div>
 				</div>
@@ -124,12 +165,12 @@
 					<label for="inputEmail1" class="col-sm-2 col-form-label">이메일</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control mb-2 mb-sm-0"
-							id="email1" placeholder="">
+							id="email1" name="email1" placeholder="">
 					</div>
 					<div class="col-sm-4">
 						<div class="input-group mb-2 mb-sm-0">
 							<div class="input-group-addon">@</div>
-							<input type="text" class="form-control" id="email2"
+							<input type="text" class="form-control" id="email2" name="email2"
 								placeholder="">
 						</div>
 					</div>
@@ -148,7 +189,7 @@
 				<div class="form-group row px-3">
 					<label for="inputTel" class="col-sm-2 col-12 col-form-label">전화번호</label>
 					<div class="col-sm-3 col-4">
-						<select id="inputTel1" class="form-control">
+						<select id="tel1" name="tel1" class="form-control">
 							<option selected>010</option>
 							<option>011</option>
 							<option>02</option>
@@ -159,12 +200,12 @@
 					<label class="tellabel text-center px-0 mb-0 align-self-center">-</label>
 					<div class="col-sm-3 col-4">
 						<input type="text" class="form-control mb-2 mb-sm-0"
-							id="inputTel2" placeholder="">
+							id="tel2" name="tel2" placeholder="">
 					</div>
 					<label class="tellabel text-center px-0 mb-0 align-self-center">-</label>
 					<div class="col-sm-3 col-4">
 						<input type="text" class="form-control mb-2 mb-sm-0"
-							id="inputTel3" placeholder="">
+							id="tel3" name="tel3" placeholder="">
 					</div>
 				</div>
 
@@ -172,13 +213,12 @@
 				<div class="form-group row align-items-center px-3">
 					<label for="inputAddress" class="col-sm-2 col-form-label">우편주소</label>
 					<div class="col-sm-4 col-8">
-						<label class="sr-only" for="inputZipcode">zipcode</label> <input
-							type="text" class="form-control mb-2 mb-sm-0" id="inputzipcode"
+						<label class="sr-only" for="inputZipcode">zipcode</label>
+						<input type="text" class="form-control mb-2 mb-sm-0" id="zip1" name="zip1"
 							placeholder="" readonly>
 					</div>
 					<div class="col-sm-2 pl-0 col-4 align-self-center">
-						<input type="button" class="btn btn-primary" data-toggle=""
-							data-target="" value="주소검색" onclick="javascript:zipsearch();">
+						<input type="button" class="btn btn-primary" value="주소검색" onclick="javascript:zipsearch();">
 					</div>
 				</div>
 
@@ -186,12 +226,12 @@
 					<label for="inputAddress2" class="col-sm-2 col-form-label">상세주소</label>
 					<div class="col-sm-4">
 						<div class="input-group mb-2 mb-sm-0">
-							<input type="text" class="form-control" id="inputAddress1"
+							<input type="text" class="form-control" id="addr1" name="addr1"
 								placeholder="" readonly>
 						</div>
 					</div>
 					<div class="col-sm-6">
-						<input type="text" class="form-control" id="inputAddress2"
+						<input type="text" class="form-control" id="addr2" name="addr2"
 							placeholder="">
 					</div>
 				</div>
@@ -200,8 +240,9 @@
 				<div class="form-group row px-3">
 					<label for="inputTeam" class="col-sm-2 col-form-label">선호구단</label>
 					<div class="col-sm-4">
-						<select id="inputTeamState" class="form-control">
-							<option selected="selected" value="2">두산 베어스</option>
+						<select id="tno" name="tno" class="form-control" onchange="javascript:tnochange(this);">
+							<option selected="selected" value="">--선택하세요--</option>
+							<option value="2">두산 베어스</option>
 							<option value="3">롯데 자이언츠</option>
 							<option value="1">KIA 타이거즈</option>
 							<option value="4">NC 다이노스</option>
@@ -212,14 +253,15 @@
 							<option value="9">삼성 라이온즈</option>
 							<option value="10">KT 위즈</option>
 						</select>
+						<input type="text" name="tnowiew" id="tnowiew">
 					</div>
 				</div>
 
 				<div class="border-b mb-2 px-3"></div>
 
 				<div class="px-3 py-3">
-					<button type="button" class="btn btn-lg btn-block btn-primary"
-						data-dismiss="modal">회원가입</button>
+					<input type="button" class="btn btn-lg btn-block btn-primary" onclick="javascript:register();" value="회원가입">
+				
 				</div>
 			</form>
 		</div>
@@ -311,11 +353,12 @@
 
 
 <!-- idcheck Modal >> idcheck.jsp로 뺄것 -->
+<%--
 <div class="modal fade" id="idcheckModal" tabindex="-1" role="dialog"
 	aria-labelledby="idcheckModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content text-center">
-			<form>
+			<form name="idck" id="idck" method="get">
 				<div class="modal-header">
 					<h5 class="modal-title" id="idcheckModalLabel">아이디 중복검사</h5>
 					<button type="button" class="close" data-dismiss="modal"
@@ -329,13 +372,16 @@
 					<div class="col-1"></div>
 						<div class="col-sm-7 col-6">
 							<input type="text" class="form-control"
-								id="idcheckFormControlInput1" placeholder="">
+								id="fid" name="fid" placeholder="">
 						</div>
 						<div class="col-sm-3 col-4">
-							<button type="button" class="btn btn-primary" data-toggle="modal"
-								data-target="#idcheckModal">중복검사</button>
+							<input type="button" class="btn btn-primary" value="중복검사" 
+							onclick="javascript:idcheck();">
 						</div>
 					</div>
+				</div>
+				<div id = "idckresult">
+				<label style="display: block;">아이디는 몇자이상 몇자이하입니다</label>
 				</div>
 				<div class="modal-footer p-4" style="display: block;">
 					<label style="display: block;">아이디는 몇자이상 몇자이하입니다</label>
@@ -347,7 +393,7 @@
 
 	</div>
 </div>
-
+ --%>
 <!-- zipsearch Modal >> zipsearch.jsp로 뺄것 Modal -->
 <div class="modal fade" id="zipsearchModal" tabindex="-1" role="dialog"
 	aria-labelledby="zipsearchModalLabel" aria-hidden="true">

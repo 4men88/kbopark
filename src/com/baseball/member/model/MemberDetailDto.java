@@ -27,7 +27,7 @@ public class MemberDetailDto extends MemberDto {
 		return tno;
 	}
 
-	public void setTno(int tid) {
+	public void setTno(int tno) {
 		this.tno = tno;
 	}
 

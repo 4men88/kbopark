@@ -20,6 +20,7 @@ MemberDto memberDto = (MemberDto)session.getAttribute("userInfo");
 	type="text/css">
 <!-- 브라우저 상단 favicon -->
 <link rel="icon" type="image/png" href="<%=root%>/img/fabicon.png" />
+
 <!-- jquery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
