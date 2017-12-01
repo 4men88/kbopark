@@ -40,9 +40,10 @@ public class MemberDaoImpl implements MemberDao {
 			sql.append("insert all\n");
 			sql.append("	into member(mid,pass,name,email1,email2,joindate)\n");
 			sql.append("		values(?,?,?,?,?,sysdate)\n");
-			sql.append("	into member_detail(mid,tel1,tel2,tel3,zip1,zip2,addr1,addr2)\n");
-			sql.append("		values(?,?,?,?,?,?,?,?)\n");
+			sql.append("	into member_detail(mid,tel1,tel2,tel3,zip1,addr1,addr2,tno,rookie,penalty,mtype,mstatus)\n");
+			sql.append("		values(?,?,?,?,?,?,?,?,0,0,'1','1')\n");
 			sql.append("select * from dual");
+			
 			pstmt = conn.prepareStatement(sql.toString());
 			int idx=0;
 			pstmt.setString(++idx, memberdto.getId());
@@ -55,9 +56,9 @@ public class MemberDaoImpl implements MemberDao {
 			pstmt.setString(++idx, memberdto.getTel2());
 			pstmt.setString(++idx, memberdto.getTel3());
 			pstmt.setString(++idx, memberdto.getZip1());
-			pstmt.setString(++idx, memberdto.getZip2());
 			pstmt.setString(++idx, memberdto.getAddr1());
 			pstmt.setString(++idx, memberdto.getAddr2());
+			pstmt.setInt(++idx, memberdto.getTno());
 			cnt=pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -4,26 +4,92 @@
 <%@ include file="/common/header.jsp"%>
 
 
-유니폼, 경기용품, 응원용품, 기타잡화 유니폼 -> 상의, 하의, 모자,기타 응원용품 -> 피켓, LED피켓, 기타 경기용품 ->
+<!-- 유니폼, 경기용품, 응원용품, 기타잡화 유니폼 -> 상의, 하의, 모자,기타 응원용품 -> 피켓, LED피켓, 기타 경기용품 ->
 야구공, 배트, 벨트, 헬멧, 글러브, 배팅장갑, 수비장갑, 팔보호대, 안면보호대, 무릎보호대, 발목보호대 야구화, 기타 잡화용품
 -> 사진, 티켓, 카드, 기타
-작업중 ㅠㅠ
-
+<<<<<<< HEAD
+작업중 ㅠㅠ -->
 
 <%
 	List<AuctionDetailDto> auctionDetailDto = (List<AuctionDetailDto>)request.getAttribute("auctionDetailDto");
 %>
 
-<div class="container py-5 my-5">
-	<div class="navbar-template text-center"></div>
-</div>
-<!-- 추천별 경매물품 섹션: best pick: 관리자가 초이스한 상품들 -->
-<div id="auc-recommended" class="py-5">
 <script type="text/javascript">
 function endList(){
 	document.location.href = "<%=root%>/auction?act=aend";
 }
 </script>
+
+<div id="auction-maincarousel">
+	<div class="container-fluid">
+		<div class="row p-5">
+			<div class="align-self-center p-0 col-md-3">
+
+				<ul class="list-group">
+					<li
+						class="list-group-item d-flex justify-content-between align-items-center">
+						전체보기 <span class="badge badge-primary badge-pill">14</span>
+					</li>
+					<li
+						class="list-group-item d-flex justify-content-between align-items-center">
+						유니폼 <span class="badge badge-primary badge-pill">2</span>
+					</li>
+					<li
+						class="list-group-item d-flex justify-content-between align-items-center">
+						경기용품 <span class="badge badge-primary badge-pill">1</span>
+					</li>
+					<li
+						class="list-group-item d-flex justify-content-between align-items-center">
+						응원용품 <span class="badge badge-primary badge-pill">1</span>
+					</li>
+					<li
+						class="list-group-item d-flex justify-content-between align-items-center">
+						기타잡화 <span class="badge badge-primary badge-pill">1</span>
+					</li>
+					<li
+						class="bg-pingendo list-group-item d-flex justify-content-between align-items-center">
+						<span class="text-center" style="color: white; width:100%;">내물품 등록하기</span>
+					</li>
+				</ul>
+			</div>
+			
+			<!-- 이미지크기 꽉차게 맞춰야함..ㅠㅠㅠㅠ atl노란오류는 무시ㄱㄱ-->
+			<div class="col-md-9 p-0">
+				<div id="carousel1" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner" role="listbox">
+						<div class="carousel-item">
+							<img src="<%=root%>/img/auction/carousel/auction-carousel1.jpg" atl="first slide" style="max-height: 391px;" class="d-block img-fluid w-100">
+						</div>
+						<div class="carousel-item">
+							<img class="d-block img-fluid w-100"
+								src="<%=root%>/img/auction/carousel/auction-carousel1.jpg"
+								data-holder-rendered="true"
+								style="max-height: 391px;">
+						</div>
+						<div class="carousel-item active">
+							<img class="d-block img-fluid w-100"
+								src="<%=root%>/img/auction/carousel/auction-carousel2.jpg"
+								style="max-height: 391px;" data-holder-rendered="true">
+						</div>
+					</div>
+					<a class="carousel-control-prev" href="#carousel1" role="button"
+						data-slide="prev"> <span class="carousel-control-prev-icon"
+						aria-hidden="true"></span> <span class="sr-only">Previous</span>
+					</a> <a class="carousel-control-next" href="#carousel1" role="button"
+						data-slide="next"> <span class="carousel-control-next-icon"
+						aria-hidden="true"></span> <span class="sr-only">Next</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+작업중 ㅠㅠ
+</div>
+
+<!-- 추천별 경매물품 섹션: best pick: 관리자가 초이스한 상품들 -->
+<div id="auc-recommended" class="py-5">
+
+
 <div class="container py-5">
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs nav-justified" role="tablist">
@@ -56,50 +122,53 @@ function endList(){
 							</p>
 						</div>
 					</div>
-				</div>
 
-				<div class="col-md-3">
-					<div class="row p-2">
-						<div class="col-md-12 col-4 align-self-center">
-							<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-						</div>
-						<div class="col-md-12 col-8 align-self-center">
-							<p class="mb-2">
-								<strong>KBO 팀코리아 중 아대1</strong><br>입찰자수 : 31명<br>남은시간 : 1일 2시간 15분
-							</p>
-							<p>
-								<strong>현재입찰가 : 5,000원</strong>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="row p-2">
-						<div class="col-md-12 col-4 align-self-center">
-							<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-						</div>
-						<div class="col-md-12 col-8 align-self-center">
-							<p class="mb-2">
-								<strong>KBO 팀코리아 중 아대2</strong><br>입찰자수 : 202명<br>남은시간 : 3일 3시간 20분
-							</p>
-							<p>
-								<strong>현재입찰가 : 5,000원</strong>
-							</p>
+					<div class="col-md-3">
+						<div class="row p-2">
+							<div class="col-md-12 col-4 align-self-center">
+								<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
+							</div>
+							<div class="col-md-12 col-8 align-self-center">
+								<p class="mb-2">
+									<strong>KBO 팀코리아 중 아대1</strong><br>입찰자수 : 31명<br>남은시간
+									: 1일 2시간 15분
+								</p>
+								<p>
+									<strong>현재입찰가 : 5,000원</strong>
+								</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="row p-2">
-						<div class="col-md-12 col-4 align-self-center">
-							<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
+					<div class="col-md-3">
+						<div class="row p-2">
+							<div class="col-md-12 col-4 align-self-center">
+								<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
+							</div>
+							<div class="col-md-12 col-8 align-self-center">
+								<p class="mb-2">
+									<strong>KBO 팀코리아 중 아대2</strong><br>입찰자수 : 202명<br>남은시간
+									: 3일 3시간 20분
+								</p>
+								<p>
+									<strong>현재입찰가 : 5,000원</strong>
+								</p>
+							</div>
 						</div>
-						<div class="col-md-12 col-8 align-self-center">
-							<p class="mb-2">
-								<strong>KBO 팀코리아 중 아대3</strong><br>입찰자수 : 98명<br>남은시간 : 1일 1시간 12분
-							</p>
-							<p>
-								<strong>현재입찰가 : 100,000원</strong>
-							</p>
+					</div>
+					<div class="col-md-3">
+						<div class="row p-2">
+							<div class="col-md-12 col-4 align-self-center">
+								<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
+							</div>
+							<div class="col-md-12 col-8 align-self-center">
+								<p class="mb-2">
+									<strong>KBO 팀코리아 중 아대3</strong><br>입찰자수 : 98명<br>남은시간
+									: 1일 1시간 12분
+								</p>
+								<p>
+									<strong>현재입찰가 : 100,000원</strong>
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -123,190 +192,200 @@ function endList(){
 							</p>
 						</div>
 					</div>
-				</div>
 
-				<div class="col-md-3">
-					<div class="row p-2">
-						<div class="col-md-12 col-4 align-self-center">
-							<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-						</div>
-						<div class="col-md-12 col-8 align-self-center">
-							<p class="mb-2">
-								<strong>KBO 팀코리아 중 아대1</strong><br>입찰자수 : 21명<br>남은시간 : 2일 2시간 15분
-							</p>
-							<p>
-								<strong>현재입찰가 : 4,000원</strong>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="row p-2">
-						<div class="col-md-12 col-4 align-self-center">
-							<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-						</div>
-						<div class="col-md-12 col-8 align-self-center">
-							<p class="mb-2">
-								<strong>KBO 팀코리아 중 아대2</strong><br>입찰자수 : 202명<br>남은시간 : 3일 3시간 20분
-							</p>
-							<p>
-								<strong>현재입찰가 : 5,000원</strong>
-							</p>
+					<div class="col-md-3">
+						<div class="row p-2">
+							<div class="col-md-12 col-4 align-self-center">
+								<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
+							</div>
+							<div class="col-md-12 col-8 align-self-center">
+								<p class="mb-2">
+									<strong>KBO 팀코리아 중 아대1</strong><br>입찰자수 : 21명<br>남은시간
+									: 2일 2시간 15분
+								</p>
+								<p>
+									<strong>현재입찰가 : 4,000원</strong>
+								</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="row p-2">
-						<div class="col-md-12 col-4 align-self-center">
-							<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
+					<div class="col-md-3">
+						<div class="row p-2">
+							<div class="col-md-12 col-4 align-self-center">
+								<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
+							</div>
+							<div class="col-md-12 col-8 align-self-center">
+								<p class="mb-2">
+									<strong>KBO 팀코리아 중 아대2</strong><br>입찰자수 : 202명<br>남은시간
+									: 3일 3시간 20분
+								</p>
+								<p>
+									<strong>현재입찰가 : 5,000원</strong>
+								</p>
+							</div>
 						</div>
-						<div class="col-md-12 col-8 align-self-center">
-							<p class="mb-2">
-								<strong>KBO 팀코리아 중 아대3</strong><br>입찰자수 : 97명<br>남은시간 : 1일 1시간 12분
-							</p>
-							<p>
-								<strong>현재입찰가 : 120,000원</strong>
-							</p>
+					</div>
+					<div class="col-md-3">
+						<div class="row p-2">
+							<div class="col-md-12 col-4 align-self-center">
+								<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
+							</div>
+							<div class="col-md-12 col-8 align-self-center">
+								<p class="mb-2">
+									<strong>KBO 팀코리아 중 아대3</strong><br>입찰자수 : 97명<br>남은시간
+									: 1일 1시간 12분
+								</p>
+								<p>
+									<strong>현재입찰가 : 120,000원</strong>
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		<div id="menu3" class="container tab-pane fade">
-						<div class="row p-2 text-center">
+			<div id="menu3" class="container tab-pane fade">
+				<div class="row p-2 text-center">
 
-				<div class="col-md-3">
-					<div class="row p-2">
-						<div class="col-md-12 col-4 align-self-center">
-							<img src="<%=root%>/img/auction/auc1.jpg" class="img-fluid">
-						</div>
-						<div class="col-md-12 col-8 align-self-center">
-							<p class="mb-2">
-								<strong>KBO 2017 공인구</strong><br>입찰자수 : 22명<br>남은시간 : 5일 3시간 20분
-							</p>
-							<p style="color: red;">
-								<strong>현재입찰가 : 70,000원</strong>
-							</p>
+					<div class="col-md-3">
+						<div class="row p-2">
+							<div class="col-md-12 col-4 align-self-center">
+								<img src="<%=root%>/img/auction/auc1.jpg" class="img-fluid">
+							</div>
+							<div class="col-md-12 col-8 align-self-center">
+								<p class="mb-2">
+									<strong>KBO 2017 공인구</strong><br>입찰자수 : 22명<br>남은시간 :
+									5일 3시간 20분
+								</p>
+								<p style="color: red;">
+									<strong>현재입찰가 : 70,000원</strong>
+								</p>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="col-md-3">
-					<div class="row p-2">
-						<div class="col-md-12 col-4 align-self-center">
-							<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-						</div>
-						<div class="col-md-12 col-8 align-self-center">
-							<p class="mb-2">
-								<strong>KBO 팀코리아 중 아대1</strong><br>입찰자수 : 21명<br>남은시간 : 1일 2시간 15분
-							</p>
-							<p>
-								<strong>현재입찰가 : 9,000원</strong>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="row p-2">
-						<div class="col-md-12 col-4 align-self-center">
-							<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-						</div>
-						<div class="col-md-12 col-8 align-self-center">
-							<p class="mb-2">
-								<strong>KBO 팀코리아 중 아대2</strong><br>입찰자수 : 212명<br>남은시간 : 3일 3시간 20분
-							</p>
-							<p>
-								<strong>현재입찰가 : 8,000원</strong>
-							</p>
+					<div class="col-md-3">
+						<div class="row p-2">
+							<div class="col-md-12 col-4 align-self-center">
+								<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
+							</div>
+							<div class="col-md-12 col-8 align-self-center">
+								<p class="mb-2">
+									<strong>KBO 팀코리아 중 아대1</strong><br>입찰자수 : 21명<br>남은시간
+									: 1일 2시간 15분
+								</p>
+								<p>
+									<strong>현재입찰가 : 9,000원</strong>
+								</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="row p-2">
-						<div class="col-md-12 col-4 align-self-center">
-							<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
+					<div class="col-md-3">
+						<div class="row p-2">
+							<div class="col-md-12 col-4 align-self-center">
+								<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
+							</div>
+							<div class="col-md-12 col-8 align-self-center">
+								<p class="mb-2">
+									<strong>KBO 팀코리아 중 아대2</strong><br>입찰자수 : 212명<br>남은시간
+									: 3일 3시간 20분
+								</p>
+								<p>
+									<strong>현재입찰가 : 8,000원</strong>
+								</p>
+							</div>
 						</div>
-						<div class="col-md-12 col-8 align-self-center">
-							<p class="mb-2">
-								<strong>KBO 팀코리아 중 아대3</strong><br>입찰자수 : 91명<br>남은시간 : 1일 1시간 12분
-							</p>
-							<p>
-								<strong>현재입찰가 : 150,000원</strong>
-							</p>
+					</div>
+					<div class="col-md-3">
+						<div class="row p-2">
+							<div class="col-md-12 col-4 align-self-center">
+								<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
+							</div>
+							<div class="col-md-12 col-8 align-self-center">
+								<p class="mb-2">
+									<strong>KBO 팀코리아 중 아대3</strong><br>입찰자수 : 91명<br>남은시간
+									: 1일 1시간 12분
+								</p>
+								<p>
+									<strong>현재입찰가 : 150,000원</strong>
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
-		<div id="menu4" class="container tab-pane fade">
-			<div class="row p-2 text-center">
+			<div id="menu4" class="container tab-pane fade">
+				<div class="row p-2 text-center">
 
-				<div class="col-md-3">
-					<div class="row p-2">
-						<div class="col-md-12 col-4 align-self-center">
-							<img src="<%=root%>/img/auction/auc1.jpg" class="img-fluid">
-						</div>
-						<div class="col-md-12 col-8 align-self-center">
-							<p class="mb-2">
-								<strong>KBO 2017 공인구</strong><br>입찰자수 : 12명<br>남은시간 : 4일 3시간 20분
-							</p>
-							<p style="color: red;">
-								<strong>현재입찰가 : 70,300원</strong>
-							</p>
+					<div class="col-md-3">
+						<div class="row p-2">
+							<div class="col-md-12 col-4 align-self-center">
+								<img src="<%=root%>/img/auction/auc1.jpg" class="img-fluid">
+							</div>
+							<div class="col-md-12 col-8 align-self-center">
+								<p class="mb-2">
+									<strong>KBO 2017 공인구</strong><br>입찰자수 : 12명<br>남은시간 :
+									4일 3시간 20분
+								</p>
+								<p style="color: red;">
+									<strong>현재입찰가 : 70,300원</strong>
+								</p>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="col-md-3">
-					<div class="row p-2">
-						<div class="col-md-12 col-4 align-self-center">
-							<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-						</div>
-						<div class="col-md-12 col-8 align-self-center">
-							<p class="mb-2">
-								<strong>KBO 팀코리아 중 아대1</strong><br>입찰자수 : 32명<br>남은시간 : 1일 2시간 15분
-							</p>
-							<p>
-								<strong>현재입찰가 : 5,000원</strong>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="row p-2">
-						<div class="col-md-12 col-4 align-self-center">
-							<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-						</div>
-						<div class="col-md-12 col-8 align-self-center">
-							<p class="mb-2">
-								<strong>KBO 팀코리아 중 아대2</strong><br>입찰자수 : 202명<br>남은시간 : 3일 3시간 20분
-							</p>
-							<p>
-								<strong>현재입찰가 : 9,000원</strong>
-							</p>
+					<div class="col-md-3">
+						<div class="row p-2">
+							<div class="col-md-12 col-4 align-self-center">
+								<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
+							</div>
+							<div class="col-md-12 col-8 align-self-center">
+								<p class="mb-2">
+									<strong>KBO 팀코리아 중 아대1</strong><br>입찰자수 : 32명<br>남은시간
+									: 1일 2시간 15분
+								</p>
+								<p>
+									<strong>현재입찰가 : 5,000원</strong>
+								</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="row p-2">
-						<div class="col-md-12 col-4 align-self-center">
-							<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
+					<div class="col-md-3">
+						<div class="row p-2">
+							<div class="col-md-12 col-4 align-self-center">
+								<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
+							</div>
+							<div class="col-md-12 col-8 align-self-center">
+								<p class="mb-2">
+									<strong>KBO 팀코리아 중 아대2</strong><br>입찰자수 : 202명<br>남은시간
+									: 3일 3시간 20분
+								</p>
+								<p>
+									<strong>현재입찰가 : 9,000원</strong>
+								</p>
+							</div>
 						</div>
-						<div class="col-md-12 col-8 align-self-center">
-							<p class="mb-2">
-								<strong>KBO 팀코리아 중 아대3</strong><br>입찰자수 : 98명<br>남은시간 : 1일 1시간 12분
-							</p>
-							<p>
-								<strong>현재입찰가 : 111,000원</strong>
-							</p>
+					</div>
+					<div class="col-md-3">
+						<div class="row p-2">
+							<div class="col-md-12 col-4 align-self-center">
+								<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
+							</div>
+							<div class="col-md-12 col-8 align-self-center">
+								<p class="mb-2">
+									<strong>KBO 팀코리아 중 아대3</strong><br>입찰자수 : 98명<br>남은시간
+									: 1일 1시간 12분
+								</p>
+								<p>
+									<strong>현재입찰가 : 111,000원</strong>
+								</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 
 <div class="">

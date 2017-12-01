@@ -1,6 +1,7 @@
 package com.baseball.member.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,10 +14,7 @@ public class IdCheckAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-		
-		String id = request.getParameter("id");
-		int cnt = MemberServiceImpl.getMemberService().idCheck(id);
-		String path="/member/join/idcheck.jsp?id="+id+"&cnt="+cnt;
+		String path="/index.jsp";
 		return path;
 	}
 
