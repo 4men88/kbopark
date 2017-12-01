@@ -22,8 +22,8 @@ public class ScheduleController extends HttpServlet {
 		
 		String path = "/index.jsp";
 		
-		if("".equals(act)) {
-			path = "/schedule/schedule.jsp";
+		if("viewschedule".equals(act)) {
+			path = "/schedule/schedulelist.jsp";
 			PageMove.redirect(request, response, path);
 		} else if("".equals(act)) {
 			
