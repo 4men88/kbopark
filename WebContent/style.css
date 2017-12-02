@@ -1,6 +1,7 @@
 @charset "EUC-KR";
 
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 
 /* 공통 */
 * {
@@ -66,34 +67,38 @@ body>* {
 	max-height: 492px;
 	overflow: hidden;
 }
+
 #main-section .img-wrapper img {
 	top: 0;
 	left: 0;
 	width: auto;
 }
-@media (max-width: 768px) {
-#main-section .img-wrapper img {
-	min-height: 340px;
+
+@media ( max-width : 768px) {
+	#main-section .img-wrapper img {
+		min-height: 340px;
+	}
 }
+
+@media ( min-width : 768px) {
+	#main-carousel .carousel-size-wrapper, #daily .carousel-size-wrapper {
+		width: 536px;
+	}
 }
-@media (min-width: 768px) {
-#main-carousel .carousel-size-wrapper {
-	width: 536px;
-}
-}
-#main-carousel .carousel-item img {
+
+#main-carousel .carousel-item img, #daily .carousel-item img {
 	width: auto;
 	height: 100px;
 	border: none !important;
 	background: transparent !important;
 }
 
-#main-carousel .carousel-control-prev-icon {
+#main-carousel .carousel-control-prev-icon, #daily .carousel-control-prev-icon {
 	background-image:
 		url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23aaa' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
 }
 
-#main-carousel .carousel-control-next-icon {
+#main-carousel .carousel-control-next-icon, #daily .carousel-control-next-icon {
 	background-image:
 		url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23aaa' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
 }
@@ -129,11 +134,11 @@ body>* {
 	margin-right: 0;
 }
 
-#main-carousel .home-team-m, #main-carousel .away-team-m {
+#main-carousel .home-team-m, #main-carousel .away-team-m, #daily .home-team-m, #daily .away-team-m {
 	display: inline;
 }
 
-#main-carousel .home-team, #main-carousel .away-team {
+#main-carousel .home-team, #main-carousel .away-team, #daily .home-team, #daily .away-team {
 	display: none;
 }
 
@@ -152,6 +157,12 @@ body>* {
 	#main-carousel .home-team, #main-carousel .away-team {
 		display: inline;
 	}
+	#daily .home-team-m, #daily .away-team-m {
+		display: none;
+	}
+	#daily .home-team, #daily .away-team {
+		display: inline;
+	}
 	.main-doosan-mobile {
 		display: none;
 	}
@@ -163,14 +174,12 @@ body>* {
 	}
 }
 
-
 /* 회원 */
-@media (max-width: 576px) {
-#joinForm .tellabel {
+@media ( max-width : 576px) {
+	#joinForm .tellabel {
 		display: none;
 	}
 }
-
 
 /*  ------------------------------- */
 
@@ -183,6 +192,7 @@ body>* {
 	background-color: transparent;
 	border: none;
 }
+
 .auction-category .pagination .active .page-link {
 	color: white !important;
 }
@@ -194,17 +204,13 @@ body>* {
 .auction-category nav a:hover {
 	color: #343a40 !important;
 }
+
 .auction-category nav a:active {
 	background-color: #007BFF;
 	color: white !important;
-}	
-	
-	
+}
+
 /* 작업중 */
-
-
-
-
 
 /* external css - 공통 */
 .text-pingendo {
@@ -316,25 +322,22 @@ body>* {
 	opacity: 1;
 }
 
-
 /*--------------------------*/
-
 #image-overlay {
-    position: fixed; /* Sit on top of the page content */
-    display: none; /* Hidden by default */
-    width: 100%; /* Full width (cover the whole page) */
-    height: 100%; /* Full height (cover the whole page) */
-    top: 0; 
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
-    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer; /* Add a pointer on hover */
+	position: fixed; /* Sit on top of the page content */
+	display: none; /* Hidden by default */
+	width: 100%; /* Full width (cover the whole page) */
+	height: 100%; /* Full height (cover the whole page) */
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	/* Black background with opacity */
+	z-index: 2;
+	/* Specify a stack order in case you're using a different order for other elements */
+	cursor: pointer; /* Add a pointer on hover */
 }
-
-
-
 
 /*--------------아래는 테스트중-------------------*/
 .dropdown-submenu {
@@ -385,15 +388,17 @@ body>* {
 	border-radius: 6px 0 6px 6px;
 }
 
-
-
 /*
  * Style tweaks
  * --------------------------------------------------
  */
-html,
-body {
-  overflow-x: hidden; Prevent scroll on narrow devices
+html, body {
+	overflow-x: hidden;
+	Prevent
+	scroll
+	on
+	narrow
+	devices
 }
 
 /*
@@ -401,71 +406,242 @@ body {
  * --------------------------------------------------
  */
 @media screen and (max-width: 767px) {
-  .row-offcanvas {
-    position: relative;
-    transition: all .25s ease-out;
-  }
-
-  .row-offcanvas-right {
-    right: 0;
-  }
-
-  .row-offcanvas-left {
-    left: 0;
-  }
-
-  .row-offcanvas-right .sidebar-offcanvas {
-    right: -100%; /* 12 columns */
-  }
-
-  .row-offcanvas-right.active .sidebar-offcanvas {
-    right: -50%; /* 6 columns */
-  }
-
-  .row-offcanvas-left .sidebar-offcanvas {
-    left: -100%; /* 12 columns */
-  }
-
-  .row-offcanvas-left.active .sidebar-offcanvas {
-    left: -50%; /* 6 columns */
-  }
-
-  .row-offcanvas-right.active {
-    right: 50%; /* 6 columns */
-  }
-
-  .row-offcanvas-left.active {
-    left: 50%; /* 6 columns */
-  }
-
-  .sidebar-offcanvas {
-    position: absolute;
-    top: 0;
-    width: 50%; /* 6 columns */
-    height: 100%;
-  }
+	.row-offcanvas {
+		position: relative;
+		transition: all .25s ease-out;
+	}
+	.row-offcanvas-right {
+		right: 0;
+	}
+	.row-offcanvas-left {
+		left: 0;
+	}
+	.row-offcanvas-right .sidebar-offcanvas {
+		right: -100%; /* 12 columns */
+	}
+	.row-offcanvas-right.active .sidebar-offcanvas {
+		right: -50%; /* 6 columns */
+	}
+	.row-offcanvas-left .sidebar-offcanvas {
+		left: -100%; /* 12 columns */
+	}
+	.row-offcanvas-left.active .sidebar-offcanvas {
+		left: -50%; /* 6 columns */
+	}
+	.row-offcanvas-right.active {
+		right: 50%; /* 6 columns */
+	}
+	.row-offcanvas-left.active {
+		left: 50%; /* 6 columns */
+	}
+	.sidebar-offcanvas {
+		position: absolute;
+		top: 0;
+		width: 50%; /* 6 columns */
+		height: 100%;
+	}
 }
 
 /*----------------*/
 .table-container {
-    display: table;
-    border-collapse: collapse;
+	display: table;
+	border-collapse: collapse;
 }
+
 .column {
-    float: left;
-    overflow: hidden;
-    width: 120px;
+	float: left;
+	overflow: hidden;
+	width: 120px;
 }
+
 .cell {
-    display: table-cell;
-    border: 1px solid red;
-    width: 120px;
-    height: 20px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+	display: table-cell;
+	border: 1px solid red;
+	width: 120px;
+	height: 20px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 #auction-maincarousel .list-group-item {
 	padding: 1.25rem 1.25rem;
+}
+
+/* 스케줄 css */
+.calendar>p {
+	width: 100%;
+	font-size: 0px;
+	margin-bottom: 10px;
+}
+
+.calendar>p span.Ym {
+	font-size: 23px;
+	margin: 0px 10px;
+	font-weight: bold;
+}
+
+.calendar>p a {
+	display: inline-block;
+	vertical-align: bottom;
+	line-height: 23px;
+	font-weight: bold;
+}
+
+@media only screen and (min-width : 761px) {
+	.calendar>p {
+		text-align: center;
+	}
+	.calendar>ul {
+		display: table;
+		width: 100%;
+		font-size: 0px;
+		margin-bottom: 15px;
+	}
+	.calendar>ul>li {
+		display: table-row;
+		width: 100%;
+	}
+	.calendar>ul>li>div {
+		display: table-cell;
+		width: 14%;
+		min-height: 80px;
+		height: 80px;
+		border-right: 1px solid #dfd8c6;
+		border-bottom: 1px solid #dfd8c6;
+	}
+	.calendar>ul>li>div:last-child {
+		border-right: 0px;
+	}
+	.calendar>ul>li.header>div {
+		height: 30px;
+		line-height: 30px;
+		min-height: 0px;
+		border-top: 1px solid #dfd8c6;
+		border-right: 1px solid #dfd8c6;
+		border-bottom: 1px solid #dfd8c6background:#fbfaf7;
+		color: #777777;
+		font-weight: bold;
+		text-align: center;
+	}
+	.calendar>ul>li.header>div:last-child {
+		border-right: 0px;
+	}
+	.calendar>ul>li.header>div.Sun {
+		color: #cc2220;
+	}
+	.calendar>ul>li.header>div.Sat {
+		color: #2453a5;
+	}
+	.calendar>ul>li>div.empty {
+		background: #fbfaf7;
+	}
+	.calendar>ul>li>div>time {
+		display: block;
+		padding: 3px 0 3px 3px;
+		font-weight: bold;
+		min-height: 15px;
+	}
+	.calendar>ul>li>div>time span {
+		display: none;
+	}
+	.calendar>ul>li>div ul {
+		width: 100%;
+		font-size: 0px;
+		text-align: right;
+		padding: 0 3px;
+		min-height: 60px;
+	}
+	.calendar>ul>li>div ul li {
+		margin: 0px 3px 3px 0px;
+		padding: 3px;
+	}
+}
+
+@media only screen and (max-width : 760px) {
+	.calendar>p {
+		text-align: left;
+	}
+	.calendar>ul {
+		width: 100%;
+		display: block;
+		border-top: 2px solid #dfd8c6;
+		margin-bottom: 15px;
+	}
+	.calendar>ul>li {
+		display: block;
+	}
+	.calendar>ul>li>div {
+		width: 100%;
+		border-bottom: 1px solid #dfd8c6;
+	}
+	.calendar>ul>li.header {
+		display: none;
+	}
+	.calendar>ul>li>div.empty {
+		display: none;
+	}
+	.calendar>ul>li>div>time {
+		display: table-cell;
+		vertical-align: middle;
+		border-right: 1px solid #dfd8c6;
+		width: 80px;
+		text-align: right;
+		padding: 10px 5px 10px 0;
+		background: #fbfaf7;
+		font-weight: bold;
+	}
+	.calendar .daylist {
+		display: table-cell;
+		padding-left: 10px;
+	}	
+	.calendar>ul>li>div>time span.Ym {
+		font-size: 10px;
+		display: block;
+		margin-bottom: 5px;
+	}
+	.calendar>ul>li>div>time span.W {
+		margin-left: 5px;
+	}
+	.calendar>ul>li>div ul {
+		display: table-cell;
+		padding: 5px 10px;
+		vertical-align: middle;
+	}
+	.calendar>ul>li>div ul li {
+		margin: 2px 2px 2px 0px;
+		padding: 3px;
+	}
+}
+
+.calendar>ul>li>div.today {
+	background: #fff8cf !important;
+}
+
+.calendar>ul>li>div.Sun>time, .calendar>ul>li>div.Sun>time span {
+	color: #cc2220;
+}
+
+.calendar>ul>li>div.Sat>time, .calendar>ul>li>div.Sat>time span {
+	color: #2453a5;
+}
+
+.calendar * {margin:0;padding:0;font:13px/1.4 "JeJu Gothic", "Nanum Gothic";font-weight:200;color:#555;vertical-align:0px;-webkit-text-size-adjust:none;}
+.calendar a {cursor:pointer;}
+.calendar ol, ul{list-style:none;}
+
+
+/* schedule daily */
+
+@media ( min-width : 768px) {
+	#daily .daily-size-wrapper {
+		width: 586px;
+	}
+}
+
+#daily .daily-size-wrapper img {
+	width: auto;
+	height: 100px;
+	border: none !important;
+	background: transparent !important;
 }
