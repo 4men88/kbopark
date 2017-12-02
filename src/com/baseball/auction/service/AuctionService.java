@@ -1,5 +1,10 @@
 package com.baseball.auction.service;
 
-public interface AuctionService {
+import java.util.List;
+import com.baseball.auction.model.AuctionDetailDto;
 
-}
+public interface AuctionService {
+	
+	List<AuctionDetailDto> auctionEndList();
+}	
+
