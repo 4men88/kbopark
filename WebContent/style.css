@@ -645,3 +645,12 @@ html, body {
 	border: none !important;
 	background: transparent !important;
 }
+
+/* notice */
+#notice .notice-inner:hover, .notice-inner:active {
+	border-bottom: 3px solid #066ED2;
+}
+
+#notice .pagination .page-item.active .page-link {
+	color: white !important;
+}
