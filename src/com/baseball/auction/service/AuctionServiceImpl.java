@@ -18,8 +18,23 @@ public class AuctionServiceImpl implements AuctionService {
 	}
 
 	@Override
+	public List<AuctionDetailDto> auctionBestList() {
+		return AuctionDaoImpl.getAuctionDao().auctionBestList();
+	}
+	
+	@Override
 	public List<AuctionDetailDto> auctionEndList() {
 		return AuctionDaoImpl.getAuctionDao().auctionEndList();
+	}
+
+	@Override
+	public List<AuctionDetailDto> auctionHitList() {
+		return AuctionDaoImpl.getAuctionDao().auctionHitList();
+	}
+
+	@Override
+	public List<AuctionDetailDto> auctionNewList() {
+		return AuctionDaoImpl.getAuctionDao().auctionNewList();
 	}
 
 }

@@ -12,7 +12,7 @@ import com.baseball.factory.AuctionActionFactory;
 import com.baseball.util.Constance;
 import com.baseball.util.PageMove;
 
-@WebServlet("/AuctionController")
+@WebServlet("/auctionlist")
 public class AuctionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -20,29 +20,30 @@ public class AuctionController extends HttpServlet {
 	//	response.getWriter().append("Served at: ").append(request.getContextPath());
 		String act = request.getParameter("act");
 		String path = "/auction.jsp";
-		
-		if(act.equals("aend"))
+		if("bestlist".equals(act)) 
 		{
-			System.out.println("1");
-			path = AuctionActionFactory.getAuctionMainListAction().execute(request, response);
-			System.out.println("2");
+			path = AuctionActionFactory.getAuctionBestListAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		}
-		else if("".equals(act)) 
+		else if("endlist".equals(act))
 		{
-			
+			path = AuctionActionFactory.getAuctionEndListAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		}
-		else if("".equals(act)) 
+		if("hitlist".equals(act)) 
 		{
-			
-		} 
-		else if("".equals(act)) 
+			path = AuctionActionFactory.getAuctionHitListAction().execute(request, response);
+			PageMove.forward(request, response, path);
+		}
+		 
+		else if("newlist".equals(act)) 
 		{
-			
+			path = AuctionActionFactory.getAuctionNewListAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		} 
 		else 
 		{
-			PageMove.redirect(request, response, path);
+		//	PageMove.redirect(request, response, path);
 		}
 		
 	}

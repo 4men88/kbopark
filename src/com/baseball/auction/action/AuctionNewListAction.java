@@ -11,14 +11,15 @@ import com.baseball.action.Action;
 import com.baseball.auction.model.AuctionDetailDto;
 import com.baseball.auction.service.AuctionServiceImpl;
 
-public class AuctionMainListAction implements Action {
+public class AuctionNewListAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<AuctionDetailDto> list = AuctionServiceImpl.getAuctionService().auctionEndList();
+		List<AuctionDetailDto> list = AuctionServiceImpl.getAuctionService().auctionNewList();
+		System.out.println(list.get(0).getAimage());
+		System.out.println(list.get(1).getAimage());
 		request.setAttribute("auctionDetailDto", list);
-		System.out.println("3");
 		return "/auction/auction.jsp";
 	}
 
