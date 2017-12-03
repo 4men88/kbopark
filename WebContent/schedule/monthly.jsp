@@ -1,8 +1,37 @@
+<%@page import="com.baseball.schedule.scheduleDto.ScheduleDto"%>
+<%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
 
+<%
+	Calendar cal = Calendar.getInstance();
+	//int year = cal.get(Calendar.YEAR);
+	//int month = cal.get(Calendar.MONTH)+1;
+	//int day = cal.get(Calendar.DAY_OF_WEEK);
+
+	int year = request.getParameter("y") == null ? cal.get(Calendar.YEAR)
+			: Integer.parseInt(request.getParameter("y"));
+	int month = request.getParameter("m") == null ? cal.get(Calendar.MONTH)
+			: (Integer.parseInt(request.getParameter("m")) - 1);
+	cal.set(year, month, 1);
+	int bgnWeek = cal.get(Calendar.DAY_OF_WEEK);
+	int preYear = year;
+	int preMonth = (month + 1) - 1;
+	int nextYear = year;
+	int nextMonth = (month + 1) + 1;
+
+	if (preMonth < 1) {
+		preYear--;
+		preMonth = 12;
+	}
+
+	if (nextMonth > 12) {
+		nextYear++;
+		nextMonth = 1;
+	}
+%>
 <div id="schedule">
 	<div class="container py-5">
 
@@ -18,10 +47,12 @@
 
 		<div class="row justify-content-between">
 			<div class="col-6 text-left">
-				<i class="fa fa-angle-left" aria-hidden="true"></i> 월별일정/결과
+				<i class="fa fa-angle-left" aria-hidden="true"></i>
+				<a href="./monthly.jsp">월별일정/결과 </a>
 			</div>
 			<div class="col-6 text-right">
-				일별일정/결과 <i class="fa fa-angle-right" aria-hidden="true"></i>
+				<a href="./daily.jsp">일별일정/결과 </a>
+ 					<i class="fa fa-angle-right" aria-hidden="true"></i>
 			</div>
 		</div>
 
@@ -29,7 +60,10 @@
 			<div class="col-md-12">
 				<div class="calendar">
 					<p class="text-center">
-						<a>&lt;</a> <span class="Ym">2017. 01</span> <a>&gt;</a>
+						<a href="./monthly.jsp?y=<%=preYear%>&m=<%=preMonth%>">&lt;</a>
+						<span class="Ym"><%=year%>. <%=month + 1%></span> 
+						<a href="./monthly.jsp?y=<%=nextYear%>&m=<%=nextMonth%>">&gt;</a>
+
 					</p>
 
 					<ul>
@@ -42,197 +76,33 @@
 							<div class="Fri">FRI</div>
 							<div class="Sat">SAT</div>
 						</li>
+						
 						<li>
-							<div class="Sun">
-								<time>
-									<span class="Ym">[2017.01]</span>01<span class="W">(Sun)</span>
-								</time>
-								<div class="daylist text-center">
-									<h6>
-										한화 0 : 0 SK<br>경기일정<br>경기일정<br>경기일정<br>경기일정
-									</h6>
-								</div>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>02<span class="W">(Mon)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>03<span class="W">(Tue)</span>
-								</time>
-								<div class="daylist text-center">
-									<h6>
-										한화 0 : 0 SK<br>경기일정<br>경기일정<br>경기일정<br>경기일정
-									</h6>
-								</div>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>04<span class="W">(Wed)</span>
-								</time>
-								<div class="daylist text-center">
-									<h6>
-										한화 0 : 0 SK<br>경기일정<br>경기일정<br>경기일정<br>경기일정
-									</h6>
-								</div>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>05<span class="W">(Thu)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>06<span class="W">(Fri)</span>
-								</time>
-							</div>
-							<div class="Sat">
-								<time>
-									<span class="Ym">[2017.01]</span>07<span class="W">(Sat)</span>
-								</time>
-							</div>
-						</li>
+						 <%
+						 //ScheduleDto scheduleDto = new ScheduleDto();
+						 
+						 //if ScheduleDto의 playdate 랑 cal.get(Calendar.DATE)랑 같으면 디비에 갔다와서 데이터 뿌려라....
+						 
+						 //if(scheduleDto.getPlaydate() == cal.get(Calendar.DATE))
+						 	//out.println(scheduleDto.getScore1("score1"), scheduleDto.getScore2("score2"));
+						 
+						 
+						for(int i =1; i<bgnWeek; i++) out.println("<div>&nbsp;</div>");
+						 while(cal.get(Calendar.MONTH)==month){
+							 out.println("<div>" + cal.get(Calendar.DATE) + "</div>");
+							 if(cal.get(Calendar.DAY_OF_WEEK)==Calendar.SATURDAY) out.println("</li><li>");//토요일이면 엔터다음줄
+							 cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE)+1);//년월일 넣고
+						 }
+						 for(int i=cal.get(Calendar.DAY_OF_WEEK); i<=7; i++)out.println("<div>&nbsp;</div>");//일주일넣고
+						%>
 						<li>
-							<div class="Sun">
-								<time>
-									<span class="Ym">[2017.01]</span>08<span class="W">(Sun)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>09<span class="W">(Mon)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>10<span class="W">(Tue)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>11<span class="W">(Wed)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>12<span class="W">(Thu)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>13<span class="W">(Fri)</span>
-								</time>
-							</div>
-							<div class="Sat">
-								<time>
-									<span class="Ym">[2017.01]</span>14<span class="W">(Sat)</span>
-								</time>
-							</div>
-						</li>
-						<li>
-							<div class="Sun">
-								<time>
-									<span class="Ym">[2017.01]</span>15<span class="W">(Sun)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>16<span class="W">(Mon)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>17<span class="W">(Tue)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>18<span class="W">(Wed)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>19<span class="W">(Thu)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>20<span class="W">(Fri)</span>
-								</time>
-							</div>
-							<div class="Sat">
-								<time>
-									<span class="Ym">[2017.01]</span>21<span class="W">(Sat)</span>
-								</time>
-							</div>
-						</li>
-						<li>
-							<div class="Sun">
-								<time>
-									<span class="Ym">[2017.01]</span>22<span class="W">(Sun)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>23<span class="W">(Mon)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>24<span class="W">(Tue)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>25<span class="W">(Wed)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>26<span class="W">(Thu)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>27<span class="W">(Fri)</span>
-								</time>
-							</div>
-							<div class="Sat">
-								<time>
-									<span class="Ym">[2017.01]</span>28<span class="W">(Sat)</span>
-								</time>
-							</div>
-						</li>
-						<li>
-							<div class="Sun">
-								<time>
-									<span class="Ym">[2017.01]</span>29<span class="W">(Sun)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>30<span class="W">(Mon)</span>
-								</time>
-							</div>
-							<div>
-								<time>
-									<span class="Ym">[2017.01]</span>31<span class="W">(Tue)</span>
-								</time>
-							</div>
-							<div class="empty"></div>
-							<div class="empty"></div>
-							<div class="empty"></div>
-							<div class="empty"></div>
-						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 
-		<!-- 구단응원바로가기 : 구단커뮤니티로 바로 연결될 예정, 구단커뮤니티미완성으로 일단 자리만 차지하고있을께요~! -->
+	<!-- 구단응원바로가기 : 구단커뮤니티로 바로 연결될 예정, 구단커뮤니티미완성으로 일단 자리만 차지하고있을께요~! -->
 	<div class="container-fluid p-0">
 		<div id="carouselExampleControls" class="carousel slide"
 			data-ride="carousel" style="background-color: black;">

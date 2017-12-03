@@ -27,27 +27,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 
 	@Override
-	public ScheduleDto viewSchedule(ScheduleDto scheduleDto) {
-		Map<String, String> map = new HashMap<String, String>();
-		String playdate = scheduleDto.getPlaydate();
-		int score1 = scheduleDto.getScore1();
-		int score2 = scheduleDto.getScore2();
-		String pstatus = scheduleDto.getPstatus();
-		String sname = scheduleDto.getSname();
-		String tname = scheduleDto.getTname();
-		String emblem = scheduleDto.getEmblem();
-		
-		map.put("playdate", playdate);
-		map.put("score1", score1 + "");
-		map.put("score2", score2 + "");
-		map.put("pstatus", pstatus);
-		map.put("sname", sname);
-		map.put("tname", tname);
-		map.put("emblem", emblem);
-		
-		System.out.println("ScheduleServiceImpl" + map);
-		
-		return ScheduleDaoImpl.getScheduleDao().getSchedule(map);
+	public ScheduleDto viewSchedule() {
+		return ScheduleDaoImpl.getScheduleDao().getSchedule();
 	}
 
 }

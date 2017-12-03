@@ -1,7 +1,56 @@
+<%@page import="com.baseball.schedule.scheduleDto.ScheduleDto"%>
+<%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
+
+<%
+	Calendar cal = Calendar.getInstance();
+	//int year = cal.get(Calendar.YEAR);
+	//int month = cal.get(Calendar.MONTH)+1;
+	//int day = cal.get(Calendar.DAY_OF_WEEK);
+
+	int year = request.getParameter("y") == null ? cal.get(Calendar.YEAR)
+			: Integer.parseInt(request.getParameter("y"));
+	int month = request.getParameter("m") == null ? cal.get(Calendar.MONTH)
+			: (Integer.parseInt(request.getParameter("m")) - 1);
+	int day = request.getParameter("d") == null ? cal.get(Calendar.DAY_OF_MONTH)
+			: (Integer.parseInt(request.getParameter("d")));
+	cal.set(year, month, 1);
+	int bgnWeek = cal.get(Calendar.DAY_OF_WEEK);
+	int preYear = year;
+	int preMonth = (month + 1);
+	int nextYear = year;
+	int nextMonth = (month + 1);
+	int preDay = day - 1;
+	int nextDay = day + 1;
+	int lastDay = cal.getActualMaximum(Calendar.DATE);
+	System.out.println(lastDay);
+	int startDay = cal.getActualMinimum(Calendar.DATE);
+	System.out.println(startDay);
+	
+	if (preDay < 1) {
+		preMonth--;
+		preDay = startDay;
+	}
+
+	if (nextDay > lastDay) {
+		nextMonth++;
+		nextDay = 1;
+	}
+	
+	if (preMonth < 1) {
+		preYear--;
+		preMonth = 12;
+	}
+
+	if (nextMonth > 12) {
+		nextYear++;
+		nextMonth = 1;
+	}
+	
+%>
 
 <div id="schedule" class="pb-5">
 	<div class="container py-5">
@@ -18,10 +67,12 @@
 
 		<div class="row justify-content-between">
 			<div class="col-6 text-left">
-				<i class="fa fa-angle-left" aria-hidden="true"></i> 월별일정/결과
+				<i class="fa fa-angle-left" aria-hidden="true"></i> 
+				<a href="./monthly.jsp"> 월별일정/결과 </a>
 			</div>
 			<div class="col-6 text-right">
-				일별일정/결과 <i class="fa fa-angle-right" aria-hidden="true"></i>
+				<a href="./daily.jsp">일별일정/결과 </a>
+				<i class="fa fa-angle-right" aria-hidden="true"></i>
 			</div>
 		</div>
 
@@ -29,16 +80,19 @@
 		<div id="daily" class="carousel slide" data-ride="carousel">
 			<div class="calendar">
 				<p class="text-center">
-					<a>&lt;</a> <span class="Ym">2017. 01. 01</span> <a>&gt;</a>
+					<a href="./daily.jsp?y=<%=preYear%>&m=<%=preMonth%>&d=<%=preDay%>">&lt;</a> 
+					<span class="Ym"><%=year%>. <%=month +1%>. <%=day %></span>
+					<a href= "./daily.jsp?y=<%=nextYear%>&m=<%=nextMonth%>&d=<%=nextDay%>">&gt;</a>
 				</p>
 			</div>
 
+			<%ScheduleDto scheduleDto = new ScheduleDto(); %>
 			<div class="row text-white text-center mb-3">
 				<div class="mx-auto rounded daily-size-wrapper"
 					style="background-image: url(<%=root%>/img/etc/grass.jpg);">
 					<div class="col-md-12 text-white p-2"
 						style="background-color: rgba(50, 50, 50, 0.75);">
-						<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
+						<span class="px-3 border-r"><%=scheduleDto.getSname() %></span><span class="px-3">17:00</span>
 					</div>
 					<div class="col-md-12 opaque-overlay py-2 px-3">
 						<div class="row">
