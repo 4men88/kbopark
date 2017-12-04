@@ -6,7 +6,8 @@ import com.baseball.schedule.scheduleDto.ScheduleDto;
 
 public interface ScheduleDao {
 
-	ScheduleDto getSchedule(Map<String, String> map);
+	ScheduleDto getSchedule();
+	
 
 	
 }
