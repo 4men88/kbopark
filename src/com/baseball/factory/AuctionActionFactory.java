@@ -1,40 +1,18 @@
 package com.baseball.factory;
 
-import com.baseball.auction.action.AuctionBestListAction;
-import com.baseball.auction.action.AuctionEndListAction;
-import com.baseball.auction.action.AuctionHitListAction;
-import com.baseball.auction.action.AuctionNewListAction;
+import com.baseball.auction.action.AuctionMainListAction;
 
 public class AuctionActionFactory {
 
-	private static AuctionBestListAction auctionBestListAction;
-	private static AuctionEndListAction auctionEndListAction;
-	private static AuctionHitListAction auctionHitListAction;
-	private static AuctionNewListAction auctionNewListAction;
-	
+	private static AuctionMainListAction auctionMainListAction;
 
 	static {
-		auctionBestListAction = new AuctionBestListAction();
-		auctionEndListAction = new AuctionEndListAction();
-		auctionHitListAction = new AuctionHitListAction();
-		auctionNewListAction = new AuctionNewListAction();
+		auctionMainListAction = new AuctionMainListAction();
+
 	}
 	
-	public static AuctionBestListAction getAuctionBestListAction() {
-		return auctionBestListAction;
+	public static AuctionMainListAction getAuctionMainListAction() {
+		return auctionMainListAction;
 	}
 
-	public static AuctionEndListAction getAuctionEndListAction() {
-		return auctionEndListAction;
-	}
-
-	public static AuctionHitListAction getAuctionHitListAction() {
-		return auctionHitListAction;
-	}
-
-	public static AuctionNewListAction getAuctionNewListAction() {
-		return auctionNewListAction;
-	}
-
-	
 }

@@ -20,27 +20,11 @@ public class AuctionController extends HttpServlet {
 	//	response.getWriter().append("Served at: ").append(request.getContextPath());
 		String act = request.getParameter("act");
 		String path = "/auction.jsp";
-		if("bestlist".equals(act)) 
+		if("mainlist".equals(act)) 
 		{
-			path = AuctionActionFactory.getAuctionBestListAction().execute(request, response);
+			path = AuctionActionFactory.getAuctionMainListAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		}
-		else if("endlist".equals(act))
-		{
-			path = AuctionActionFactory.getAuctionEndListAction().execute(request, response);
-			PageMove.forward(request, response, path);
-		}
-		if("hitlist".equals(act)) 
-		{
-			path = AuctionActionFactory.getAuctionHitListAction().execute(request, response);
-			PageMove.forward(request, response, path);
-		}
-		 
-		else if("newlist".equals(act)) 
-		{
-			path = AuctionActionFactory.getAuctionNewListAction().execute(request, response);
-			PageMove.forward(request, response, path);
-		} 
 		else 
 		{
 		//	PageMove.redirect(request, response, path);
