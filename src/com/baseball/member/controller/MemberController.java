@@ -80,8 +80,9 @@ public class MemberController extends HttpServlet {
 			session.invalidate(); //技记 昏力肺流
 			PageMove.redirect(request, response, "/index.jsp");
 		
-		}else if("".equals(act)){
-			
+		}else if("mypage".equals(act)){
+			path="/mypage/mypageMain.jsp";
+			PageMove.redirect(request, response, path);
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){

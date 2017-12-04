@@ -9,6 +9,17 @@
 -> 사진, 티켓, 카드, 기타
 <<<<<<< HEAD
 작업중 ㅠㅠ -->
+
+<%
+	List<AuctionDetailDto> auctionDetailDto = (List<AuctionDetailDto>)request.getAttribute("auctionDetailDto");
+%>
+
+<script type="text/javascript">
+function endList(){
+	document.location.href = "<%=root%>/auction?act=aend";
+}
+</script>
+
 <div id="auction-maincarousel">
 	<div class="container-fluid">
 		<div class="row p-5">
@@ -72,6 +83,7 @@
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
 
 <!--
 =======
@@ -87,49 +99,15 @@
 
 	<div class="navbar-template text-center"></div>
 >>>>>>> e09b44669a89fcd0040fe31a2af7564cfbaa207e
+=======
+작업중 ㅠㅠ
+>>>>>>> bfa2b3eb162e1dc1a53d18682da2ce9a15b47e98
 </div>
 
 <!-- 추천별 경매물품 섹션: best pick: 관리자가 초이스한 상품들 -->
 <div id="auc-recommended" class="py-5">
-<<<<<<< HEAD
-	<div class="container py-5">
-		<!-- Nav tabs -->
-		<ul class="nav nav-tabs nav-justified" role="tablist">
-			<li class="nav-item"><a class="nav-link active"
-				data-toggle="tab" href="#menu1">BEST PICK</a></li>
-			<li class="nav-item"><a class="nav-link" data-toggle="tab"
-				href="#menu2">마감임박</a></li>
-			<li class="nav-item"><a class="nav-link" data-toggle="tab"
-				href="#menu3">인기물품</a></li>
-			<li class="nav-item"><a class="nav-link" data-toggle="tab"
-				href="#menu4">신규물품</a></li>
-		</ul>
 
-		<!-- Tab panes -->
-		<div class="tab-content">
-			<div id="menu1" class="container tab-pane active">
-				<div class="row p-2 text-center">
 
-					<div class="col-md-3">
-						<div class="row p-2">
-							<div class="col-md-12 col-4 align-self-center">
-								<img src="<%=root%>/img/auction/auc1.jpg" class="img-fluid">
-							</div>
-							<div class="col-md-12 col-8 align-self-center">
-								<p class="mb-2">
-									<strong>KBO 2017 공인구</strong><br>입찰자수 : 22명<br>남은시간 :
-									5일 3시간 20분
-								</p>
-								<p style="color: red;">
-									<strong>현재입찰가 : 70,000원</strong>
-								</p>
-							</div>
-=======
-<script type="text/javascript">
-function endList(){
-	document.location.href = "<%=root%>/AuctionController?act=aend";
-}
-</script>
 <div class="container py-5">
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs nav-justified" role="tablist">
@@ -160,7 +138,6 @@ function endList(){
 							<p style="color: red;">
 								<strong>현재입찰가 : 70,000원</strong>
 							</p>
->>>>>>> e09b44669a89fcd0040fe31a2af7564cfbaa207e
 						</div>
 					</div>
 
@@ -214,26 +191,6 @@ function endList(){
 					</div>
 				</div>
 			</div>
-<<<<<<< HEAD
-
-			<div id="menu2" class="container tab-pane fade">
-				<div class="row p-2 text-center">
-
-					<div class="col-md-3">
-						<div class="row p-2">
-							<div class="col-md-12 col-4 align-self-center">
-								<img src="<%=root%>/img/auction/auc1.jpg" class="img-fluid">
-							</div>
-							<div class="col-md-12 col-8 align-self-center">
-								<p class="mb-2">
-									<strong>KBO 2017 공인구</strong><br>입찰자수 : 21명<br>남은시간 :
-									3일 2시간 20분
-								</p>
-								<p style="color: red;">
-									<strong>현재입찰가 : 50,000원</strong>
-								</p>
-							</div>
-=======
 		</div>
 <!--  -->
 		<div id="menu2" class="container tab-pane fade">
@@ -251,7 +208,6 @@ function endList(){
 							<p style="color: red;">
 								<strong>현재입찰가 : 50,000원</strong>
 							</p>
->>>>>>> e09b44669a89fcd0040fe31a2af7564cfbaa207e
 						</div>
 					</div>
 

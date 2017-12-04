@@ -12,7 +12,7 @@ import com.baseball.factory.AuctionActionFactory;
 import com.baseball.util.Constance;
 import com.baseball.util.PageMove;
 
-@WebServlet("/AuctionController")
+@WebServlet("/auction")
 public class AuctionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
