@@ -1,6 +1,8 @@
 package com.baseball.member.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.baseball.factory.MemberActionFactory;
 import com.baseball.member.model.MemberDetailDto;
+import com.baseball.member.service.MemberServiceImpl;
 import com.baseball.util.Constance;
 import com.baseball.util.PageMove;
 
@@ -29,6 +32,7 @@ public class MemberController extends HttpServlet {
 			PageMove.redirect(request, response, path);
 
 		}else if("regist".equals(act)) {//가입완료 번튼을 눌렀을때
+			System.out.println("회원가입");
 			path=MemberActionFactory.getRegisterAction().execute(request, response);
 			PageMove.forward(request, response, path);
 
@@ -37,8 +41,13 @@ public class MemberController extends HttpServlet {
 			PageMove.redirect(request, response, path);
 		
 		}else if("idcheck".equals(act)){ // 아이디 중복검사
-			path=MemberActionFactory.getIdCheckAction().execute(request, response);
-			PageMove.redirect(request, response, path);
+			String id = request.getParameter("id");
+			System.out.println(id);
+			int idcount = MemberServiceImpl.getMemberService().idCheck(id);
+			System.out.println(idcount);
+			response.setContentType("text/plain;charset=EUC-KR");
+			PrintWriter out = response.getWriter();
+			out.print(idcount+","+id);
 		
 		}else if("mvidck".equals(act)){ //아이디 중복검사창으로 이동
 			path="/join/idcheck.jsp";
@@ -71,8 +80,9 @@ public class MemberController extends HttpServlet {
 			session.invalidate(); //세션 삭제로직
 			PageMove.redirect(request, response, "/index.jsp");
 		
-		}else if("".equals(act)){
-			
+		}else if("mypage".equals(act)){
+			path="/mypage/mypageMain.jsp";
+			PageMove.redirect(request, response, path);
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){

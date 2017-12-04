@@ -28,7 +28,7 @@ public class ScheduleDaoImpl implements ScheduleDao {
 	}
 
 	@Override
-	public ScheduleDto getSchedule(Map<String, String> map) {
+	public ScheduleDto getSchedule() {
 		
 		ScheduleDto scheduleDto = null;
 				
@@ -36,10 +36,11 @@ public class ScheduleDaoImpl implements ScheduleDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
+		
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("select p.playdate, s.sname, t.tname, t.emblem, p.score1, p.score2, p.pstatus \n");
+			sql.append("select p.playdate, s.sname, t.emblem, t.tname, p.score1, p.score2, p.pstatus \n");
 			sql.append("from plan p, stadium s, team t \n");
 		
 			pstmt = conn.prepareStatement(sql.toString());

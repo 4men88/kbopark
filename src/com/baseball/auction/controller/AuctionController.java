@@ -13,6 +13,7 @@ import com.baseball.util.Constance;
 import com.baseball.util.PageMove;
 
 @WebServlet("/auctionlist")
+
 public class AuctionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -22,6 +23,7 @@ public class AuctionController extends HttpServlet {
 		String path = "/auction.jsp";
 		if("mainlist".equals(act)) 
 		{
+			System.out.println("1");
 			path = AuctionActionFactory.getAuctionMainListAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		}

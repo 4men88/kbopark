@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.baseball.factory.ScheduleActionFactory;
 import com.baseball.util.PageMove;
 
 @WebServlet("/ScheduleController")
@@ -22,18 +23,17 @@ public class ScheduleController extends HttpServlet {
 		
 		String path = "/index.jsp";
 		
-		if("".equals(act)) {
-			path = "/schedule/schedule.jsp";
-			PageMove.redirect(request, response, path);
+		if("viewschedule".equals(act)) {
+			path = ScheduleActionFactory.getScheduleAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		} else if("".equals(act)) {
 			
 		}
-		
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+		
 	}
 
 }

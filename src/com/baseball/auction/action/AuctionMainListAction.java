@@ -17,9 +17,7 @@ public class AuctionMainListAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-//		List<AuctionDetailDto> mainList = new ArrayList<AuctionDetailDto>();
-		
+	
 		List<AuctionDetailDto> bestList = AuctionServiceImpl.getAuctionService().auctionBestList();
 		List<AuctionDetailDto> endList = AuctionServiceImpl.getAuctionService().auctionEndList();
 		List<AuctionDetailDto> hitList = AuctionServiceImpl.getAuctionService().auctionHitList();
@@ -34,6 +32,7 @@ public class AuctionMainListAction implements Action {
 		request.setAttribute("endList", endList);
 		request.setAttribute("hitList", hitList);
 		request.setAttribute("newList", newList);
+
 		return "/auction/auction.jsp";
 	}
 }

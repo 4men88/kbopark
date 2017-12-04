@@ -65,9 +65,6 @@ function logout(){
 <link rel="stylesheet" href="/theme/a/custom.css">
 <link rel="stylesheet" href="/skin/custom.css">
 
-
-
-
 <div class="container-fluid">
 
     <div id="menuarea" class="col-sm-2" style="background-color:#F8F8FF;">

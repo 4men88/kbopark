@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.baseball.auction.model.AuctionDetailDto;
 import com.baseball.util.db.DBClose;
 import com.baseball.util.db.DBConnection;

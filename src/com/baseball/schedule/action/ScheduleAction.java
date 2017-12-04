@@ -17,16 +17,15 @@ public class ScheduleAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		Map<String, String> map = new HashMap<String, String>();
-		
-		ScheduleDto scheduleDto = ScheduleServiceImpl.getScheduleService().viewSchedule((ScheduleDto) map);
+			
+		ScheduleDto scheduleDto = ScheduleServiceImpl.getScheduleService().viewSchedule();
 
 		request.setAttribute("schedulemap", scheduleDto);
 
 		System.out.println("ScheduleAction" + scheduleDto);
 		
-		return "/schedule/schedule.jsp";
+		return "/schedule/daily.jsp";
+		
 	}
 
 }
