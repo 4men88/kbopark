@@ -29,16 +29,6 @@ if(<%=bestList%> == null && <%=endList%> == null && <%=hitList%> == null && <%=n
 	<div class="navbar-template text-center"></div>
 </div>
 
-<%
-	List<AuctionDetailDto> auctionDetailDto = (List<AuctionDetailDto>)request.getAttribute("auctionDetailDto");
-%>
-
-<script type="text/javascript">
-function endList(){
-	document.location.href = "<%=root%>/auction?act=aend";
-}
-</script>
-
 <div id="auction-maincarousel">
    <div class="container-fluid">
       <div class="row p-5">
@@ -257,7 +247,7 @@ if(newList != null)
 	}
 }
 %>				
-				
+				</div>	
 			</div>
 		</div>
 	</div>
