@@ -1,0 +1,274 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<%@ include file="/mypage/mypageLeftside.jsp"%>
+      
+    <div id="contentarea" class="col-sm-9" style="min-height:600px";>
+    <div class="row">
+ <!-- --------------------------내 정보------------------------------------------------------- -->
+    	 <div class="col-sm-6">
+    	 <h3 style="background-color:lavender;"align="center">내 정보</h3>
+         <form role="form">
+        	<div class="form-group">
+              <label for="username">이름</label>
+              <input type="text" class="form-control" id="userid" placeholder="memberDto.getId">
+            </div>
+           	<div class="form-group">
+              <label for="username">아이디</label>
+              <input type="text" class="form-control" id="username" placeholder="memberDto.getName">
+            </div>
+            
+           <div class="form-group">
+              <label for="InputEmail">이메일</label>
+              <input type="email" class="form-control" id="useremail" placeholder="memberDto.getEmail">
+            </div>
+            <div class="form-group">
+              <label for="username">휴대폰</label>
+              <div class="input-group">
+                <input type="tel" class="form-control" id="userphone" placeholder="memberDto.getPhone">
+            </div>
+            </div>
+         
+
+          </form>
+
+      	 <center><button type="button" class="btn btn-primary" onclick="" style="height:30px;width:100%;margin:5px;max-width:300px;">정보수정 바로가기</button></center>
+    	 </div>
+ <!-- --------------------------내 정보------------------------------------------------------- -->
+   
+ <!-- --------------------------공지사항------------------------------------------------------- -->
+   
+   		 <div class="col-sm-6">
+   		 <h3 style="background-color:lavender;" align="center">공지사항</h3>
+   
+   	<!--?require_once $footer?--><div class="dh-board">
+	<!--카테고리-->
+		<!--카테고리-->
+	
+    	<table class="table table-hover">
+	<thead class="text-center">
+	    <tr>
+						<th class="col-xs-6 col-md-6 subject" >제목</th>
+		    <th class="col-xs-2 col-md-2 writer" >작성자</th>
+		    <th class="col-xs-2 col-md-2 regdate" >시간</th>
+				    </tr>
+	</thead>
+	<tbody>
+        <div class="clearfix"></div>    
+        <tr class="">
+		
+			<td class="subject"><strong><a src='#' class='btnRead' value='47'>공지사항dto가 필요합니다 1입니다. </a></strong><small></small></td>
+			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
+			<td class="text-center regdate">2016-02-28</td>
+		
+    	</tr>    
+    	<tr class="">
+		
+			<td class="subject"><strong><a src='#' class='btnRead' value='44'>공지사항2입니다. </a></strong><small></small></td>
+			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
+			<td class="text-center regdate">2015-02-22</td>
+		
+   		</tr>
+  	    <tr class="">
+			
+			<td class="subject"><strong><a src='#' class='btnRead' value='47'>공지사항 3입니다. </a></strong><small></small></td>
+			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
+			<td class="text-center regdate">2016-02-28</td>
+			
+   	    </tr> 
+   	     <tr class="">
+			
+			<td class="subject"><strong><a src='#' class='btnRead' value='47'>공지사항 4입니다. </a></strong><small></small></td>
+			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
+			<td class="text-center regdate">2016-02-28</td>
+			
+   	    </tr> 
+   	     <tr class="">
+			
+			<td class="subject"><strong><a src='#' class='btnRead' value='47'>공지사항 5입니다. </a></strong><small></small></td>
+			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
+			<td class="text-center regdate">2016-02-28</td>
+			
+   	    </tr> 
+   	     <tr class="">
+			
+			<td class="subject"><strong><a src='#' class='btnRead' value='47'>공지사항 6입니다. </a></strong><small></small></td>
+			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
+			<td class="text-center regdate">2016-02-28</td>
+			
+   	    </tr> 
+   	    
+    
+    
+    <div class="clearfix"></div>    	</tbody>
+	</table>
+   		
+   		 <center><button type="button" class="btn btn-primary" onclick="" style="height:30px;width:100%;margin:5px;max-width:300px;">공지사항 바로가기</button></center>
+   		 </div>
+   		 </div>
+	 <!-- --------------------------공지사항------------------------------------------------------- -->
+    <!-- --------------------------내 경매------------------------------------------------------- -->
+ <div class="col-sm-6">
+ 	<h3 style="background-color:lavender;"align="center">내 경매</h3>
+ 		<div>
+	 		 내가 올린 경매
+	 		  <center><button type="button" class="btn btn-primary" onclick="" style="height:30px;width:100%;margin:5px;max-width:300px;">내 경매 바로가기</button></center>
+ 			 
+ 		</div>
+ 		 
+ 		 
+ 		 
+ 		<div>
+ 		  입찰한 경매
+ 		 
+ 		 
+ 		   <center><button type="button" class="btn btn-primary" onclick="" style="height:30px;width:100%;margin:5px;max-width:300px;">입찰 바로가기</button></center>
+ 		 
+ 	 	</div>
+ 		 
+ </div>
+		 
+		 
+		 
+		 
+		 
+	<!-- --------------------------내 경매------------------------------------------------------- -->	 
+	
+	
+	
+	
+	<!-- --------------------------내 글 목록------------------------------------------------------- -->
+  	 
+  		 <div class="col-sm-6">
+  		  <h3 style="background-color:lavender;"align="center">게시물</h3>
+  		  <div> 		   
+  		
+  		
+  		
+  		
+  		
+  		 
+   		 <div class="col-sm-6">
+   		 <h3 style="background-color:lavender;" align="center">내가 쓴 게시물</h3>
+   
+   	<!--?require_once $footer?--><div class="dh-board">
+	<!--카테고리-->
+		<!--카테고리-->
+	
+    	<table class="table table-hover">
+	<thead class="text-center">
+	    <tr>
+						<th class="col-xs-6 col-md-6 subject" >제목</th>
+		    <th class="col-xs-2 col-md-2 writer" >작성자</th>
+		    <th class="col-xs-2 col-md-2 regdate" >시간</th>
+				    </tr>
+	</thead>
+	<tbody>
+        <div class="clearfix"></div>    
+        <tr class="">
+		
+			<td class="subject"><strong><a src='#' class='btnRead' value='47'>내 글 목록1입니다. </a></strong><small></small></td>
+			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
+			<td class="text-center regdate">2016-02-28</td>
+		
+    	</tr>    
+    	<tr class="">
+		
+			<td class="subject"><strong><a src='#' class='btnRead' value='44'>내 글 목록2입니다. </a></strong><small></small></td>
+			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
+			<td class="text-center regdate">2015-02-22</td>
+		
+   		</tr>
+  	    <tr class="">
+			
+			<td class="subject"><strong><a src='#' class='btnRead' value='47'>내 글 목록3입니다.</a></strong><small></small></td>
+			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
+			<td class="text-center regdate">2016-02-28</td>
+			
+   	    </tr> 
+   	     <tr class="">
+			
+			<td class="subject"><strong><a src='#' class='btnRead' value='47'>내 글 목록4입니다.</a></strong><small></small></td>
+			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
+			<td class="text-center regdate">2016-02-28</td>
+			
+   	    </tr> 
+   	    
+   	   
+    <div class="clearfix"></div>    	</tbody>
+	</table>
+   		
+   		 <center><button type="button" class="btn btn-primary" onclick="" style="height:30px;width:100%;margin:5px;max-width:300px;">내가 쓴 글 바로가기</button></center>
+   		 </div>
+   		 </div>
+   		 </div>
+	 <!-- --------------------------내 글 목록------------------------------------------------------- -->
+  		
+  
+  		   <!-- --------------------------내 댓글 목록------------------------------------------------------- -->
+   
+   		 <div class="col-sm-6">
+   		 <h3 style="background-color:lavender;" align="center">내가 쓴 댓글</h3>
+   
+   	<!--?require_once $footer?--><div class="dh-board">
+	<!--카테고리-->
+		<!--카테고리-->
+	
+    	<table class="table table-hover">
+	<thead class="text-center">
+	    <tr>
+						<th class="col-xs-6 col-md-6 subject" >제목</th>
+		    <th class="col-xs-2 col-md-2 writer" >작성자</th>
+		    <th class="col-xs-2 col-md-2 regdate" >시간</th>
+				    </tr>
+	</thead>
+	<tbody>
+        <div class="clearfix"></div>    
+        <tr class="">
+		
+			<td class="subject"><strong><a src='#' class='btnRead' value='47'>내 댓글 원글1입니다. </a></strong><small></small></td>
+			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
+			<td class="text-center regdate">2016-02-28</td>
+		
+    	</tr>    
+    	<tr class="">
+		
+			<td class="subject"><strong><a src='#' class='btnRead' value='44'>내 댓글 원글2입니다. </a></strong><small></small></td>
+			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
+			<td class="text-center regdate">2015-02-22</td>
+		
+   		</tr>
+  	    <tr class="">
+			
+			<td class="subject"><strong><a src='#' class='btnRead' value='47'>내 댓글 원글3입니다.</a></strong><small></small></td>
+			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
+			<td class="text-center regdate">2016-02-28</td>
+			
+   	    </tr> 
+   	     <tr class="">
+			
+			<td class="subject"><strong><a src='#' class='btnRead' value='47'>내 댓글 원글4입니다.</a></strong><small></small></td>
+			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
+			<td class="text-center regdate">2016-02-28</td>
+			
+   	    </tr> 
+   	    
+   	   
+    <div class="clearfix"></div>    	</tbody>
+	</table>
+   		
+   		 <center><button type="button" class="btn btn-primary" onclick="" style="height:30px;width:100%;margin:5px;max-width:300px;">내 댓글 바로가기</button></center>
+   		 </div>
+   		 </div>
+	 <!-- --------------------------내 댓글 목록------------------------------------------------------- -->
+   		 </div>
+  		
+  		   	
+    </div>
+     </div>
+    
+    <div id="rightarea" class="col-sm-1" style="background-color:lavender;">
+    	<h3>Aside</h3>
+    </div>
+</div>
+
+<%@ include file="/common/footer.jsp"%>
