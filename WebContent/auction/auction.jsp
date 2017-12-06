@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR" import="com.baseball.auction.model.AuctionDetailDto,java.util.List"%>
+	pageEncoding="EUC-KR" import="com.baseball.auction.model.AuctionDetailDto,
+	java.util.*, java.text.*,java.io.*"%>
 <!--header 영역 -->
 <%@ include file="/common/header.jsp"%>
 
@@ -10,18 +11,18 @@
 	List<AuctionDetailDto> hitList = (List<AuctionDetailDto>)request.getAttribute("hitList");
 	List<AuctionDetailDto> newList = (List<AuctionDetailDto>)request.getAttribute("newList");
 	String list = request.getParameter("list");
+	
+//	DateFormat df = new SimpleDateFormat("hh:mm:ss");
+//	String time = df.format(new Date());
+//	System.out.println(time);
+//	response.setContentType("text/plain;charset=EUC-KR");
+//	PrintWriter printWriter = response.getWriter();
+//	printWriter.print(time);
 %>
+<script type="text/javascript" src="/kbopark/js/httpRequest.js"></script>
 <script type="text/javascript">
-function mainList(){
-	document.location.href = "<%=root%>/auctionlist?act=mainlist";
-}
+var httpRequest;
 
-if(<%=bestList%> == null && <%=endList%> == null && <%=hitList%> == null && <%=newList%> == null)
-{
-	window.onload = function() {
-		mainList();
-	}
-}
 </script>
 
 <form action="" name="auctionListForm" method="get" >
@@ -135,7 +136,8 @@ if(bestList != null)
 						<div class="col-md-12 col-8 align-self-center">
 							<p class="mb-2">
 								<strong><%=bestList.get(i).getAname()%></strong><br>
-								입찰자수 : <%=bestList.get(i).getBidNum()%>명<br>남은시간 : 5일 3시간 20분
+								입찰자수 : <%=bestList.get(i).getBidNum()%>명<br>
+								<div> 남은시간 : </div>
 							</p>
 							<p style="color: red;">
 								<strong>현재입찰가 : <%=bestList.get(i).getBidPrice()%></strong>

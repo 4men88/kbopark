@@ -47,7 +47,7 @@ if(memberDto!=null){
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item mx-1"><a class="nav-link" id = "schedule" href="<%=root%>/ScheduleController?act=viewschedule">일정/결과</a></li>
-					<li class="nav-item mx-1"><a class="nav-link" href="#">루키경매</a></li>
+					<li class="nav-item mx-1"><a class="nav-link" href="<%=root%>/auctionlist?act=mainlist";>루키경매</a></li>
 					<li class="nav-item mx-1"><a class="nav-link" href="#">NEWS</a></li>
 					<li class="nav-item mx-1"><a class="nav-link" href="#">구단커뮤니티</a></li>
 				</ul>
