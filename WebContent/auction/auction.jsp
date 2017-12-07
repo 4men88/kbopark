@@ -4,7 +4,7 @@
 <!--header 영역 -->
 <%@ include file="/common/header.jsp"%>
 <%!
-//리스트 길이 담을 변수///////////
+//리스트 길이 담을 변수
 int bestListLen;	
 int endListLen;
 int hitListLen;
