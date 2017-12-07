@@ -3,29 +3,59 @@
 	java.util.*, java.text.*,java.io.*"%>
 <!--header 영역 -->
 <%@ include file="/common/header.jsp"%>
-
+<%!
+int bestListLen;
+int endListLen;
+int hitListLen;
+int newListLen;
+%>
 
 <%
 	List<AuctionDetailDto> bestList = (List<AuctionDetailDto>)request.getAttribute("bestList");
 	List<AuctionDetailDto> endList = (List<AuctionDetailDto>)request.getAttribute("endList");
 	List<AuctionDetailDto> hitList = (List<AuctionDetailDto>)request.getAttribute("hitList");
 	List<AuctionDetailDto> newList = (List<AuctionDetailDto>)request.getAttribute("newList");
-	String list = request.getParameter("list");
 	
-//	DateFormat df = new SimpleDateFormat("hh:mm:ss");
-//	String time = df.format(new Date());
-//	System.out.println(time);
-//	response.setContentType("text/plain;charset=EUC-KR");
-//	PrintWriter printWriter = response.getWriter();
-//	printWriter.print(time);
+	if(bestList != null)
+	bestListLen = bestList.size();
+	if(endList != null)
+	endListLen = endList.size();
+	if(hitList != null)
+	hitListLen = hitList.size();
+	if(newList != null)
+	newListLen = newList.size();
 %>
 <script type="text/javascript" src="/kbopark/js/httpRequest.js"></script>
 <script type="text/javascript">
-var httpRequest;
 
+function startTime() {
+//	httpRequest = getXMLHttpRequest();
+//	httpRequest.onreadystatechange = getTime;
+//	httpRequest.open("GET", "<%=root%>/auction/auction-time.jsp", true);
+//	httpRequest.send(null);
+	var params = "act=timelist";
+	sendRequest("<%=root%>/auctionlist", params, getTime, "GET");
+}
+
+function getTime() {
+	if(httpRequest.readyState == 4) {
+		if(httpRequest.status == 200) {
+			var ctime = httpRequest.responseText;
+			for(var i=0; i<<%=bestListLen%>; i++)
+			{
+				document.getElementById("besttime" + i).innerHTML = ctime;				
+			}
+			window.setTimeout("startTime();", 1000);
+	//		alert(ctime);
+		}
+	}
+}
+
+window.onload=function() {
+	startTime();
+}
 </script>
 
-<form action="" name="auctionListForm" method="get" >
 <div class="container py-5 my-5">
 	<div class="navbar-template text-center"></div>
 </div>
@@ -137,7 +167,7 @@ if(bestList != null)
 							<p class="mb-2">
 								<strong><%=bestList.get(i).getAname()%></strong><br>
 								입찰자수 : <%=bestList.get(i).getBidNum()%>명<br>
-								<div> 남은시간 : </div>
+								<div id="besttime<%=i%>"></div>
 							</p>
 							<p style="color: red;">
 								<strong>현재입찰가 : <%=bestList.get(i).getBidPrice()%></strong>
@@ -324,7 +354,6 @@ if(newList != null)
 		</div>
 	</div>
 </div>
-</form>
 
 <!-- footer영역 -->
 <%@ include file="/common/footer.jsp"%>
