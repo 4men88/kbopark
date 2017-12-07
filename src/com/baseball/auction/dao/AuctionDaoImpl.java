@@ -33,7 +33,7 @@ public class AuctionDaoImpl implements AuctionDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyymmdd hh24:mi:ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage ");
+			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage ");
 			sql.append("from auction_image ai,( \n");
 			sql.append("                        select a.*, ad.bidprice, ad.bidnum \n");
 			sql.append("                        from auction a,( \n");
