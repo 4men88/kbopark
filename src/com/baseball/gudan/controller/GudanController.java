@@ -1,41 +1,50 @@
 package com.baseball.gudan.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 
-/**
- * Servlet implementation class GudanController
- */
-@WebServlet("/GudanController")
+import com.baseball.gudan.service.GudanServiceImpl;
+import com.baseball.util.NullCheck;
+import com.baseball.util.PageMove;
+
+@WebServlet("/gudan")
 public class GudanController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GudanController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String root = request.getContextPath();
+		
+		String act = request.getParameter("act");
+		System.out.println("GudanController act >>> " + act);
+		
+		String path = "/index.jsp";
+	
+		if("mvteamweb".equals(act)) {
+			int tno = NullCheck.nullToZero(request.getParameter("tno"));
+			System.out.println("GudanController tno >>> " + tno);
+			path = GudanServiceImpl.getGudanService().getGudanWeb(tno);
+			System.out.println("GudanController path >>> " + path);
+			PageMove.redirect(request, response, path);
+		}
+//		} else if("deletearticle".equals(act)) {
+//			System.out.println("controller deletearticle ÁøÀÔ !");
+//			path = BoardActionFactory.getReboardDeleteAction().execute(request, response);
+//			path += queryString;
+//			System.out.println("controller deletearticle path >>>   " + path);
+//			PageMove.forward(request, response, path);
+		
+		else if("".equals(act)) {
+			PageMove.redirect(request, response, path);
+		}
+	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("EUC-KR");
 		doGet(request, response);
 	}
-
+	
 }
