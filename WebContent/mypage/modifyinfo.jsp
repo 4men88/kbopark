@@ -110,7 +110,7 @@
 					<label for="inputPassword1" class="col-sm-2 col-form-label">비밀번호</label>
 					<div class="col-sm-10">
 						<input type="password" class="form-control" id="pass" name="pass"
-							placeholder="비밀번호를입력해주세요">
+							placeholder="비밀번호를 입력해주세요">
 					</div>
 				</div>
 				<div class="form-group row px-3">
@@ -126,13 +126,13 @@
 					<label for="inputEmail1" class="col-sm-2 col-form-label">이메일</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control mb-2 mb-sm-0"
-							id="email1" name="email1" placeholder="">
+							id="email1" name="email1" placeholder="" value="<%=memberDto.getEmail1()%>">
 					</div>
 					<div class="col-sm-4">
 						<div class="input-group mb-2 mb-sm-0">
 							<div class="input-group-addon">@</div>
 							<input type="text" class="form-control" id="email2" name="email2"
-								placeholder="">
+								placeholder="" value="<%=memberDto.getEmail2()%>">
 						</div>
 					</div>
 					<div class="col-sm-3">
@@ -161,12 +161,12 @@
 					<label class="tellabel text-center px-0 mb-0 align-self-center">-</label>
 					<div class="col-sm-3 col-4">
 						<input type="text" class="form-control mb-2 mb-sm-0"
-							id="tel2" name="tel2" placeholder="">
+							id="tel2" name="tel2" value="<%=memberDto.getTel2()%>">
 					</div>
 					<label class="tellabel text-center px-0 mb-0 align-self-center">-</label>
 					<div class="col-sm-3 col-4">
 						<input type="text" class="form-control mb-2 mb-sm-0"
-							id="tel3" name="tel3" placeholder="">
+							id="tel3" name="tel3" value="<%=memberDto.getTel3()%>">
 					</div>
 				</div>
 
@@ -176,7 +176,7 @@
 					<div class="col-sm-4 col-8">
 						<label class="sr-only" for="inputZipcode">zipcode</label>
 						<input type="text" class="form-control mb-2 mb-sm-0" id="zip1" name="zip1"
-							placeholder="" readonly>
+							value="" readonly>
 					</div>
 					<div class="col-sm-2 pl-0 col-4 align-self-center">
 						<input type="button" class="btn btn-primary" value="주소검색" onclick="javascript:zipsearch();">
@@ -188,12 +188,12 @@
 					<div class="col-sm-4">
 						<div class="input-group mb-2 mb-sm-0">
 							<input type="text" class="form-control" id="addr1" name="addr1"
-								placeholder="" readonly>
+								value="" readonly>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<input type="text" class="form-control" id="addr2" name="addr2"
-							placeholder="">
+							value="">
 					</div>
 				</div>
 
@@ -230,8 +230,8 @@
     	 
     	</div>
  <!-- --------------------------내 정보------------------------------------------------------- -->
-     <div id="aside" class="col-sm-1" style="background-color:lavender;">
-    	<h3>Aside</h3>
+     <div id="aside" class="col-sm-1">
+    	
     </div>
   </div>
 </div>

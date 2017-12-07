@@ -89,7 +89,7 @@ public class MemberDaoImpl implements MemberDao {
 				memberDetailDto.setId(rs.getString("mid"));
 				memberDetailDto.setName(rs.getString("name"));
 				memberDetailDto.setEmail1(rs.getString("email1"));
-				memberDetailDto.setEmail1(rs.getString("email2"));
+				memberDetailDto.setEmail2(rs.getString("email2"));
 				memberDetailDto.setJoindate(rs.getString("joindate"));
 				memberDetailDto.setTel1(rs.getString("tel1"));
 				memberDetailDto.setTel2(rs.getString("tel2"));

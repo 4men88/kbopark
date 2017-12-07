@@ -2,6 +2,7 @@ package com.baseball.mypage.service;
 
 import com.baseball.member.dao.MemberDaoImpl;
 import com.baseball.member.model.MemberDetailDto;
+import com.baseball.mypage.dao.MypageDaoImpl;
 
 
 public class MypageServiceImpl implements MypageService {
@@ -24,9 +25,9 @@ public class MypageServiceImpl implements MypageService {
 	
 	
 	@Override
-	public int modifyMember(MemberDetailDto memberdto) {
-		System.out.println("서비스임플로보낸당");
-		return MypageDaoImpl.getMypageDao().registMember(memberdto);
+	public int modifyMember(MemberDetailDto memberDto) {
+		System.out.println("mypageServiceImple>>>>>>>>>mypageDaoImpl.getMypageDao.modifyinfo 호출");
+		return MypageDaoImpl.getMypageDao().modifyInfo(memberDto);
 	}
 
 }

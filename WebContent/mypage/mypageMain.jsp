@@ -10,26 +10,30 @@
  <!-- --------------------------내 정보------------------------------------------------------- -->
     	 <div class="col-sm-6">
     	 <h3 style="background-color:lavender;"align="center">내 정보</h3>
-         <form role="form">
+       
         	<div class="form-group">
-              <label for="username">이름</label>
+              <label for="myname">이름</label>
               <input type="text" class="form-control" id="userid"  value="<%=memberDto.getName()%>" readonly>
             </div>
            	<div class="form-group">
-              <label for="username">아이디</label>
+              <label for="myid">아이디</label>
               <input type="text" class="form-control" id="username" value="<%=memberDto.getId()%>" readonly>
             </div>
             
            <div class="form-group">
-              <label for="InputEmail">이메일</label>
-              <input type="text" class="form-control" id="useremail" value="<%=memberDto.getEmail1()+"@"+memberDto.getEmail2()%>" readonly>
-              <%System.out.print("email========"+memberDto.getEmail1()+"@"+memberDto.getEmail2()); %>
-            </div>
+              <label for="myEmail">이메일</label>
+              <input type="text" class="form-control" id="useremail" value="<%=memberDto.getEmail1()%>@<%=memberDto.getEmail2()%>" readonly>
+           </div>
            
-         
-         
+           <div class="form-group">
+              <label for="myname">전화번호</label>
+              <input type="text" class="form-control" id="userid"  value="<%=memberDto.getTel1()%>-<%=memberDto.getTel2()%>-<%=memberDto.getTel3()%>" readonly>
+            </div>
 
-          </form>
+            
+      
+
+        
 
       	 <center><button type="button" class="btn btn-primary" onclick="javascript:moveModify();" style="height:30px;width:100%;margin:5px;max-width:300px;">정보수정 바로가기</button></center>
     	 </div>
@@ -266,8 +270,8 @@
     </div>
      </div>
     
-    <div id="rightarea" class="col-sm-1" style="background-color:lavender;">
-    	<h3>Aside</h3>
+    <div id="rightarea" class="col-sm-1">
+    
     </div>
 </div>
 

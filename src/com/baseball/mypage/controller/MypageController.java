@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.baseball.factory.MemberActionFactory;
+import com.baseball.factory.MypageActionFactory;
 import com.baseball.util.PageMove;
 
 /**
@@ -35,8 +36,8 @@ public class MypageController extends HttpServlet {
 			path = "/mypage/modifyinfo.jsp";
 			PageMove.redirect(request, response, path);
 		} else if("modifyInfo".equals(act)) {
-			System.out.println("마이페이지>정보수정");
-			path=MemberActionFactory.getRegisterAction().execute(request, response);
+			System.out.println("mypageController >>> modifyInfo>>>mypageActionF.modifyinfoact.execu");
+			path=MypageActionFactory.getModifyInfoAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		} else if("lookie".equals(act)) {
 			
