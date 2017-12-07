@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.baseball.action.Action;
-import com.baseball.member.model.MemberDto;
+import com.baseball.member.model.MemberDetailDto;
 import com.baseball.member.service.MemberServiceImpl;
 
 public class LoginAction implements Action {
@@ -27,12 +27,12 @@ public class LoginAction implements Action {
 		map.put("id", id);
 		map.put("pass", pass);
 //		System.out.println(map.get("id"));
-		MemberDto memberDto= MemberServiceImpl.getMemberService().logIn(map);
-		if(memberDto!=null) {
+		MemberDetailDto memberDetailDto= MemberServiceImpl.getMemberService().logIn(map);
+		if(memberDetailDto!=null) {
 			String idsv = request.getParameter("idsv");
-			if("gksdjf".equals(memberDto.getId())) {
+			if("gksdjf".equals(memberDetailDto.getId())) {
 				HttpSession session = request.getSession();
-				session.setAttribute("userInfo", memberDto);
+				session.setAttribute("userInfo", memberDetailDto);
 				path = "/admin/adhome.jsp";
 			}else {
 				if("saveid".equals(idsv)) {
@@ -55,7 +55,7 @@ public class LoginAction implements Action {
 					}
 				}
 				HttpSession session = request.getSession();
-				session.setAttribute("userInfo", memberDto);
+				session.setAttribute("userInfo", memberDetailDto);
 				path = "/index.jsp";
 			}
 		} else 

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.baseball.factory.MemberActionFactory;
-import com.baseball.member.model.MemberDetailDto;
 import com.baseball.member.service.MemberServiceImpl;
 import com.baseball.util.Constance;
 import com.baseball.util.PageMove;
@@ -24,7 +23,6 @@ public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String root = request.getContextPath();
 		String act = request.getParameter("act");
 		String path = "/index.jsp";
 		if("mvjoin".equals(act)){ //회원가입 버튼을 눌렀을 때

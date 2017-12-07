@@ -60,6 +60,8 @@ public class AdminDaoImpl implements AdminDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
 		}
 		return list;
 	}
@@ -98,7 +100,7 @@ public class AdminDaoImpl implements AdminDao {
 			if(word!=null&& !word.trim().isEmpty()) {
 				pstmt.setString(1, word);
 			}
-			pstmt=conn.prepareStatement(sql.toString());
+			
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				MemberDetailDto memberDto = new MemberDetailDto();
