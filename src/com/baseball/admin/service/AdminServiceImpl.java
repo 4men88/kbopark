@@ -1,10 +1,10 @@
 package com.baseball.admin.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.baseball.admin.dao.AdminDaoImpl;
 import com.baseball.member.model.MemberDetailDto;
-import com.baseball.member.model.MemberDto;
 
 public class AdminServiceImpl implements AdminService{
 	private static AdminService adminService;
@@ -35,5 +35,14 @@ public class AdminServiceImpl implements AdminService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<MemberDetailDto> listmember(Map<String, String> map) {
+		return AdminDaoImpl.getAdminDao().listmember(map);
+	}
+
+
+
+	
 
 }
