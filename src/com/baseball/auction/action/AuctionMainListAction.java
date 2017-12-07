@@ -22,14 +22,8 @@ public class AuctionMainListAction implements Action {
 		List<AuctionDetailDto> endList = AuctionServiceImpl.getAuctionService().auctionEndList();
 		List<AuctionDetailDto> hitList = AuctionServiceImpl.getAuctionService().auctionHitList();
 		List<AuctionDetailDto> newList = AuctionServiceImpl.getAuctionService().auctionNewList();
-		System.out.println("디비 : " + bestList.get(0).getEndTime());
-//		for(int i=0; i<bestList.size() + endList.size() + hitList.size() + newList.size(); i++)
-//		{
-//			mainList.add(list.get(i));
-//		}
-//		System.out.println(list.get(0).getAimage());
-//		System.out.println(list.get(1).getAimage());
-		System.out.println("디비: " + bestList.get(0).getEndTime());
+
+		System.out.println("endList: " + endList.get(0).getEndTime());
 		request.setAttribute("bestList", bestList);
 		request.setAttribute("endList", endList);
 		request.setAttribute("hitList", hitList);
