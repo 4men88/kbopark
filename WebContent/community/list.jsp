@@ -43,8 +43,8 @@
 	</div>
 </div>
 
-<div id="comm-best">
-	<div class="container">
+<div id="comm-best" class="py-5">
+	<div class="container py-5">
 		<h5><strong>실시간베스트</strong></h5>
 		<div class="border-b-strong"></div>
 		<div class="row">
@@ -94,6 +94,77 @@
 		</ul>
 	</div>
 </div>
+</div>
+
+
+
+<!-- 구단별 로고 >> 링크 구단페이지로 -->
+<div id="main-gudan-logo" class="py-5">
+	<div class="container">
+		<div class="row">
+			<div class="p-0 col-md-1 col-12"></div>
+			<div class="p-0 col-md-1 col-12 text-center main-doosan-mobile">
+				<a href="#"> <img
+					src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
+					class="img-fluid">
+				</a>
+			</div>
+			<div class="p-0 col-md-1 col-12 text-center">
+				<a href="#"> <img
+					src="<%=root%>/img/gudan/emblem/emblem-lotte.png" class="img-fluid">
+				</a>
+			</div>
+			<div class="p-0 col-md-1 col-12 text-center">
+				<a href="#"> <img src="<%=root%>/img/gudan/emblem/emblem-kt.png"
+					class="img-fluid">
+				</a>
+			</div>
+			<div class="p-0 col-md-1 col-12 text-center">
+				<a href="#"> <img
+					src="<%=root%>/img/gudan/emblem/emblem-nexen.png" class="img-fluid">
+				</a>
+			</div>
+			<div class="p-0 col-md-1 col-12 text-center">
+				<a href="#"> <img
+					src="<%=root%>/img/gudan/emblem/emblem-kia.png" class="img-fluid">
+				</a>
+			</div>
+			<div class="p-0 col-md-1 col-12 text-center main-doosan-pc">
+				<a href="#"> <img
+					src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
+					class="img-fluid">
+				</a>
+			</div>
+			<div class="p-0 col-md-1 col-12 text-center">
+				<a href="#"> <img src="<%=root%>/img/gudan/emblem/emblem-lg.png"
+					class="img-fluid">
+				</a>
+			</div>
+			<div class="p-0 col-md-1 col-12 text-center">
+				<a href="#"> <img
+					src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
+					class="img-fluid">
+				</a>
+			</div>
+			<div class="p-0 col-md-1 col-12 text-center">
+				<a href="#"> <img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
+					class="img-fluid">
+				</a>
+			</div>
+			<div class="p-0 col-md-1 col-12 text-center">
+				<a href="#"> <img src="<%=root%>/img/gudan/emblem/emblem-nc.png"
+					class="img-fluid">
+				</a>
+			</div>
+			<div class="p-0 col-md-1 col-12 text-center">
+				<a href="#"> <img
+					src="<%=root%>/img/gudan/emblem/emblem-samsung.png"
+					class="img-fluid">
+				</a>
+			</div>
+			<div class="p-0 col-md-1 col-12"></div>
+		</div>
+	</div>
 </div>
 
 <!-- footer영역 -->

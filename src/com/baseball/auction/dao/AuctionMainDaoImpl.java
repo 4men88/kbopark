@@ -33,7 +33,11 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
+<<<<<<< HEAD:src/com/baseball/auction/dao/AuctionMainDaoImpl.java
 			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yy.mm.dd.hh24:mi:ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage ");
+=======
+			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage ");
+>>>>>>> c3132dd986e08b66791fca3e2b011bf72e954aa1:src/com/baseball/auction/dao/AuctionDaoImpl.java
 			sql.append("from auction_image ai,( \n");
 			sql.append("                        select a.*, ad.bidprice, ad.bidnum \n");
 			sql.append("                        from auction a,( \n");

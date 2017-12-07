@@ -29,6 +29,7 @@ public class AuctionMainListAction implements Action {
 //		}
 //		System.out.println(list.get(0).getAimage());
 //		System.out.println(list.get(1).getAimage());
+		System.out.println("µðºñ: " + bestList.get(0).getEndTime());
 		request.setAttribute("bestList", bestList);
 		request.setAttribute("endList", endList);
 		request.setAttribute("hitList", hitList);
