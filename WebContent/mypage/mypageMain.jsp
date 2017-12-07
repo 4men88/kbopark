@@ -1,7 +1,10 @@
+<%@page import="com.baseball.member.model.MemberDetailDto"%>
+<%@page import="com.baseball.member.model.MemberDetailDto"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ include file="/mypage/mypageLeftside.jsp"%>
-      
+
+
     <div id="contentarea" class="col-sm-9" style="min-height:600px";>
     <div class="row">
  <!-- --------------------------내 정보------------------------------------------------------- -->
@@ -10,28 +13,25 @@
          <form role="form">
         	<div class="form-group">
               <label for="username">이름</label>
-              <input type="text" class="form-control" id="userid" placeholder="memberDto.getId">
+              <input type="text" class="form-control" id="userid"  value="<%=memberDto.getName()%>" readonly>
             </div>
            	<div class="form-group">
               <label for="username">아이디</label>
-              <input type="text" class="form-control" id="username" placeholder="memberDto.getName">
+              <input type="text" class="form-control" id="username" value="<%=memberDto.getId()%>" readonly>
             </div>
             
            <div class="form-group">
               <label for="InputEmail">이메일</label>
-              <input type="email" class="form-control" id="useremail" placeholder="memberDto.getEmail">
+              <input type="text" class="form-control" id="useremail" value="<%=memberDto.getEmail1()+"@"+memberDto.getEmail2()%>" readonly>
+              <%System.out.print("email========"+memberDto.getEmail1()+"@"+memberDto.getEmail2()); %>
             </div>
-            <div class="form-group">
-              <label for="username">휴대폰</label>
-              <div class="input-group">
-                <input type="tel" class="form-control" id="userphone" placeholder="memberDto.getPhone">
-            </div>
-            </div>
+           
+         
          
 
           </form>
 
-      	 <center><button type="button" class="btn btn-primary" onclick="" style="height:30px;width:100%;margin:5px;max-width:300px;">정보수정 바로가기</button></center>
+      	 <center><button type="button" class="btn btn-primary" onclick="javascript:moveModify();" style="height:30px;width:100%;margin:5px;max-width:300px;">정보수정 바로가기</button></center>
     	 </div>
  <!-- --------------------------내 정보------------------------------------------------------- -->
    
