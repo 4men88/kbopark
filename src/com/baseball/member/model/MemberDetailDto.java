@@ -11,10 +11,21 @@ public class MemberDetailDto extends MemberDto {
 	private String addr2;
 	private int tno;
 	private int rookie;
+	private int penalty;
+	private String mstatus;
+	private String favoriteteam;
 	
 	
 	
 	
+	public String getFavoriteteam() {
+		return favoriteteam;
+	}
+
+	public void setFavoriteteam(String favoriteteam) {
+		this.favoriteteam = favoriteteam;
+	}
+
 	public String getZip2() {
 		return zip2;
 	}
@@ -54,12 +65,6 @@ public class MemberDetailDto extends MemberDto {
 	public void setMstatus(String mstatus) {
 		this.mstatus = mstatus;
 	}
-
-	private int penalty;
-	private String mstatus;
-	
-	
-	
 
 	public String getTel1() {
 		return tel1;
