@@ -38,7 +38,7 @@ public class AdminController extends HttpServlet {
 		}else if("notice".equals(act)){
 			path="/admin/notice.jsp";
 			PageMove.redirect(request, response, path);
-		}else if("".equals(act)){
+		}else if("todaypl".equals(act)){
 			
 		}else if("".equals(act)){
 			
