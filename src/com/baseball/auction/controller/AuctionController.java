@@ -33,7 +33,7 @@ public class AuctionController extends HttpServlet {
 		}
 		else if("timelist".equals(act))
 		{
-			DateFormat df = new SimpleDateFormat("yy.mm.dd hh:mm:ss");
+			DateFormat df = new SimpleDateFormat("yy.mm.dd.HH:mm:ss");
 			String time = df.format(new Date());
 			System.out.println(time);
 			response.setContentType("text/plain;charset=EUC-KR");

@@ -8,6 +8,7 @@ int bestListLen;
 int endListLen;
 int hitListLen;
 int newListLen;
+
 %>
 
 <%
@@ -15,7 +16,6 @@ int newListLen;
 	List<AuctionDetailDto> endList = (List<AuctionDetailDto>)request.getAttribute("endList");
 	List<AuctionDetailDto> hitList = (List<AuctionDetailDto>)request.getAttribute("hitList");
 	List<AuctionDetailDto> newList = (List<AuctionDetailDto>)request.getAttribute("newList");
-	
 	if(bestList != null)
 	bestListLen = bestList.size();
 	if(endList != null)
@@ -35,6 +35,7 @@ function startTime() {
 //	httpRequest.send(null);
 	var params = "act=timelist";
 	sendRequest("<%=root%>/auctionlist", params, getTime, "GET");
+	
 }
 
 function getTime() {
@@ -43,7 +44,12 @@ function getTime() {
 			var ctime = httpRequest.responseText;
 			for(var i=0; i<<%=bestListLen%>; i++)
 			{
-				document.getElementById("besttime" + i).innerHTML = ctime;				
+				var ctimearr = ctime.split(",");				
+					
+
+				
+		
+				document.getElementById("besttime" + i).innerHTML = ctime;
 			}
 			window.setTimeout("startTime();", 1000);
 	//		alert(ctime);

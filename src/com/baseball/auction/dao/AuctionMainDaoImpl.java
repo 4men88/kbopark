@@ -10,16 +10,16 @@ import com.baseball.auction.model.AuctionDetailDto;
 import com.baseball.util.db.DBClose;
 import com.baseball.util.db.DBConnection;
 
-public class AuctionDaoImpl implements AuctionDao {
+public class AuctionMainDaoImpl implements AuctionMainDao {
 
-	private static AuctionDao auctionDao;
+	private static AuctionMainDao auctionDao;
 	
 	static {
-		auctionDao = new AuctionDaoImpl();
+		auctionDao = new AuctionMainDaoImpl();
 	}
 	
 	
-	public static AuctionDao getAuctionDao() {
+	public static AuctionMainDao getAuctionDao() {
 		return auctionDao;
 	}
 	
@@ -33,7 +33,7 @@ public class AuctionDaoImpl implements AuctionDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyymmdd hh24:mi:ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage ");
+			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yy.mm.dd.hh24:mi:ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage ");
 			sql.append("from auction_image ai,( \n");
 			sql.append("                        select a.*, ad.bidprice, ad.bidnum \n");
 			sql.append("                        from auction a,( \n");
