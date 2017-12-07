@@ -3,6 +3,12 @@
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
 
+<script type="text/javascript">
+control = "/gudan";
+
+</script>
+
+
 <div class="py-5 text-center opaque-overlay"
 	style="background-image: url(<%=root%>/img/etc/grass.jpg);">
 	<div class="container py-5">
@@ -164,7 +170,7 @@
 </div>
 
 
-<button type="button" class="py-4 btn btn-primary btn-lg btn-block" style="border-radius: 0;">구단 공식 홈페이지 바로가기</button>
+<a class="py-4 btn btn-primary btn-lg btn-block" href="<%=root%>/gudan?act=mvteamweb&tno=<%=memberDto.getTno() %>" role="button" style="border-radius: 0; color: white !important;" target="_blank">구단 공식 홈페이지 바로가기</a>
 
 <!-- footer영역 -->
 <%@ include file="/common/footer.jsp"%>

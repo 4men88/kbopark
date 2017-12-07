@@ -128,18 +128,29 @@ function removetbody(tbody){
 function uppen(obj){
 	var tr = $(obj).parent().parent();
 	var td = tr.children();
+	var pen = td.eq(3).text();
 	var userid = td.eq(0).text();
-	var params = "act=updatePen&id="+userid+"&type=up";
-	sendRequest("<%=root%>/admin", params, memberlist, "GET");
-
+	if(pen>=5){
+		alert(pen);
+	}else{
+		var params = "act=updatePen&id="+userid+"&type=up";
+		sendRequest("<%=root%>/admin", params, memberlist, "GET");
+	}
 }
 
 function down(obj){
 	var tr = $(obj).parent().parent();
 	var td = tr.children();
+	var pen = td.eq(3).text();
 	var userid = td.eq(0).text();
-	var params = "act=updatePen&id="+userid+"&type=down";
-	sendRequest("<%=root%>/admin", params, memberlist, "GET");
+	if(pen<=0){
+		alert(pen);
+	}else{
+		var params = "act=updatePen&id="+userid+"&type=down";
+		sendRequest("<%=root%>/admin", params, memberlist, "GET");
+	}
+	
+	
 	
 }
 function statusChange(obj){

@@ -28,6 +28,10 @@ function login(){
 		document.getElementById("loginform").submit();
 	}
 }
+
+function idfind(){
+	window.open("<%=root%>/kbopark?act=mvidfind","idck","width=550,height=420,top=300,left=200,location=no,status=no,titlebar=no,toolbar=no,resizable=no,scrollbars=no");	
+}
 </script>
 
 <div class="py-5 mx-auto" style="max-width: 1140px;">
@@ -58,7 +62,7 @@ function login(){
 						</div>
 					</div>
 					<div class="px-2 border-r">
-						<span><a href="">ID찾기</a></span>
+						<span><a href="javascript:idfind();">ID찾기</a></span>
 					</div>
 					<div class="px-2"><a href="">비밀번호찾기</a></div>
 				</div>
