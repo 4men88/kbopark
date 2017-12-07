@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!--header 영역-->
-<%@ include file="/common/header.jsp"%>
+<%@ include file="/admin/adcom/adheader.jsp"%>
 
 <div id="notice" class="py-5">
 	<div class="container py-5">
@@ -72,4 +72,4 @@
 <!-- notice -->
 
 <!--footer 영역-->
-<%@ include file="/common/footer.jsp"%>
+<%@ include file="/admin/adcom/adfooter.jsp"%>

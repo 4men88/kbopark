@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Map;
 
 import com.baseball.member.model.MemberDetailDto;
+import com.baseball.member.model.MemberDto;
 import com.baseball.util.db.DBClose;
 import com.baseball.util.db.DBConnection;
 
@@ -143,7 +144,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public String idFind(MemberDetailDto memberDto) {
+	public String idFind(MemberDto memberDto) {
 		String id=null;
 		Connection conn=null;
 		PreparedStatement pstmt = null;

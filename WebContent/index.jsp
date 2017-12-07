@@ -1,8 +1,15 @@
+<%@page import="com.sun.java.swing.plaf.windows.resources.windows"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+	
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
-
+<script type="text/javascript" src="<%=root %>/js/httpRequest.js"></script>
+<%
+window.onload=function(){
+	
+}
+%>
 <!-- 메인이미지>> 관리자가 선택할수있었으면.. -->
 <div id="main-section">
 	<div class="container-fluid">

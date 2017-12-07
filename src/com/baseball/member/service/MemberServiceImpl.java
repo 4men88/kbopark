@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.baseball.member.dao.MemberDaoImpl;
 import com.baseball.member.model.MemberDetailDto;
+import com.baseball.member.model.MemberDto;
 
 public class MemberServiceImpl implements MemberService {
 	private static MemberService memberService;
@@ -35,7 +36,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public String idFind(MemberDetailDto memberDto) {
+	public String idFind(MemberDto memberDto) {
 		return MemberDaoImpl.getMemberDao().idFind(memberDto);
 	}
 

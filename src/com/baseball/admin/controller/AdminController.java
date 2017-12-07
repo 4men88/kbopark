@@ -35,8 +35,9 @@ public class AdminController extends HttpServlet {
 			String id = request.getParameter("id");
 			int stat = Integer.parseInt(request.getParameter("stat"));
 			AdminDaoImpl.getAdminDao().changestat(id, stat);
-		}else if("".equals(act)){
-			
+		}else if("notice".equals(act)){
+			path="/admin/notice.jsp";
+			PageMove.redirect(request, response, path);
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){
