@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.omg.CORBA.INTERNAL;
+
 import com.baseball.action.Action;
 import com.baseball.auction.model.AuctionDetailDto;
 import com.baseball.auction.service.AuctionServiceImpl;
@@ -22,6 +24,7 @@ public class AuctionMainListAction implements Action {
 		List<AuctionDetailDto> endList = AuctionServiceImpl.getAuctionService().auctionEndList();
 		List<AuctionDetailDto> hitList = AuctionServiceImpl.getAuctionService().auctionHitList();
 		List<AuctionDetailDto> newList = AuctionServiceImpl.getAuctionService().auctionNewList();
+		List<Integer> newNum = AuctionServiceImpl.getAuctionService().auctionNewNumArray();
 
 		System.out.println("endList: " + endList.get(0).getEndTime());
 		request.setAttribute("bestList", bestList);

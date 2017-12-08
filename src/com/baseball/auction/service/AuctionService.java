@@ -9,5 +9,7 @@ public interface AuctionService {
 	List<AuctionDetailDto> auctionEndList();
 	List<AuctionDetailDto> auctionHitList();
 	List<AuctionDetailDto> auctionNewList();
+    int auctionStatusEnd();
+    List<Integer> auctionNewNumArray();
 }	
 

@@ -2,6 +2,7 @@ package com.baseball.auction.service;
 
 import java.util.List;
 
+import com.baseball.auction.dao.AuctionEndDaoImpl;
 import com.baseball.auction.dao.AuctionMainDaoImpl;
 import com.baseball.auction.model.AuctionDetailDto;
 
@@ -19,22 +20,34 @@ public class AuctionServiceImpl implements AuctionService {
 
 	@Override
 	public List<AuctionDetailDto> auctionBestList() {
-		return AuctionMainDaoImpl.getAuctionDao().auctionBestList();
+		return AuctionMainDaoImpl.getAuctionMainDao().auctionBestList();
 	}
 	
 	@Override
 	public List<AuctionDetailDto> auctionEndList() {
-		return AuctionMainDaoImpl.getAuctionDao().auctionEndList();
+		return AuctionMainDaoImpl.getAuctionMainDao().auctionEndList();
 	}
 
 	@Override
 	public List<AuctionDetailDto> auctionHitList() {
-		return AuctionMainDaoImpl.getAuctionDao().auctionHitList();
+		return AuctionMainDaoImpl.getAuctionMainDao().auctionHitList();
 	}
 
 	@Override
 	public List<AuctionDetailDto> auctionNewList() {
-		return AuctionMainDaoImpl.getAuctionDao().auctionNewList();
+		return AuctionMainDaoImpl.getAuctionMainDao().auctionNewList();
 	}
+
+	@Override
+	public int auctionStatusEnd() {			
+		return AuctionEndDaoImpl.getAuctionEndDao().auctionStatusEnd();
+		//
+	}
+
+	@Override
+	public List<Integer> auctionNewNumArray() {		
+		return AuctionMainDaoImpl.getAuctionMainDao().auctionNewNumArray();
+	}
+	
 
 }

@@ -16,7 +16,7 @@ import com.baseball.factory.AuctionActionFactory;
 import com.baseball.util.Constance;
 import com.baseball.util.PageMove;
 
-@WebServlet("/auctionlist")
+@WebServlet("/auctioncontroller")
 
 public class AuctionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -40,6 +40,10 @@ public class AuctionController extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			out.print(time);
 //			out.print("<font color='red' size='5'><b>" + time + "</b></font>");
+		}
+		else if("statuschange".equals(act))
+		{
+			
 		}
 		else 
 		{

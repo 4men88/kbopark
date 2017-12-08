@@ -12,15 +12,15 @@ import com.baseball.util.db.DBConnection;
 
 public class AuctionMainDaoImpl implements AuctionMainDao {
 
-	private static AuctionMainDao auctionDao;
+	private static AuctionMainDao auctionMainDao;
 	
 	static {
-		auctionDao = new AuctionMainDaoImpl();
+		auctionMainDao = new AuctionMainDaoImpl();
 	}
 	
 	
-	public static AuctionMainDao getAuctionDao() {
-		return auctionDao;
+	public static AuctionMainDao getAuctionMainDao() {
+		return auctionMainDao;
 	}
 	
 	@Override
@@ -33,9 +33,9 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage ");
+			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano");
 			sql.append("from auction_image ai,( \n");
-			sql.append("                        select a.*, ad.bidprice, ad.bidnum \n");
+			sql.append("                        select a.*, ad.bidprice, ad.bidnum, a.astatus, a.ano \n");
 			sql.append("                        from auction a,( \n");
 			sql.append("                                        select ano, max(bidprice) as bidprice, count(*) as bidnum \n");
 			sql.append("                                        from auction_detail \n");
@@ -56,6 +56,8 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 				auctionDetailDto.setBidPrice(rs.getInt("bidprice"));
 				auctionDetailDto.setBidNum(rs.getInt("bidnum"));
 				auctionDetailDto.setAimage(rs.getString("aimage"));
+				auctionDetailDto.setAstatus(rs.getInt("astatus"));
+				auctionDetailDto.setAno(rs.getInt("ano"));
 				
 				list.add(auctionDetailDto);
 				if(++cnt == 4)
@@ -81,9 +83,9 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage \n");
+			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano \n");
 			sql.append("from auction_image ai,( \n");
-			sql.append("                        select a.*, ad.bidprice, ad.bidnum \n");
+			sql.append("                        select a.*, ad.bidprice, ad.bidnum, a.astatus, a.ano \n");
 			sql.append("                        from auction a,( \n");
 			sql.append("                                        select ano, max(bidprice) as bidprice, count(*) as bidnum \n");
 			sql.append("                                        from auction_detail \n");
@@ -104,6 +106,8 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 				auctionDetailDto.setBidPrice(rs.getInt("bidprice"));
 				auctionDetailDto.setBidNum(rs.getInt("bidnum"));
 				auctionDetailDto.setAimage(rs.getString("aimage"));
+				auctionDetailDto.setAstatus(rs.getInt("astatus"));
+				auctionDetailDto.setAno(rs.getInt("ano"));
 				
 				list.add(auctionDetailDto);
 				if(++cnt == 4)
@@ -130,9 +134,9 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage \n");
+			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano \n");
 			sql.append("from auction_image ai,( \n");
-			sql.append("                        select a.*, ad.bidprice, ad.bidnum \n");
+			sql.append("                        select a.*, ad.bidprice, ad.bidnum, ,a.astatus, a.ano \n");
 			sql.append("                        from auction a,( \n");
 			sql.append("                                        select ano, max(bidprice) as bidprice, count(*) as bidnum \n");
 			sql.append("                                        from auction_detail \n");
@@ -153,6 +157,8 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 				auctionDetailDto.setBidPrice(rs.getInt("bidprice"));
 				auctionDetailDto.setBidNum(rs.getInt("bidnum"));
 				auctionDetailDto.setAimage(rs.getString("aimage"));
+				auctionDetailDto.setAstatus(rs.getInt("astatus"));
+				auctionDetailDto.setAno(rs.getInt("ano"));
 				
 				list.add(auctionDetailDto);
 				if(++cnt == 4)
@@ -178,9 +184,9 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage \n");
+			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano \n");
 			sql.append("from auction_image ai,( \n");
-			sql.append("                        select a.*, ad.bidprice, ad.bidnum \n");
+			sql.append("                        select a.*, ad.bidprice, ad.bidnum, a.status, a.ano \n");
 			sql.append("                        from auction a,( \n");
 			sql.append("                                        select ano, max(bidprice) as bidprice, count(*) as bidnum \n");
 			sql.append("                                        from auction_detail \n");
@@ -201,6 +207,8 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 				auctionDetailDto.setBidPrice(rs.getInt("bidprice"));
 				auctionDetailDto.setBidNum(rs.getInt("bidnum"));
 				auctionDetailDto.setAimage(rs.getString("aimage"));
+				auctionDetailDto.setAstatus(rs.getInt("astatus"));
+				auctionDetailDto.setAno(rs.getInt("ano"));
 				
 				list.add(auctionDetailDto);
 				if(++cnt == 4)
@@ -213,6 +221,12 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			DBClose.close(conn, pstmt, rs);
 		}	
 		System.out.println("list ªÁ¿Ã¡Ó : " + list.size());
+		return list;
+	}
+
+	@Override
+	public List<Integer> auctionNewNumArray() {
+		List<Integer> list = null;
 		return list;
 	}
 

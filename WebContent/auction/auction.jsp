@@ -1,8 +1,11 @@
+
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
    pageEncoding="EUC-KR" import="com.baseball.auction.model.AuctionDetailDto,
    java.util.*, java.text.*,java.io.*"%>
 <!--header 영역 -->
 <%@ include file="/common/header.jsp"%>
+
+
 <%!
 //리스트 길이 담을 변수
 int bestListLen;	
@@ -66,7 +69,7 @@ function startTime() {
 //   httpRequest.open("GET", "<%=root%>/auction/auction-time.jsp", true);
 //   httpRequest.send(null);
    var params = "act=timelist";
-   sendRequest("<%=root%>/auctionlist", params, getTime, "GET");   
+   sendRequest("<%=root%>/auctionlist", params, getTime, "POST");   
 }
 function getTime() {
    if(httpRequest.readyState == 4) {
@@ -137,9 +140,12 @@ function getTime() {
 			
 			else{	//남은시간이 없다면
             document.getElementById("besttime" + <%=i%>).innerHTML 
-= "<font color=\"red\"size=\"4\"><b>마감</b></font>";				
+= "<font color=\"red\"size=\"4\"><b>마감</b></font>";
+				if(<%=bestList.get(i).getAstatus()%> == 1)
+					{
+				//		document.location.href = "<%=root%>/auctionlist?act=statuschange";
+					}
 			}
-			
 <%            
          }
 %>
@@ -319,10 +325,6 @@ window.onload=function() {
 }
 </script>
 
-<div class="container py-5 my-5">
-   <div class="navbar-template text-center"></div>
-</div>
-
 <div id="auction-maincarousel">
    <div class="container-fluid">
       <div class="row p-5">
@@ -331,7 +333,8 @@ window.onload=function() {
             <ul class="list-group">
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  전체보기 <span class="badge badge-primary badge-pill">14</span>
+                  <a href="">
+                  전체보기 </a><span class="badge badge-primary badge-pill">14</span>
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
@@ -393,8 +396,6 @@ window.onload=function() {
 <!--
 <!-- 추천별 경매물품 섹션: best pick: 관리자가 초이스한 상품들 -->
 <div id="auc-recommended" class="py-5">
-
-
 <div class="container py-5">
    <!-- Nav tabs -->
    <ul class="nav nav-tabs nav-justified" role="tablist">
@@ -419,10 +420,10 @@ if(bestList != null)
    {
 %>            
          
-            <div class="col-md-3">
-               <div class="row p-2">
-                  <div class="col-md-12 col-4 align-self-center">
-                     <img src="<%=root%>/<%=bestList.get(i).getAimage()%>" class="img-fluid">
+            <div class="col-md-3" >
+               <div class="row p-2" >
+                  <div class="col-md-12 col-4 align-self-center" >
+                     <img height="100"src="<%=root%>/<%=bestList.get(i).getAimage()%>" class="img-fluid">
                   </div>
                   <div class="col-md-12 col-8 align-self-center">
                      <p class="mb-2">
@@ -610,6 +611,5 @@ if(newList != null)
       </div>
    </div>
 </div>
-
 <!-- footer영역 -->
 <%@ include file="/common/footer.jsp"%>
