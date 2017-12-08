@@ -50,7 +50,7 @@ public class GudanDaoImpl implements GudanDao {
 		}
 			
 		System.out.println("GudanDaoImpl web >>> " + web);
-		return "http://www.naver.com";
+		return web;
 	}
 	
 }

@@ -12,6 +12,11 @@ function modifyinfo(){
 	
 }
 
+function moveModify() {
+	document.location.href = "<%=root%>/mypage?act=movemodify";
+}
+
+
 function myauction(){
 	
 }
@@ -34,7 +39,8 @@ function myarticle(){
 function logout(){
 	
 }
- 
+
+
 
 
 
@@ -70,7 +76,7 @@ function logout(){
     <div id="menuarea" class="col-sm-2" style="background-color:#F8F8FF;">
     
     	<div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/mypage/mypageMain.jsp'" style="height:50px;width:100%;margin:5px;">마이페이지</button></div>
-    	<div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/mypage/modifyinfo.jsp'" style="height:50px;width:100%;margin:5px;">정보수정</button></div>
+    	<div><button type="button" class="btn btn-primary" onclick="javascript:moveModify();" style="height:50px;width:100%;margin:5px;">정보수정</button></div>
     	<div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/mypage/myauction.jsp'" style="height:50px;width:100%;margin:5px;">경매 관리</button></div>
     	<div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/mypage/lookie.jsp'" style="height:50px;width:100%;margin:5px;">루키 관리</button></div>
     	<div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/mypage/myarticle.jsp'" style="height:50px;width:100%;margin:5px;">게시물 관리</button></div>

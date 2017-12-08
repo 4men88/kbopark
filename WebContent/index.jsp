@@ -36,7 +36,7 @@ function viewlist(){
 	</div>
 </div>
 
-<!-- 오늘의 경기 >> 경기일정 슬라이더로 -->
+<!-- 오늘의 경기 > > 경기일정 슬라이더로 -->
 
 <div class="py-5 text-center">
 	<div class="container py-5">
