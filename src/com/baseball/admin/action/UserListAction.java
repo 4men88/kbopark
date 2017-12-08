@@ -28,10 +28,12 @@ public class UserListAction implements Action{
 			if("gksdjf".equals(memberDto.getId())){
 				String key=request.getParameter("key");
 				String word = StringEncoder.isoToMain(request.getParameter("word"));
+				String status = request.getParameter("status");
 				System.out.println(key+"=k,w="+word);
 				Map<String, String> map = new HashMap<String,String>();
 				map.put("key", key);
 				map.put("word", word);
+				map.put("status", status);
 				List<MemberDetailDto> list = AdminServiceImpl.getAdminService().listmember(map);
 				System.out.println("list==="+list);
 				request.setAttribute("mlist", list);

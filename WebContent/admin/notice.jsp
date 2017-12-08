@@ -2,7 +2,11 @@
 	pageEncoding="EUC-KR"%>
 <!--header 영역-->
 <%@ include file="/admin/adcom/adheader.jsp"%>
-
+<script>
+function noticeWrite(){
+	document.location.href = "<%=root%>/admin?act=mvnowrite";
+}
+</script>
 <div id="notice" class="py-5">
 	<div class="container py-5">
 
@@ -17,6 +21,9 @@
 			<div class="notice-inner p-3">경매안내</div>
 			<div class="notice-inner p-3">1:1문의</div>
 		</div>
+		<span>
+		<input type="button" value="글쓰기" onclick="javascript:noticeWrite();">
+		</span>
 		<div class="border-b p-0"></div>
 
 		<div class="row p-5">
@@ -54,7 +61,7 @@
 			</div>
 		</div>
 
-		<div class="d-flex justify-content-center">
+		<div class="d-flex justify-content-center" name="" id="">
 			<div>
 				<ul class="pagination pagination-sm">
 					<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>

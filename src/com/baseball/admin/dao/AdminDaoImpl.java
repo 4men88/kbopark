@@ -85,20 +85,45 @@ public class AdminDaoImpl implements AdminDao {
 			sql.append("select name,m.mid,nvl(rookie,'0') rookie,m.joindate,\n");
 			sql.append("	   nvl(penalty,'0') penalty,decode(mstatus,'1','È¸¿ø','2','Á¤Áö','3','Å»Åð') mstatus,t.tname\n");
 			sql.append("from member m,member_detail md,team t\n");
-			sql.append("where m.mid=md.mid and md.tno=t.tno");
+			sql.append("where m.mid=md.mid and md.tno=t.tno\n");
 			String word = map.get("word");
-			if(word!=null && !word.trim().isEmpty()) {
-				String key = map.get("key");
-				if("address".equals(key)) {
-					sql.append("and md.addr1 like '%'||?||'%'");
-				}else {
-					sql.append("and m."+key+"=?");
+			String status = map.get("status");
+			if(status.isEmpty()) {
+				if(word!=null && !word.trim().isEmpty()) {
+					String key = map.get("key");
+					if("address".equals(key)) {
+						sql.append("and md.addr1 like '%'||?||'%'");
+					}else {
+						sql.append("and m."+key+"=?");
+					}
+					
 				}
-				
+			}else {
+				if(word!=null && !word.trim().isEmpty()) {
+					String key = map.get("key");
+					if("address".equals(key)) {
+						sql.append("and md.addr1 like '%'||?||'%' and mstatus=?");
+					}else {
+						sql.append("and m."+key+"=? and mstatus=?");
+					}
+					
+				}else {
+					sql.append("and mstatus=?");
+				}
 			}
+			
 			pstmt = conn.prepareStatement(sql.toString());
-			if(word!=null&& !word.trim().isEmpty()) {
-				pstmt.setString(1, word);
+			if(status.isEmpty()) {
+				if(word!=null&& !word.trim().isEmpty()) {
+					pstmt.setString(1, word);				
+				}
+			}else {
+				if(word!=null&& !word.trim().isEmpty()) {
+					pstmt.setString(1, word);
+					pstmt.setString(2, status);
+				}else {
+					pstmt.setString(1, status);
+				}
 			}
 			
 			rs = pstmt.executeQuery();
@@ -181,5 +206,33 @@ public class AdminDaoImpl implements AdminDao {
 		
 		
 		
+	}
+
+	@Override
+	public int writeNotice(Map<String, String> map) {
+		int cnt=0;
+		Connection conn=null;
+		PreparedStatement pstmt = null;
+		try {
+			conn=DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			
+			sql.append("insert into notice(no,subject,detail,count,writedate)\n");
+			sql.append("values(notice_seq.nextval,?,?,0,sysdate)");
+			String subject = map.get("subject");
+			String context = map.get("context");
+					
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1,subject);
+			pstmt.setString(2,context);
+			cnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt);
+		}
+		
+		return cnt;
 	}
 }
