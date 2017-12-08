@@ -1,6 +1,8 @@
 package com.baseball.admin.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +13,9 @@ import com.baseball.admin.dao.AdminDaoImpl;
 import com.baseball.factory.AdminActionFactory;
 import com.baseball.util.Constance;
 import com.baseball.util.PageMove;
+import com.baseball.member.model.MemberDetailDto;
+import com.baseball.member.service.MemberServiceImpl;
+import com.baseball.util.StringEncoder;
 
 @WebServlet("/admin")
 public class AdminController extends HttpServlet {
@@ -25,7 +30,7 @@ public class AdminController extends HttpServlet {
 			PageMove.forward(request, response, path);
 		}else if("memberlist".equals(act)) {
 			path=AdminActionFactory.getUserListAction().execute(request, response);
-			PageMove.forward(request, response, "/admin/mlistxml.jsp");
+			PageMove.forward(request, response, path);
 			
 		}else if("updatePen".equals(act)){
 			String id = request.getParameter("id");
@@ -39,6 +44,20 @@ public class AdminController extends HttpServlet {
 			path="/admin/notice.jsp";
 			PageMove.redirect(request, response, path);
 		}else if("todaypl".equals(act)){
+			
+		}else if("mvnowrite".equals(act)){
+			PageMove.redirect(request, response, "/admin/noticewrite.jsp");
+		}else if("writeno".equals(act)){
+			System.out.println("dd");
+			path=AdminActionFactory.getWriteNoticeAction().execute(request, response);
+			PageMove.forward(request, response, path);
+		}else if("".equals(act)){
+			
+		}else if("".equals(act)){
+			
+		}else if("".equals(act)){
+			
+		}else if("".equals(act)){
 			
 		}else if("".equals(act)){
 			

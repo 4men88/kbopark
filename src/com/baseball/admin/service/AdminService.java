@@ -10,5 +10,5 @@ public interface AdminService {
 	List<MemberDetailDto> getAllUser();
 	List<MemberDetailDto> getSelectUser();
 	List<MemberDetailDto> listmember(Map<String,String> map);
-	
+	int writeNotice(Map<String,String> map);
 }

@@ -43,6 +43,13 @@ public class AdminServiceImpl implements AdminService{
 
 
 
+	@Override
+	public int writeNotice(Map<String, String> map) {
+		return AdminDaoImpl.getAdminDao().writeNotice(map);
+	}
+
+
+
 	
 
 }

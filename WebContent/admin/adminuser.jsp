@@ -10,7 +10,8 @@ window.onload=function(){
 function memberlist() {
 	var key = document.getElementById("key").value;
 	var word = document.getElementById("word").value;
-	var params="act=memberlist&key="+key+"&word="+word;
+	var status = document.getElementById("status").value;
+	var params="act=memberlist&key="+key+"&word="+word+"&status="+status;
 	sendRequest("<%=root%>/admin", params, viewlist, "GET");
 }
 
@@ -169,32 +170,32 @@ function statusChange(obj){
 <div style="height:50px; margin-top:20px; align-content:center"><h4>회원관리</h4></div>
 <table width="1000px">
 <tr>
-	<td>
+	<td colspan="2">
 	<select id="key">
-		<option value="id">아이디</option>
+		<option value="mid">아이디</option>
 		<option value="name">이름</option>
+		<option value="address">주소</option>
 	</select>
 	<input type="text" name="word" id="word">
 	<input type="button" value="검색" onclick="javascript:memberlist();">
 	</td>
-	<td>회원상태&nbsp;
-		<select id="status">
-		<option value="1" selected="selected">회원</option>
+	<td align="left">회원상태&nbsp;
+		<select id="status" onchange="javascript:memberlist();">
+		<option value="" selected="selected">--선택하세요--</option>
+		<option value="1">회원</option>
 		<option value="2">정지</option>
 		<option value="3">탈퇴</option>
 		</select>
 	</td>
-	<td>
-	<input type="button" id=""; name=""; onclick="javascript:" value="검색">
-	</td>
+	
 </tr>
 </table>
 <div style="height:15px;  border-bottom: 1px solid black">&nbsp;</div>
 
 <table width="1000px" border="1">
 <tr>
-<td align="center" >이름</td>
-<td align="center">아이디</td>
+<td align="center" >아이디</td>
+<td align="center">이름</td>
 <td align="center">보유루키</td>
 <td align="center">패널티</td>
 <td align="center">선호구단</td>
