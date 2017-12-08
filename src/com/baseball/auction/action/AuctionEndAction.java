@@ -14,7 +14,7 @@ public class AuctionEndAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		AuctionServiceImpl.getAuctionService().auctionEnd();
+		AuctionServiceImpl.getAuctionService().auctionStatusEnd();
 		return null;
 	}
 
