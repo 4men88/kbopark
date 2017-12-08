@@ -1,9 +1,15 @@
+<%@page import="oracle.sql.DATE"%>
+<%@page import="java.util.Date"%>
+<%@page import="com.baseball.schedule.service.ScheduleServiceImpl"%>
+<%@page import="java.util.List"%>
+<%@page import="com.baseball.schedule.scheduledao.ScheduleDaoImpl"%>
 <%@page import="com.baseball.schedule.scheduleDto.ScheduleDto"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
+
 
 <%
 	Calendar cal = Calendar.getInstance();
@@ -15,6 +21,8 @@
 			: Integer.parseInt(request.getParameter("y"));
 	int month = request.getParameter("m") == null ? cal.get(Calendar.MONTH)
 			: (Integer.parseInt(request.getParameter("m")) - 1);
+	int day = request.getParameter("d") == null ? cal.get(Calendar.DAY_OF_MONTH)
+			: (Integer.parseInt(request.getParameter("d")));
 	cal.set(year, month, 1);
 	int bgnWeek = cal.get(Calendar.DAY_OF_WEEK);
 	int preYear = year;
@@ -31,7 +39,13 @@
 		nextYear++;
 		nextMonth = 1;
 	}
+
+	String y = year + "";
+	String m = (cal.get(Calendar.MONTH) + 1) + "";
+	//String d = cal.get(Calendar.DATE)+"";
+	String ymd = y + m;
 %>
+
 <div id="schedule">
 	<div class="container py-5">
 
@@ -47,12 +61,12 @@
 
 		<div class="row justify-content-between">
 			<div class="col-6 text-left">
-				<i class="fa fa-angle-left" aria-hidden="true"></i>
-				<a href="./monthly.jsp">월별일정/결과 </a>
+				<i class="fa fa-angle-left" aria-hidden="true"></i> <a
+					href="<%=root%>/schedule/monthly.jsp">월별일정/결과 </a>
 			</div>
 			<div class="col-6 text-right">
-				<a href="./daily.jsp">일별일정/결과 </a>
- 					<i class="fa fa-angle-right" aria-hidden="true"></i>
+				<a href="<%=root%>/schedule/daily.jsp">일별일정/결과 </a> <i
+					class="fa fa-angle-right" aria-hidden="true"></i>
 			</div>
 		</div>
 
@@ -61,10 +75,10 @@
 			<div class="col-md-12">
 				<div class="calendar">
 					<p class="text-center">
-						<a href="<%=root %>/schedule/monthly.jsp?y=<%=preYear%>&m=<%=preMonth%>">&lt;</a>
-						<span class="Ym"><%=year%>. <%=month + 1%></span> 
-						<a href="<%=root %>/schedule/monthly.jsp?y=<%=nextYear%>&m=<%=nextMonth%>">&gt;</a>
-
+						<a
+							href="<%=root%>/schedule/monthly.jsp?y=<%=preYear%>&m=<%=preMonth%>">&lt;</a>
+						<span class="Ym"><%=year%>. <%=month + 1%></span> <a
+							href="<%=root%>/schedule/monthly.jsp?y=<%=nextYear%>&m=<%=nextMonth%>">&gt;</a>
 					</p>
 
 					<ul>
@@ -77,25 +91,48 @@
 							<div class="Fri">FRI</div>
 							<div class="Sat">SAT</div>
 						</li>
-						
+
 						<li>
-						 <%
-						 //ScheduleDto scheduleDto = new ScheduleDto();
-						 
-						 //if ScheduleDto의 playdate 랑 cal.get(Calendar.DATE)랑 같으면 디비에 갔다와서 데이터 뿌려라....
-						 
-						 //if(scheduleDto.getPlaydate() == cal.get(Calendar.DATE))
-						 	//out.println(scheduleDto.getScore1("score1"), scheduleDto.getScore2("score2"));
-						 
-						 
-						for(int i =1; i<bgnWeek; i++) out.println("<div>&nbsp;</div>");
-						 while(cal.get(Calendar.MONTH)==month){
-							 out.println("<div>" + cal.get(Calendar.DATE) + "</div>");
-							 if(cal.get(Calendar.DAY_OF_WEEK)==Calendar.SATURDAY) out.println("</li><li>");//토요일이면 엔터다음줄
-							 cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE)+1);//년월일 넣고
-						 }
-						 for(int i=cal.get(Calendar.DAY_OF_WEEK); i<=7; i++)out.println("<div>&nbsp;</div>");//일주일넣고
-						%>
+							<%
+								for (int i = 1; i < bgnWeek; i++)
+									out.println("<div>&nbsp;</div>");
+								while (cal.get(Calendar.MONTH) == month) {
+									String d = (cal.get(Calendar.DATE)) + "";
+									if (d.length() == 1) {
+										d = "0" + d;
+									}
+									String cday = ymd + d;
+							%>
+							<div><%=d%>
+								<%
+									ScheduleDto scheduleDto = new ScheduleDto();
+										if (scheduleDto.getPlaydate() == cday) {
+								%>
+
+								<div id="<%=cday%>">
+									<%
+										if (scheduleDto.getPlaydate().equals(cday)) {
+									%>
+									<%=scheduleDto.getScore1()%>
+									<%=scheduleDto.getScore2()%>
+									<%=scheduleDto.getAwayemblem()%>
+									<%=scheduleDto.getAwayteam()%>
+									<%
+										}
+									%>
+								</div>
+								<%
+									}
+								%>
+							</div> <%
+ 	if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY)
+ 			out.println("</li><li>");//토요일이면 엔터다음줄
+ 		cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE) + 1);//년월일 넣고
+ 	}
+ 	for (int i = cal.get(Calendar.DAY_OF_WEEK); i <= 7; i++)
+ 		out.println("<div>&nbsp;</div>");//일주일넣고
+ %>
+						
 						<li>
 					</ul>
 				</div>

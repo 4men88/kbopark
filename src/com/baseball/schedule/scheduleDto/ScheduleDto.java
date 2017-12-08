@@ -7,32 +7,45 @@ import com.baseball.gudan.model.GudanDto;
 public class ScheduleDto {
 	
 	private String playdate;//경기일자
+	private String hometeam;
+	private String homeemblem;
+	private String awayteam;
+	private String awayemblem;
 	private int score1;//홈 득점
 	private int score2;// 어웨이 득점
-	private String pstatus; //경기상태
 	private String sname; // 구장이름
-	private String tname;//구단이름
-	private String emblem; //앰블럼
+	private String pstatus; //경기상태
 	
-	public String getSname() {
-		return sname;
+	public String getPlaydate() {
+		return playdate;
 	}
-	public void setSname(String sname) {
-		this.sname = sname;
+	public void setPlaydate(String playdate) {
+		this.playdate = playdate;
 	}
-	public String getTname() {
-		return tname;
+	public String getHometeam() {
+		return hometeam;
 	}
-	public void setTname(String tname) {
-		this.tname = tname;
+	public void setHometeam(String hometeam) {
+		this.hometeam = hometeam;
 	}
-	public String getEmblem() {
-		return emblem;
+	public String getHomeemblem() {
+		return homeemblem;
 	}
-	public void setEmblem(String emblem) {
-		this.emblem = emblem;
+	public void setHomeemblem(String homeemblem) {
+		this.homeemblem = homeemblem;
 	}
-
+	public String getAwayteam() {
+		return awayteam;
+	}
+	public void setAwayteam(String awayteam) {
+		this.awayteam = awayteam;
+	}
+	public String getAwayemblem() {
+		return awayemblem;
+	}
+	public void setAwayemblem(String awayemblem) {
+		this.awayemblem = awayemblem;
+	}
 	public int getScore1() {
 		return score1;
 	}
@@ -45,17 +58,18 @@ public class ScheduleDto {
 	public void setScore2(int score2) {
 		this.score2 = score2;
 	}
+	public String getSname() {
+		return sname;
+	}
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
 	public String getPstatus() {
 		return pstatus;
 	}
 	public void setPstatus(String pstatus) {
 		this.pstatus = pstatus;
 	}
-	public String getPlaydate() {
-		return playdate;
-	}
-	public void setPlaydate(String playdate) {
-		this.playdate = playdate;
-	}
+	
 	
 }
