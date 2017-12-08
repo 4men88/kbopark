@@ -1,8 +1,28 @@
+<%@page import="com.sun.java.swing.plaf.windows.resources.windows"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+	
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
+<script type="text/javascript" src="<%=root %>/js/httpRequest.js"></script>
+<script>
+window.onload=function(){
+	todaypl();
+}
+function todaypl(){
+	var params="act=todaypl";
+	sendRequest("<%=root%>/admin", params, viewlist, "GET");
+}
+function viewlist(){
+	if(httpRequest.readyState == 4) {
+		if(httpRequest.status == 200) {
+			var listxml = httpRequest.responseXML;
+			makelist(listxml);
+		}	
+	}
+}
 
+</script>
 <!-- 메인이미지>> 관리자가 선택할수있었으면.. -->
 <div id="main-section">
 	<div class="container-fluid">

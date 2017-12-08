@@ -7,6 +7,8 @@ public class GudanDto {
 	private String emblem;//엠블럼
 	private int sno1;//홈구장
 	private int sno2;//제2구장
+	private String web1; //공식페이지
+	private String web2; //예매페이지
 	
 	public int getTno() {
 		return tno;
@@ -37,6 +39,18 @@ public class GudanDto {
 	}
 	public void setSno2(int sno2) {
 		this.sno2 = sno2;
+	}
+	public String getWeb1() {
+		return web1;
+	}
+	public void setWeb1(String web1) {
+		this.web1 = web1;
+	}
+	public String getWeb2() {
+		return web2;
+	}
+	public void setWeb2(String web2) {
+		this.web2 = web2;
 	}
 
 }
