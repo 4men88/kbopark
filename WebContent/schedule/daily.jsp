@@ -4,6 +4,7 @@
 	pageEncoding="EUC-KR"%>
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
+<%ScheduleDto scheduleDto = new ScheduleDto(); %>
 
 <%
 	Calendar cal = Calendar.getInstance();
@@ -71,17 +72,16 @@
 		<div class="row justify-content-between">
 			<div class="col-6 text-left">
 				<i class="fa fa-angle-left" aria-hidden="true"></i> 
-				<a href="./monthly.jsp"> 월별일정/결과 </a>
+				<a href="<%=root %>/schedule/monthly.jsp"> 월별일정/결과 </a>
 			</div>
 			<div class="col-6 text-right">
-				<a href="./daily.jsp">일별일정/결과 </a>
+				<a href="<%=root %>/schedule/daily.jsp">일별일정/결과 </a>
 				<i class="fa fa-angle-right" aria-hidden="true"></i>
 			</div>
 		</div>
 
 
-
-		<div id="daily" class="carousel slide" data-ride="carousel">
+<div id="daily" class="carousel slide" data-ride="carousel">
 			<div class="calendar">
 				<p class="text-center">
 					<a href="<%=root %>/schedule/daily.jsp?y=<%=preYear%>&m=<%=preMonth%>&d=<%=preDay%>">&lt;</a> 
@@ -89,35 +89,66 @@
 					<a href= "<%=root %>/schedule/daily.jsp?y=<%=nextYear%>&m=<%=nextMonth%>&d=<%=nextDay%>">&gt;</a>
 				</p>
 			</div>
+			
+			
+		
+		<!--  
+	String y = year+"";
+ 	String m = (cal.get(Calendar.MONTH)+1)+"";
+ 	//String d = cal.get(Calendar.DATE)+"";
+ 	String ymd = y+m;
+	String d = (cal.get(Calendar.DATE))+"";
+	String cday = ymd+d;
+	--> 	
+<% 
 
-			<%ScheduleDto scheduleDto = new ScheduleDto(); %>
-			<div class="row text-white text-center mb-3">
+int i = 0;
+for(i= 0; i<5; i++){
+		
+		 %>
+				<div class="row text-white text-center mb-3">
 				<div class="mx-auto rounded daily-size-wrapper"
 					style="background-image: url(<%=root%>/img/etc/grass.jpg);">
 					<div class="col-md-12 text-white p-2"
 						style="background-color: rgba(50, 50, 50, 0.75);">
-						<span class="px-3 border-r"><%=scheduleDto.getSname() %></span><span class="px-3">17:00</span>
+						<!--  
+						if(scheduleDto.getPlaydate() == cday){
+						-->
+						<span class="px-3 border-r"><%=scheduleDto.getSname() %></span>
+						<!--  
+						}
+						-->
+						<span class="px-3">17:00</span>
 					</div>
 					<div class="col-md-12 opaque-overlay py-2 px-3">
 						<div class="row">
 							<div class="col-md-5 p-0 col-12" style="text-align: left;">
 								<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
-									class="img-thumbnail"><label>SK 와이번즈</label>
+									class="img-thumbnail">
+									
+									<label><%=scheduleDto.getHometeam() %></label>
 							</div>
 							<div class="col-md-2 p-0 col-12 align-self-center">
 								<h2 class="m-0">
-									<strong>0 VS 0</strong>
+									<strong><%=scheduleDto.getScore1() %> VS <%=scheduleDto.getScore2() %></strong>
 								</h2>
 							</div>
 							<div class="col-md-5 p-0 col-12" style="text-align: right;">
-								<label>KT 위즈</label><img
-									src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
+								
+								<label><%=scheduleDto.getAwayteam() %></label>
+								
+								
+								<img src="<%=root%><%=scheduleDto.getAwayemblem() %>"
 									class="img-thumbnail">
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<%
+}
+			%>
+			<!--  
 			<div class="row text-white text-center mb-3">
 				<div class="mx-auto rounded daily-size-wrapper"
 					style="background-image: url(<%=root%>/img/etc/grass.jpg);">
@@ -222,6 +253,7 @@
 									src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
 									class="img-thumbnail">
 							</div>
+							-->
 						</div>
 					</div>
 				</div>

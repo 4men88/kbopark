@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import com.baseball.admin.model.AuctionDto;
+import com.baseball.auction.model.AuctionDto;
 import com.baseball.member.dao.MemberDao;
 import com.baseball.member.dao.MemberDaoImpl;
 import com.baseball.member.model.MemberDetailDto;

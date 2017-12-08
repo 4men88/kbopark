@@ -27,7 +27,7 @@ public class GudanController extends HttpServlet {
 			System.out.println("GudanController tno >>> " + tno);
 			path = GudanServiceImpl.getGudanService().getGudanWeb(tno);
 			System.out.println("GudanController path >>> " + path);
-			PageMove.redirect(request, response, path);
+			response.sendRedirect(path);
 		}
 //		} else if("deletearticle".equals(act)) {
 //			System.out.println("controller deletearticle ÁøÀÔ !");
