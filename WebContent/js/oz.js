@@ -7,7 +7,7 @@ Web={
 };
 
 Web.config={
-	imageroot:'./img/'
+	imageroot:'/kbopark/img/'
 };
 
 (function() {
@@ -231,7 +231,7 @@ Web.util.Countdown = {
 		var mn = Math.floor(((cal%(60*60*1000*24))%(60*60*1000))/(60*1000));
 		var sec = Math.floor((((cal%(60*60*1000*24))%(60*60*1000))%(60*1000))/1000);
 		
-		return (day == 0? '':day+'ÀÏ ')+(hour == 0? '':hour+'½Ã°£ ')+(mn == 0? '':mn+'ºÐ ')+(sec == 0? '':sec+'ÃÊ');
+		return (day == 0? '':day+'ï¿½ï¿½ ')+(hour == 0? '':hour+'ï¿½Ã°ï¿½ ')+(mn == 0? '':mn+'ï¿½ï¿½ ')+(sec == 0? '':sec+'ï¿½ï¿½');
 	}	
 }
 
@@ -1005,7 +1005,7 @@ Web.ImageViewer.prototype = {
 			'<td class=w-viewer-mm>'+
 				'<table border=0 cellspacing=0 cellpadding=0 width=100%>'+
 					'<tr>'+
-						'<td class=w-viewer-mm-txt align=center><img title="Å¬¸¯ÇÏ¸é ÀÌ¹ÌÁö°¡ ´ÝÈü´Ï´Ù" style=cursor:pointer src='+Web.config.imageroot+'oz/window/i_large_loading.gif name=unc_popup_img id=unc_popup_img onclick=\'Web.CanvasManager.get("'+this.el.id+'").hide();\'>'+
+						'<td class=w-viewer-mm-txt align=center><img title="Å¬ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½" style=cursor:pointer src='+Web.config.imageroot+'oz/window/i_large_loading.gif name=unc_popup_img id=unc_popup_img onclick=\'Web.CanvasManager.get("'+this.el.id+'").hide();\'>'+
 						'<img id=unc_popup_hidn src='+args.src+' style=display:none onload=setTimeout(\'Web.ImageViewerManager.resize("'+this.el.id+'")\',200)></td>'+
 					'</tr>'+
 				'</table>'+
@@ -1123,7 +1123,7 @@ Web.Form = {
 	validateValue: function(id,nm) {
 		var el = $(id);	
 		if (!el.present()) {
-			Web.alert({title:'ÀÔ·Â°ª Ã¼Å©', msg:(nm||(el.title? '<b>'+el.title+'</b>¿¡':''))+' °ªÀ» ¹Ýµå½Ã ÀÔ·ÂÇÏ¼¼¿ä', focus:id});
+			Web.alert({title:'ï¿½Ô·Â°ï¿½ Ã¼Å©', msg:(nm||(el.title? '<b>'+el.title+'</b>ï¿½ï¿½':''))+' ï¿½ï¿½ï¿½ï¿½ ï¿½Ýµï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½', focus:id});
 			return false;
 		}
 		return true;
@@ -1143,10 +1143,10 @@ Web.Form = {
 	
 	validateInput: function(string, id) {
 		var el = $(id);
-		var added = (string == this.ALPHA ? '<b>¹®ÀÚ</b>¸¸' : (string == this.ALPHA+this.NUM ? '<b>¹®ÀÚ</b>¿Í <b>¼ýÀÚ</b>¸¸' : (this.NUM ? '<b>¼ýÀÚ</b>¸¸':'')));
+		var added = (string == this.ALPHA ? '<b>ï¿½ï¿½ï¿½ï¿½</b>ï¿½ï¿½' : (string == this.ALPHA+this.NUM ? '<b>ï¿½ï¿½ï¿½ï¿½</b>ï¿½ï¿½ <b>ï¿½ï¿½ï¿½ï¿½</b>ï¿½ï¿½' : (this.NUM ? '<b>ï¿½ï¿½ï¿½ï¿½</b>ï¿½ï¿½':'')));
 		for (var i = 0; i < el.value.length; i++) {
 			if (string.indexOf(el.value.substring(i, i + 1)) < 0) {
-				Web.alert({title:'ÀÔ·Â°ª Ã¼Å©', msg:(el.title? '<b>'+el.title+'</b>¿¡':'')+' Àß¸øµÈ°ªÀÌ ÀÔ·ÂµÇ¾ú½À´Ï´Ù<br>'+added+' ÀÔ·ÂÇÏ¼¼¿ä', focus:id});
+				Web.alert({title:'ï¿½Ô·Â°ï¿½ Ã¼Å©', msg:(el.title? '<b>'+el.title+'</b>ï¿½ï¿½':'')+' ï¿½ß¸ï¿½ï¿½È°ï¿½ï¿½ï¿½ ï¿½Ô·ÂµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½<br>'+added+' ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½', focus:id});
 				return false;
 			}
 		}
@@ -1161,7 +1161,7 @@ Web.Form = {
 		
 		var arrMatch = el.value.match(/^(\".*\"|[A-Za-z0-9_-]([A-Za-z0-9_-]|[\+\.])*)@(\[\d{1,3}(\.\d{1,3}){3}]|[A-Za-z0-9][A-Za-z0-9_-]*(\.[A-Za-z0-9][A-Za-z0-9_-]*)+)$/);
 		if (arrMatch == null) {
-			Web.alert({title:'ÀÔ·Â°ª Ã¼Å©',msg:'ÀÌ¸ÞÀÏÁÖ¼Ò°¡ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.<br>´Ù½Ã È®ÀÎÇØÁÖ¼¼¿ä!'});
+			Web.alert({title:'ï¿½Ô·Â°ï¿½ Ã¼Å©',msg:'ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½Ö¼Ò°ï¿½ ï¿½Ã¹Ù¸ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.<br>ï¿½Ù½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½!'});
         		return false;
 		}
 		return true;
@@ -1171,7 +1171,7 @@ Web.Form = {
 		var el = $(id);
 		var limit = limitByte||el.minbyte||el.getAttribute("minbyte")||0;
 		if (el.value.getByte() < limit) {
-			Web.alert({title:'ÀÔ·Â°ª Ã¼Å©', msg:(el.title? '<b>'+el.title+'</b>¿¡':'')+' '+limit+'BYTE ÀÌ»ó ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù',focus:id});
+			Web.alert({title:'ï¿½Ô·Â°ï¿½ Ã¼Å©', msg:(el.title? '<b>'+el.title+'</b>ï¿½ï¿½':'')+' '+limit+'BYTE ï¿½Ì»ï¿½ ï¿½Ô·ï¿½ï¿½Ø¾ï¿½ ï¿½Õ´Ï´ï¿½',focus:id});
 			return false;		
 		}
 		return true;
@@ -1181,7 +1181,7 @@ Web.Form = {
 		var el = $(id);
 		var limit = limitByte||el.maxbyte||el.getAttribute("maxbyte")||0;
 		if (el.value.getByte() > limit) {
-			Web.alert({title:'ÀÔ·Â°ª Ã¼Å©', msg:(el.title? '<b>'+el.title+'</b>¿¡':'')+' '+limit+'BYTE ÀÌÇÏ·Î ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù',focus:id});
+			Web.alert({title:'ï¿½Ô·Â°ï¿½ Ã¼Å©', msg:(el.title? '<b>'+el.title+'</b>ï¿½ï¿½':'')+' '+limit+'BYTE ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½Ô·ï¿½ï¿½Ø¾ï¿½ ï¿½Õ´Ï´ï¿½',focus:id});
 			return false;		
 		}
 		return true;
@@ -1191,7 +1191,7 @@ Web.Form = {
 		var el = $(id);
 		var limit = limitByte||el.byte||el.getAttribute("byte")||0;
 		if (el.value.getByte() != limitByte) {
-			Web.alert({title:'ÀÔ·Â°ª Ã¼Å©', msg:(el.title? '<b>'+el.title+'</b>¿¡':'')+' '+limit+'BYTE ·Î Á¤È®È÷ ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù',focus:id});
+			Web.alert({title:'ï¿½Ô·Â°ï¿½ Ã¼Å©', msg:(el.title? '<b>'+el.title+'</b>ï¿½ï¿½':'')+' '+limit+'BYTE ï¿½ï¿½ ï¿½ï¿½È®ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ø¾ï¿½ ï¿½Õ´Ï´ï¿½',focus:id});
 			return false;		
 		}
 		return true;
@@ -1201,7 +1201,7 @@ Web.Form = {
 		var el = $(id);
 		var limit = limitByte||el.byte||el.getAttribute("byte")||0;
 		if (el.value.length != limit) {
-			Web.alert({title:'ÀÔ·Â°ª Ã¼Å©', msg:(el.title? '<b>'+el.title+'</b>¿¡':'')+' '+limit+'±ÛÀÚ¸¦ Á¤È®È÷ ÀÔ·ÂÇØ¾ß ÇÕ´Ï´Ù',focus:id});
+			Web.alert({title:'ï¿½Ô·Â°ï¿½ Ã¼Å©', msg:(el.title? '<b>'+el.title+'</b>ï¿½ï¿½':'')+' '+limit+'ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½È®ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ø¾ï¿½ ï¿½Õ´Ï´ï¿½',focus:id});
 			return false;		
 		}
 		return true;
@@ -1212,7 +1212,7 @@ Web.Form = {
 		var fn = sp[sp.length-1];
 		var ex = fn.split(".");
 		if (ex.length == 1) {
-			Web.alert({title:'°æ°í',msg:'È®ÀåÀÚ°¡ ¾ø´Â ÆÄÀÏÀº ¾÷·Îµå ÇÒ ¼ö ¾ø½À´Ï´Ù'});
+			Web.alert({title:'ï¿½ï¿½ï¿½',msg:'È®ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½'});
 			return false;
 		}
 		var iscorrect = false;
@@ -1232,7 +1232,7 @@ Web.Form = {
 			var bad = bads.split(/,/);
 			for (var i = 0; i < bad.length; i++) {
 				if (bad[i].strip().length > 0 && val.include(bad[i])) {
-					Web.alert({title:'°æ°í',msg:(el.title? '<b>'+el.title+'</b>¿¡':'')+' <b>'+bad[i]+'<b>"À»/¸¦ »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù!',focus:id});
+					Web.alert({title:'ï¿½ï¿½ï¿½',msg:(el.title? '<b>'+el.title+'</b>ï¿½ï¿½':'')+' <b>'+bad[i]+'<b>"ï¿½ï¿½/ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!',focus:id});
 					return false;
 				}
 			}
@@ -1256,11 +1256,11 @@ Web.Form = {
 		var day = reg1.substring(4,6);
 		var sex = reg2.charAt(0);	
 		if (mon < 1 || mon > 12 || day < 1 || day > 31) {
-			Web.alert({title:'¿À·ù',msg:'ÁÖ¹Îµî·Ï¹øÈ£ ¾ÕºÎºÐÀÌ Àß¸øµÇ¾ú½À´Ï´Ù'});
+			Web.alert({title:'ï¿½ï¿½ï¿½ï¿½',msg:'ï¿½Ö¹Îµï¿½Ï¹ï¿½È£ ï¿½ÕºÎºï¿½ï¿½ï¿½ ï¿½ß¸ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½'});
 			return false;
 		}
 		if (sex != 1 && sex != 2 && sex != 3 && sex != 4) {
-			Web.alert({title:'¿À·ù',msg:'ÁÖ¹Îµî·Ï¹øÈ£ µÞºÎºÐÀÌ Àß¸øµÇ¾ú½À´Ï´Ù'});
+			Web.alert({title:'ï¿½ï¿½ï¿½ï¿½',msg:'ï¿½Ö¹Îµï¿½Ï¹ï¿½È£ ï¿½ÞºÎºï¿½ï¿½ï¿½ ï¿½ß¸ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½'});
 			return false;
 		}		
 		
@@ -1275,7 +1275,7 @@ Web.Form = {
 		check %= 10;
 		
 		if (check != parseInt( reg2.charAt(6))) {
-			Web.alert({title:'¿À·ù',msg:'À¯È¿ÇÏÁö¾ÊÀº ÁÖ¹Îµî·Ï¹øÈ£ÀÔ´Ï´Ù'});
+			Web.alert({title:'ï¿½ï¿½ï¿½ï¿½',msg:'ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¹Îµï¿½Ï¹ï¿½È£ï¿½Ô´Ï´ï¿½'});
 			return false;
 		}
 		return true;
@@ -1354,7 +1354,7 @@ Web.Form = {
 	
 	submit: function(id, args) {
 		if (this.gone) {
-			Web.alert({title:'°æ°í',msg:'ÀÌ¹Ì Àü¼ÛµÇ¾ú½À´Ï´Ù'});
+			Web.alert({title:'ï¿½ï¿½ï¿½',msg:'ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ÛµÇ¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½'});
 		}
 		else {		
 			var obj = $(id);
@@ -1402,10 +1402,10 @@ Web.Window = {
 		this.messagewin = window.open("about:blank", "_message", property);
 		if (this.messagewin != null) {
 			var txt = ""+
-				"<title>Á¤º¸</title>"+
+				"<title>ï¿½ï¿½ï¿½ï¿½</title>"+
 				"<body leftmargin=0 topmargin=0 marginwidth=0 marginheight=0 onBlur=self.focus() bgcolor=#F5F5F5>"+
 				"<table border=0 cellspacing=0 cellpadding=0 width=100% height=100% style=font-size:13px>"+
-				"<tr><td width=1% height=30><img src=./img/oz/window/title_icon.gif width=23 height=30></td><td background='./img/oz/window/title_bg.gif' width=99%><b>Á¤º¸</b></td></tr>"+
+				"<tr><td width=1% height=30><img src=./img/oz/window/title_icon.gif width=23 height=30></td><td background='./img/oz/window/title_bg.gif' width=99%><b>ï¿½ï¿½ï¿½ï¿½</b></td></tr>"+
 				"<tr><td colspan=2 align=center style=font-size:10pt><img src=./img/oz/window/i_info.gif style=vertical-align:middle><b> "+t+"</b></td></tr>"+
 				"<tr><td colspan=2 align=center><img src=./img/oz/window/btn_close.gif style=cursor:pointer onclick=window.close()></td></tr></table>"+
 				"</body>";
@@ -1447,10 +1447,10 @@ Web.Window = {
 			this.loadingwin = window.open("about:blank", "_loading", property);
 			if (this.loadingwin != null) {
 				var txt = ""+
-					"<title>Á¤º¸</title>"+
+					"<title>ï¿½ï¿½ï¿½ï¿½</title>"+
 					"<body leftmargin=0 topmargin=0 marginwidth=0 marginheight=0 onBlur=self.focus() bgcolor=#F5F5F5>"+
 					"<table border=0 cellspacing=0 cellpadding=0 width=100% height=100%>"+
-					"<tr><td width=1% height=30><img src=./img/oz/window/title_icon.gif width=23 height=30></td><td background='./img/oz/window/title_bg.gif' width=99%><b>·ÎµùÁß</b></td></tr>"+
+					"<tr><td width=1% height=30><img src=./img/oz/window/title_icon.gif width=23 height=30></td><td background='./img/oz/window/title_bg.gif' width=99%><b>ï¿½Îµï¿½ï¿½ï¿½</b></td></tr>"+
 					"<tr><td colspan=2 align=center style=font-size:10pt><img src=./img/oz/window/i_large_loading2.gif></td></tr></table>"+
 					"</body>";
 
@@ -1846,7 +1846,7 @@ Web.Slider = {
 			};			
 		}
 		else {
-			Web.message({title:'¾Ë¸²',msg:'¸¶Áö¸· ÀÌ¹ÌÁöÀÔ´Ï´Ù',height:80});
+			Web.message({title:'ï¿½Ë¸ï¿½',msg:'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½',height:80});
 		}
 	},
 	prev: function(cnt) {
@@ -1858,7 +1858,7 @@ Web.Slider = {
 			}
 		}
 		else {
-			Web.message({title:'¾Ë¸²',msg:'Ã³À½ ÀÌ¹ÌÁöÀÔ´Ï´Ù',height:80});
+			Web.message({title:'ï¿½Ë¸ï¿½',msg:'Ã³ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½',height:80});
 		}
 	},
 	toggle: function() {

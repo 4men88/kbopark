@@ -7,8 +7,8 @@ Alice = {
 };
 
 Alice.config = {
-	uploadpath: '',
-	imageroot: '/alice/img/',
+	uploadpath: '/kbopark/',
+	imageroot: '/kbopark/img/',
 	uploadroot: ''
 };
 
@@ -171,7 +171,7 @@ Web.Editor.prototype = {
 		this.invoke = params.invoke;
 		this.thumbnail = params.thumbnail||50;
 		this.fontSize = params.size||'13px';
-		this.fontFamily = params.family||'µ¸¿ò';
+		this.fontFamily = params.family||'ï¿½ï¿½ï¿½ï¿½';
 		this.aliceType = params.type||'detail'; 
 		this.aliceType = this.aliceType.toLowerCase();
 		this.aliceWidth = Web.util.Position.pure(w||Element.getStyle(o1, "width")||'600px');
@@ -349,22 +349,22 @@ Web.Editor.prototype = {
 					var d3 = alice+"-menu-cel";
 					div.innerHTML = ""+
 					"<table border=0 cellspacing=2 cellpadding=0 class=alc-cntxt-box><tr><td><table border=0 cellspacing=0 cellpadding=2 class=alc-cntxt-bs>"+
-						"<tr><td rowspan=5 class=alc-cntxt-main><img src="+Alice.config.imageroot+"alice/editor/table_row.gif></td><td rowspan=5 valign=top style=padding-top:4;width:70><b>Çà ¿É¼Ç</td><td onclick=\"Alice.table.appendRowBefore('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>À§¿¡ Çà Ãß°¡</td></tr>"+
-						"<tr><td onclick=\"Alice.table.appendRowAfter('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>¾Æ·¡¿¡ Çà Ãß°¡</td></tr>"+
-						"<tr><td onclick=\"Alice.table.removeRow('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ÇØ´çÇà »èÁ¦</td></tr>"+
-						"<tr><td onclick=\"Alice.color.togglePicker('"+d1+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ÇØ´çÇà ¹è°æ»ö <div style=position:absolute;left:300;width:200px;display:none id='"+d1+"' onclick=\"Alice.table.colorRow('"+alice+"','"+tid+"')\"></div></td></tr>"+
-						"<tr><td class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ÇØ´çÇà ³ôÀÌÁ¶Àý <input type=text id=unc-tab-hei-conf title='ÇØ´çÇà ³ôÀÌÁ¶Àý' style='width:40;height:15px;font-size:10px;'> <span onclick=\"Alice.table.rapHeightCol('"+alice+"','"+tid+"')\" style='cursor:pointer'>ÀÔ·Â</span></td></tr>"+
+						"<tr><td rowspan=5 class=alc-cntxt-main><img src="+Alice.config.imageroot+"alice/editor/table_row.gif></td><td rowspan=5 valign=top style=padding-top:4;width:70><b>ï¿½ï¿½ ï¿½É¼ï¿½</td><td onclick=\"Alice.table.appendRowBefore('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½</td></tr>"+
+						"<tr><td onclick=\"Alice.table.appendRowAfter('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½</td></tr>"+
+						"<tr><td onclick=\"Alice.table.removeRow('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ï¿½Ø´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</td></tr>"+
+						"<tr><td onclick=\"Alice.color.togglePicker('"+d1+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ï¿½Ø´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ <div style=position:absolute;left:300;width:200px;display:none id='"+d1+"' onclick=\"Alice.table.colorRow('"+alice+"','"+tid+"')\"></div></td></tr>"+
+						"<tr><td class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ï¿½Ø´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ <input type=text id=unc-tab-hei-conf title='ï¿½Ø´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½' style='width:40;height:15px;font-size:10px;'> <span onclick=\"Alice.table.rapHeightCol('"+alice+"','"+tid+"')\" style='cursor:pointer'>ï¿½Ô·ï¿½</span></td></tr>"+
 						"<tr><td colspan=4 height=1 bgcolor=#dddddd></td></tr>"+
-						"<tr><td rowspan=5 class=alc-cntxt-main><img src="+Alice.config.imageroot+"alice/editor/table_col.gif></td><td rowspan=5 valign=top style=padding-top:4><b>¿­ ¿É¼Ç</td><td onclick=\"Alice.table.appendColBefore('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ÁÂÃø¿¡ ¿­ Ãß°¡</td></tr>"+
-						"<tr><td onclick=\"Alice.table.appendColAfter('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>¿ìÃø¿¡ ¿­ Ãß°¡</td></tr>"+
-						"<tr><td onclick=\"Alice.table.removeCol('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ÇØ´ç¿­ »èÁ¦</td></tr>"+
-						"<tr><td onclick=\"Alice.color.togglePicker('"+d2+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ÇØ´ç¿­ ¹è°æ»ö <div style=position:absolute;left:300;width:200px;display:none id='"+d2+"' onclick=\"Alice.table.colorCol('"+alice+"','"+tid+"')\"></div></td></tr>"+
-						"<tr><td class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ÇØ´ç¿­ ³ÊºñÁ¶Àý <input type=text id=unc-tab-wid-conf title='ÇØ´ç¿­ ³ÊºñÁ¶Àý' style='width:40;height:15px;font-size:10px;'> <span onclick=\"Alice.table.rapWidthCol('"+alice+"','"+tid+"')\" style='cursor:pointer'>ÀÔ·Â</span></td></tr>"+
+						"<tr><td rowspan=5 class=alc-cntxt-main><img src="+Alice.config.imageroot+"alice/editor/table_col.gif></td><td rowspan=5 valign=top style=padding-top:4><b>ï¿½ï¿½ ï¿½É¼ï¿½</td><td onclick=\"Alice.table.appendColBefore('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½</td></tr>"+
+						"<tr><td onclick=\"Alice.table.appendColAfter('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ß°ï¿½</td></tr>"+
+						"<tr><td onclick=\"Alice.table.removeCol('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ï¿½Ø´ç¿­ ï¿½ï¿½ï¿½ï¿½</td></tr>"+
+						"<tr><td onclick=\"Alice.color.togglePicker('"+d2+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ï¿½Ø´ç¿­ ï¿½ï¿½ï¿½ï¿½ <div style=position:absolute;left:300;width:200px;display:none id='"+d2+"' onclick=\"Alice.table.colorCol('"+alice+"','"+tid+"')\"></div></td></tr>"+
+						"<tr><td class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ï¿½Ø´ç¿­ ï¿½Êºï¿½ï¿½ï¿½ï¿½ï¿½ <input type=text id=unc-tab-wid-conf title='ï¿½Ø´ç¿­ ï¿½Êºï¿½ï¿½ï¿½ï¿½ï¿½' style='width:40;height:15px;font-size:10px;'> <span onclick=\"Alice.table.rapWidthCol('"+alice+"','"+tid+"')\" style='cursor:pointer'>ï¿½Ô·ï¿½</span></td></tr>"+
 						"<tr><td colspan=4 height=1 bgcolor=#dddddd></td></tr>"+
-						"<tr><td rowspan=4 class=alc-cntxt-main><img src="+Alice.config.imageroot+"alice/editor/table_cell.gif></td><td rowspan=4 valign=top style=padding-top:4><b>¼¿ ¿É¼Ç</td><td onclick=\"Alice.table.mergeLeft('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ÁÂÃøÀ¸·Î ÇÕÄ¡±â</td></tr>"+
-						"<tr><td onclick=\"Alice.table.mergeRight('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>¿ìÃøÀ¸·Î ÇÕÄ¡±â</td></tr>"+
-						"<tr><td onclick=\"Alice.table.mergeDown('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>¾Æ·¡·Î ÇÕÄ¡±â</td></tr>"+
-						"<tr><td onclick=\"Alice.color.togglePicker('"+d3+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ÇØ´ç¼¿ ¹è°æ»ö <div style=position:absolute;left:250;width:200px;display:none id='"+d3+"' onclick=\"Alice.table.colorCell('"+alice+"','"+tid+"')\"></div></td></tr>"+
+						"<tr><td rowspan=4 class=alc-cntxt-main><img src="+Alice.config.imageroot+"alice/editor/table_cell.gif></td><td rowspan=4 valign=top style=padding-top:4><b>ï¿½ï¿½ ï¿½É¼ï¿½</td><td onclick=\"Alice.table.mergeLeft('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½</td></tr>"+
+						"<tr><td onclick=\"Alice.table.mergeRight('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½</td></tr>"+
+						"<tr><td onclick=\"Alice.table.mergeDown('"+alice+"','"+tid+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½</td></tr>"+
+						"<tr><td onclick=\"Alice.color.togglePicker('"+d3+"')\" class=alc-cntxt-sub onmouseover=this.className='alc-cntxt-sub-o' onmouseout=this.className='alc-cntxt-sub'>ï¿½Ø´ç¼¿ ï¿½ï¿½ï¿½ï¿½ <div style=position:absolute;left:250;width:200px;display:none id='"+d3+"' onclick=\"Alice.table.colorCell('"+alice+"','"+tid+"')\"></div></td></tr>"+
 					"</table></td></tr></table>";
 
 					Web.EditorManager.pullAllPop();
@@ -497,7 +497,7 @@ Web.Editor.prototype = {
 	getContentWithLimit: function() {
 		var html = this.getHtml();
 		if (this.isLimit()) {			
-			Web.alert({title:'°æ°í', msg:'º»¹®À» ³Ê¹« ¸¹ÀÌ ÀÛ¼ºÇÏ¼Ì½À´Ï´Ù<br>ÃÖ´ë º»¹® ÀÛ¼º°¡´É ±ÛÀÚ¼ö´Â <b>'+this.limit+'</b>¹ÙÀÌÆ® ÀÔ´Ï´Ù<br>ÇöÀç ÀÛ¼º ±ÛÀÚ¼ö´Â <b>'+html.getByte()+'</b>¹ÙÀÌÆ® ÀÔ´Ï´Ù',width:400});
+			Web.alert({title:'ï¿½ï¿½ï¿½', msg:'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¹ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ï¼Ì½ï¿½ï¿½Ï´ï¿½<br>ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½ <b>'+this.limit+'</b>ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ô´Ï´ï¿½<br>ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ ï¿½ï¿½ï¿½Ú¼ï¿½ï¿½ï¿½ <b>'+html.getByte()+'</b>ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ô´Ï´ï¿½',width:400});
 			return null;
 		}
 		return html;
@@ -612,74 +612,74 @@ Web.Editor.prototype = {
 		var image = Alice.config.imageroot;
 		var ma = 	"<div id=alc-box-"+seq+" class=alc-box style=\"width:"+this.aliceWidth+"px;height:"+this.aliceHeight+"px\">";
 		var fu = 		"<div id=alc-edit-property-"+seq+" class=alc-edit-fields>"+							
-							"<span title='¼Ò½ºº¸±â'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').toggleAlice();return false;\" enablebutton=on><img src="+image+"alice/editor/source.gif></button></span>"+
-							"<span title='¿¡µðÅÍ ³»¿ë ÃÊ±âÈ­'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').initContextWindow();return false;\"><img src="+image+"alice/editor/newpage.gif></button></span>"+
-							"<span title='¹Ì¸®º¸±â'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').previewContextWindow();return false;\"><img src="+image+"alice/editor/preview.gif></button></span>"+
-					    	"<span title='ÇÁ¸°Æ®'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').printContextWindow();return false;\"><img src="+image+"alice/editor/print.gif></button></span>"+
+							"<span title='ï¿½Ò½ï¿½ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').toggleAlice();return false;\" enablebutton=on><img src="+image+"alice/editor/source.gif></button></span>"+
+							"<span title='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').initContextWindow();return false;\"><img src="+image+"alice/editor/newpage.gif></button></span>"+
+							"<span title='ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').previewContextWindow();return false;\"><img src="+image+"alice/editor/preview.gif></button></span>"+
+					    	"<span title='ï¿½ï¿½ï¿½ï¿½Æ®'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').printContextWindow();return false;\"><img src="+image+"alice/editor/print.gif></button></span>"+
 					    	"<span><img src="+image+"alice/editor/gray_separator.gif></span>"+
-					    	"<span title='½ÇÇà Ãë¼ÒÇÏ±â'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').command('Undo',-1);return false;\"><img src="+image+"alice/editor/undo.gif></button></span>"+
-					    	"<span title='´Ù½Ã ½ÇÇàÇÏ±â'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').command('Redo',1);return false;\"><img src="+image+"alice/editor/redo.gif></button></span>"+
+					    	"<span title='ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').command('Undo',-1);return false;\"><img src="+image+"alice/editor/undo.gif></button></span>"+
+					    	"<span title='ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').command('Redo',1);return false;\"><img src="+image+"alice/editor/redo.gif></button></span>"+
 					    	"<span><img src="+image+"alice/editor/gray_separator.gif></span>"+
-					    	"<span title='ÀÌ¹ÌÁö »ðÀÔ'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupImage();return false;\"><img src="+image+"alice/editor/pic.gif></button></span>"+
-					    	"<span title='ÀÌ¹ÌÁö ¸µÅ© »ðÀÔ'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupUrlImage();return false;\"><img src="+image+"alice/editor/urlpic.gif></button></span>"+
-					    	"<span title='ÇÃ·¡½¬ »ðÀÔ'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupFlash();return false;\"><img src="+image+"alice/editor/flash.gif></button></span>"+
+					    	"<span title='ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupImage();return false;\"><img src="+image+"alice/editor/pic.gif></button></span>"+
+					    	"<span title='ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupUrlImage();return false;\"><img src="+image+"alice/editor/urlpic.gif></button></span>"+
+					    	"<span title='ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupFlash();return false;\"><img src="+image+"alice/editor/flash.gif></button></span>"+
 					    	"<span><img src="+image+"alice/editor/gray_separator.gif></span>"+
 					    	(this.aliceType == 'detail' || this.aliceType == 'normal' ? 
-					    	"<span title='ÅØ½ºÆ® ¸µÅ© »ðÀÔ'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupCreateLink();return false;\"><img src="+image+"alice/editor/link.gif></button></span>"+
-					    	"<span title='ÅØ½ºÆ® ¸µÅ© Á¦°Å'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Unlink');return false;\"><img src="+image+"alice/editor/unlink.gif></button></span>"+
+					    	"<span title='ï¿½Ø½ï¿½Æ® ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupCreateLink();return false;\"><img src="+image+"alice/editor/link.gif></button></span>"+
+					    	"<span title='ï¿½Ø½ï¿½Æ® ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Unlink');return false;\"><img src="+image+"alice/editor/unlink.gif></button></span>"+
 					    	"<span><img src="+image+"alice/editor/gray_separator.gif></span>"
 					    	:"")+
-					    	"<span title='Ç¥ »ðÀÔ'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupTable();return false;\"><img src="+image+"alice/editor/table.gif></button></span>"+
-					    	"<span title='ÇÊµå¼Â »ðÀÔ'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupField();return false;\"><img src="+image+"alice/editor/fieldset.gif></button></span>"+
+					    	"<span title='Ç¥ ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupTable();return false;\"><img src="+image+"alice/editor/table.gif></button></span>"+
+					    	"<span title='ï¿½Êµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupField();return false;\"><img src="+image+"alice/editor/fieldset.gif></button></span>"+
 					    	(this.aliceType == 'detail'? 
-					    	"<span title='¶óÀÎ »ðÀÔ'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').paste('Line');return false;\"><img src="+image+"alice/editor/line.gif></button></span>"+
-					    	"<span title='ÆäÀÌÁö ºê·¹ÀÌÅ© »ðÀÔ(ÇÁ¸°Æ®½Ã ´ÙÀ½ ÆäÀÌÁö·Î ¼³Á¤)'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').paste('Break');return false;\"><img src="+image+"alice/editor/pagebreak.gif></button></span>"
+					    	"<span title='ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').paste('Line');return false;\"><img src="+image+"alice/editor/line.gif></button></span>"+
+					    	"<span title='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ê·¹ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').paste('Break');return false;\"><img src="+image+"alice/editor/pagebreak.gif></button></span>"
 					    	:"")+
 					    	"<span><img src="+image+"alice/editor/gray_separator.gif></span>"+
-					    	"<span title='¿À¸¥ÂÊ Á¤·Ä'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('JustifyRight');return false;\"><img src="+image+"alice/editor/right.gif></button></span>"+
-					    	"<span title='°¡¿îµ¥ Á¤·Ä'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('JustifyCenter');return false;\"><img src="+image+"alice/editor/center.gif></button></span>"+
-					    	"<span title='¿ÞÂÊ Á¤·Ä'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('JustifyLeft');return false;\"><img src="+image+"alice/editor/left.gif></button></span>"+
-					    	"<span title='ÀüÃ¼ ¸ÂÃß±â'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('JustifyFull');return false;\"><img src="+image+"alice/editor/full.gif></button></span>"+
+					    	"<span title='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('JustifyRight');return false;\"><img src="+image+"alice/editor/right.gif></button></span>"+
+					    	"<span title='ï¿½ï¿½ï¿½îµ¥ ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('JustifyCenter');return false;\"><img src="+image+"alice/editor/center.gif></button></span>"+
+					    	"<span title='ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('JustifyLeft');return false;\"><img src="+image+"alice/editor/left.gif></button></span>"+
+					    	"<span title='ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ß±ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('JustifyFull');return false;\"><img src="+image+"alice/editor/full.gif></button></span>"+
 					    	"<span><img src="+image+"alice/editor/gray_separator.gif></span>"+
 					    	(this.aliceType == 'detail' || this.aliceType == 'normal' ? 
 					    		(this.aliceType == 'detail'?
-					    	"<span title='µé¿©¾²±â ÁÙÀÓ'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Outdent');return false;\"><img src="+image+"alice/editor/tableft.gif></button></span>"+
-					    	"<span title='µé¿©¾²±â ´Ã¸²'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Indent');return false;\"><img src="+image+"alice/editor/tabright.gif></button></span>"
+					    	"<span title='ï¿½é¿©ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Outdent');return false;\"><img src="+image+"alice/editor/tableft.gif></button></span>"+
+					    	"<span title='ï¿½é¿©ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¸ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Indent');return false;\"><img src="+image+"alice/editor/tabright.gif></button></span>"
 					    		:"")+
-					    	"<span title='¹øÈ£ÀÖ´Â ¸ñ·Ï ³Ö±â'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('InsertOrderedList');return false;\"><img src="+image+"alice/editor/number.gif></button></span>"+
-					    	"<span title='¹øÈ£¾ø´Â ¸ñ·Ï ³Ö±â'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('InsertUnorderedList');return false;\"><img src="+image+"alice/editor/point.gif></button></span>"+
+					    	"<span title='ï¿½ï¿½È£ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('InsertOrderedList');return false;\"><img src="+image+"alice/editor/number.gif></button></span>"+
+					    	"<span title='ï¿½ï¿½È£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('InsertUnorderedList');return false;\"><img src="+image+"alice/editor/point.gif></button></span>"+
 					    	"<span><img src="+image+"alice/editor/gray_separator.gif></span>"
 					    	:"")+
-					    	"<span title='¿¡µðÅÍ ÃÖ´ë»çÀÌÁî·Î'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').extendContextWindow();return false;\"><img src="+image+"alice/editor/extend.gif></button></span>"+					    	
+					    	"<span title='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').extendContextWindow();return false;\"><img src="+image+"alice/editor/extend.gif></button></span>"+					    	
 					    	"<span><img src="+image+"alice/editor/gray_separator.gif></span>"+
 						"</div>"+
 						"<div id=alc-text-property-"+seq+" class=alc-text-fields>"+
-							"<span title='½ºÅ¸ÀÏ Àû¿ë'>"+Web.util.Select.alice['alc-font-style'].gsub(/\{0\}/, seq).gsub(/\{1\}/, this.aliceId)+"</span>"+
-							"<span title='ÆùÆ® Àû¿ë'>"+Web.util.Select.alice['alc-font-family'].gsub(/\{0\}/, seq).gsub(/\{1\}/, this.aliceId)+"</span>"+
-							"<span title='ÆùÆ®Å©±â Àû¿ë'>"+Web.util.Select.alice['alc-font-size'].gsub(/\{0\}/, seq).gsub(/\{1\}/, this.aliceId)+"</span>"+
+							"<span title='ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½'>"+Web.util.Select.alice['alc-font-style'].gsub(/\{0\}/, seq).gsub(/\{1\}/, this.aliceId)+"</span>"+
+							"<span title='ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½'>"+Web.util.Select.alice['alc-font-family'].gsub(/\{0\}/, seq).gsub(/\{1\}/, this.aliceId)+"</span>"+
+							"<span title='ï¿½ï¿½Æ®Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½'>"+Web.util.Select.alice['alc-font-size'].gsub(/\{0\}/, seq).gsub(/\{1\}/, this.aliceId)+"</span>"+
 							"<span><img src="+image+"alice/editor/gray_separator.gif></span>"+
-							"<span title='±ÛÀÚ ¹è°æ»ö ³Ö±â'>"+Web.util.Select.alice['alc-font-bgcolor'].gsub(/\{0\}/, seq).gsub(/\{1\}/, this.aliceId).gsub(/\{2\}/, Alice.color.picker(this.seqId))+"</span>"+
-							"<span title='±ÛÀÚ»ö ³Ö±â'>"+Web.util.Select.alice['alc-font-forecolor'].gsub(/\{0\}/, seq).gsub(/\{1\}/, this.aliceId).gsub(/\{2\}/, Alice.color.picker(this.seqId))+"</span>"+
+							"<span title='ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½'>"+Web.util.Select.alice['alc-font-bgcolor'].gsub(/\{0\}/, seq).gsub(/\{1\}/, this.aliceId).gsub(/\{2\}/, Alice.color.picker(this.seqId))+"</span>"+
+							"<span title='ï¿½ï¿½ï¿½Ú»ï¿½ ï¿½Ö±ï¿½'>"+Web.util.Select.alice['alc-font-forecolor'].gsub(/\{0\}/, seq).gsub(/\{1\}/, this.aliceId).gsub(/\{2\}/, Alice.color.picker(this.seqId))+"</span>"+
 							"<span><img src="+image+"alice/editor/gray_separator.gif></span>"+
-						    "<span title='±ÛÀÚ ±½°Ô'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Bold');return false;\"><img src="+image+"alice/editor/bold.gif></button></span>"+
+						    "<span title='ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Bold');return false;\"><img src="+image+"alice/editor/bold.gif></button></span>"+
 						    (this.aliceType == 'detail' || this.aliceType == 'normal' ? 
-						    "<span title='±ÛÀÚ ±â¿ïÀÌ±â'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Italic');return false;\"><img src="+image+"alice/editor/italic.gif></button></span>"+
-						    "<span title='±ÛÀÚ ¹ØÁÙ³Ö±â'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Underline');return false;\"><img src="+image+"alice/editor/underline.gif></button></span>"+
-						    "<span title='±ÛÀÚ Ãë¼ÒÇ¥½Ã'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Strikethrough');return false;\"><img src="+image+"alice/editor/strikethrough.gif></button></span>"
+						    "<span title='ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ì±ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Italic');return false;\"><img src="+image+"alice/editor/italic.gif></button></span>"+
+						    "<span title='ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ù³Ö±ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Underline');return false;\"><img src="+image+"alice/editor/underline.gif></button></span>"+
+						    "<span title='ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¥ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Strikethrough');return false;\"><img src="+image+"alice/editor/strikethrough.gif></button></span>"
 						    :"")+
 						    "<span><img src="+image+"alice/editor/gray_separator.gif></span>"+
 						    (this.aliceType == 'detail' || this.aliceType == 'normal' ? 
 						    	(this.aliceType == 'detail'?
-						    "<span title='¾Æ·§ Ã·ÀÚ'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Subscript');return false;\"><img src="+image+"alice/editor/subscript.gif></button></span>"+
-						    "<span title='À­ Ã·ÀÚ'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Superscript');return false;\"><img src="+image+"alice/editor/superscript.gif></button></span>"+
+						    "<span title='ï¿½Æ·ï¿½ Ã·ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Subscript');return false;\"><img src="+image+"alice/editor/subscript.gif></button></span>"+
+						    "<span title='ï¿½ï¿½ Ã·ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('Superscript');return false;\"><img src="+image+"alice/editor/superscript.gif></button></span>"+
 						    "<span><img src="+image+"alice/editor/gray_separator.gif></span>"
 						    	:"")+
-						    "<span title='Æ÷¸Ë Áö¿ì±â'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('RemoveFormat');return false;\"><img src="+image+"alice/editor/removeformat.gif></button></span>"+						    
+						    "<span title='ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('RemoveFormat');return false;\"><img src="+image+"alice/editor/removeformat.gif></button></span>"+						    
 						    	(this.aliceType == 'detail'?
-						    "<span title='¾ÆÀÌÄÜ ³Ö±â'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupIcon();return false;\"><img src="+image+"alice/editor/icon.gif></button></span>"+
-						    "<span title='ÀüÃ¼ ¼±ÅÃÇÏ±â'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('SelectAll');return false;\"><img src="+image+"alice/editor/selectall.gif></button></span>"
+						    "<span title='ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupIcon();return false;\"><img src="+image+"alice/editor/icon.gif></button></span>"+
+						    "<span title='ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').execute('SelectAll');return false;\"><img src="+image+"alice/editor/selectall.gif></button></span>"
 						    	:"")+
-						    "<span title='Æ¯¼ö¹®ÀÚ ³Ö±â'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupSpecialChar();return false;\"><img src="+image+"alice/editor/specialchar.gif></button></span>"+
+						    "<span title='Æ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±ï¿½'><button name=alc-bttns-"+seq+" onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupSpecialChar();return false;\"><img src="+image+"alice/editor/specialchar.gif></button></span>"+
 						    "<span><img src="+image+"alice/editor/gray_separator.gif></span>"
 						    :"")+
 					  	"</div>";
@@ -803,7 +803,7 @@ Web.Editor.prototype = {
 	initContextWindow: function() {
 		var cw = this.getAliceContentWindow();  
 		var rg = this.range;
-		Web.yesno({title:'¿¡µðÅÍ ÃÊ±âÈ­',msg:'¿¡µðÅÍ ³»¿ëÀ» ÃÊ±âÈ­ ÇÕ´Ï´Ù', fnyes:function() {
+		Web.yesno({title:'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­',msg:'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Õ´Ï´ï¿½', fnyes:function() {
 			cw.document.body.innerHTML = '';
 			cw.focus();
 		}, fnno:function() {
@@ -865,7 +865,7 @@ Web.Editor.prototype = {
 		this.preview = window.open("about:blank", "_preview", windowprops);
     	
 		var cw = this.getAliceContentWindow();
-		var txt ="<title>¹Ì¸®º¸±â</title>"+
+		var txt ="<title>ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½</title>"+
 				 "<style type='text/css'>P {margin-top:3px;margin-bottom:3px;margin-left:3;margin-right:3;white-space: -moz-pre-wrap;word-break:break-all;}</style>"+
 				 "<table border=0 cellspacing=0 cellpadding=0 width=100% height=100% style=\"cursor:pointer\" onclick=\"window.close()\"><tr><td align=center valign=top>"+
 				 "<table border=0 cellspacing=1 cellpadding=0 bgcolor=#dddddd width=98% height=100%><tr><td valign=top>"+
@@ -980,71 +980,71 @@ Web.Editor.prototype = {
 	popupImage: function() {
 		this.popup = true;
 		var txt = ""+
-			"<h3>ÀÌ¹ÌÁö ¼³Á¤</h3>"+
+			"<h3>ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</h3>"+
 			"<form name=aliceForm id=aliceForm target=alc-hidden-frame action='"+Alice.config.uploadpath+"alice-upload' method=post enctype='multipart/form-data'>"+
 			"<table border=0 cellspacing=0 cellpadding=0 width=100%>"+			
 			"<tr>"+
-				"<td class=alc-pop-bs1><li>ÀÌ¹ÌÁö</li></td><td><input type=file name=alc-image-upload id=alc-image-upload style=width:325 onkeypress=this.blur()></td>"+
+				"<td class=alc-pop-bs1><li>ï¿½Ì¹ï¿½ï¿½ï¿½</li></td><td><input type=file name=alc-image-upload id=alc-image-upload style=width:325 onkeypress=this.blur()></td>"+
 			"</tr>"+
 			"<tr>"+
-				"<td class=alc-pop-bs1><li>ÀÌ¹ÌÁö ¼³¸í</li></td><td><input type=text id=alc-image-alt style=width:325></td>"+
+				"<td class=alc-pop-bs1><li>ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</li></td><td><input type=text id=alc-image-alt style=width:325></td>"+
 			"</tr>"+
 			"<tr><td align=center colspan=2><br><span id=alc-image-uploadbtn onclick=\"Alice.image.upload()\">"+Web.util.Image.alice['alc-crud-upload']+"</span><span id=alc-image-loading style=display:none>"+Web.util.Image.alice['alc-crud-loading']+"</span></td></tr>"+
 			"<tr>"+
 				"<td colspan=2>"+
 					"<table border=0 cellspacing=0 cellpadding=0 width=100%>"+
 					"<tr>"+
-						"<td class=alc-pop-bs1><li>³Êºñ</li></td><td><input type=text id=alc-image-width title\"³Êºñ\" style=width:50 onkeyup=Alice.image.keyupWidth()></td>"+
-						"<td align=center rowspan=7 class=alc-pop-bs0 valign=top><strong>¹Ì¸®º¸±â</strong><br><div style='padding:2px 2px 2px 2px;width:250px;height:130px;overflow:auto;border:1px solid #336699;background-color:#fff;font-size:8pt' id=alc-image-preview-text>"+
+						"<td class=alc-pop-bs1><li>ï¿½Êºï¿½</li></td><td><input type=text id=alc-image-width title\"ï¿½Êºï¿½\" style=width:50 onkeyup=Alice.image.keyupWidth()></td>"+
+						"<td align=center rowspan=7 class=alc-pop-bs0 valign=top><strong>ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½</strong><br><div style='padding:2px 2px 2px 2px;width:250px;height:130px;overflow:auto;border:1px solid #336699;background-color:#fff;font-size:8pt' id=alc-image-preview-text>"+
 							"<img id=alc-image-preview style='filter:gray(enabled=false) xray(enabled=false) fliph(enabled=false) flipv(enabled=false) blur(enabled=false,add:1,direction:135) invert(enabled=false);display:none'>"+
-								"µ¿ÇØ¹°°ú ¹éµÎ»êÀÌ ¸¶¸£°í ´âµµ·Ï ÇÏ´À´ÔÀÌ º¸¿ìÇÏ»ç ¿ì¸® ³ª¶ó ¸¸¼¼ ³²»êÀ§¿¡ Àú ¼Ò³ª¹« Ã¶°©À» µÎ¸¥µí ¹Ù¶÷¼­¸® ºÒº¯ÇÔÀº ¿ì¸® ±â»óÀÏ¼¼ °¡À» ÇÏ´Ã °øÈ°ÇÑµ¥ ³ô°í ±¸¸§ ¾øÀÌ ¹àÀº ´ÞÀº ¿ì¸® °¡½¿ ÀÏÆí ´Ü½ÉÀÏ¼¼ ÀÌ ±â»ó°ú ÀÌ ¸¾À¸·Î Ãæ¼ºÀ» ´ÙÇÏ¿© ±«·Î¿ì³ª Áñ°Å¿ì³ª ³ª¶ó »ç¶ûÇÏ¼¼"+
+								"ï¿½ï¿½ï¿½Ø¹ï¿½ï¿½ï¿½ ï¿½ï¿½Î»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½âµµï¿½ï¿½ ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï»ï¿½ ï¿½ì¸® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ò³ï¿½ï¿½ï¿½ Ã¶ï¿½ï¿½ï¿½ï¿½ ï¿½Î¸ï¿½ï¿½ï¿½ ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Òºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ì¸® ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½È°ï¿½Ñµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ì¸® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ü½ï¿½ï¿½Ï¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æ¼ºï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½Î¿ì³ª ï¿½ï¿½Å¿ì³ª ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½"+
 							"</div></td>"+
 					"</tr>"+     
 					"<tr>"+      
-						"<td class=alc-pop-bs1><li>³ôÀÌ</li></td><td><input type=text id=alc-image-height title\"³ôÀÌ\" style=width:50 onkeyup=Alice.image.keyupHeight()></td>"+
+						"<td class=alc-pop-bs1><li>ï¿½ï¿½ï¿½ï¿½</li></td><td><input type=text id=alc-image-height title\"ï¿½ï¿½ï¿½ï¿½\" style=width:50 onkeyup=Alice.image.keyupHeight()></td>"+
 					"</tr>"+     
 					"<tr>"+			   		
-						"<td class=alc-pop-bs1><li>Å×µÎ¸®</li></td><td><input type=text id=alc-image-border title\"Å×µÎ¸®\" style=width:50 onkeyup=Alice.image.keyupBorder()></td>"+
+						"<td class=alc-pop-bs1><li>ï¿½×µÎ¸ï¿½</li></td><td><input type=text id=alc-image-border title\"ï¿½×µÎ¸ï¿½\" style=width:50 onkeyup=Alice.image.keyupBorder()></td>"+
 					"</tr>"+     
 					"<tr>"+      
-						"<td class=alc-pop-bs1><li>¼öÆò¿©¹é</li></td><td><input type=text id=alc-image-hspace title\"¼öÆò¿©¹é\" style=width:50 onkeyup=Alice.image.keyupHspace()></td>"+
+						"<td class=alc-pop-bs1><li>ï¿½ï¿½ï¿½ò¿©¹ï¿½</li></td><td><input type=text id=alc-image-hspace title\"ï¿½ï¿½ï¿½ò¿©¹ï¿½\" style=width:50 onkeyup=Alice.image.keyupHspace()></td>"+
 					"</tr>"+     
 					"<tr>"+      
-						"<td class=alc-pop-bs1><li>¼öÁ÷¿©¹é</li></td><td><input type=text id=alc-image-vspace title\"¼öÁ÷¿©¹é\" style=width:50 onkeyup=Alice.image.keyupVspace()></td>"+
+						"<td class=alc-pop-bs1><li>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</li></td><td><input type=text id=alc-image-vspace title\"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\" style=width:50 onkeyup=Alice.image.keyupVspace()></td>"+
 					"</tr>"+     
 					"<tr>"+      
-						"<td class=alc-pop-bs1><li>Á¤·Ä</li></td><td>"+
+						"<td class=alc-pop-bs1><li>ï¿½ï¿½ï¿½ï¿½</li></td><td>"+
 							"<select id=alc-image-order onchange=Alice.image.changeOrder()>"+
 								"<option></option>"+
-								"<option value=left>¿ÞÂÊ</option>"+
-								"<option value=right>¿À¸¥ÂÊ</option>"+
-								"<option value=top>À§ÂÊ</option>"+
-								"<option value=bottom>¾Æ·¡ÂÊ</option>"+
-								"<option value=absmiddle>ÁÙÁß°£</option>"+
-								"<option value=absbottom>ÁÙ¾Æ·¡</option>"+
-								"<option value=baseline>±âÁØ¼±</option>"+
-								"<option value=textTop>±ÛÀÚÀ§</option>"+								
+								"<option value=left>ï¿½ï¿½ï¿½ï¿½</option>"+
+								"<option value=right>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</option>"+
+								"<option value=top>ï¿½ï¿½ï¿½ï¿½</option>"+
+								"<option value=bottom>ï¿½Æ·ï¿½ï¿½ï¿½</option>"+
+								"<option value=absmiddle>ï¿½ï¿½ï¿½ß°ï¿½</option>"+
+								"<option value=absbottom>ï¿½Ù¾Æ·ï¿½</option>"+
+								"<option value=baseline>ï¿½ï¿½ï¿½Ø¼ï¿½</option>"+
+								"<option value=textTop>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</option>"+								
 							"</select>"+
 							"<input type=hidden id=alc-is-upload value=N>"+
 							"<input type=hidden id=thumbsize name=thumbsize value="+this.thumbnail+">"+
 						"</td>"+
 					"</tr>"+
 					"<tr>"+
-						"<td class=alc-pop-bs1><li>±Û°úºÐ¸®</li></td><td><input type=checkbox id=alc-image-break onclick=Alice.image.insertBreak()></td>"+
+						"<td class=alc-pop-bs1><li>ï¿½Û°ï¿½ï¿½Ð¸ï¿½</li></td><td><input type=checkbox id=alc-image-break onclick=Alice.image.insertBreak()></td>"+
 					"</tr>"+
 					(Web.isIE? 
 					"<tr>"+
 						"<td colspan=3>"+
 							"<table border=0 cellspacing=0 cellpadding=0 width=100%>"+								
 								"<tr>"+
-									"<td class=alc-pop-bs1><li>Èæ¹éÀüÈ¯</li></td><td valign=top><input type=checkbox id=alc-image-black onclick=Alice.image.transformGray()></td>"+
-									"<td class=alc-pop-bs1><li>¿¢½º·¹ÀÌ</li></td><td valign=top><input type=checkbox id=alc-image-xray onclick=Alice.image.transformXray()></td>"+
-									"<td class=alc-pop-bs1><li>»ö»ó¹Ý´ë</li></td><td valign=top><input type=checkbox id=alc-image-invert onclick=Alice.image.transformInvert()></td>"+
+									"<td class=alc-pop-bs1><li>ï¿½ï¿½ï¿½ï¿½ï¿½È¯</li></td><td valign=top><input type=checkbox id=alc-image-black onclick=Alice.image.transformGray()></td>"+
+									"<td class=alc-pop-bs1><li>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</li></td><td valign=top><input type=checkbox id=alc-image-xray onclick=Alice.image.transformXray()></td>"+
+									"<td class=alc-pop-bs1><li>ï¿½ï¿½ï¿½ï¿½Ý´ï¿½</li></td><td valign=top><input type=checkbox id=alc-image-invert onclick=Alice.image.transformInvert()></td>"+
 								"</tr>"+
 								"<tr>"+
-								"<td class=alc-pop-bs1><li>ºÎµå·´°Ô</li></td><td valign=top><input type=checkbox id=alc-image-blur onclick=Alice.image.transformBlur()></td>"+
-									"<td class=alc-pop-bs1><li>ÁÂ¿ìº¯°æ</li></td><td valign=top><input type=checkbox id=alc-image-fliph onclick=Alice.image.transformFliph()></td>"+
-									"<td class=alc-pop-bs1><li>»óÇÏº¯°æ</li></td><td valign=top><input type=checkbox id=alc-image-flipv onclick=Alice.image.transformFlipv()></td>"+
+								"<td class=alc-pop-bs1><li>ï¿½Îµå·´ï¿½ï¿½</li></td><td valign=top><input type=checkbox id=alc-image-blur onclick=Alice.image.transformBlur()></td>"+
+									"<td class=alc-pop-bs1><li>ï¿½Â¿ìº¯ï¿½ï¿½</li></td><td valign=top><input type=checkbox id=alc-image-fliph onclick=Alice.image.transformFliph()></td>"+
+									"<td class=alc-pop-bs1><li>ï¿½ï¿½ï¿½Ïºï¿½ï¿½ï¿½</li></td><td valign=top><input type=checkbox id=alc-image-flipv onclick=Alice.image.transformFlipv()></td>"+
 								"</tr>"+
 							"</table>"+
 						"</td>"+
@@ -1059,7 +1059,7 @@ Web.Editor.prototype = {
 			"</center>"+			
 			"<iframe src=about:blank name=alc-hidden-frame id=alc-hidden-frame class=alc-hddn-frame></iframe>";
 
-		Web.popup({title:'ÀÌ¹ÌÁö ¼³Á¤',msg:txt,width:500,height:440});
+		Web.popup({title:'ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½',msg:txt,width:500,height:440});
 		Web.Form.setStyle("aliceForm");
 	},
 	
@@ -1067,11 +1067,11 @@ Web.Editor.prototype = {
 		this.popup = true;
 
 		var txt = ""+						
-			"<h3>ÇÃ·¡½¬ ¼³Á¤</h3>"+
+			"<h3>ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</h3>"+
 			"<form name=aliceForm id=aliceForm target=alc-hidden-frame action='"+Alice.config.uploadpath+"alice-upload' method=post enctype='multipart/form-data'>"+
 			"<table border=0 cellspacing=0 cellpadding=0 width=100%>"+
 			"<tr>"+
-				"<td class=alc-pop-bs1><li>ÇÃ·¡½¬</li></td><td><input type=file name=alc-flash-upload id=alc-flash-upload style=width:320 onkeypress=this.blur()></td>"+
+				"<td class=alc-pop-bs1><li>ï¿½Ã·ï¿½ï¿½ï¿½</li></td><td><input type=file name=alc-flash-upload id=alc-flash-upload style=width:320 onkeypress=this.blur()></td>"+
 			"</tr>"+
 			"<tr><td align=center colspan=2><br><span id=alc-flash-uploadbtn onclick=\"Alice.flash.upload()\">"+Web.util.Image.alice['alc-crud-upload']+"</span><span id=alc-flash-loading style=display:none>"+Web.util.Image.alice['alc-crud-loading']+"</span></td></tr>"+
 			"<tr>"+
@@ -1081,15 +1081,15 @@ Web.Editor.prototype = {
 						"<td valign=top width=180><br>"+
 							"<table border=0 cellspacing=0 cellpadding=0>"+
 								"<tr>"+
-									"<td valign=top class=alc-pop-bs1><li>³Êºñ</li></td><td valign=top><input type=text id=alc-flash-width style=width:70 onkeyup=Alice.flash.keyupWidth()></td>"+
+									"<td valign=top class=alc-pop-bs1><li>ï¿½Êºï¿½</li></td><td valign=top><input type=text id=alc-flash-width style=width:70 onkeyup=Alice.flash.keyupWidth()></td>"+
 								"</tr>"+
 								"<tr>"+
-									"<td valign=top class=alc-pop-bs1><li>³ôÀÌ</li></td><td valign=top><input type=text id=alc-flash-height style=width:70 onkeyup=Alice.flash.keyupHeight()></td>"+						
+									"<td valign=top class=alc-pop-bs1><li>ï¿½ï¿½ï¿½ï¿½</li></td><td valign=top><input type=text id=alc-flash-height style=width:70 onkeyup=Alice.flash.keyupHeight()></td>"+						
 								"</tr>"+
 							"</table>"+
 						"</td>"+
 						"<td align=center class=alc-pop-bs0 valign=top>"+
-							"<strong>¹Ì¸®º¸±â</strong><br><div style='padding:2px 2px 2px 2px;width:230px;height:130px;overflow:auto;border:1px solid #336699;background-color:#fff' id=alc-flash-preview></div></td>"+
+							"<strong>ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½</strong><br><div style='padding:2px 2px 2px 2px;width:230px;height:130px;overflow:auto;border:1px solid #336699;background-color:#fff' id=alc-flash-preview></div></td>"+
 					"</table>"+
 				"</td>"+
 			"</tr>"+			
@@ -1101,7 +1101,7 @@ Web.Editor.prototype = {
 			"<input type=hidden name=alc-is-upload id=alc-is-upload value=N>"+			
 			"<iframe src=about:blank name=alc-hidden-frame id=alc-hidden-frame class=alc-hddn-frame></iframe>";
 
-		Web.popup({title:'ÇÃ·¡½¬ ¼³Á¤',msg:txt,width:500,height:350});
+		Web.popup({title:'ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½',msg:txt,width:500,height:350});
 		Web.Form.setStyle("aliceForm");
 	},
 	
@@ -1109,51 +1109,51 @@ Web.Editor.prototype = {
 		this.popup = true;
 
 		var txt = ""+			
-			"<h3>Å×ÀÌºí ¼³Á¤</h3>"+
+			"<h3>ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½</h3>"+
 			"<form name=aliceForm>"+
 			"<table border=0 width=100% cellspacing=0 cellpadding=0 class=alc-pop-bs0>"+				
 				"<tr height=25>"+
-					"<td width=25%><li>°¡·ÎÁÙ</li></td>"+
+					"<td width=25%><li>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</li></td>"+
 					"<td width=25%><Input type=text id=trow size=4 value=5></td>"+
-					"<td width=25%><li>³Êºñ</li></td>"+
-					"<td width=25%><input type=text id=twidth size=4 value=400> <select id=tsize><option value=picxel>ÇÈ¼¿</option><option value=percentage>ÆÛ¼¾Æ®</option></select></td>"+
+					"<td width=25%><li>ï¿½Êºï¿½</li></td>"+
+					"<td width=25%><input type=text id=twidth size=4 value=400> <select id=tsize><option value=picxel>ï¿½È¼ï¿½</option><option value=percentage>ï¿½Û¼ï¿½Æ®</option></select></td>"+
 				"</tr>"+
 				"<tr height=25>"+
-					"<td><li>¼¼·ÎÁÙ</li></td>"+
+					"<td><li>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</li></td>"+
 					"<td><input type=text id=tcol size=4 value=3></td>"+
-					"<td><li>³ôÀÌ</li></td>"+
-					"<td><input type=text id=theight size=4 value=100> ÇÈ¼¿</td>"+
+					"<td><li>ï¿½ï¿½ï¿½ï¿½</li></td>"+
+					"<td><input type=text id=theight size=4 value=100> ï¿½È¼ï¿½</td>"+
 				"</tr>"+
 				"<tr height=25>"+
-					"<td><li>Å×µÎ¸® Å©±â</li></td>"+
+					"<td><li>ï¿½×µÎ¸ï¿½ Å©ï¿½ï¿½</li></td>"+
 					"<td><input type=text id=tborder size=4 value=1></td>"+
-					"<td><li>¼¿°£°Ý</li></td>"+
+					"<td><li>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</li></td>"+
 					"<td><input type=text id=tspacing size=4 value=1></td>"+
 				"</tr>"+
 				"<tr height=25>"+
-				 	"<td><li>Á¤·Ä</li></td>"+
+				 	"<td><li>ï¿½ï¿½ï¿½ï¿½</li></td>"+
 				 	"<td><select id=talign>"+
-				 	     "<option value=no>¼³Á¤µÇÁö¾ÊÀ½</option>"+
-				 	     "<option value=left>¿ÞÂÊ</option>"+
-				 	     "<option value=center>°¡¿îµ¥</option>"+
-				 	     "<option value=right>¿À¸¥ÂÊ</option>"+
+				 	     "<option value=no>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</option>"+
+				 	     "<option value=left>ï¿½ï¿½ï¿½ï¿½</option>"+
+				 	     "<option value=center>ï¿½ï¿½ï¿½îµ¥</option>"+
+				 	     "<option value=right>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</option>"+
 				 	    "</select>"+
 				 	"</td>"+
-					"<td><li>¼¿¿©¹é</li></td>"+
+					"<td><li>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</li></td>"+
 					"<td><input type=text id=tpadding size=4 value=1></td>"+
 				"</tr>"+
 				"<tr height=25>"+
-					"<td><li>Å×µÎ¸®¹àÀº»ö</li></td>"+
+					"<td><li>ï¿½×µÎ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</li></td>"+
 					"<td><input type=text id=tlight size=8 value=#999999></td>"+
-					"<td><li>Å×µÎ¸®¾îµÎ¿ì»ö</li></td>"+
+					"<td><li>ï¿½×µÎ¸ï¿½ï¿½ï¿½Î¿ï¿½ï¿½</li></td>"+
 					"<td><input type=text id=tdark size=8 value=#ffffff></td>"+
 				"</tr>"+
 				"<tr height=25>"+
-					"<td><li>Ä¸¼Ç</li></td>"+
+					"<td><li>Ä¸ï¿½ï¿½</li></td>"+
 					"<td colspan=3><input type=text id=tcap style=width:400></td>"+
 				"</tr>"+
 				"<tr height=25>"+
-					"<td><li>ÅÛÇÃ¸´</li></td>"+
+					"<td><li>ï¿½ï¿½ï¿½Ã¸ï¿½</li></td>"+
 					"<td colspan=3>"+
 					 "<table border=0>"+
 					 	"<tr bgcolor=#ffffff>"+
@@ -1185,75 +1185,75 @@ Web.Editor.prototype = {
 					"<span onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupHide()\">"+Web.util.Image.alice['alc-crud-cancel']+"</span>"+
 			"</center>";
 		
-		Web.popup({title:'Å×ÀÌºí ¼³Á¤',msg:txt,width:570,height:400});
+		Web.popup({title:'ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½',msg:txt,width:570,height:400});
 		Web.Form.setStyle("aliceForm");
 	},
 	
 	popupField: function() {
 		this.popup = true;
 		var txt = ""+			
-			"<h3>ÇÊµå¼Â ¼³Á¤</h3>"+	
+			"<h3>ï¿½Êµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</h3>"+	
 			"<form name=aliceForm>"+
 			"<table border=0 width=100% cellspacing=0 cellpadding=0 class=alc-pop-bs0>"+				
 				"<tr height=25>"+
-					"<td width=25%><li>³Êºñ</li></td>"+
-					"<td width=25%><input type=text id=fwidth size=4 value=100> <select id=fsize><option value=picxel>ÇÈ¼¿</option><option value=percentage selected>ÆÛ¼¾Æ®</option></select></td>"+
-					"<td width=25%><li>³ôÀÌ</li></td>"+
-					"<td width=25%><input type=text id=fheight size=4>ÇÈ¼¿</td>"+
+					"<td width=25%><li>ï¿½Êºï¿½</li></td>"+
+					"<td width=25%><input type=text id=fwidth size=4 value=100> <select id=fsize><option value=picxel>ï¿½È¼ï¿½</option><option value=percentage selected>ï¿½Û¼ï¿½Æ®</option></select></td>"+
+					"<td width=25%><li>ï¿½ï¿½ï¿½ï¿½</li></td>"+
+					"<td width=25%><input type=text id=fheight size=4>ï¿½È¼ï¿½</td>"+
 				"</tr>"+
 				"<tr height=25>"+
-					"<td><li>Á¤·Ä</li></td>"+
+					"<td><li>ï¿½ï¿½ï¿½ï¿½</li></td>"+
 					"<td><select id=falign>"+
-						"<option value=no>¼³Á¤µÇÁö¾ÊÀ½</option>"+
-						"<option value=left>¿ÞÂÊ</option>"+
-						"<option value=center>°¡¿îµ¥</option>"+
-						"<option value=right>¿À¸¥ÂÊ</option>"+
+						"<option value=no>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</option>"+
+						"<option value=left>ï¿½ï¿½ï¿½ï¿½</option>"+
+						"<option value=center>ï¿½ï¿½ï¿½îµ¥</option>"+
+						"<option value=right>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</option>"+
 						"</select>"+
 					"</td>"+
-					"<td><li>±ÛÀÚ»ö</li></td>"+
+					"<td><li>ï¿½ï¿½ï¿½Ú»ï¿½</li></td>"+
 					"<td><input type=text id=fcolor size=8></td>"+
 				"</tr>"+ 
 				"<tr height=25>"+
-					"<td><li>¿ÞÂÊ¿©¹é</li></td>"+
+					"<td><li>ï¿½ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½</li></td>"+
 					"<td><input type=text id=fpleft size=4 value=5></td>"+
-					"<td><li>À§ÂÊ¿©¹é</li></td>"+
-					"<td><input type=text id=fptop size=4 value=5> ÇÈ¼¿</td>"+
+					"<td><li>ï¿½ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½</li></td>"+
+					"<td><input type=text id=fptop size=4 value=5> ï¿½È¼ï¿½</td>"+
 				"</tr>"+
 				"<tr height=25>"+
-					"<td><li>¿À¸¥ÂÊ¿©¹é</li></td>"+
+					"<td><li>ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½</li></td>"+
 					"<td><input type=text id=fpright size=4 value=5></td>"+
-					"<td><li>¾Æ·¡ÂÊ¿©¹é</li></td>"+
+					"<td><li>ï¿½Æ·ï¿½ï¿½Ê¿ï¿½ï¿½ï¿½</li></td>"+
 					"<td><input type=text id=fpbottom size=4 value=5></td>"+
 				"</tr>"+ 
 				"<tr height=25>"+
-					"<td><li>¹è°æ»ö</li></td>"+
+					"<td><li>ï¿½ï¿½ï¿½ï¿½</li></td>"+
 					"<td><Input type=text id=fbgcolor size=8 value=#ffffff></td>"+
-					"<td><li>Å×µÎ¸®</li></td>"+
+					"<td><li>ï¿½×µÎ¸ï¿½</li></td>"+
 					"<td><Input type=text id=fborder size=4 value=1></td>"+
 				"</tr>"+ 
 				"<tr height=25>"+
-					"<td><li>Å×µÎ¸®»ö</li></td>"+
+					"<td><li>ï¿½×µÎ¸ï¿½ï¿½ï¿½</li></td>"+
 					"<td><input type=text id=fbordercolor size=8 value=#999999></td>"+
-					"<td><li>Å×µÎ¸®½ºÅ¸ÀÏ</li></td>"+
-					"<td><input type=radio name=fborderstyle value=solid checked>¼± <input type=radio name=fborderstyle value=dotted>Á¡¼± <input type=radio name=fborderstyle value='none'>¾øÀ½</td>"+
+					"<td><li>ï¿½×µÎ¸ï¿½ï¿½ï¿½Å¸ï¿½ï¿½</li></td>"+
+					"<td><input type=radio name=fborderstyle value=solid checked>ï¿½ï¿½ <input type=radio name=fborderstyle value=dotted>ï¿½ï¿½ï¿½ï¿½ <input type=radio name=fborderstyle value='none'>ï¿½ï¿½ï¿½ï¿½</td>"+
 				"</tr>"+
 				"<tr height=25>"+
-					"<td><li>Á¦¸ñ</li></td>"+
+					"<td><li>ï¿½ï¿½ï¿½ï¿½</li></td>"+
 					"<td colspan=3><input type=text id=ftitle style=width:445></td>"+
 				"</tr>"+
 				"<tr>"+
-					"<td><li>ÅÛÇÃ¸´</li></td>"+
+					"<td><li>ï¿½ï¿½ï¿½Ã¸ï¿½</li></td>"+
 					"<td colspan=3>"+
 						"<table border=0 cellspacing=0 cellpadding=0 style=font-size:9pt>"+
 						    "<tr>"+
-							"<td style=padding-right:4px><fieldset onclick=\"Alice.fieldset.template('"+this.aliceId+"', '#eeeeee','solid','#999999')\" onmouseover=this.style.color='red' onmouseout=this.style.color='' style='cursor:pointer;background-color:#eeeeee;width:50;height:40;margin :0;padding:0;'><center><br>ÇÊµå¼Â</center></fieldset></td>"+
-							"<td style=padding-right:4px><fieldset onclick=\"Alice.fieldset.template('"+this.aliceId+"', '#eeeeee','none','#999999')\" onmouseover=this.style.color='red' onmouseout=this.style.color='' style='cursor:pointer;background-color:#eeeeee;width:50;height:40;margin :0;padding:0;border:none'><center><br>ÇÊµå¼Â</center></fieldset>"+
-							"<td style=padding-right:4px><fieldset onclick=\"Alice.fieldset.template('"+this.aliceId+"', '#eeeeee','dotted','#999999')\" onmouseover=this.style.color='red' onmouseout=this.style.color='' style='cursor:pointer;background-color:#eeeeee;width:50;height:40;margin :0;padding:0;border:1px dotted #999999'><center><br>ÇÊµå¼Â</center></fieldset>"+
-							"<td style=padding-right:4px><fieldset onclick=\"Alice.fieldset.template('"+this.aliceId+"', '#CAE5FF','solid','#90C8FF')\" onmouseover=this.style.color='red' onmouseout=this.style.color='' style='cursor:pointer;background-color:#CAE5FF;width:50;height:40;margin :0;padding:0;border:1px solid #90C8FF'><center><br>ÇÊµå¼Â</center></fieldset>"+
-							"<td style=padding-right:4px><fieldset onclick=\"Alice.fieldset.template('"+this.aliceId+"', '#CAE5FF','dotted','#90C8FF')\" onmouseover=this.style.color='red' onmouseout=this.style.color='' style='cursor:pointer;background-color:#CAE5FF;width:50;height:40;margin :0;padding:0;border:1px dotted #90C8FF'><center><br>ÇÊµå¼Â</center></fieldset>"+
-							"<td style=padding-right:4px><fieldset onclick=\"Alice.fieldset.template('"+this.aliceId+"', '#ffffee','solid','#999999','#660066')\" onmouseover=this.style.color='red' onmouseout=this.style.color='#660066' style='cursor:pointer;background-color:#ffffee;width:50;height:40;margin :0;padding:0;color:#660066'><center><br>ÇÊµå¼Â</center></fieldset>"+
-							"<td style=padding-right:4px><fieldset onclick=\"Alice.fieldset.template('"+this.aliceId+"', '#ffffee','dotted','#999999','#660066')\" onmouseover=this.style.color='red' onmouseout=this.style.color='#660066' style='cursor:pointer;background-color:#ffffee;width:50;height:40;margin :0;padding:0;color:#660066;border:1px dotted #999999'><center><br>ÇÊµå¼Â</center></fieldset>"+
-							"<td style=padding-right:4px><fieldset onclick=\"Alice.fieldset.template('"+this.aliceId+"', '#ffffee','none','#999999','#660066')\" onmouseover=this.style.color='red' onmouseout=this.style.color='#660066' style='cursor:pointer;background-color:#ffffee;width:50;height:40;margin :0;padding:0;color:#660066;border:none'><center><br>ÇÊµå¼Â</center></fieldset>"+
+							"<td style=padding-right:4px><fieldset onclick=\"Alice.fieldset.template('"+this.aliceId+"', '#eeeeee','solid','#999999')\" onmouseover=this.style.color='red' onmouseout=this.style.color='' style='cursor:pointer;background-color:#eeeeee;width:50;height:40;margin :0;padding:0;'><center><br>ï¿½Êµï¿½ï¿½</center></fieldset></td>"+
+							"<td style=padding-right:4px><fieldset onclick=\"Alice.fieldset.template('"+this.aliceId+"', '#eeeeee','none','#999999')\" onmouseover=this.style.color='red' onmouseout=this.style.color='' style='cursor:pointer;background-color:#eeeeee;width:50;height:40;margin :0;padding:0;border:none'><center><br>ï¿½Êµï¿½ï¿½</center></fieldset>"+
+							"<td style=padding-right:4px><fieldset onclick=\"Alice.fieldset.template('"+this.aliceId+"', '#eeeeee','dotted','#999999')\" onmouseover=this.style.color='red' onmouseout=this.style.color='' style='cursor:pointer;background-color:#eeeeee;width:50;height:40;margin :0;padding:0;border:1px dotted #999999'><center><br>ï¿½Êµï¿½ï¿½</center></fieldset>"+
+							"<td style=padding-right:4px><fieldset onclick=\"Alice.fieldset.template('"+this.aliceId+"', '#CAE5FF','solid','#90C8FF')\" onmouseover=this.style.color='red' onmouseout=this.style.color='' style='cursor:pointer;background-color:#CAE5FF;width:50;height:40;margin :0;padding:0;border:1px solid #90C8FF'><center><br>ï¿½Êµï¿½ï¿½</center></fieldset>"+
+							"<td style=padding-right:4px><fieldset onclick=\"Alice.fieldset.template('"+this.aliceId+"', '#CAE5FF','dotted','#90C8FF')\" onmouseover=this.style.color='red' onmouseout=this.style.color='' style='cursor:pointer;background-color:#CAE5FF;width:50;height:40;margin :0;padding:0;border:1px dotted #90C8FF'><center><br>ï¿½Êµï¿½ï¿½</center></fieldset>"+
+							"<td style=padding-right:4px><fieldset onclick=\"Alice.fieldset.template('"+this.aliceId+"', '#ffffee','solid','#999999','#660066')\" onmouseover=this.style.color='red' onmouseout=this.style.color='#660066' style='cursor:pointer;background-color:#ffffee;width:50;height:40;margin :0;padding:0;color:#660066'><center><br>ï¿½Êµï¿½ï¿½</center></fieldset>"+
+							"<td style=padding-right:4px><fieldset onclick=\"Alice.fieldset.template('"+this.aliceId+"', '#ffffee','dotted','#999999','#660066')\" onmouseover=this.style.color='red' onmouseout=this.style.color='#660066' style='cursor:pointer;background-color:#ffffee;width:50;height:40;margin :0;padding:0;color:#660066;border:1px dotted #999999'><center><br>ï¿½Êµï¿½ï¿½</center></fieldset>"+
+							"<td style=padding-right:4px><fieldset onclick=\"Alice.fieldset.template('"+this.aliceId+"', '#ffffee','none','#999999','#660066')\" onmouseover=this.style.color='red' onmouseout=this.style.color='#660066' style='cursor:pointer;background-color:#ffffee;width:50;height:40;margin :0;padding:0;color:#660066;border:none'><center><br>ï¿½Êµï¿½ï¿½</center></fieldset>"+
 							"</tr>"+
 						"</table>"+
 					"</td>"+
@@ -1264,57 +1264,57 @@ Web.Editor.prototype = {
 					"<span onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupHide()\">"+Web.util.Image.alice['alc-crud-cancel']+"</span>"+
 			"</center>";
 		
-		Web.popup({title:'ÇÊµå¼Â ¼³Á¤',msg:txt,width:600,height:340});
+		Web.popup({title:'ï¿½Êµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½',msg:txt,width:600,height:340});
 		Web.Form.setStyle("aliceForm");
 	},
 	
 	popupUrlImage: function() {
 		this.popup = true;
 		var txt = ""+			
-			"<h3>ÀÌ¹ÌÁö ¸µÅ© ¼³Á¤</h3>"+
+			"<h3>ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½</h3>"+
 			"<form name=aliceForm>"+
 			"<table border=0 cellspacing=0 cellpadding=0 width=100%>"+			
 			"<tr>"+
-				"<td class=alc-pop-bs1><li>ÀÌ¹ÌÁö</li></td><td><input type=text id=alc-urlimage-link style=width:325></td>"+
+				"<td class=alc-pop-bs1><li>ï¿½Ì¹ï¿½ï¿½ï¿½</li></td><td><input type=text id=alc-urlimage-link style=width:325></td>"+
 			"</tr>"+
 			"<tr>"+
-				"<td class=alc-pop-bs1><li>ÀÌ¹ÌÁö ¼³¸í</li></td><td><input type=text id=alc-urlimage-alt style=width:325></td>"+
+				"<td class=alc-pop-bs1><li>ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</li></td><td><input type=text id=alc-urlimage-alt style=width:325></td>"+
 			"</tr>"+
 			"<tr><td align=center colspan=2><br><span onclick=\"Alice.urlimage.change()\">"+Web.util.Image.alice['alc-crud-select']+"</span></td></tr>"+
 			"<tr>"+
 				"<td colspan=2>"+
 					"<table border=0 cellspacing=0 cellpadding=0 width=100%>"+
 					"<tr>"+
-						"<td class=alc-pop-bs1><li>³Êºñ</li></td><td><input type=text id=alc-urlimage-width title=\"³Êºñ\" style=width:50 onkeyup=Alice.urlimage.keyupWidth()></td>"+
-						"<td align=center rowspan=6 class=alc-pop-bs0 valign=top><strong>¹Ì¸®º¸±â</strong><br><div style='padding:2px 2px 2px 2px;width:250px;height:130px;overflow:auto;border:1px solid #336699;background-color:#fff' id=alc-urlimage-preview-text>"+
+						"<td class=alc-pop-bs1><li>ï¿½Êºï¿½</li></td><td><input type=text id=alc-urlimage-width title=\"ï¿½Êºï¿½\" style=width:50 onkeyup=Alice.urlimage.keyupWidth()></td>"+
+						"<td align=center rowspan=6 class=alc-pop-bs0 valign=top><strong>ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½</strong><br><div style='padding:2px 2px 2px 2px;width:250px;height:130px;overflow:auto;border:1px solid #336699;background-color:#fff' id=alc-urlimage-preview-text>"+
 							"<img id=alc-urlimage-preview style=display:none>"+
-								"°æÂû¿¡ µû¸£¸é ¿À¾¾ ³²¸Å´Â Àü³óµ¿, Áß°îµ¿, Ã»·®¸®¿¡ °¢°¢ °øÀå, Àç´Ü¹æ, Ã¢°í¸¦ ¸¶·ÃÇØµÎ°í ¿ÃÇØ 5¿ùºÎÅÍ ÃÖ±Ù±îÁö ¸íÇ°°ú ¶È°°ÀÌ »ý±ä °¡¹æ 9Ãµ145°³(Á¤Ç°°¡ 110¾ï¿ø)¸¦ ¸¸µç µÚ ÇØ´ç »óÇ¥¸¦ ºÙ¿© µ¿´ë¹®°ú ³²´ë¹® »ó°¡ÀÇ µµ¼Ò¸Å»óµé¿¡°Ô ÆÇ¸ÅÇÑ ÇøÀÇ¸¦ ¹Þ°í ÀÖ´Ù. Á¶»ç °á°ú ±¸¼ÓµÈ ¿À¾¾´Â ÁÖ¿ä ¸íÇ°È¸»çµéÀÌ ºí·¢¸®½ºÆ® 1¼øÀ§¿¡ ¿Ã·Á³õÀº ÇÑ±¹ ÃÖ°íÀÇ Â¦Åü ±â¼úÀÚ·Î¼­ ´Ù¸¥ Â¦Åü ¾÷ÀÚµéÀÌ ÁúÅõÇØ °í¹ßÇÏ´Â °É ÇÇÇÏ±â À§ÇØ Ä£Çü°ú ¿©µ¿»ýÀ» °¢°¢ Àç´Ü¹æ°ú °øÀåÀÇ Ã¥ÀÓÀÚ·Î °í¿ëÇÑ °ÍÀ¸·Î µå·¯³µ´Ù."+
+								"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å´ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ß°îµ¿, Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Ü¹ï¿½, Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ØµÎ°ï¿½ ï¿½ï¿½ï¿½ï¿½ 5ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö±Ù±ï¿½ï¿½ï¿½ ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½È°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 9Ãµ145ï¿½ï¿½(ï¿½ï¿½Ç°ï¿½ï¿½ 110ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½Ù¿ï¿½ ï¿½ï¿½ï¿½ë¹®ï¿½ï¿½ ï¿½ï¿½ï¿½ë¹® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò¸Å»ï¿½é¿¡ï¿½ï¿½ ï¿½Ç¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¸ï¿½ ï¿½Þ°ï¿½ ï¿½Ö´ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¿ï¿½ ï¿½ï¿½Ç°È¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ±ï¿½ ï¿½Ö°ï¿½ï¿½ï¿½ Â¦ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ú·Î¼ï¿½ ï¿½Ù¸ï¿½ Â¦ï¿½ï¿½ ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ Ä£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ü¹ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã¥ï¿½ï¿½ï¿½Ú·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½å·¯ï¿½ï¿½ï¿½ï¿½."+
 							"</div></td>"+
 					"</tr>"+
 					"<tr>"+
-						"<td class=alc-pop-bs1><li>³ôÀÌ</li></td><td><input type=text id=alc-urlimage-height title\"³ôÀÌ\" style=width:50 onkeyup=Alice.urlimage.keyupHeight()></td>"+
+						"<td class=alc-pop-bs1><li>ï¿½ï¿½ï¿½ï¿½</li></td><td><input type=text id=alc-urlimage-height title\"ï¿½ï¿½ï¿½ï¿½\" style=width:50 onkeyup=Alice.urlimage.keyupHeight()></td>"+
 					"</tr>"+
 					"<tr>"+					
-						"<td class=alc-pop-bs1><li>Å×µÎ¸®</li></td><td><input type=text id=alc-urlimage-border title\"Å×µÎ¸®\" style=width:50 onkeyup=Alice.urlimage.keyupBorder()></td>"+
+						"<td class=alc-pop-bs1><li>ï¿½×µÎ¸ï¿½</li></td><td><input type=text id=alc-urlimage-border title\"ï¿½×µÎ¸ï¿½\" style=width:50 onkeyup=Alice.urlimage.keyupBorder()></td>"+
 					"</tr>"+
 					"<tr>"+
-						"<td class=alc-pop-bs1><li>¼öÆò¿©¹é</li></td><td><input type=text id=alc-urlimage-hspace title\"¼öÆò¿©¹é\" style=width:50 onkeyup=Alice.urlimage.keyupHspace()></td>"+
+						"<td class=alc-pop-bs1><li>ï¿½ï¿½ï¿½ò¿©¹ï¿½</li></td><td><input type=text id=alc-urlimage-hspace title\"ï¿½ï¿½ï¿½ò¿©¹ï¿½\" style=width:50 onkeyup=Alice.urlimage.keyupHspace()></td>"+
 					"</tr>"+
 					"<tr>"+
-						"<td class=alc-pop-bs1><li>¼öÁ÷¿©¹é</li></td><td><input type=text id=alc-urlimage-vspace title\"¼öÁ÷¿©¹é\" style=width:50 onkeyup=Alice.urlimage.keyupVspace()></td>"+
+						"<td class=alc-pop-bs1><li>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</li></td><td><input type=text id=alc-urlimage-vspace title\"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\" style=width:50 onkeyup=Alice.urlimage.keyupVspace()></td>"+
 					"</tr>"+
 					"<tr>"+
-						"<td class=alc-pop-bs1><li>Á¤·Ä</li></td><td>"+
+						"<td class=alc-pop-bs1><li>ï¿½ï¿½ï¿½ï¿½</li></td><td>"+
 							"<select id=alc-urlimage-order onchange=Alice.urlimage.changeOrder()>"+
 								"<option></option>"+
-								"<option value=left>¿ÞÂÊ</option>"+
-								"<option value=right>¿À¸¥ÂÊ</option>"+
-								"<option value=top>À§ÂÊ</option>"+
-								"<option value=bottom>¾Æ·¡ÂÊ</option>"+
-								"<option value=absmiddle>ÁÙÁß°£</option>"+
-								"<option value=absbottom>ÁÙ¾Æ·¡</option>"+
-								"<option value=baseline>±âÁØ¼±</option>"+
-								"<option value=textTop>±ÛÀÚÀ§</option>"+								
+								"<option value=left>ï¿½ï¿½ï¿½ï¿½</option>"+
+								"<option value=right>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</option>"+
+								"<option value=top>ï¿½ï¿½ï¿½ï¿½</option>"+
+								"<option value=bottom>ï¿½Æ·ï¿½ï¿½ï¿½</option>"+
+								"<option value=absmiddle>ï¿½ï¿½ï¿½ß°ï¿½</option>"+
+								"<option value=absbottom>ï¿½Ù¾Æ·ï¿½</option>"+
+								"<option value=baseline>ï¿½ï¿½ï¿½Ø¼ï¿½</option>"+
+								"<option value=textTop>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½</option>"+								
 							"</select>"+
 							"<input type=hidden id=alc-is-createlink value=N>"+
 						"</td>"+
@@ -1323,7 +1323,7 @@ Web.Editor.prototype = {
 				"</td>"+
 			"</tr>"+
 			"<tr>"+
-				"<td class=alc-pop-bs1><li>±Û°úºÐ¸®</li></td><td><input type=checkbox id=alc-urlimage-break onclick=Alice.urlimage.insertBreak()></td>"+
+				"<td class=alc-pop-bs1><li>ï¿½Û°ï¿½ï¿½Ð¸ï¿½</li></td><td><input type=checkbox id=alc-urlimage-break onclick=Alice.urlimage.insertBreak()></td>"+
 			"</tr>"+			
 			"</table>"+
 			"</form>"+
@@ -1331,7 +1331,7 @@ Web.Editor.prototype = {
 					"<span onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupHide()\">"+Web.util.Image.alice['alc-crud-cancel']+"</span>"+
 			"</center>";
 
-		Web.popup({title:'ÀÌ¹ÌÁö ¸µÅ© ¼³Á¤',msg:txt,width:500,height:380});
+		Web.popup({title:'ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½',msg:txt,width:500,height:380});
 		Web.Form.setStyle("aliceForm");
 	},
 	
@@ -1339,7 +1339,7 @@ Web.Editor.prototype = {
 		this.popup = true;
 		var image = Alice.config.imageroot;
 		var txt = ""+
-			"<h3>¾ÆÀÌÄÜ »ðÀÔ</h3>"+
+			"<h3>ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</h3>"+
 			"<table border=0 cellspacing=0 cellpadding=2 width=100%>"+
 			"<tr>"+
 				"<td onclick=\"Alice.icon.apply('"+this.aliceId+"','01')\"><img src="+image+"alice/icon/01.gif></td>"+
@@ -1402,296 +1402,296 @@ Web.Editor.prototype = {
 			"<center><span onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupHide()\">"+Web.util.Image.alice['alc-crud-cancel']+"</span>"+
 			"</center>";
 
-		Web.popup({title:'¾ÆÀÌÄÜ »ðÀÔ',msg:txt,width:250,height:280});
+		Web.popup({title:'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½',msg:txt,width:250,height:280});
 	},
 	
 	popupSpecialChar: function() {
 		this.popup = true;
 		var txt = ""+
-			"<h3>Æ¯¼ö¹®ÀÚ »ðÀÔ</h3>"+
+			"<h3>Æ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</h3>"+
 			"<table border=0 cellspacing=0 cellpadding=0 width=100%>"+
 				"<tr>"+
 			 	"<td width=82 align=center><input type=text id=alc-char-preivew readonly></td>"+
 			    "<td bgcolor=#C6D5E7>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Í');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Í class='alc-bttns-char'>¨Í</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Î');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Î class='alc-bttns-char'>¨Î</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ï');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ï class='alc-bttns-char'>¨Ï</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ð');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ð class='alc-bttns-char'>¨Ð</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ñ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ñ class='alc-bttns-char'>¨Ñ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ò');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ò class='alc-bttns-char'>¨Ò</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ó');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ó class='alc-bttns-char'>¨Ó</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ô');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ô class='alc-bttns-char'>¨Ô</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Õ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Õ class='alc-bttns-char'>¨Õ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ö');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ö class='alc-bttns-char'>¨Ö</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨×');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨× class='alc-bttns-char'>¨×</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ø');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ø class='alc-bttns-char'>¨Ø</button><br>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ù');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ù class='alc-bttns-char'>¨Ù</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ú');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ú class='alc-bttns-char'>¨Ú</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Û');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Û class='alc-bttns-char'>¨Û</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ü');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ü class='alc-bttns-char'>¨Ü</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ý');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ý class='alc-bttns-char'>¨Ý</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Þ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Þ class='alc-bttns-char'>¨Þ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨ß');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨ß class='alc-bttns-char'>¨ß</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨à');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨à class='alc-bttns-char'>¨à</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨á');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨á class='alc-bttns-char'>¨á</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨â');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨â class='alc-bttns-char'>¨â</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨ã');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨ã class='alc-bttns-char'>¨ã</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨ä');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨ä class='alc-bttns-char'>¨ä</button><br>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨å');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨å class='alc-bttns-char'>¨å</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨æ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨æ class='alc-bttns-char'>¨æ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨ç');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨ç class='alc-bttns-char'>¨ç</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨è');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨è class='alc-bttns-char'>¨è</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨é');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨é class='alc-bttns-char'>¨é</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨ê');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨ê class='alc-bttns-char'>¨ê</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨ë');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨ë class='alc-bttns-char'>¨ë</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨ì');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨ì class='alc-bttns-char'>¨ì</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨í');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨í class='alc-bttns-char'>¨í</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨î');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨î class='alc-bttns-char'>¨î</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨ï');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨ï class='alc-bttns-char'>¨ï</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨ð');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨ð class='alc-bttns-char'>¨ð</button>"+      
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button><br>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button><br>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+      
 			    "</td>"+
 			    "</tr>"+
 			    "<tr>"+
 			   	"<td colspan=2 bgcolor=#C6D5E7>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨ñ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨ñ class='alc-bttns-char'>¨ñ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨ò');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨ò class='alc-bttns-char'>¨ò</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨ó');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨ó class='alc-bttns-char'>¨ó</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨ô');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨ô class='alc-bttns-char'>¨ô</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨õ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨õ class='alc-bttns-char'>¨õ</button>"+     
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¤ï');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¤ï class='alc-bttns-char'>¤ï</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¤ð');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¤ð class='alc-bttns-char'>¤ð</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¤ñ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¤ñ class='alc-bttns-char'>¤ñ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¤õ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¤õ class='alc-bttns-char'>¤õ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¤é');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¤é class='alc-bttns-char'>¤é</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¤è');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¤è class='alc-bttns-char'>¤è</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¤ô');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¤ô class='alc-bttns-char'>¤ô</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨ö');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨ö class='alc-bttns-char'>¨ö</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','££');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=££ class='alc-bttns-char'>££</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£¦');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£¦ class='alc-bttns-char'>£¦</button><br>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£ª');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£ª class='alc-bttns-char'>£ª</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£À');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£À class='alc-bttns-char'>£À</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡×');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡× class='alc-bttns-char'>¡×</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Ø');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Ø class='alc-bttns-char'>¡Ø</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Ù');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Ù class='alc-bttns-char'>¡Ù</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Ú');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Ú class='alc-bttns-char'>¡Ú</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Û');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Û class='alc-bttns-char'>¡Û</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Ü');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Ü class='alc-bttns-char'>¡Ü</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Ý');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Ý class='alc-bttns-char'>¡Ý</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Þ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Þ class='alc-bttns-char'>¡Þ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ß');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ß class='alc-bttns-char'>¡ß</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡à');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡à class='alc-bttns-char'>¡à</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡á');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡á class='alc-bttns-char'>¡á</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡â');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡â class='alc-bttns-char'>¡â</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ã');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ã class='alc-bttns-char'>¡ã</button><br>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ä');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ä class='alc-bttns-char'>¡ä</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡å');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡å class='alc-bttns-char'>¡å</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡æ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡æ class='alc-bttns-char'>¡æ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ç');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ç class='alc-bttns-char'>¡ç</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡è');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡è class='alc-bttns-char'>¡è</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡é');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡é class='alc-bttns-char'>¡é</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ê');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ê class='alc-bttns-char'>¡ê</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ë');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ë class='alc-bttns-char'>¡ë</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢·');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢· class='alc-bttns-char'>¢·</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢¸');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢¸ class='alc-bttns-char'>¢¸</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢¹');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢¹ class='alc-bttns-char'>¢¹</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢º');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢º class='alc-bttns-char'>¢º</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢»');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢» class='alc-bttns-char'>¢»</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢¼');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢¼ class='alc-bttns-char'>¢¼</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢½ class='alc-bttns-char'>¢½</button><br>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢¾');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢¾ class='alc-bttns-char'>¢¾</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢¿');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢¿ class='alc-bttns-char'>¢¿</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢À');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢À class='alc-bttns-char'>¢À</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Á');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Á class='alc-bttns-char'>¢Á</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Â');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Â class='alc-bttns-char'>¢Â</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ã');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ã class='alc-bttns-char'>¢Ã</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ä');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ä class='alc-bttns-char'>¢Ä</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Å');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Å class='alc-bttns-char'>¢Å</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Æ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Æ class='alc-bttns-char'>¢Æ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ç');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ç class='alc-bttns-char'>¢Ç</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢È');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢È class='alc-bttns-char'>¢È</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢É');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢É class='alc-bttns-char'>¢É</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ê');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ê class='alc-bttns-char'>¢Ê</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ë');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ë class='alc-bttns-char'>¢Ë</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ì');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ì class='alc-bttns-char'>¢Ì</button><br>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Í');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Í class='alc-bttns-char'>¢Í</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Î');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Î class='alc-bttns-char'>¢Î</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ï');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ï class='alc-bttns-char'>¢Ï</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ð');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ð class='alc-bttns-char'>¢Ð</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ñ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ñ class='alc-bttns-char'>¢Ñ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ò');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ò class='alc-bttns-char'>¢Ò</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ó');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ó class='alc-bttns-char'>¢Ó</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ô');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ô class='alc-bttns-char'>¢Ô</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Õ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Õ class='alc-bttns-char'>¢Õ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ö');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ö class='alc-bttns-char'>¢Ö</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢×');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢× class='alc-bttns-char'>¢×</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ø');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ø class='alc-bttns-char'>¢Ø</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ù');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ù class='alc-bttns-char'>¢Ù</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ú');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ú class='alc-bttns-char'>¢Ú</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Û');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Û class='alc-bttns-char'>¢Û</button><br>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ü');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ü class='alc-bttns-char'>¢Ü</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Ý');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Ý class='alc-bttns-char'>¢Ý</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢Þ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢Þ class='alc-bttns-char'>¢Þ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢ß');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢ß class='alc-bttns-char'>¢ß</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢à');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢à class='alc-bttns-char'>¢à</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢á');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢á class='alc-bttns-char'>¢á</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢â');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢â class='alc-bttns-char'>¢â</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢ã');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢ã class='alc-bttns-char'>¢ã</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢ä');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢ä class='alc-bttns-char'>¢ä</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢å');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢å class='alc-bttns-char'>¢å</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢ç');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢ç class='alc-bttns-char'>¢ç</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£¢');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£¢ class='alc-bttns-char'>£¢</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡²');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡² class='alc-bttns-char'>¡²</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡³');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡³ class='alc-bttns-char'>¡³</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡´');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡´ class='alc-bttns-char'>¡´</button><br>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡µ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡µ class='alc-bttns-char'>¡µ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡®');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡® class='alc-bttns-char'>¡®</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡¯');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡¯ class='alc-bttns-char'>¡¯</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡°');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡° class='alc-bttns-char'>¡°</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡±');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡± class='alc-bttns-char'>¡±</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡¶');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡¶ class='alc-bttns-char'>¡¶</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡·');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡· class='alc-bttns-char'>¡·</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡¸');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡¸ class='alc-bttns-char'>¡¸</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡¹');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡¹ class='alc-bttns-char'>¡¹</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡º');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡º class='alc-bttns-char'>¡º</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡»');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡» class='alc-bttns-char'>¡»</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡¼');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡¼ class='alc-bttns-char'>¡¼</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡½ class='alc-bttns-char'>¡½</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£¤');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£¤ class='alc-bttns-char'>£¤</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£¥');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£¥ class='alc-bttns-char'>£¥</button><br>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£Ü');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£Ü class='alc-bttns-char'>£Ü</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡É');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡É class='alc-bttns-char'>¡É</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Ê');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Ê class='alc-bttns-char'>¡Ê</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Ë');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Ë class='alc-bttns-char'>¡Ë</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Í');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Í class='alc-bttns-char'>¡Í</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢µ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢µ class='alc-bttns-char'>¢µ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','§¤');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=§¤ class='alc-bttns-char'>§¤</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','§¥');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=§¥ class='alc-bttns-char'>§¥</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','§¦');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=§¦ class='alc-bttns-char'>§¦</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','§§');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=§§ class='alc-bttns-char'>§§</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','§¨');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=§¨ class='alc-bttns-char'>§¨</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','§©');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=§© class='alc-bttns-char'>§©</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','§ª');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=§ª class='alc-bttns-char'>§ª</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','§Ù');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=§Ù class='alc-bttns-char'>§Ù</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¥È');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¥È class='alc-bttns-char'>¥È</button><br>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¥Î');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¥Î class='alc-bttns-char'>¥Î</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¥Ò');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¥Ò class='alc-bttns-char'>¥Ò</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¥Õ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¥Õ class='alc-bttns-char'>¥Õ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¥×');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¥× class='alc-bttns-char'>¥×</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¥Ø');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¥Ø class='alc-bttns-char'>¥Ø</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¥á');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¥á class='alc-bttns-char'>¥á</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¥â');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¥â class='alc-bttns-char'>¥â</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¥ã');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¥ã class='alc-bttns-char'>¥ã</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¥ð');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¥ð class='alc-bttns-char'>¥ð</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¥ö');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¥ö class='alc-bttns-char'>¥ö</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¥÷');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¥÷ class='alc-bttns-char'>¥÷</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¥ø');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¥ø class='alc-bttns-char'>¥ø</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£«');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£« class='alc-bttns-char'>£«</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£­');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£­ class='alc-bttns-char'>£­</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£¼');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£¼ class='alc-bttns-char'>£¼</button><br>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£½ class='alc-bttns-char'>£½</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£¾');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£¾ class='alc-bttns-char'>£¾</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡¾');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡¾ class='alc-bttns-char'>¡¾</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡¿');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡¿ class='alc-bttns-char'>¡¿</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡À');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡À class='alc-bttns-char'>¡À</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Á');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Á class='alc-bttns-char'>¡Á</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Â');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Â class='alc-bttns-char'>¡Â</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Ã');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Ã class='alc-bttns-char'>¡Ã</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Ä');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Ä class='alc-bttns-char'>¡Ä</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Å');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Å class='alc-bttns-char'>¡Å</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Î');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Î class='alc-bttns-char'>¡Î</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Ï');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Ï class='alc-bttns-char'>¡Ï</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Ð');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Ð class='alc-bttns-char'>¡Ð</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Ñ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Ñ class='alc-bttns-char'>¡Ñ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Ò');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Ò class='alc-bttns-char'>¡Ò</button><br>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Ó');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Ó class='alc-bttns-char'>¡Ó</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Ô');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Ô class='alc-bttns-char'>¡Ô</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Õ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Õ class='alc-bttns-char'>¡Õ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡Ö');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡Ö class='alc-bttns-char'>¡Ö</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ì');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ì class='alc-bttns-char'>¡ì</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡í');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡í class='alc-bttns-char'>¡í</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡î');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡î class='alc-bttns-char'>¡î</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ï');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ï class='alc-bttns-char'>¡ï</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ð');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ð class='alc-bttns-char'>¡ð</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ñ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ñ class='alc-bttns-char'>¡ñ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ò');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ò class='alc-bttns-char'>¡ò</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ó');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ó class='alc-bttns-char'>¡ó</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ô');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ô class='alc-bttns-char'>¡ô</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡õ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡õ class='alc-bttns-char'>¡õ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ö');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ö class='alc-bttns-char'>¡ö</button><br>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡÷');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡÷ class='alc-bttns-char'>¡÷</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ø');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ø class='alc-bttns-char'>¡ø</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ù');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ù class='alc-bttns-char'>¡ù</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ú');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ú class='alc-bttns-char'>¡ú</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡û');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡û class='alc-bttns-char'>¡û</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ü');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ü class='alc-bttns-char'>¡ü</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡ý');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡ý class='alc-bttns-char'>¡ý</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡þ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡þ class='alc-bttns-char'>¡þ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢¡');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢¡ class='alc-bttns-char'>¢¡</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢¢');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢¢ class='alc-bttns-char'>¢¢</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢£');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢£ class='alc-bttns-char'>¢£</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢¤');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢¤ class='alc-bttns-char'>¢¤</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢±');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢± class='alc-bttns-char'>¢±</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢²');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢² class='alc-bttns-char'>¢²</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢³');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢³ class='alc-bttns-char'>¢³</button><br>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£¯');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£¯ class='alc-bttns-char'>£¯</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£¡');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£¡ class='alc-bttns-char'>£¡</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£¿');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£¿ class='alc-bttns-char'>£¿</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£ß');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£ß class='alc-bttns-char'>£ß</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','£þ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=£þ class='alc-bttns-char'>£þ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡¥');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡¥ class='alc-bttns-char'>¡¥</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡¦');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡¦ class='alc-bttns-char'>¡¦</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡¨');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡¨ class='alc-bttns-char'>¡¨</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡¬');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡¬ class='alc-bttns-char'>¡¬</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¡­');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¡­ class='alc-bttns-char'>¡­</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¢¦');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¢¦ class='alc-bttns-char'>¢¦</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨±');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨± class='alc-bttns-char'>¨±</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨²');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨² class='alc-bttns-char'>¨²</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨³');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨³ class='alc-bttns-char'>¨³</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨´');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨´ class='alc-bttns-char'>¨´</button><br>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨µ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨µ class='alc-bttns-char'>¨µ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨¶');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨¶ class='alc-bttns-char'>¨¶</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨·');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨· class='alc-bttns-char'>¨·</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨¸');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨¸ class='alc-bttns-char'>¨¸</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨¹');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨¹ class='alc-bttns-char'>¨¹</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨º');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨º class='alc-bttns-char'>¨º</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨»');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨» class='alc-bttns-char'>¨»</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨¼');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨¼ class='alc-bttns-char'>¨¼</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨½ class='alc-bttns-char'>¨½</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨¾');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨¾ class='alc-bttns-char'>¨¾</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨¿');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨¿ class='alc-bttns-char'>¨¿</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨À');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨À class='alc-bttns-char'>¨À</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Á');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Á class='alc-bttns-char'>¨Á</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Â');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Â class='alc-bttns-char'>¨Â</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ã');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ã class='alc-bttns-char'>¨Ã</button><br>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ä');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ä class='alc-bttns-char'>¨Ä</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Å');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Å class='alc-bttns-char'>¨Å</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Æ');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Æ class='alc-bttns-char'>¨Æ</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ç');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ç class='alc-bttns-char'>¨Ç</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨È');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨È class='alc-bttns-char'>¨È</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨É');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨É class='alc-bttns-char'>¨É</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ê');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ê class='alc-bttns-char'>¨Ê</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ë');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ë class='alc-bttns-char'>¨Ë</button>"+
-			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','¨Ì');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=¨Ì class='alc-bttns-char'>¨Ì</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+     
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button><br>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button><br>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button><br>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button><br>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button><br>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button><br>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button><br>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button><br>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button><br>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button><br>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button><br>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button><br>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button><br>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button><br>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
+			    "<button onclick=\"Alice.char.apply('"+this.aliceId+"','ï¿½ï¿½');return false;\" onmouseover=Alice.char.over(this); onmouseout=Alice.char.out(this); value=ï¿½ï¿½ class='alc-bttns-char'>ï¿½ï¿½</button>"+
 			    "</td>"+
 			    "</tr>"+
 			"</table><br>"+
 			"<center><span onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupHide()\">"+Web.util.Image.alice['alc-crud-cancel']+"</span>"+
 			"</center>";
 
-		Web.popup({title:'Æ¯¼ö¹®ÀÚ »ðÀÔ',msg:txt,width:460,height:600});
+		Web.popup({title:'Æ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½',msg:txt,width:460,height:600});
 	},
 	
 	popupCreateLink: function() {
 		this.popup = true;
 		var txt = ""+			
-			"<h3>ÅØ½ºÆ® ¸µÅ© ¼³Á¤</h3>"+
+			"<h3>ï¿½Ø½ï¿½Æ® ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½</h3>"+
 			"<form name=aliceForm>"+
 			"<table border=0 cellspacing=0 cellpadding=0 width=100%>"+			
 			"<tr>"+
-				"<td class=alc-pop-bs1><li>¸µÅ©</li></td><td><input type=text id=alc-link-url style=width:325></td>"+
+				"<td class=alc-pop-bs1><li>ï¿½ï¿½Å©</li></td><td><input type=text id=alc-link-url style=width:325></td>"+
 			"</tr>"+
 			"<tr>"+
-				"<td class=alc-pop-bs1><li>ÅØ½ºÆ®</li></td><td><input type=text id=alc-link-text style=width:325></td>"+
+				"<td class=alc-pop-bs1><li>ï¿½Ø½ï¿½Æ®</li></td><td><input type=text id=alc-link-text style=width:325></td>"+
 			"</tr>"+			
 			"</table>"+
 			"</form>"+
@@ -1699,7 +1699,7 @@ Web.Editor.prototype = {
 					"<span onclick=\"Web.EditorManager.get('"+this.aliceId+"').popupHide()\">"+Web.util.Image.alice['alc-crud-cancel']+"</span>"+
 			"</center>";
 
-		Web.popup({title:'ÅØ½ºÆ® ¸µÅ© ¼³Á¤',msg:txt,width:500,height:150});
+		Web.popup({title:'ï¿½Ø½ï¿½Æ® ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½',msg:txt,width:500,height:150});
 		Web.Form.setStyle("aliceForm");
 	}
 };
@@ -1711,7 +1711,7 @@ Alice.image = {
 	filesize:0,
 	upload: function() {
 		if (!$("alc-image-upload").present()) {
-			Web.alert({title:'°æ°í',msg:'¾÷·ÎµåÇÒ ÀÌ¹ÌÁö¸¦ ¼±ÅÃÇÏ¼¼¿ä'});
+			Web.alert({title:'ï¿½ï¿½ï¿½',msg:'ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½'});
 			return;	
 		}
 		
@@ -1719,13 +1719,13 @@ Alice.image = {
 		fnm = fnm.substring(fnm.lastIndexOf('\\')+1);
 		for (var i = 0; i < fnm.length; i++) {
 			if ("!@#$%^&*,;:'\"?=".indexOf(fnm.substring(i, i + 1)) > -1) {
-				alert('ÆÄÀÏ¸í¿¡ Æ¯¼ö¹®ÀÚ°¡ µé¾î°¡¸é ¾ÈµË´Ï´Ù');
+				alert('ï¿½ï¿½ï¿½Ï¸ï¿½ Æ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½ÈµË´Ï´ï¿½');
 				return;
 			}
 		}
 		
 		if (!Web.Form.validateFile("alc-image-upload", "gif", "jpg", "png", "jpeg")) {
-			Web.alert({title:'°æ°í',msg:'GIF,JPG,PNG,JPEG ÆÄÀÏ¸¸ ¾÷·Î°¡ °¡´ÉÇÕ´Ï´Ù'});
+			Web.alert({title:'ï¿½ï¿½ï¿½',msg:'GIF,JPG,PNG,JPEG ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Õ´Ï´ï¿½'});
 			return;	
 		}
 		
@@ -1849,7 +1849,7 @@ Alice.image = {
 	
 	apply: function(id) {
 		if (!$("alc-image-upload").present() || $("alc-is-upload").value != "Y") {
-			Web.alert({title:'°æ°í',msg:'ÀÌ¹ÌÁö¸¦ ¼±ÅÃÈÄ ¾÷·Îµå ¹öÆ°À» Å¬¸¯ÇÏ¼¼¿ä'});
+			Web.alert({title:'ï¿½ï¿½ï¿½',msg:'ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½'});
 			return;	
 		}
 		var img = "<img src="+$("alc-image-preview").src+" name=alc-images "+
@@ -1911,7 +1911,7 @@ Alice.urlimage = {
 			$("alc-is-createlink").value = "Y";
 		}
 		else {
-			Web.alert({title:'°æ°í',msg:'ÀÌ¹ÌÁö ÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ¼¼¿ä',focus:"alc-urlimage-link"});
+			Web.alert({title:'ï¿½ï¿½ï¿½',msg:'ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½Ö¼Ò¸ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½',focus:"alc-urlimage-link"});
 		}
 	},
 	keyupWidth: function() {
@@ -1967,7 +1967,7 @@ Alice.urlimage = {
 	},
 	apply: function(id) {
 		if ($("alc-is-createlink").value != "Y") {
-			Web.alert({title:'°æ°í',msg:'ÀÌ¹ÌÁö ÁÖ¼Ò¸¦ ÀÔ·Â ÈÄ ¾÷·Îµå ¹öÆ°À» Å¬¸¯ÇÏ¼¼¿ä',focus:"alc-urlimage-link"});
+			Web.alert({title:'ï¿½ï¿½ï¿½',msg:'ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½Ö¼Ò¸ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½',focus:"alc-urlimage-link"});
 			return;	
 		}
 		var img = "<img src="+$("alc-urlimage-preview").src+" name=alc-urlimages "+
@@ -1996,7 +1996,7 @@ Alice.flash = {
 	filesize:0,
 	upload: function() {
 		if (!$("alc-flash-upload").present()) {
-			Web.alert({title:'°æ°í',msg:'¾÷·ÎµåÇÒ ÇÃ·¡½¬¸¦ ¼±ÅÃÇÏ¼¼¿ä'});
+			Web.alert({title:'ï¿½ï¿½ï¿½',msg:'ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½'});
 			return;	
 		}
 		
@@ -2004,13 +2004,13 @@ Alice.flash = {
 		fnm = fnm.substring(fnm.lastIndexOf('\\')+1);
 		for (var i = 0; i < fnm.length; i++) {
 			if ("!@#$%^&*,;:'\"?=".indexOf(fnm.substring(i, i + 1)) > -1) {
-				alert('ÆÄÀÏ¸í¿¡ Æ¯¼ö¹®ÀÚ°¡ µé¾î°¡¸é ¾ÈµË´Ï´Ù');
+				alert('ï¿½ï¿½ï¿½Ï¸ï¿½ Æ¯ï¿½ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½ÈµË´Ï´ï¿½');
 				return;
 			}
 		}
 		
 		if (!Web.Form.validateFile("alc-flash-upload", "swf")) {
-			Web.alert({title:'°æ°í',msg:'SWF ÆÄÀÏ¸¸ ¾÷·ÎµåÇØÁÖ¼¼¿ä'});
+			Web.alert({title:'ï¿½ï¿½ï¿½',msg:'SWF ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½'});
 			return;	
 		}
 		this.loading(true);
@@ -2049,7 +2049,7 @@ Alice.flash = {
 	},
 	apply: function(id) {
 		if (!$("alc-flash-upload").present() || $("alc-is-upload").value != "Y") {
-			Web.alert({title:'°æ°í',msg:'ÇÃ·¡½¬¸¦ ¼±ÅÃÈÄ ¾÷·Îµå ¹öÆ°À» Å¬¸¯ÇÏ¼¼¿ä'});
+			Web.alert({title:'ï¿½ï¿½ï¿½',msg:'ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½Æ°ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½'});
 			return;	
 		}
 
@@ -2266,7 +2266,7 @@ Alice.table = {
 				tab.deleteRow(v1);
 			}
 			else {
-				Web.alert({title:'°æ°í',msg:'»èÁ¦ÇÒ ¼ö ÀÖ´Â ¹üÀ§°¡ ¾Æ´Õ´Ï´Ù'});
+				Web.alert({title:'ï¿½ï¿½ï¿½',msg:'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Õ´Ï´ï¿½'});
 			}
 		}
 		Web.EditorManager.pullAllPop();
@@ -2321,7 +2321,7 @@ Alice.table = {
 				}			
 			}
 			else {
-				Web.alert({title:'°æ°í',msg:'»èÁ¦ÇÒ ¼ö ÀÖ´Â ¹üÀ§°¡ ¾Æ´Õ´Ï´Ù'});
+				Web.alert({title:'ï¿½ï¿½ï¿½',msg:'ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Õ´Ï´ï¿½'});
 			}
 		}
 		Web.EditorManager.pullAllPop();
@@ -2804,7 +2804,7 @@ Alice.font = {
 Alice.link = {
 	apply: function(id) {
 		if (!$("alc-link-url").present() || !$("alc-link-text").present()) {
-			Web.alert({title:'°æ°í',msg:'¸µÅ©¸¦ ¸¸µé ÁÖ¼Ò¿Í ÅØ½ºÆ®¸¦ ÀÔ·ÂÇÏ¼¼¿ä',focus:"alc-link-url"});
+			Web.alert({title:'ï¿½ï¿½ï¿½',msg:'ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼Ò¿ï¿½ ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½',focus:"alc-link-url"});
 			return;	
 		}
 		
@@ -2964,13 +2964,13 @@ Alice.icon = {
 
 Object.extend(Web.util.Image, {
 	alice: {
-		'alc-crud-upload':'<span title="¾÷·Îµå" class=alc-crud><img src='+Alice.config.imageroot+'alice/button/btn_upload.gif onmouseover=this.src="'+Alice.config.imageroot+'alice/button/btn_upload_o.gif" onmouseout=this.src="'+Alice.config.imageroot+'alice/button/btn_upload.gif"></span>',
-		'alc-crud-apply':'<span title="Àû¿ëÇÏ±â" class=alc-crud><img src='+Alice.config.imageroot+'alice/button/btn_apply.gif onmouseover=this.src="'+Alice.config.imageroot+'alice/button/btn_apply_o.gif" onmouseout=this.src="'+Alice.config.imageroot+'alice/button/btn_apply.gif"></span>',
-		'alc-crud-cancel':'<span title="Ãë¼Ò" class=alc-crud><img src='+Alice.config.imageroot+'alice/button/btn_cancel.gif onmouseover=this.src="'+Alice.config.imageroot+'alice/button/btn_cancel_o.gif" onmouseout=this.src="'+Alice.config.imageroot+'alice/button/btn_cancel.gif"></span>',
-		'alc-crud-select':'<span title="¼±ÅÃÇÏ±â" class=alc-crud><img src='+Alice.config.imageroot+'alice/button/btn_check.gif onmouseover=this.src="'+Alice.config.imageroot+'alice/button/btn_check_o.gif" onmouseout=this.src="'+Alice.config.imageroot+'alice/button/btn_check.gif"></span>',
-		'alc-crud-loading':'<span title="·ÎµùÁß" class=alc-crud><img src='+Alice.config.imageroot+'alice/form/i_loading.gif></span>',
-		'alc-etc-up':'<span title="Áõ°¡" class=alc-crud><img src='+Alice.config.imageroot+'alice/button/btn_up.gif onmouseover=this.src="'+Alice.config.imageroot+'alice/button/btn_up_o.gif" onmouseout=this.src="'+Alice.config.imageroot+'alice/button/btn_up.gif"></span>',
-		'alc-etc-down':'<span title="°¨¼Ò" class=alc-crud><img src='+Alice.config.imageroot+'alice/button/btn_down.gif onmouseover=this.src="'+Alice.config.imageroot+'alice/button/btn_down_o.gif" onmouseout=this.src="'+Alice.config.imageroot+'alice/button/btn_down.gif"></span>'
+		'alc-crud-upload':'<span title="ï¿½ï¿½ï¿½Îµï¿½" class=alc-crud><img src='+Alice.config.imageroot+'alice/button/btn_upload.gif onmouseover=this.src="'+Alice.config.imageroot+'alice/button/btn_upload_o.gif" onmouseout=this.src="'+Alice.config.imageroot+'alice/button/btn_upload.gif"></span>',
+		'alc-crud-apply':'<span title="ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½" class=alc-crud><img src='+Alice.config.imageroot+'alice/button/btn_apply.gif onmouseover=this.src="'+Alice.config.imageroot+'alice/button/btn_apply_o.gif" onmouseout=this.src="'+Alice.config.imageroot+'alice/button/btn_apply.gif"></span>',
+		'alc-crud-cancel':'<span title="ï¿½ï¿½ï¿½" class=alc-crud><img src='+Alice.config.imageroot+'alice/button/btn_cancel.gif onmouseover=this.src="'+Alice.config.imageroot+'alice/button/btn_cancel_o.gif" onmouseout=this.src="'+Alice.config.imageroot+'alice/button/btn_cancel.gif"></span>',
+		'alc-crud-select':'<span title="ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½" class=alc-crud><img src='+Alice.config.imageroot+'alice/button/btn_check.gif onmouseover=this.src="'+Alice.config.imageroot+'alice/button/btn_check_o.gif" onmouseout=this.src="'+Alice.config.imageroot+'alice/button/btn_check.gif"></span>',
+		'alc-crud-loading':'<span title="ï¿½Îµï¿½ï¿½ï¿½" class=alc-crud><img src='+Alice.config.imageroot+'alice/form/i_loading.gif></span>',
+		'alc-etc-up':'<span title="ï¿½ï¿½ï¿½ï¿½" class=alc-crud><img src='+Alice.config.imageroot+'alice/button/btn_up.gif onmouseover=this.src="'+Alice.config.imageroot+'alice/button/btn_up_o.gif" onmouseout=this.src="'+Alice.config.imageroot+'alice/button/btn_up.gif"></span>',
+		'alc-etc-down':'<span title="ï¿½ï¿½ï¿½ï¿½" class=alc-crud><img src='+Alice.config.imageroot+'alice/button/btn_down.gif onmouseover=this.src="'+Alice.config.imageroot+'alice/button/btn_down_o.gif" onmouseout=this.src="'+Alice.config.imageroot+'alice/button/btn_down.gif"></span>'
 	}
 });
 
@@ -2997,10 +2997,10 @@ Object.extend(Web.util.Select, {
 			'</div>',
 		'alc-font-family':'<div><button name=alc-select-{0} style="width:98px" onclick="Web.EditorManager.get(\'{1}\').popupFontFamily();return false;"><img src='+Alice.config.imageroot+'alice/form/sel_font.gif onmouseover=this.src="'+Alice.config.imageroot+'alice/form/sel_font_o.gif" onmouseout=this.src="'+Alice.config.imageroot+'alice/form/sel_font.gif" class=alc-img-b></button></div>'+
 			'<div id=alc-font-family-box-{0} class=alc-font-box>'+
-				'<div class=alc-select-font-style onmouseover=this.className="alc-select-font-style-o" onmouseout=this.className="alc-select-font-style" onclick="Alice.font.setFamily(\'{1}\',\'±¼¸²\')" style="font-family:±¼¸²">±¼¸²</div>'+
-				'<div class=alc-select-font-style onmouseover=this.className="alc-select-font-style-o" onmouseout=this.className="alc-select-font-style" onclick="Alice.font.setFamily(\'{1}\',\'±Ã¼­\')" style="font-family:±Ã¼­">±Ã¼­</div>'+
-				'<div class=alc-select-font-style onmouseover=this.className="alc-select-font-style-o" onmouseout=this.className="alc-select-font-style" onclick="Alice.font.setFamily(\'{1}\',\'µ¸¿ò\')" style="font-family:µ¸¿ò">µ¸¿ò</div>'+
-				'<div class=alc-select-font-style onmouseover=this.className="alc-select-font-style-o" onmouseout=this.className="alc-select-font-style" onclick="Alice.font.setFamily(\'{1}\',\'¹ÙÅÁ\')" style="font-family:¹ÙÅÁ">¹ÙÅÁ</div>'+
+				'<div class=alc-select-font-style onmouseover=this.className="alc-select-font-style-o" onmouseout=this.className="alc-select-font-style" onclick="Alice.font.setFamily(\'{1}\',\'ï¿½ï¿½ï¿½ï¿½\')" style="font-family:ï¿½ï¿½ï¿½ï¿½">ï¿½ï¿½ï¿½ï¿½</div>'+
+				'<div class=alc-select-font-style onmouseover=this.className="alc-select-font-style-o" onmouseout=this.className="alc-select-font-style" onclick="Alice.font.setFamily(\'{1}\',\'ï¿½Ã¼ï¿½\')" style="font-family:ï¿½Ã¼ï¿½">ï¿½Ã¼ï¿½</div>'+
+				'<div class=alc-select-font-style onmouseover=this.className="alc-select-font-style-o" onmouseout=this.className="alc-select-font-style" onclick="Alice.font.setFamily(\'{1}\',\'ï¿½ï¿½ï¿½ï¿½\')" style="font-family:ï¿½ï¿½ï¿½ï¿½">ï¿½ï¿½ï¿½ï¿½</div>'+
+				'<div class=alc-select-font-style onmouseover=this.className="alc-select-font-style-o" onmouseout=this.className="alc-select-font-style" onclick="Alice.font.setFamily(\'{1}\',\'ï¿½ï¿½ï¿½ï¿½\')" style="font-family:ï¿½ï¿½ï¿½ï¿½">ï¿½ï¿½ï¿½ï¿½</div>'+
 				'<div class=alc-select-font-style onmouseover=this.className="alc-select-font-style-o" onmouseout=this.className="alc-select-font-style" onclick="Alice.font.setFamily(\'{1}\',\'Arial\')" style="font-family:Arial">Arial</div>'+
 				'<div class=alc-select-font-style onmouseover=this.className="alc-select-font-style-o" onmouseout=this.className="alc-select-font-style" onclick="Alice.font.setFamily(\'{1}\',\'Arial Black\')" style="font-family:Arial Black">Arial Black</div>'+
 				'<div class=alc-select-font-style onmouseover=this.className="alc-select-font-style-o" onmouseout=this.className="alc-select-font-style" onclick="Alice.font.setFamily(\'{1}\',\'Comic Sans MS\')" style="font-family:Comic Sans MS">Comic Sans MS</div>'+
