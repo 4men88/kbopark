@@ -50,11 +50,11 @@
 				
 				<h5>글쓰기에 실패하였습니다.</h5>
 				<div class="p-2">
-					<a class="btn btn-primary" href="#" role="button"
+					<a class="btn btn-primary" href="javascript:moveWrite();" role="button"
 						style="color: white !important;">다시작성</a>
 				</div>
 				<div class="p-2">
-					<a class="btn btn-secondary" href="#" role="button"
+					<a class="btn btn-secondary" href="javascript:listArticle('<%=pg%>','<%=key%>','<%=word%>');" role="button"
 						style="color: white !important;">목록가기</a>
 				</div>
 			</div>

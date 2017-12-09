@@ -72,7 +72,7 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	
-/*	@Override
+	@Override
 	public void updateHit(int seq) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -80,8 +80,8 @@ public class BoardDaoImpl implements BoardDao {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
 			sql.append("update board \n");
-			sql.append("set hit = hit + 1 \n");
-			sql.append("where seq = ?");
+			sql.append("set bcount = bcount + 1 \n");
+			sql.append("where bno = ?");
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setInt(1, seq);
 			pstmt.executeUpdate();
@@ -91,7 +91,42 @@ public class BoardDaoImpl implements BoardDao {
 			DBClose.close(conn, pstmt);
 		}	
 	}
-
+	
+	@Override
+	public BoardDto viewArticle(int seq) {
+		BoardDto boardDto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("select b.bno, b.mid, b.bname, b.bdetail, b.tno, b.bcount, b.bdate, b.bstatus \n");
+			sql.append("from board b \n");
+			sql.append("where b.bno = ?");
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, seq);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				boardDto = new BoardDto();
+				boardDto.setBno(rs.getInt("bno"));
+				boardDto.setMid(rs.getString("mid"));
+				boardDto.setBname(rs.getString("bname"));
+				boardDto.setBdetail(rs.getString("bdetail"));
+				boardDto.setTno(rs.getInt("tno"));
+				boardDto.setBcount(rs.getInt("bcount"));
+				boardDto.setBdate(rs.getString("bdate"));
+				boardDto.setBstatus(rs.getInt("bstatus"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		return boardDto;
+	}	
+	
+	/*
 	@Override
 	public int getNewArticleCount(int bcode) {
 		int count = 0;
@@ -157,7 +192,7 @@ public class BoardDaoImpl implements BoardDao {
 	
 
 	@Override
-	public int replyArticle(ReboardDto reboardDto) {
+	public int replyArticle(BoardDto BoardDto) {
 		int cnt = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -171,8 +206,8 @@ public class BoardDaoImpl implements BoardDao {
 			update_step.append("set step = step + 1 \n");
 			update_step.append("where ref = ? and step > ?");
 			pstmt = conn.prepareStatement(update_step.toString());
-			pstmt.setInt(1, reboardDto.getRef());
-			pstmt.setInt(2, reboardDto.getStep());
+			pstmt.setInt(1, BoardDto.getRef());
+			pstmt.setInt(2, BoardDto.getStep());
 			pstmt.executeUpdate();
 			pstmt.close();
 			
@@ -186,18 +221,18 @@ public class BoardDaoImpl implements BoardDao {
 			insert_reply.append("select * from dual");
 			pstmt = conn.prepareStatement(insert_reply.toString());
 			int idx = 0;
-			pstmt.setInt(++idx, reboardDto.getSeq());
-			pstmt.setString(++idx, reboardDto.getName());
-			pstmt.setString(++idx, reboardDto.getId());
-			pstmt.setString(++idx, reboardDto.getEmail());
-			pstmt.setString(++idx, reboardDto.getSubject());
-			pstmt.setString(++idx, reboardDto.getContent());
-			pstmt.setInt(++idx, reboardDto.getBcode());
-			pstmt.setInt(++idx, reboardDto.getSeq());
-			pstmt.setInt(++idx, reboardDto.getRef());
-			pstmt.setInt(++idx, reboardDto.getLev() + 1);
-			pstmt.setInt(++idx, reboardDto.getStep() + 1);
-			pstmt.setInt(++idx, reboardDto.getPseq());
+			pstmt.setInt(++idx, BoardDto.getSeq());
+			pstmt.setString(++idx, BoardDto.getName());
+			pstmt.setString(++idx, BoardDto.getId());
+			pstmt.setString(++idx, BoardDto.getEmail());
+			pstmt.setString(++idx, BoardDto.getSubject());
+			pstmt.setString(++idx, BoardDto.getContent());
+			pstmt.setInt(++idx, BoardDto.getBcode());
+			pstmt.setInt(++idx, BoardDto.getSeq());
+			pstmt.setInt(++idx, BoardDto.getRef());
+			pstmt.setInt(++idx, BoardDto.getLev() + 1);
+			pstmt.setInt(++idx, BoardDto.getStep() + 1);
+			pstmt.setInt(++idx, BoardDto.getPseq());
 			pstmt.executeUpdate();
 			pstmt.close();
 			
@@ -207,7 +242,7 @@ public class BoardDaoImpl implements BoardDao {
 			update_reply.append("set reply = reply + 1 \n");
 			update_reply.append("where seq = ?");
 			pstmt = conn.prepareStatement(update_reply.toString());
-			pstmt.setInt(1, reboardDto.getPseq());
+			pstmt.setInt(1, BoardDto.getPseq());
 			pstmt.executeUpdate();
 			
 			conn.commit();
@@ -226,53 +261,11 @@ public class BoardDaoImpl implements BoardDao {
 		return cnt;
 	}
 
-	@Override
-	public ReboardDto viewArticle(int seq) {
-		ReboardDto reboardDto = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			conn = DBConnection.makeConnection();
-			StringBuffer sql = new StringBuffer();
-			sql.append("select b.seq, b.name, b.id, b.email, b.subject, \n");
-			sql.append("	   b.content, b.hit, b.logtime, b.bcode, \n");
-			sql.append("	   r.rseq, r.ref, r.lev, r.step, r.pseq, r.reply \n");
-			sql.append("from board b, reboard r \n");
-			sql.append("where b.seq = r.seq \n");
-			sql.append("and b.seq = ?");
-			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setInt(1, seq);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				reboardDto = new ReboardDto();
-				reboardDto.setSeq(rs.getInt("seq"));
-				reboardDto.setName(rs.getString("name"));
-				reboardDto.setId(rs.getString("id"));
-				reboardDto.setEmail(rs.getString("email"));
-				reboardDto.setSubject(rs.getString("subject"));
-				reboardDto.setContent(rs.getString("content"));
-				reboardDto.setHit(rs.getInt("hit"));
-				reboardDto.setLogtime(rs.getString("logtime"));
-				reboardDto.setBcode(rs.getInt("bcode"));
-				reboardDto.setRseq(rs.getInt("rseq"));
-				reboardDto.setRef(rs.getInt("ref"));
-				reboardDto.setLev(rs.getInt("lev"));
-				reboardDto.setStep(rs.getInt("step"));
-				reboardDto.setPseq(rs.getInt("pseq"));
-				reboardDto.setReply(rs.getInt("reply"));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DBClose.close(conn, pstmt, rs);
-		}
-		return reboardDto;
-	}
+	
 
 	@Override
-	public List<ReboardDto> listArticle(Map<String, String> map) {
-		List<ReboardDto> list = new ArrayList<ReboardDto>();
+	public List<BoardDto> listArticle(Map<String, String> map) {
+		List<BoardDto> list = new ArrayList<BoardDto>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -317,24 +310,24 @@ public class BoardDaoImpl implements BoardDao {
 			pstmt.setString(++idx, map.get("start"));
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				ReboardDto reboardDto = new ReboardDto();
-				reboardDto.setSeq(rs.getInt("seq"));
-				reboardDto.setName(rs.getString("name"));
-				reboardDto.setId(rs.getString("id"));
-				reboardDto.setEmail(rs.getString("email"));
-				reboardDto.setSubject(rs.getString("subject"));
-				reboardDto.setContent(rs.getString("content"));
-				reboardDto.setHit(rs.getInt("hit"));
-				reboardDto.setLogtime(rs.getString("logtime"));
-				reboardDto.setBcode(rs.getInt("bcode"));
-				reboardDto.setRseq(rs.getInt("rseq"));
-				reboardDto.setRef(rs.getInt("ref"));
-				reboardDto.setLev(rs.getInt("lev"));
-				reboardDto.setStep(rs.getInt("step"));
-				reboardDto.setPseq(rs.getInt("pseq"));
-				reboardDto.setReply(rs.getInt("reply"));
+				BoardDto BoardDto = new BoardDto();
+				BoardDto.setSeq(rs.getInt("seq"));
+				BoardDto.setName(rs.getString("name"));
+				BoardDto.setId(rs.getString("id"));
+				BoardDto.setEmail(rs.getString("email"));
+				BoardDto.setSubject(rs.getString("subject"));
+				BoardDto.setContent(rs.getString("content"));
+				BoardDto.setHit(rs.getInt("hit"));
+				BoardDto.setLogtime(rs.getString("logtime"));
+				BoardDto.setBcode(rs.getInt("bcode"));
+				BoardDto.setRseq(rs.getInt("rseq"));
+				BoardDto.setRef(rs.getInt("ref"));
+				BoardDto.setLev(rs.getInt("lev"));
+				BoardDto.setStep(rs.getInt("step"));
+				BoardDto.setPseq(rs.getInt("pseq"));
+				BoardDto.setReply(rs.getInt("reply"));
 				
-				list.add(reboardDto);
+				list.add(BoardDto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -345,7 +338,7 @@ public class BoardDaoImpl implements BoardDao {
 	}
 
 	@Override
-	public void modifyArticle(ReboardDto reboardDto) {
+	public void modifyArticle(BoardDto BoardDto) {
 
 	}
 

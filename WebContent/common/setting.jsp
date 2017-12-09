@@ -29,6 +29,10 @@ String word = StringEncoder.isoToMain(request.getParameter("word"));
 
 <!-- 선민 적용 css -->
 <link rel="stylesheet" href="<%=root%>/style.css" type="text/css">
+<script type="text/javascript" src="<%=root%>/js/board.js"></script>
+<script type="text/javascript">
+root = "<%=root%>";
+</script>
 
 <!-- 17.11.17 스크립트 파일은 현재 body 하단, footer.jsp에 있습니다. -->
 </head>

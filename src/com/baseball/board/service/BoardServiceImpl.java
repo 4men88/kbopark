@@ -30,6 +30,13 @@ public class BoardServiceImpl implements BoardServcie {
 	public int writeArticle(BoardDto boardDto) {
 		return BoardDaoImpl.getBoardDao().writeArticle(boardDto);
 	}	
+	
+
+	@Override
+	public BoardDto viewArticle(int seq) {
+		BoardDaoImpl.getBoardDao().updateHit(seq);
+		return BoardDaoImpl.getBoardDao().viewArticle(seq);
+	}	
 
 /*	@Override
 	public PageNavigation makePageNavigation(int bcode, int pg, String key, String word, int listsize) {
@@ -59,11 +66,6 @@ public class BoardServiceImpl implements BoardServcie {
 		return ReboardDaoImpl.getReboardDao().replyArticle(reboardDto);
 	}
 
-	@Override
-	public ReboardDto viewArticle(int seq) {
-		CommonDaoImpl.getCommonDao().updateHit(seq);
-		return ReboardDaoImpl.getReboardDao().viewArticle(seq);
-	}
 
 	@Override
 	public List<ReboardDto> listArticle(int bcode, int pg, String key, String word) {

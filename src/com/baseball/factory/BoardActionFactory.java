@@ -1,6 +1,7 @@
 package com.baseball.factory;
 
 import com.baseball.action.Action;
+import com.baseball.board.action.BoardViewAction;
 /*import com.kitri.album.action.AlbumDeleteAction;
 import com.kitri.album.action.AlbumListAction;
 import com.kitri.album.action.AlbumModifyAction;
@@ -22,13 +23,19 @@ import com.baseball.board.action.BoardWriteAction;
 public class BoardActionFactory {
 	
 	private static Action boardWriteAction;
+	private static Action boardViewAction;
 		
 	static {
 		boardWriteAction = new BoardWriteAction();
+		boardViewAction = new BoardViewAction();
 	}
 
 	public static Action getBoardWriteAction() {
 		return boardWriteAction;
+	}
+
+	public static Action getBoardViewAction() {
+		return boardViewAction;
 	}
 	
 	

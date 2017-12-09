@@ -7,8 +7,8 @@ public interface BoardServcie {
 //	PageNavigation makePageNavigation(int bcode, int pg, String key, String word, int listsize);
 	
 	int writeArticle(BoardDto boardDto);
+	BoardDto viewArticle(int seq);
 //	int replyArticle(ReboardDto reboardDto);
-//	ReboardDto viewArticle(int seq);
 //	List<ReboardDto> listArticle(int bcode, int pg, String key, String word);
 //	void modifyArticle(ReboardDto reboardDto);
 //	void deleteArticle(int seq);

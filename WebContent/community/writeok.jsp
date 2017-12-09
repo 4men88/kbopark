@@ -2,6 +2,12 @@
 	pageEncoding="EUC-KR"%>
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
+<%
+String seq = (String) request.getAttribute("seq");
+%>
+<script type="text/javascript">
+control = "/board";
+</script>
 
 <div class="py-5 text-center opaque-overlay"
 	style="background-image: url(<%=root%>/img/etc/grass.jpg);">
@@ -50,11 +56,11 @@
 				
 				<h5>글쓰기에 성공하였습니다.</h5>
 				<div class="p-2">
-					<a class="btn btn-primary" href="#" role="button"
+					<a class="btn btn-primary" href="javascript:viewArticle('<%=pg%>','<%=key%>','<%=word%>','<%=seq%>');" role="button"
 						style="color: white !important;">확인하기</a>
 				</div>
 				<div class="p-2">
-					<a class="btn btn-secondary" href="#" role="button"
+					<a class="btn btn-secondary" href="javascript:listArticle('<%=pg%>','<%=key%>','<%=word%>');" role="button"
 						style="color: white !important;">목록가기</a>
 				</div>
 			</div>

@@ -23,29 +23,27 @@ public class BoardController extends HttpServlet {
 		String act = request.getParameter("act");
 		System.out.println("BoardController act >>> " + act);
 		
-		int bcode = NullCheck.nullToZero(request.getParameter("bcode"));
 		int pg = NullCheck.nullToOne(request.getParameter("pg"));
 		String key = StringEncoder.isoToMain(request.getParameter("key"));
 		String word = StringEncoder.isoToMain(request.getParameter("word"));
 		
-		String queryString = "?bcode=" + bcode + "&pg=" + pg + "&key=" + key + "&word=" + StringEncoder.urlFormat(word);
+		String queryString = "?pg=" + pg + "&key=" + key + "&word=" + StringEncoder.urlFormat(word);
 		System.out.println("BoardController queryString >>> " + queryString);
 		
 		String path = "/index.jsp";
 		
 		if("mvwrite".equals(act)) {
-			path = "/reboard/write.jsp" + queryString;
+			path = "/board/write.jsp" + queryString;
 			PageMove.redirect(request, response, path);
 		} else if("newarticle".equals(act)) {
 			path = BoardActionFactory.getBoardWriteAction().execute(request, response);
 			path += queryString;
 			PageMove.forward(request, response, path);
-			
-			/*		} else if("viewarticle".equals(act)) {
-			path = BoardActionFactory.getReboardViewAction().execute(request, response);
+		} else if("viewarticle".equals(act)) {
+			path = BoardActionFactory.getBoardViewAction().execute(request, response);
 			path += queryString;
 			PageMove.forward(request, response, path);
-		} else if("listarticle".equals(act)) {
+		/*} else if("listarticle".equals(act)) {
 			path = BoardActionFactory.getReboardListAction().execute(request, response);
 			path += queryString;
 			PageMove.forward(request, response, path);
