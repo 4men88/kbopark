@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR" import="com.baseball.member.model.MemberDetailDto"%>
+	pageEncoding="EUC-KR" import="com.baseball.member.model.MemberDetailDto,com.baseball.util.*"%>
 <%
 String root = request.getContextPath();//root ¾ò±â
 MemberDetailDto memberDto = (MemberDetailDto)session.getAttribute("userInfo");
+
+int pg = NullCheck.nullToOne(request.getParameter("pg"));
+String key = StringEncoder.isoToMain(request.getParameter("key"));
+String word = StringEncoder.isoToMain(request.getParameter("word"));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,3 +34,10 @@ MemberDetailDto memberDto = (MemberDetailDto)session.getAttribute("userInfo");
 </head>
 
 <body>
+<form id="commonForm" name="commonForm" method="get" action="">
+	<input type="hidden" id="cact" name="act" value="">
+	<input type="hidden" id="cpg" name="pg" value="">
+	<input type="hidden" id="ckey" name="key" value="">
+	<input type="hidden" id="cword" name="word" value="">
+	<input type="hidden" id="cseq" name="seq" value="">
+</form>
