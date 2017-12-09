@@ -15,6 +15,21 @@ Event.observe(window, "load", function() {
 	alice = Web.EditorManager.instance("editor",{type:'detail',width:'96%',height:'100%',limit:20,family:'돋움',size:'13px'});
 
 });	
+
+function writeArticle(){
+	if(document.getElementById("subject").value == "") {
+		alert("제목을 입력하세요");
+		return;
+	}else if(alice.getContent() == ""){
+		alert("내용을 입력하세요");
+		return;
+	}else{
+		document.getElementById("content").value = alice.getContent();
+		document.getElementById("boardtno").value = document.getElementById("selectgudan").value;
+		document.getElementById("writeForm").action = "<%=root%>/board";
+		document.getElementById("writeForm").submit();
+	}
+}
 </script>
 
 <div class="py-5 text-center opaque-overlay"
@@ -73,21 +88,27 @@ Event.observe(window, "load", function() {
 
 
 
-				<form id="" class="">
+				<form id="writeForm" name="writeForm" class="">
+<input type="hidden" name="act" value="newarticle">
+<%-- <input type="hidden" name="bcode" value="<%=bcode%>">
+<input type="hidden" name="pg" value="<%=pg%>"> --%>
+<input type="hidden" id="content" name="content" value="">
+<input type="hidden" id="boardtno" name="boardtno" value="">		
+				
 					<div class="form-group row px-3">
 						<label for="selectgudan" class="col-sm-2 col-4 col-form-label">구단</label>
 						<div class="col-sm-4 col-8">
-							<select id="selectgudan" class="form-control">
-								<option selected>두산 베어스</option>
-								<option>롯데 자이언츠</option>
-								<option>KIA 타이거즈</option>
-								<option>NC 다이노스</option>
-								<option>SK 와이번스</option>
-								<option>LG 트윈스</option>
-								<option>넥센 히어로즈</option>
-								<option>한화 이글스</option>
-								<option>삼성 라이온즈</option>
-								<option>KT 위즈</option>
+							<select id="selectgudan" name="selectgudan" class="form-control">
+								<option value="2" selected>두산 베어스</option>
+								<option value="3">롯데 자이언츠</option>
+								<option value="1">KIA 타이거즈</option>
+								<option value="4">NC 다이노스</option>
+								<option value="5">SK 와이번스</option>
+								<option value="6">LG 트윈스</option>
+								<option value="7">넥센 히어로즈</option>
+								<option value="8">한화 이글스</option>
+								<option value="9">삼성 라이온즈</option>
+								<option value="10">KT 위즈</option>
 							</select>
 						</div>
 					</div>
@@ -95,7 +116,7 @@ Event.observe(window, "load", function() {
 					<div class="form-group row px-3">
 						<label for="writeName" class="col-sm-2 col-4 col-form-label">작성자</label>
 						<div class="col-sm-4 col-8">
-							<input type="text" class="form-control" id="writeName"
+							<input type="text" class="form-control" id="writer" name="writer"
 								placeholder="딩동댕" readonly>
 						</div>
 					</div>
@@ -103,7 +124,7 @@ Event.observe(window, "load", function() {
 					<div class="form-group row px-3">
 						<label for="inputSubject" class="col-sm-2 col-12 col-form-label">제목</label>
 						<div class="col-sm-10 col-12">
-							<input type="text" class="form-control" id="inputSubject"
+							<input type="text" class="form-control" id="subject" name="subject"
 								placeholder="">
 						</div>
 					</div>
@@ -143,7 +164,7 @@ Event.observe(window, "load", function() {
 							style="color: white !important;">취소</a>
 					</div>
 					<div class="p-2">
-						<a class="btn btn-primary btn-sm" href="#" role="button"
+						<a class="btn btn-primary btn-sm" href="javascript: writeArticle();" role="button"
 							style="color: white !important;">등록</a>
 					</div>
 				</div>

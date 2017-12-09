@@ -1,6 +1,7 @@
 package com.baseball.util;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 public class StringEncoder {
 	public static String isoToMain(String tmp){
@@ -14,4 +15,14 @@ public class StringEncoder {
 		return str;
 	}
 
+	public static String urlFormat(String tmp) {
+		String url = "";
+		try {
+			if(tmp != null)
+				url = URLEncoder.encode(tmp, Constance.MAIN_ENCODING);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return url;
+	}
 }

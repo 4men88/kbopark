@@ -49,7 +49,7 @@ if(memberDto!=null){
 					<li class="nav-item mx-1"><a class="nav-link" id = "schedule" href="<%=root%>/ScheduleController?act=viewschedule">일정/결과</a></li>
 					<li class="nav-item mx-1"><a class="nav-link" href="<%=root%>/auctioncontroller?act=mainlist">루키경매</a></li>
 					<li class="nav-item mx-1"><a class="nav-link" href="#">NEWS</a></li>
-					<li class="nav-item mx-1"><a class="nav-link" href="#">구단커뮤니티</a></li>
+					<li class="nav-item mx-1"><a class="nav-link" href="<%=root%>/gudan?act=viewgudan">구단커뮤니티</a></li>
 				</ul>
 				<form class="form-inline m-0">
 					<input class="form-control mr-2" type="text" style="">
