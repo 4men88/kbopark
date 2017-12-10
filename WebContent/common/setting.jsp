@@ -37,7 +37,11 @@ root = "<%=root%>";
 
 <!-- 17.11.17 스크립트 파일은 현재 body 하단, footer.jsp에 있습니다. -->
 </head>
-
+<form id="auctionForm" name="auctionForm" method="get" action="">
+	<input type="hidden" id="aact" name="act" value="">
+	<input type="hidden" id="aano" name="ano" value="">
+	<input type="hidden" id="acategory" name="category" value="">
+</form>
 <body>
 <form id="commonForm" name="commonForm" method="get" action="">
 	<input type="hidden" id="cact" name="act" value="">

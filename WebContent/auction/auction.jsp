@@ -62,7 +62,6 @@ int newListLen;
 <script type="text/javascript" src="/kbopark/js/httpRequest.js"></script>
 <script type="text/javascript">
 
-
 function startTime() {
 //   httpRequest = getXMLHttpRequest();
 //   httpRequest.onreadystatechange = getTime;
@@ -142,8 +141,8 @@ function getTime() {
 = "<font color=\"red\"size=\"4\"><b>마감</b></font>";
 				if(<%=bestList.get(i).getAstatus()%> == 1)
 					{
-						document.getElementById("ano").value = "<%=bestList.get(i).getAno()%>";
-						document.getElementById("act").value = "statuschange";
+						document.getElementById("aano").value = "<%=bestList.get(i).getAno()%>";
+						document.getElementById("aact").value = "statuschange";
 						document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 						document.getElementById("auctionForm").submit();
 						
@@ -202,10 +201,18 @@ for(int i=0; i<endListLen; i++)
 	
 	else{	//남은시간이 없다면
     document.getElementById("endtime" + <%=i%>).innerHTML 
-= "<font color=\"red\"size=\"4\"><b>마감</b></font>";				
+= "<font color=\"red\"size=\"4\"><b>마감</b></font>";
+		if(<%=endList.get(i).getAstatus()%> == 1)
+		{
+			document.getElementById("aano").value = "<%=endList.get(i).getAno()%>";
+			document.getElementById("aact").value = "statuschange";
+			document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+			document.getElementById("auctionForm").submit();
+			
+		//		document.location.href = "<%=root%>/auctionlist?act=statuschange";
+}
 	}
-	
-<%            
+	<%            
  }
 %>
 
@@ -257,8 +264,17 @@ for(int i=0; i<hitListLen; i++)
 	
 	else{	//남은시간이 없다면
     document.getElementById("hittime" + <%=i%>).innerHTML 
-= "<font color=\"red\"size=\"4\"><b>마감</b></font>";				
-	}
+= "<font color=\"red\"size=\"4\"><b>마감</b></font>";	
+		if(<%=hitList.get(i).getAstatus()%> == 1)
+			{
+			document.getElementById("aano").value = "<%=hitList.get(i).getAno()%>";
+			document.getElementById("aact").value = "statuschange";
+			document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+			document.getElementById("auctionForm").submit();
+			
+		//		document.location.href = "<%=root%>/auctionlist?act=statuschange";
+			}
+		}
 	
 <%            
  }
@@ -312,7 +328,15 @@ for(int i=0; i<newListLen; i++)
 	
 	else{	//남은시간이 없다면
     document.getElementById("newtime" + <%=i%>).innerHTML 
-= "<font color=\"red\"size=\"4\"><b>마감</b></font>";				
+= "<font color=\"red\"size=\"4\"><b>마감</b></font>";	
+		if(<%=newList.get(i).getAstatus()%> == 1)
+		{
+			document.getElementById("aano").value = "<%=newList.get(i).getAno()%>";
+			document.getElementById("aact").value = "statuschange";
+			document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+			document.getElementById("auctionForm").submit();		
+	//		document.location.href = "<%=root%>/auctionlist?act=statuschange";
+}
 	}
 	
 <%            

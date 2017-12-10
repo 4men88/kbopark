@@ -49,8 +49,7 @@ public class AuctionController extends HttpServlet {
 		else 
 		{
 			PageMove.redirect(request, response, path);
-		}
-		
+		}	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

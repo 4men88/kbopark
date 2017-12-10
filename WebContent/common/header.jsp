@@ -59,15 +59,6 @@ if(memberDto!=null){
 					</button>
 				</form>
 				<body>
-				<form id="auctionForm" name="auctionForm" method="get" action="">
-					<input type="hidden" id="aact" name="act" value="">
-					<input type="hidden" id="aano" name="ano" value="">
-					<input type="hidden" id="acategory" name="category" value="">
-					<input type="hidden" id="apg" name="pg" value="">
-					<input type="hidden" id="akey" name="key" value="">
-					<input type="hidden" id="aword" name="word" value="">
-					<input type="hidden" id="aseq" name="seq" value="">
-				</form>
 			</div>
 		</div>
 	</nav>

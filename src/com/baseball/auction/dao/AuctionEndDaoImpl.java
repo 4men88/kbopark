@@ -35,7 +35,7 @@ public class AuctionEndDaoImpl implements AuctionEndDao {
 			//경매상태 종료로 변경
 			StringBuffer astatus_change = new StringBuffer();
 			astatus_change.append("update auction \n");
-			astatus_change.append("set astatus = 1 \n");
+			astatus_change.append("set astatus = 2 \n");
 			astatus_change.append("where ano = ?");
 			pstmt = conn.prepareStatement(astatus_change.toString());
 			pstmt.setString(1,ano);
