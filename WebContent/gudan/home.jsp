@@ -1,11 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR" %>
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
-
+<%
+System.out.println("home.jsp tno >>> "+NullCheck.nullToZero(request.getParameter("tno")));
+%>
 <script type="text/javascript">
 control = "/gudan";
 
+function listArticle(tno) {
+	document.getElementById("cact").value = "listarticle";
+	document.getElementById("ctno").value = tno;
+	document.getElementById("cpg").value = 1;
+	
+	document.getElementById("commonForm").action = root + "/board";
+	document.getElementById("commonForm").submit();
+}
 </script>
 
 
@@ -40,10 +50,10 @@ control = "/gudan";
 <div id="gudan-nav">
 	<div class="container">
 		<div class="d-flex justify-content-center">
-			<div class="gudan-nav-inner p-3">메인</div>
-			<div class="gudan-nav-inner p-3">구장안내</div>
-			<div class="gudan-nav-inner p-3">스케줄</div>
-			<div class="gudan-nav-inner p-3">커뮤니티</div>
+			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvhome&tno=<%=tno %>">메인</a></div>
+			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvstadium&tno=<%=tno %>">구장안내</a></div>
+			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvweekly&tno=<%=tno %>">스케줄</a></div>
+			<div class="gudan-nav-inner p-3"><a href="javascript:listArticle('<%=tno%>');">커뮤니티</a></div>
 		</div>
 		<div class="border-b p-0"></div>
 	</div>
@@ -170,7 +180,7 @@ control = "/gudan";
 </div>
 
 
-<a class="py-4 btn btn-primary btn-lg btn-block" href="<%=root%>/gudan?act=mvteamweb&tno=<%=memberDto.getTno() %>" role="button" style="border-radius: 0; color: white !important;" target="_blank">구단 공식 홈페이지 바로가기</a>
+<a class="py-4 btn btn-primary btn-lg btn-block" href="<%=root%>/gudan?act=mvteamweb&tno=<%=tno%>" role="button" style="border-radius: 0; color: white !important;" target="_blank">구단 공식 홈페이지 바로가기</a>
 
 <!-- footer영역 -->
 <%@ include file="/common/footer.jsp"%>

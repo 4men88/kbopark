@@ -23,15 +23,15 @@ public class BoardController extends HttpServlet {
 		String act = request.getParameter("act");
 		System.out.println("BoardController act >>> " + act);
 		
+		int tno = NullCheck.nullToZero(request.getParameter("tno"));
 		int pg = NullCheck.nullToOne(request.getParameter("pg"));
 		String key = StringEncoder.isoToMain(request.getParameter("key"));
 		String word = StringEncoder.isoToMain(request.getParameter("word"));
 		
-		String queryString = "?pg=" + pg + "&key=" + key + "&word=" + StringEncoder.urlFormat(word);
+		String queryString = "?tno=" + tno + "&pg=" + pg + "&key=" + key + "&word=" + StringEncoder.urlFormat(word);
 		System.out.println("BoardController queryString >>> " + queryString);
 		
 		String path = "/index.jsp";
-		
 		if("mvwrite".equals(act)) {
 			path = "/board/write.jsp" + queryString;
 			PageMove.redirect(request, response, path);
@@ -43,16 +43,16 @@ public class BoardController extends HttpServlet {
 			path = BoardActionFactory.getBoardViewAction().execute(request, response);
 			path += queryString;
 			PageMove.forward(request, response, path);
-		/*} else if("listarticle".equals(act)) {
-			path = BoardActionFactory.getReboardListAction().execute(request, response);
+		} else if("listarticle".equals(act)) {
+			path = BoardActionFactory.getBoardListAction().execute(request, response);
 			path += queryString;
 			PageMove.forward(request, response, path);
-		} else if("mvreply".equals(act)) {
-			path = BoardActionFactory.getReboardMoveReplyAction().execute(request, response);
+	/*	} else if("mvreply".equals(act)) {
+			path = BoardActionFactory.getBoardMoveReplyAction().execute(request, response);
 			path += queryString;
 			PageMove.forward(request, response, path);
 		} else if("replyarticle".equals(act)) {
-			path = BoardActionFactory.getReboardReplyAction().execute(request, response);
+			path = BoardActionFactory.getBoardReplyAction().execute(request, response);
 			path += queryString;
 			PageMove.forward(request, response, path);
 		} else if("".equals(act)) {

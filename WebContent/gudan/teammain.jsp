@@ -13,7 +13,7 @@ control = "/gudan";
       <div class="row py-5">
         <div class="align-self-center col-md-6 text-white">
           <h1 class="text-center text-md-left display-4">
-          <a href="<%=root%>/gudan?act=viewhome&tno=2" style="color: white !important;">두산 베어스</a>
+          <a href="<%=root%>/gudan?act=mvhome&tno=2" style="color: white !important;">두산 베어스</a>
           </h1>
           <p class="lead">DOOSAN BEARS</p>
         </div>
@@ -26,7 +26,9 @@ control = "/gudan";
       <div class="row py-5">
         <div class="col-md-6"></div>
         <div class="align-self-center col-md-6 text-white">
-          <h1 class="text-center text-md-left display-4">한화 이글스</h1>
+          <h1 class="text-center text-md-left display-4">
+<a href="<%=root%>/gudan?act=mvhome&tno=8" style="color: white !important;">한화 이글스</a>
+		</h1>
           <p class="lead">HANWHA EAGLES</p>
         </div>
       </div>
