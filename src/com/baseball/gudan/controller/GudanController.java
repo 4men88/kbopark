@@ -22,7 +22,15 @@ public class GudanController extends HttpServlet {
 		
 		String path = "/index.jsp";
 	
-		if("mvteamweb".equals(act)) {
+		if("viewgudan".equals(act)) {
+			path = "/gudan/teammain.jsp";
+			PageMove.forward(request, response, path);
+		} else if ("viewhome".equals(act)) {
+//			path = BoardActionFactory.getReboardListAction().execute(request, response);
+//			path += queryString;
+			path = "/gudan/home.jsp";
+			PageMove.forward(request, response, path);
+		} else if("mvteamweb".equals(act)) {
 			int tno = NullCheck.nullToZero(request.getParameter("tno"));
 			System.out.println("GudanController tno >>> " + tno);
 			path = GudanServiceImpl.getGudanService().getGudanWeb(tno);

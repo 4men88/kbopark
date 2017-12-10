@@ -3,6 +3,20 @@
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
 
+<link rel="stylesheet" type="text/css" HREF="<%=root %>/css/alice.css">
+<link rel="stylesheet" type="text/css" HREF="<%=root %>/css/oz.css">
+<script type="text/javascript" src="<%=root %>/js/prototype.js"></script>
+<script type="text/javascript" src="<%=root %>/js/extprototype.js"></script>	
+<script type="text/javascript" src="<%=root %>/js/oz.js"></script>	
+<script type="text/javascript" src="<%=root %>/js/alice.js"></script>
+<script type="text/javascript">
+var alice;
+Event.observe(window, "load", function() {
+	alice = Web.EditorManager.instance("editor",{type:'detail',width:'96%',height:'100%',limit:20,family:'돋움',size:'13px'});
+
+});	
+</script>
+
 <div class="py-5 text-center opaque-overlay"
 	style="background-image: url(<%=root%>/img/etc/grass.jpg);">
 	<div class="container py-5">
@@ -96,8 +110,7 @@
 
 					<div class="form-group row px-3">
 						<div class="col-md-12">
-							<textarea class="form-control" id="exampleFormControlTextarea1"
-								rows="20">수정될글내용</textarea>
+							<textarea class="form-control" id="editor" name="editor" rows="20">수정될글내용</textarea>
 						</div>
 					</div>
 
@@ -183,5 +196,5 @@
 </div>
 
 
-<!-- footer영역 -->
-<%@ include file="/common/footer.jsp"%>
+<!-- alice용 footer영역 -->
+<%@ include file="/community/boardfooter.jsp"%>

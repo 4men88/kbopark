@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR" import="com.baseball.board.model.BoardDto"%>
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
+<%
+BoardDto boardDto = (BoardDto) request.getAttribute("article");
+%>
+<script type="text/javascript" src="<%=root%>/js/httpRequest.js"></script>
+<script type="text/javascript">
+control = "/board";
+
+</script>
 
 <div class="py-5 text-center opaque-overlay"
 	style="background-image: url(<%=root%>/img/etc/grass.jpg);">
@@ -72,18 +80,13 @@
 				<div class="border-b-strong my-2"></div>
 
 				<div class="px-3">
-					<h3>어쩌구저쩌구 제목입니당 숄라숄라라라</h3>
-					<h6>작성자이름 2017.05.03 02:30</h6>
-					<h6>조회수 : 3,000</h6>
+					<h3><%=boardDto.getBname() %></h3>
+					<h6><%=boardDto.getMid() %> <%=boardDto.getBdate() %></h6>
+					<h6>조회수 : <%=boardDto.getBcount() %></h6>
 				</div>
 
 				<div class="border-b my-2"></div>
-				<p class="p-3 my-0">안녕하세요. 저는 길고양이 집지어주기 프로젝트 -해비캣의 팀원 입니다. 한달 전
-					자주 들락날락하던 카페에 어떤 분이 개인 사정으로 더이상 고양이를 키우기 힘들다고 올려주신 글을 보고, 묘연처럼 이끌려
-					'타코'를 입양하게 되었어요!! 나중 알게된 사실이지만 아이가 예쁘게 생겼고 아직 중성화를 하지 않아 업자들이 순식간에
-					달려들어 입양하겠다고 나섰다네요.. 책임비가 있었는데 다 큰애 공짜로 달라, 한달 키워보고 돈 주던가 돌려보내던가
-					해도되냐.. 등등 말도 안되는 연락들이 많이 왔었대요. 정말 업자들, 한 생명을 돈으로만 보는 사람들 많은 것
-					같아요...</p>
+				<p class="p-3 my-0"><%=boardDto.getBdetail() %></p>
 				<div class="border-b my-2"></div>
 				<div class="d-flex">
 					<div class="mr-auto px-2">

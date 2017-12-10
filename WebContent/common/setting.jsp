@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR" import="com.baseball.member.model.MemberDetailDto"%>
+	pageEncoding="EUC-KR" import="com.baseball.member.model.MemberDetailDto,com.baseball.util.*"%>
 <%
 String root = request.getContextPath();//root 얻기
 MemberDetailDto memberDto = (MemberDetailDto)session.getAttribute("userInfo");
+
+int tno = NullCheck.nullToZero(request.getParameter("tno"));
+int pg = NullCheck.nullToOne(request.getParameter("pg"));
+String key = StringEncoder.isoToMain(request.getParameter("key"));
+String word = StringEncoder.isoToMain(request.getParameter("word"));
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -25,8 +30,20 @@ MemberDetailDto memberDto = (MemberDetailDto)session.getAttribute("userInfo");
 
 <!-- 선민 적용 css -->
 <link rel="stylesheet" href="<%=root%>/style.css" type="text/css">
+<script type="text/javascript" src="<%=root%>/js/board.js"></script>
+<script type="text/javascript">
+root = "<%=root%>";
+</script>
 
 <!-- 17.11.17 스크립트 파일은 현재 body 하단, footer.jsp에 있습니다. -->
 </head>
 
 <body>
+<form id="commonForm" name="commonForm" method="get" action="">
+	<input type="hidden" id="cact" name="act" value="">
+	<input type="hidden" id="ctno" name="tno" value="">
+	<input type="hidden" id="cpg" name="pg" value="">
+	<input type="hidden" id="ckey" name="key" value="">
+	<input type="hidden" id="cword" name="word" value="">
+	<input type="hidden" id="cseq" name="seq" value="">
+</form>
