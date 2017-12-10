@@ -58,7 +58,6 @@ if(memberDto!=null){
 							style="color: #007bff;"></i></a>
 					</button>
 				</form>
-				<body>
 			</div>
 		</div>
 	</nav>
