@@ -24,9 +24,15 @@ public class AuctionMainListAction implements Action {
 		List<AuctionDetailDto> endList = AuctionServiceImpl.getAuctionService().auctionEndList();
 		List<AuctionDetailDto> hitList = AuctionServiceImpl.getAuctionService().auctionHitList();
 		List<AuctionDetailDto> newList = AuctionServiceImpl.getAuctionService().auctionNewList();
-		List<Integer> newNum = AuctionServiceImpl.getAuctionService().auctionNewNumArray();
+		List<Integer> newNumArray = AuctionServiceImpl.getAuctionService().auctionNewNumArray();
 
-		System.out.println("endList: " + endList.get(0).getEndTime());
+		System.out.println("endList»óÅÂ: " + endList.get(0).getAstatus());
+		System.out.println("newNumArray1 = " + newNumArray.get(0));
+		System.out.println("newNumArray2 = " + newNumArray.get(1));
+		System.out.println("newNumArray3 = " + newNumArray.get(2));
+		System.out.println("newNumArray4 = " + newNumArray.get(3));
+		System.out.println("newNumArray5 = " + newNumArray.get(4));
+		request.setAttribute("newNumArray", newNumArray);
 		request.setAttribute("bestList", bestList);
 		request.setAttribute("endList", endList);
 		request.setAttribute("hitList", hitList);

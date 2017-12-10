@@ -9,7 +9,7 @@ public interface AuctionService {
 	List<AuctionDetailDto> auctionEndList();
 	List<AuctionDetailDto> auctionHitList();
 	List<AuctionDetailDto> auctionNewList();
-    int auctionStatusEnd();
+    int auctionStatusEnd(String ano);
     List<Integer> auctionNewNumArray();
 }	
 

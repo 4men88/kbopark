@@ -39,8 +39,8 @@ public class AuctionServiceImpl implements AuctionService {
 	}
 
 	@Override
-	public int auctionStatusEnd() {			
-		return AuctionEndDaoImpl.getAuctionEndDao().auctionStatusEnd();
+	public int auctionStatusEnd(String ano) {			
+		return AuctionEndDaoImpl.getAuctionEndDao().auctionStatusEnd(ano);
 		//
 	}
 

@@ -14,7 +14,8 @@ public class AuctionEndAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		AuctionServiceImpl.getAuctionService().auctionStatusEnd();
+		String ano = request.getParameter("ano");
+		AuctionServiceImpl.getAuctionService().auctionStatusEnd(ano);
 		return null;
 	}
 

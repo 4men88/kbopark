@@ -1,5 +1,5 @@
 package com.baseball.auction.dao;
 
 public interface AuctionEndDao {
-	int auctionStatusEnd();
+	int auctionStatusEnd(String ano);
 }

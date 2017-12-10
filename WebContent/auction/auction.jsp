@@ -20,7 +20,7 @@ int newListLen;
    List<AuctionDetailDto> endList = (List<AuctionDetailDto>)request.getAttribute("endList");
    List<AuctionDetailDto> hitList = (List<AuctionDetailDto>)request.getAttribute("hitList");
    List<AuctionDetailDto> newList = (List<AuctionDetailDto>)request.getAttribute("newList");
-
+   List<Integer> newNumArray = (List<Integer>)request.getAttribute("newNumArray");
    //endTime만 따로 리스트에 담을 리스트
    List<String> bestListTimeArr = new ArrayList<String>();	
    List<String> endListTimeArr = new ArrayList<String>();
@@ -66,10 +66,9 @@ int newListLen;
 function startTime() {
 //   httpRequest = getXMLHttpRequest();
 //   httpRequest.onreadystatechange = getTime;
-//   httpRequest.open("GET", "<%=root%>/auction/auction-time.jsp", true);
 //   httpRequest.send(null);
    var params = "act=timelist";
-   sendRequest("<%=root%>/auctionlist", params, getTime, "POST");   
+   sendRequest("<%=root%>/auctioncontroller", params, getTime, "POST");   
 }
 function getTime() {
    if(httpRequest.readyState == 4) {
@@ -143,6 +142,11 @@ function getTime() {
 = "<font color=\"red\"size=\"4\"><b>마감</b></font>";
 				if(<%=bestList.get(i).getAstatus()%> == 1)
 					{
+						document.getElementById("ano").value = "<%=bestList.get(i).getAno()%>";
+						document.getElementById("act").value = "statuschange";
+						document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+						document.getElementById("auctionForm").submit();
+						
 				//		document.location.href = "<%=root%>/auctionlist?act=statuschange";
 					}
 			}
@@ -334,23 +338,48 @@ window.onload=function() {
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
                   <a href="">
-                  전체보기 </a><span class="badge badge-primary badge-pill">14</span>
+                  전체보기 </a><span class="badge badge-primary badge-pill">
+<%
+if(newNumArray != null)                  
+                  out.print(newNumArray.get(0).toString());
+%> 
+                  </span>
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  유니폼 <span class="badge badge-primary badge-pill">2</span>
+                  유니폼 <span class="badge badge-primary badge-pill">
+<%
+if(newNumArray != null)                  
+                  out.print(newNumArray.get(1).toString());
+%> 
+                  </span>
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  경기용품 <span class="badge badge-primary badge-pill">1</span>
+                  경기용품 <span class="badge badge-primary badge-pill">
+<%
+if(newNumArray != null)                  
+                  out.print(newNumArray.get(2).toString());
+%>                   
+                  </span>
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  응원용품 <span class="badge badge-primary badge-pill">1</span>
+                  응원용품 <span class="badge badge-primary badge-pill">
+<%
+if(newNumArray != null)                  
+                  out.print(newNumArray.get(3).toString());
+%>                  
+                  </span>
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  기타잡화 <span class="badge badge-primary badge-pill">1</span>
+                  기타잡화 <span class="badge badge-primary badge-pill">
+<%
+if(newNumArray != null)                  
+                  out.print(newNumArray.get(4).toString());
+%>                  
+                  </span>
                </li>
                <li
                   class="bg-pingendo list-group-item d-flex justify-content-between align-items-center">
