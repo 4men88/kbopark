@@ -12,7 +12,7 @@ import org.omg.CORBA.INTERNAL;
 
 import com.baseball.action.Action;
 import com.baseball.auction.model.AuctionDetailDto;
-import com.baseball.auction.service.AuctionServiceImpl;
+import com.baseball.auction.service.AuctionMainServiceImpl;
 
 public class AuctionMainListAction implements Action {
 
@@ -20,11 +20,11 @@ public class AuctionMainListAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 	
-		List<AuctionDetailDto> bestList = AuctionServiceImpl.getAuctionService().auctionBestList();
-		List<AuctionDetailDto> endList = AuctionServiceImpl.getAuctionService().auctionEndList();
-		List<AuctionDetailDto> hitList = AuctionServiceImpl.getAuctionService().auctionHitList();
-		List<AuctionDetailDto> newList = AuctionServiceImpl.getAuctionService().auctionNewList();
-		List<Integer> newNumArray = AuctionServiceImpl.getAuctionService().auctionNewNumArray();
+		List<AuctionDetailDto> bestList = AuctionMainServiceImpl.getAuctionService().auctionBestList();
+		List<AuctionDetailDto> endList = AuctionMainServiceImpl.getAuctionService().auctionEndList();
+		List<AuctionDetailDto> hitList = AuctionMainServiceImpl.getAuctionService().auctionHitList();
+		List<AuctionDetailDto> newList = AuctionMainServiceImpl.getAuctionService().auctionNewList();
+		List<Integer> newNumArray = AuctionMainServiceImpl.getAuctionService().auctionNewNumArray();
 
 		System.out.println("endList»óÅÂ: " + endList.get(0).getAstatus());
 		System.out.println("newNumArray1 = " + newNumArray.get(0));

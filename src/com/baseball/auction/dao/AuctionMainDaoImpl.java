@@ -33,6 +33,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
+			//  입찰자 많은순
 			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano\n");
 			sql.append("from auction_image ai,( \n");
 			sql.append("                        select a.*, ad.bidprice, ad.bidnum\n");
@@ -43,7 +44,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			sql.append("                                        )ad \n");
 			sql.append("                        where astatus = 1 and a.ano = ad.ano \n");
 			sql.append("                        )a_ad \n");
-			sql.append("where a_ad.ano = ai.ano \n");
+			sql.append("where a_ad.ano = ai.ano(+) \n");
 			sql.append("order by a_ad.bidnum desc\n");
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
@@ -83,6 +84,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
+			//마감임박순
 			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano \n");
 			sql.append("from auction_image ai,( \n");
 			sql.append("                        select a.*, ad.bidprice, ad.bidnum \n");
@@ -91,9 +93,9 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			sql.append("                                        from auction_detail \n");
 			sql.append("                                        group by ano \n");
 			sql.append("                                        )ad \n");
-			sql.append("                        where astatus = 1 and a.ano = ad.ano \n");
+			sql.append("                        where astatus = 1 and a.ano = ad.ano(+) \n");
 			sql.append("                        )a_ad \n");
-			sql.append("where a_ad.ano = ai.ano \n");
+			sql.append("where a_ad.ano = ai.ano(+) \n");
 			sql.append("order by a_ad.endtime");
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
@@ -134,6 +136,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
+			//조회수 높은순
 			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano \n");
 			sql.append("from auction_image ai,( \n");
 			sql.append("                        select a.*, ad.bidprice, ad.bidnum \n");
@@ -142,9 +145,9 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			sql.append("                                        from auction_detail \n");
 			sql.append("                                        group by ano \n");
 			sql.append("                                        )ad \n");
-			sql.append("                        where astatus = 1 and a.ano = ad.ano \n");
+			sql.append("                        where astatus = 1 and a.ano = ad.ano(+) \n");
 			sql.append("                        )a_ad \n");
-			sql.append("where a_ad.ano = ai.ano \n");
+			sql.append("where a_ad.ano = ai.ano(+) \n");
 			sql.append("order by a_ad.acount desc");
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
@@ -184,6 +187,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
+			// 등록시각 최신순
 			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano \n");
 			sql.append("from auction_image ai,( \n");
 			sql.append("                        select a.*, ad.bidprice, ad.bidnum \n");
@@ -192,9 +196,9 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			sql.append("                                        from auction_detail \n");
 			sql.append("                                        group by ano \n");
 			sql.append("                                        )ad \n");
-			sql.append("                        where astatus = 1 and a.ano = ad.ano \n");
+			sql.append("                        where astatus = 1 and a.ano = ad.ano(+) \n");
 			sql.append("                        )a_ad \n");
-			sql.append("where a_ad.ano = ai.ano \n");
+			sql.append("where a_ad.ano = ai.ano(+) \n");
 			sql.append("order by a_ad.starttime desc");
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();

@@ -146,11 +146,10 @@ function getTime() {
 						document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 						document.getElementById("auctionForm").submit();
 						
-				//		document.location.href = "<%=root%>/auctionlist?act=statuschange";
 					}
-			}
+				}
 <%            
-         }
+}
 %>
 
 <%
@@ -202,16 +201,15 @@ for(int i=0; i<endListLen; i++)
 	else{	//남은시간이 없다면
     document.getElementById("endtime" + <%=i%>).innerHTML 
 = "<font color=\"red\"size=\"4\"><b>마감</b></font>";
-		if(<%=endList.get(i).getAstatus()%> == 1)
-		{
-			document.getElementById("aano").value = "<%=endList.get(i).getAno()%>";
-			document.getElementById("aact").value = "statuschange";
-			document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
-			document.getElementById("auctionForm").submit();
+			if(<%=endList.get(i).getAstatus()%> == 1)
+			{
+				document.getElementById("aano").value = "<%=endList.get(i).getAno()%>";
+				document.getElementById("aact").value = "statuschange";
+				document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+				document.getElementById("auctionForm").submit();
 			
-		//		document.location.href = "<%=root%>/auctionlist?act=statuschange";
-}
-	}
+			}
+		}
 	<%            
  }
 %>
@@ -329,18 +327,17 @@ for(int i=0; i<newListLen; i++)
 	else{	//남은시간이 없다면
     document.getElementById("newtime" + <%=i%>).innerHTML 
 = "<font color=\"red\"size=\"4\"><b>마감</b></font>";	
-		if(<%=newList.get(i).getAstatus()%> == 1)
-		{
-			document.getElementById("aano").value = "<%=newList.get(i).getAno()%>";
-			document.getElementById("aact").value = "statuschange";
-			document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
-			document.getElementById("auctionForm").submit();		
-	//		document.location.href = "<%=root%>/auctionlist?act=statuschange";
-}
-	}
+			if(<%=newList.get(i).getAstatus()%> == 1)
+			{
+				document.getElementById("aano").value = "<%=newList.get(i).getAno()%>";
+				document.getElementById("aact").value = "statuschange";
+				document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+				document.getElementById("auctionForm").submit();		
+			}
+		}
 	
 <%            
- }
+}
 %>
          window.setTimeout("startTime();", 1000);
    //      alert(ctime);
@@ -350,6 +347,15 @@ for(int i=0; i<newListLen; i++)
 
 window.onload=function() {
    startTime();
+}
+
+function categoryList(category1, category2)
+{
+	document.getElementById("acategory1").value = category1; 
+	document.getElementById("acategory2").value = category2; 
+	document.getElementById("aact").value = "categorylist";
+	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+	document.getElementById("auctionForm").submit();		
 }
 </script>
 
@@ -361,7 +367,7 @@ window.onload=function() {
             <ul class="list-group">
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="">
+                  <a href="javascript:categoryList('','');">
                   전체보기 </a><span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
@@ -371,7 +377,8 @@ if(newNumArray != null)
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  유니폼 <span class="badge badge-primary badge-pill">
+                  <a href="javascript:categoryList('1','');">
+                  유니폼</a><span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
                   out.print(newNumArray.get(1).toString());
@@ -380,7 +387,8 @@ if(newNumArray != null)
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  경기용품 <span class="badge badge-primary badge-pill">
+                  <a href="javascript:categoryList('2','');">
+                  경기용품 </a><span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
                   out.print(newNumArray.get(2).toString());
@@ -389,7 +397,8 @@ if(newNumArray != null)
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  응원용품 <span class="badge badge-primary badge-pill">
+                  <a href="javascript:categoryList('3','');">
+                  응원용품</a> <span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
                   out.print(newNumArray.get(3).toString());
@@ -398,7 +407,8 @@ if(newNumArray != null)
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  기타잡화 <span class="badge badge-primary badge-pill">
+                  <a href="javascript:categoryList('4','');">
+                  기타잡화</a> <span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
                   out.print(newNumArray.get(4).toString());
@@ -485,7 +495,7 @@ if(bestList != null)
                         <div id="besttime<%=i%>"></div>
                      </p>
                      <p style="color: red;">
-                        <strong>현재입찰가 : <%=bestList.get(i).getBidPrice()%></strong>
+                        <strong>현재입찰가 : <%=bestList.get(i).getBidPrice()%>원</strong>
                      </p>
                   </div>
                </div>
@@ -518,7 +528,7 @@ if(endList != null)
                         <div id="endtime<%=i%>"></div>
                      </p>
                      <p style="color: red;">
-                        <strong>현재입찰가 : <%=endList.get(i).getBidPrice()%></strong>
+                        <strong>현재입찰가 : <%=endList.get(i).getBidPrice()%>원</strong>
                      </p>
                   </div>
                </div>
@@ -549,7 +559,7 @@ if(hitList != null)
                        <div id="hittime<%=i%>"></div>
                      </p>
                      <p style="color: red;">
-                        <strong>현재입찰가 : <%=hitList.get(i).getBidPrice()%></strong>
+                        <strong>현재입찰가 : <%=hitList.get(i).getBidPrice()%>원</strong>
                      </p>
                   </div>
                </div>

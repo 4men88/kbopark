@@ -6,15 +6,15 @@ import com.baseball.auction.dao.AuctionEndDaoImpl;
 import com.baseball.auction.dao.AuctionMainDaoImpl;
 import com.baseball.auction.model.AuctionDetailDto;
 
-public class AuctionServiceImpl implements AuctionService {
+public class AuctionMainServiceImpl implements AuctionMainService {
 
-	private static AuctionService auctionService;
+	private static AuctionMainService auctionService;
 	
 	static {
-		auctionService = new AuctionServiceImpl();
+		auctionService = new AuctionMainServiceImpl();
 	}
 	
-	public static AuctionService getAuctionService() {
+	public static AuctionMainService getAuctionService() {
 		return auctionService;
 	}
 

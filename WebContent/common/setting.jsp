@@ -40,7 +40,8 @@ root = "<%=root%>";
 <form id="auctionForm" name="auctionForm" method="get" action="">
 	<input type="hidden" id="aact" name="act" value="">
 	<input type="hidden" id="aano" name="ano" value="">
-	<input type="hidden" id="acategory" name="category" value="">
+	<input type="hidden" id="acategory1" name="category1" value="">
+	<input type="hidden" id="acategory2" name="category2" value="">
 </form>
 <body>
 <form id="commonForm" name="commonForm" method="get" action="">

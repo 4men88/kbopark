@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.baseball.action.Action;
-import com.baseball.auction.service.AuctionServiceImpl;
+import com.baseball.auction.service.AuctionMainServiceImpl;
 
 public class AuctionEndAction implements Action {
 
@@ -15,7 +15,7 @@ public class AuctionEndAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String ano = request.getParameter("ano");
-		String result = AuctionServiceImpl.getAuctionService().auctionStatusEnd(ano) + "";
+		String result = AuctionMainServiceImpl.getAuctionService().auctionStatusEnd(ano) + "";
 		
 		if(request.equals("0"))
 			System.out.println("경매종료후 db수정 실패");
