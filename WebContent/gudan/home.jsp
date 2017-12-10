@@ -180,7 +180,7 @@ function listArticle(tno) {
 </div>
 
 
-<a class="py-4 btn btn-primary btn-lg btn-block" href="<%=root%>/gudan?act=mvteamweb&tno=<%=memberDto.getTno() %>" role="button" style="border-radius: 0; color: white !important;" target="_blank">구단 공식 홈페이지 바로가기</a>
+<a class="py-4 btn btn-primary btn-lg btn-block" href="<%=root%>/gudan?act=mvteamweb&tno=<%=tno%>" role="button" style="border-radius: 0; color: white !important;" target="_blank">구단 공식 홈페이지 바로가기</a>
 
 <!-- footer영역 -->
 <%@ include file="/common/footer.jsp"%>

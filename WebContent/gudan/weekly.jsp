@@ -114,8 +114,8 @@ function listArticle(tno) {
 			<h5 class="mb-0">두산 베어스</h5>
 			<h6 class="mb-3">입장권 구입에 대해 상세히 알려드립니다.</h6>
 			<h5 class="mb-3">예매바로가기<i class="fa fa-chevron-right mx-2" aria-hidden="true"></i></h5>
-			<p class="text-center mb-0"><img class="img-fluid mx-auto"
-					src="<%=root%>/img/community/ticket.png" style="width:240px; height:auto;"></p>
+			<p class="text-center mb-0"><a href="<%=root%>/gudan?act=mvreservation&tno=<%=tno%>" target="_blank"><img class="img-fluid mx-auto"
+					src="<%=root%>/img/community/ticket.png" style="width:240px; height:auto;"></a></p>
 		</div>
 		<div class="col-md-12">
 			<div class="border-b my-3" style="border-color: #007bff;"></div>

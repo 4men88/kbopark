@@ -21,6 +21,7 @@ public class GudanController extends HttpServlet {
 		String root = request.getContextPath();
 		
 		String act = request.getParameter("act");
+		int tno = NullCheck.nullToZero(request.getParameter("tno"));
 		System.out.println("GudanController act >>> " + act);
 				
 		String path = "/index.jsp";
@@ -45,11 +46,15 @@ public class GudanController extends HttpServlet {
 			PageMove.forward(request, response, path);			
 			
 		} else if("mvteamweb".equals(act)) {	//각구단공식홈페이지로이동
-			int tno = NullCheck.nullToZero(request.getParameter("tno"));
 			System.out.println("GudanController tno >>> " + tno);
 			path = GudanServiceImpl.getGudanService().getGudanWeb(tno);
 			System.out.println("GudanController path >>> " + path);
 			response.sendRedirect(path);
+		} else if("mvreservation".equals(act)) {
+			System.out.println("GudanController tno >>> " + tno);
+			path = GudanServiceImpl.getGudanService().getReservationWeb(tno);
+			System.out.println("GudanController path >>> " + path);
+			response.sendRedirect(path);		
 		}
 //		} else if("deletearticle".equals(act)) {
 //			System.out.println("controller deletearticle 진입 !");

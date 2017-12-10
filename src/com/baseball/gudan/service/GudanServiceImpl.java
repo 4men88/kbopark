@@ -22,6 +22,11 @@ public class GudanServiceImpl implements GudanService {
 	public String getGudanWeb(int tno) {
 		return GudanDaoImpl.getGudanDao().getGudanWeb(tno);
 	}
+
+	@Override
+	public String getReservationWeb(int tno) {
+		return GudanDaoImpl.getGudanDao().getReservationWeb(tno);
+	}
 	
 	
 }
