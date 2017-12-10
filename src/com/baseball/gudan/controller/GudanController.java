@@ -4,11 +4,14 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.baseball.gudan.service.GudanServiceImpl;
 import com.baseball.util.NullCheck;
 import com.baseball.util.PageMove;
+import com.baseball.util.StringEncoder;
 
 @WebServlet("/gudan")
 public class GudanController extends HttpServlet {
@@ -19,18 +22,29 @@ public class GudanController extends HttpServlet {
 		
 		String act = request.getParameter("act");
 		System.out.println("GudanController act >>> " + act);
-		
+				
 		String path = "/index.jsp";
-	
 		if("viewgudan".equals(act)) {
 			path = "/gudan/teammain.jsp";
 			PageMove.forward(request, response, path);
-		} else if ("viewhome".equals(act)) {
+		} else if ("mvhome".equals(act)) {
 //			path = BoardActionFactory.getReboardListAction().execute(request, response);
 //			path += queryString;
 			path = "/gudan/home.jsp";
-			PageMove.forward(request, response, path);
-		} else if("mvteamweb".equals(act)) {
+			PageMove.forward(request, response, path);			
+		} else if ("mvstadium".equals(act)) {
+			path = "/gudan/gujang.jsp";
+			PageMove.forward(request, response, path);			
+			
+		} else if ("mvweekly".equals(act)) {
+			path = "/gudan/weekly.jsp";
+			PageMove.forward(request, response, path);			
+			
+		} else if ("mvcommunity".equals(act)) {
+			path = "/community/list.jsp";
+			PageMove.forward(request, response, path);			
+			
+		} else if("mvteamweb".equals(act)) {	//각구단공식홈페이지로이동
 			int tno = NullCheck.nullToZero(request.getParameter("tno"));
 			System.out.println("GudanController tno >>> " + tno);
 			path = GudanServiceImpl.getGudanService().getGudanWeb(tno);

@@ -1,5 +1,8 @@
 package com.baseball.board.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import com.baseball.board.model.BoardDto;
 
 public interface BoardDao {
@@ -10,9 +13,9 @@ public interface BoardDao {
 	int writeArticle(BoardDto boardDto);
 	BoardDto viewArticle(int seq);
 	int deleteArticle(int seq);
-	int modifyArticle(BoardDto boardDto);	
+	int modifyArticle(BoardDto boardDto);
+	List<BoardDto> listArticle(Map<String, String> map);
 	
 /*	int replyArticle(BoardDto BoardDto);
-	List<BoardDto> listArticle(Map<String, String> map);
 	*/
 }

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.baseball.board.dao.BoardDaoImpl;
 import com.baseball.board.model.BoardDto;
+import com.baseball.util.Constance;
 
 public class BoardServiceImpl implements BoardServcie {
 
@@ -36,6 +37,21 @@ public class BoardServiceImpl implements BoardServcie {
 	public BoardDto viewArticle(int seq) {
 		BoardDaoImpl.getBoardDao().updateHit(seq);
 		return BoardDaoImpl.getBoardDao().viewArticle(seq);
+	}
+
+	@Override
+	public List<BoardDto> listArticle(int tno, int pg, String key, String word) {
+
+		int end = pg * Constance.BOARD_LIST_SIZE;
+		int start = end - Constance.BOARD_LIST_SIZE;
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("tno", tno + "");
+		map.put("start", start + "");
+		map.put("end", end + "");
+		map.put("key", key);
+		map.put("word", word);
+
+		return BoardDaoImpl.getBoardDao().listArticle(map);		
 	}	
 
 /*	@Override
