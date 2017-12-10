@@ -9,8 +9,10 @@ public interface BoardDao {
 	
 	int writeArticle(BoardDto boardDto);
 	BoardDto viewArticle(int seq);
-/*	int replyArticle(ReboardDto reboardDto);
-	List<ReboardDto> listArticle(Map<String, String> map);
-	void modifyArticle(ReboardDto reboardDto);
-	void deleteArticle(int seq);*/
+	int deleteArticle(int seq);
+	int modifyArticle(BoardDto boardDto);	
+	
+/*	int replyArticle(BoardDto BoardDto);
+	List<BoardDto> listArticle(Map<String, String> map);
+	*/
 }

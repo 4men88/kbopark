@@ -4,8 +4,13 @@
 <%@ include file="/common/header.jsp"%>
 <%
 BoardDto boardDto = (BoardDto) request.getAttribute("article");
-
 %>
+<script type="text/javascript" src="<%=root%>/js/httpRequest.js"></script>
+<script type="text/javascript">
+control = "/board";
+
+</script>
+
 <div class="py-5 text-center opaque-overlay"
 	style="background-image: url(<%=root%>/img/etc/grass.jpg);">
 	<div class="container py-5">

@@ -1,8 +1,9 @@
 var root = "/kbopark";
 var control = "";
 
-function moveWrite() {
+function moveWrite(tno) {
 	document.getElementById("cact").value = "mvwrite";
+	document.getElementById("ctno").value = tno;
 	document.getElementById("cpg").value = "1";
 	document.getElementById("ckey").value = "";
 	document.getElementById("cword").value = "";
@@ -11,8 +12,9 @@ function moveWrite() {
 	document.getElementById("commonForm").submit();
 }
 
-function listArticle(pg, key, word) {
+function listArticle(tno, pg, key, word) {
 	document.getElementById("cact").value = "listarticle";
+	document.getElementById("ctno").value = tno;
 	document.getElementById("cpg").value = pg;
 	document.getElementById("ckey").value = key;
 	document.getElementById("cword").value = word;
@@ -21,8 +23,9 @@ function listArticle(pg, key, word) {
 	document.getElementById("commonForm").submit();
 }
 
-function viewArticle(pg, key, word, seq) {
+function viewArticle(tno, pg, key, word, seq) {
 	document.getElementById("cact").value = "viewarticle";
+	document.getElementById("ctno").value = tno;
 	document.getElementById("cpg").value = pg;
 	document.getElementById("ckey").value = key;
 	document.getElementById("cword").value = word;

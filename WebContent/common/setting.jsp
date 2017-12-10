@@ -4,6 +4,7 @@
 String root = request.getContextPath();//root ¾ò±â
 MemberDetailDto memberDto = (MemberDetailDto)session.getAttribute("userInfo");
 
+int tno = NullCheck.nullToZero(request.getParameter("tno"));
 int pg = NullCheck.nullToOne(request.getParameter("pg"));
 String key = StringEncoder.isoToMain(request.getParameter("key"));
 String word = StringEncoder.isoToMain(request.getParameter("word"));
@@ -40,6 +41,7 @@ root = "<%=root%>";
 <body>
 <form id="commonForm" name="commonForm" method="get" action="">
 	<input type="hidden" id="cact" name="act" value="">
+	<input type="hidden" id="ctno" name="tno" value="">
 	<input type="hidden" id="cpg" name="pg" value="">
 	<input type="hidden" id="ckey" name="key" value="">
 	<input type="hidden" id="cword" name="word" value="">

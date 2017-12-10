@@ -71,7 +71,6 @@ public class BoardDaoImpl implements BoardDao {
 		return cnt;
 	}
 
-	
 	@Override
 	public void updateHit(int seq) {
 		Connection conn = null;
@@ -125,6 +124,57 @@ public class BoardDaoImpl implements BoardDao {
 		}
 		return boardDto;
 	}	
+	
+	@Override
+	public int modifyArticle(BoardDto boardDto) {
+		int cnt = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			
+			sql.append("UPDATE board \n");
+			sql.append("SET bname = ?, bdetail = ?, tno = ? \n");
+			sql.append("WHERE bno = ? LIMIT 1");
+			pstmt = conn.prepareStatement(sql.toString());
+			int idx = 0;
+			pstmt.setString(++idx, boardDto.getBname());
+			pstmt.setString(++idx, boardDto.getBdetail());
+			pstmt.setInt(++idx, boardDto.getTno());
+			pstmt.setInt(++idx, boardDto.getBno());
+			cnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt);
+		}
+		return cnt;
+	}
+
+	@Override
+	public int deleteArticle(int seq) {
+		int cnt = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("DELETE FROM board \n");
+			sql.append("WHERE bno = ?");
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, seq);
+			cnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt);
+		}
+		System.out.println("BoardDaoImpl Delete ÃÖÁ¾cnt >>> " + cnt);
+		return cnt;
+	}
+	
+	
 	
 	/*
 	@Override
@@ -337,14 +387,5 @@ public class BoardDaoImpl implements BoardDao {
 		return list;
 	}
 
-	@Override
-	public void modifyArticle(BoardDto BoardDto) {
-
-	}
-
-	@Override
-	public void deleteArticle(int seq) {
-		// TODO Auto-generated method stub
-
-	}*/	
+*/
 }

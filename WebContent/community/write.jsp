@@ -30,6 +30,10 @@ function writeArticle(){
 		document.getElementById("writeForm").submit();
 	}
 }
+
+window.onload=function(){
+	
+}
 </script>
 
 <div class="py-5 text-center opaque-overlay"
@@ -117,7 +121,7 @@ function writeArticle(){
 						<label for="writeName" class="col-sm-2 col-4 col-form-label">작성자</label>
 						<div class="col-sm-4 col-8">
 							<input type="text" class="form-control" id="writer" name="writer"
-								placeholder="딩동댕" readonly>
+								placeholder="<%=memberDto.getName()%>" readonly>
 						</div>
 					</div>
 
@@ -125,7 +129,7 @@ function writeArticle(){
 						<label for="inputSubject" class="col-sm-2 col-12 col-form-label">제목</label>
 						<div class="col-sm-10 col-12">
 							<input type="text" class="form-control" id="subject" name="subject"
-								placeholder="">
+								placeholder="" size="76" maxlength="150">
 						</div>
 					</div>
 
@@ -156,11 +160,11 @@ function writeArticle(){
 				<div class="border-b mb-3"></div>
 				<div class="d-flex">
 					<div class="mr-auto p-2">
-						<a class="btn btn-primary btn-sm" href="#" role="button"
+						<a class="btn btn-primary btn-sm" href="javascript:history.back();" role="button"
 							style="color: white !important;">목록보기</a>
 					</div>
 					<div class="p-2">
-						<a class="btn btn-secondary btn-sm" href="#" role="button"
+						<a class="btn btn-secondary btn-sm" href="javascript:history.back();" role="button"
 							style="color: white !important;">취소</a>
 					</div>
 					<div class="p-2">
