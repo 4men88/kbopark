@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.baseball.factory.GudanActionFactory;
 import com.baseball.gudan.service.GudanServiceImpl;
 import com.baseball.util.NullCheck;
 import com.baseball.util.PageMove;
@@ -29,19 +30,22 @@ public class GudanController extends HttpServlet {
 			path = "/gudan/teammain.jsp";
 			PageMove.forward(request, response, path);
 		} else if ("mvhome".equals(act)) {
-//			path = BoardActionFactory.getReboardListAction().execute(request, response);
+			path = GudanActionFactory.getGudanAction().execute(request, response);
 //			path += queryString;
 			path = "/gudan/home.jsp";
 			PageMove.forward(request, response, path);			
 		} else if ("mvstadium".equals(act)) {
+			path = GudanActionFactory.getGudanAction().execute(request, response);
 			path = "/gudan/gujang.jsp";
 			PageMove.forward(request, response, path);			
 			
 		} else if ("mvweekly".equals(act)) {
+			path = GudanActionFactory.getGudanAction().execute(request, response);
 			path = "/gudan/weekly.jsp";
 			PageMove.forward(request, response, path);			
 			
 		} else if ("mvcommunity".equals(act)) {
+			path = GudanActionFactory.getGudanAction().execute(request, response);
 			path = "/community/list.jsp";
 			PageMove.forward(request, response, path);			
 			

@@ -15,6 +15,7 @@ public interface BoardDao {
 	int deleteArticle(int seq);
 	int modifyArticle(BoardDto boardDto);
 	List<BoardDto> listArticle(Map<String, String> map);
+	List<BoardDto> bestArticle(int tno);
 	
 /*	int replyArticle(BoardDto BoardDto);
 	*/

@@ -4,13 +4,27 @@ public class BoardDto {
 
 	private int bno;// 글번호
 	private String mid;// 작성자아이디
+	private String mname;// 작성자이름
 	private String bname;// 글제목
 	private String bdetail;// 글내용
 	private int tno; //구단번호
 	private int bcount;// 조회수
 	private String bdate;// 작성시각
 	private int bstatus;// 신고상태
+	private int totalreply; //총 리플 개수
 	
+	public String getMname() {
+		return mname;
+	}
+	public void setMname(String mname) {
+		this.mname = mname;
+	}
+	public int getTotalreply() {
+		return totalreply;
+	}
+	public void setTotalreply(int totalreply) {
+		this.totalreply = totalreply;
+	}
 	public int getBno() {
 		return bno;
 	}

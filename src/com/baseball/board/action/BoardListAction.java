@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.baseball.action.Action;
 import com.baseball.board.model.BoardDto;
 import com.baseball.board.service.BoardServiceImpl;
+import com.baseball.factory.GudanActionFactory;
+import com.baseball.gudan.model.GudanDto;
+import com.baseball.gudan.service.GudanServiceImpl;
 import com.baseball.util.Constance;
 import com.baseball.util.NullCheck;
 import com.baseball.util.PageNavigation;
@@ -26,19 +29,22 @@ public class BoardListAction implements Action {
 		String key = StringEncoder.isoToMain(request.getParameter("key"));
 		String word = StringEncoder.isoToMain(request.getParameter("word"));
 		
+		GudanDto gudanDto = GudanServiceImpl.getGudanService().gudanArticle(tno);
+		List<BoardDto> bestlist = BoardServiceImpl.getBoardService().bestArticle(tno);
 		List<BoardDto> list = BoardServiceImpl.getBoardService().listArticle(tno, pg, key, word);
-
+		
 		/*		PageNavigation navigation = BoardServiceImpl.getCommonService().makePageNavigation(bcode, pg, key, word, Constance.BOARD_LIST_SIZE);
 		navigation.setRoot(request.getContextPath());
 		navigation.setBcode(bcode);
 		navigation.setKey(key);
 		navigation.setWord(word);
 		navigation.setNavigator();*/
-		
-		request.setAttribute("articlelist", list);
 //		request.setAttribute("navigator", navigation);
+
+		request.setAttribute("gudandto", gudanDto);
+		request.setAttribute("articlelist", list);
+		request.setAttribute("bestlist", bestlist);
 		return "/community/list.jsp";
-		
 	}
 
 }
