@@ -43,6 +43,9 @@ root = "<%=root%>";
 	<input type="hidden" id="aano" name="ano" value="">
 	<input type="hidden" id="acategory1" name="category1" value="">
 	<input type="hidden" id="acategory2" name="category2" value="">
+	<input type="hidden" id="akey" name="key" value="">
+	<input type="hidden" id="aword" name="word" value="">
+	<input type="hidden" id="apg" name="pg" value="">
 </form>
 <form id="commonForm" name="commonForm" method="get" action="">
 	<input type="hidden" id="cact" name="act" value="">

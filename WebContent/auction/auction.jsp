@@ -349,11 +349,14 @@ window.onload=function() {
    startTime();
 }
 
-function categoryList(category1, category2)
+function categoryList(key, word, category1, category2)
 {
+	document.getElementById("aact").value = "categorylist";
+	document.getElementById("apg").value = "1";
+	document.getElementById("akey").value = "";
+	document.getElementById("aword").value = "";
 	document.getElementById("acategory1").value = category1; 
 	document.getElementById("acategory2").value = category2; 
-	document.getElementById("aact").value = "categorylist";
 	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 	document.getElementById("auctionForm").submit();		
 }
@@ -367,7 +370,7 @@ function categoryList(category1, category2)
             <ul class="list-group">
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="javascript:categoryList('','');">
+                  <a href="javascript:categoryList('','','','');">
                   전체보기 </a><span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
@@ -377,7 +380,7 @@ if(newNumArray != null)
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="javascript:categoryList('1','');">
+                  <a href="javascript:categoryList('','','1','');">
                   유니폼</a><span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
@@ -387,7 +390,7 @@ if(newNumArray != null)
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="javascript:categoryList('2','');">
+                  <a href="javascript:categoryList('','','2','');">
                   경기용품 </a><span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
@@ -397,7 +400,7 @@ if(newNumArray != null)
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="javascript:categoryList('3','');">
+                  <a href="javascript:categoryList('','','3','');">
                   응원용품</a> <span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
@@ -407,7 +410,7 @@ if(newNumArray != null)
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="javascript:categoryList('4','');">
+                  <a href="javascript:categoryList('','','4','');">
                   기타잡화</a> <span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  

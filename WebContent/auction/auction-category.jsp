@@ -321,13 +321,13 @@
 										</div>
 									</div>
 								</div>
-
+-->
  
 
 							</div>
 						</div>
 
-						<div class="col-12 py-3">
+						<div class="col-12 py-3" >
 							<ul class="pagination pagination-sm">
 								<li class="page-item disabled"><a class="page-link"
 									href="#">Previous</a></li>
