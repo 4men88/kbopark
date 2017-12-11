@@ -35,38 +35,44 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer category_all = new StringBuffer();
-			category_all.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, to_char(a_ad.starttime, 'yyyy.mm.dd.hh24.mi.ss') as starttime, a_ad.bidprice, a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano\n");
-			category_all.append("from auction_image ai,( \n");
-			category_all.append("						select a.*, ad.bidprice, ad.bidnum\n");
-			category_all.append("						from auction a,( \n");
-			category_all.append("										select ano, max(bidprice) as bidprice, count(*) as bidnum \n");
-			category_all.append("										from auction_detail \n");
-			category_all.append("										group by ano \n");
-			category_all.append("										)ad \n");
-//			category_all.append("						group by a.astatus \n");				
-			category_all.append("						where a.ano = ad.ano(+) \n");
-			category_all.append("						)a_ad \n");
+			category_all.append("select rr.*  \n");
+			category_all.append("    from( \n");
+			category_all.append("    select rownum rn, r.*        \n");
+			category_all.append("    from( \n");
+			category_all.append("        select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, to_char(a_ad.starttime, 'yyyy.mm.dd.hh24.mi.ss') as starttime, a_ad.bidprice, a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano \n");
+			category_all.append("        from auction_image ai,( \n");
+			category_all.append("                                select a.*, ad.bidprice, ad.bidnum \n");
+			category_all.append("                                from auction a,( \n");
+			category_all.append("                                                select ano, max(bidprice) as bidprice, count(*) as bidnum \n");
+			category_all.append("                                                from auction_detail \n");
+			category_all.append("                                                group by ano \n");
+			category_all.append("                                                )ad \n");
+			category_all.append("                                where a.ano = ad.ano(+) \n");
+			category_all.append("                                )a_ad \n");
 			String category1 = map.get("category1");
 			String category2 = map.get("category2");
 			if(category1.isEmpty())	// 대분류 카테고리가 없으면
 			{
-				category_all.append("where a_ad.ano = ai.ano(+)\n"); // 전체보기
+				category_all.append("where a_ad.astatus = ? and a_ad.ano = ai.ano(+)\n"); // 전체보기
 			}
 			else if(category2.isEmpty()) //대분류는 있고 소분류가 없으면
 			{
-				category_all.append("where a_ad.ano = ai.ano(+) and \n");
-				category_all.append("case when a_ad.category1 = ? \n");
-				category_all.append(" \n");
-				category_all.append(" \n");
+				category_all.append("where a_ad.astatus = ? and a_ad.ano = ai.ano(+) and a_ad.category1 = ?\n");
+//				category_all.append("case when a_ad.category1 = ? \n");
+
 			}
 			else // 대분류 소분류 둘다 있으면 
 			{				
-				category_all.append("where a_ad.ano = ai.ano(+) and a_ad.category1 = ? and a_ad.category2 = ? \n");
+				category_all.append("where a_ad.astatus = ? and a_ad.ano = ai.ano(+) and a_ad.category1 = ? and a_ad.category2 = ?\n");
 			}
-			category_all.append("order by a_ad.starttime desc\n");	// 기본은 등록시간순으로 
+			category_all.append("order by a_ad.starttime desc \n");	// 기본은 등록시간순으로 
+			category_all.append("        )r \n");
+			category_all.append("    where rownum <= ?\n");
+			category_all.append("    )rr \n");
+			category_all.append("where rr.rn > ?\n");
 			pstmt = conn.prepareStatement(category_all.toString());
 			int idx = 0;
-			
+			pstmt.setString(++idx,map.get("astatus"));
 			if(!category1.isEmpty())	// 대분류 카테고리가 있고
 			{
 				pstmt.setString(++idx,category1);
@@ -75,8 +81,10 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 					pstmt.setString(++idx,category2);
 				}
 			}
-			
+			pstmt.setString(++idx, map.get("end"));
+			pstmt.setString(++idx, map.get("start"));
 			rs = pstmt.executeQuery();
+			System.out.println("rs       = " + rs );
 			int cnt = 0;
 			while(rs.next()) {
 				System.out.println("카테고리 넥스트");

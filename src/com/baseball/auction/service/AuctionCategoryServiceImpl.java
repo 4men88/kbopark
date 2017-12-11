@@ -23,15 +23,16 @@ public class AuctionCategoryServiceImpl implements AuctionCategoryService {
 
 
 	@Override
-	public List<AuctionDetailDto> auctionCategoryList(String category1, String category2, int pg) {		
+	public List<AuctionDetailDto> auctionCategoryList(String category1, String category2, int pg, int astatus) {		
 		
 		int end = pg * Constance.CATEGORY_LIST_SIZE;
 		int start = end - Constance.CATEGORY_LIST_SIZE;
 		Map<String, String> map = new HashMap<String, String>();
+		map.put("astatus", astatus +"");
 		map.put("category1", category1);
 		map.put("category2", category2);
 		map.put("start", start + "");
-		map.put(" end",  end + "");
+		map.put("end",  end + "");
 //		map.put("key", key);
 //		map.put("word", word);
 		return AuctionCategoryDaoImpl.getAuctionCategoryDao().auctionCategoryList(map);
