@@ -3,6 +3,39 @@
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
 
+<link rel="stylesheet" type="text/css" HREF="<%=root %>/css/alice.css">
+<link rel="stylesheet" type="text/css" HREF="<%=root %>/css/oz.css">
+<script type="text/javascript" src="<%=root %>/js/prototype.js"></script>
+<script type="text/javascript" src="<%=root %>/js/extprototype.js"></script>	
+<script type="text/javascript" src="<%=root %>/js/oz.js"></script>	
+<script type="text/javascript" src="<%=root %>/js/alice.js"></script>
+<script type="text/javascript">
+var alice;
+Event.observe(window, "load", function() {
+	alice = Web.EditorManager.instance("editor",{type:'detail',width:'96%',height:'100%',limit:20,family:'돋움',size:'13px'});
+
+});	
+
+function writeArticle(){
+	if(document.getElementById("subject").value == "") {
+		alert("제목을 입력하세요");
+		return;
+	}else if(alice.getContent() == ""){
+		alert("내용을 입력하세요");
+		return;
+	}else{
+		document.getElementById("content").value = alice.getContent();
+		document.getElementById("boardtno").value = document.getElementById("selectgudan").value;
+		document.getElementById("writeForm").action = "<%=root%>/board";
+		document.getElementById("writeForm").submit();
+	}
+}
+
+window.onload=function(){
+	
+}
+</script>
+
 <div class="py-5 text-center opaque-overlay"
 	style="background-image: url(<%=root%>/img/etc/grass.jpg);">
 	<div class="container py-5">
@@ -59,21 +92,27 @@
 
 
 
-				<form id="" class="">
+				<form id="writeForm" name="writeForm" class="">
+<input type="hidden" name="act" value="newarticle">
+<%-- <input type="hidden" name="bcode" value="<%=bcode%>">
+<input type="hidden" name="pg" value="<%=pg%>"> --%>
+<input type="hidden" id="content" name="content" value="">
+<input type="hidden" id="boardtno" name="boardtno" value="">		
+				
 					<div class="form-group row px-3">
 						<label for="selectgudan" class="col-sm-2 col-4 col-form-label">구단</label>
 						<div class="col-sm-4 col-8">
-							<select id="selectgudan" class="form-control">
-								<option selected>두산 베어스</option>
-								<option>롯데 자이언츠</option>
-								<option>KIA 타이거즈</option>
-								<option>NC 다이노스</option>
-								<option>SK 와이번스</option>
-								<option>LG 트윈스</option>
-								<option>넥센 히어로즈</option>
-								<option>한화 이글스</option>
-								<option>삼성 라이온즈</option>
-								<option>KT 위즈</option>
+							<select id="selectgudan" name="selectgudan" class="form-control">
+								<option value="2" selected>두산 베어스</option>
+								<option value="3">롯데 자이언츠</option>
+								<option value="1">KIA 타이거즈</option>
+								<option value="4">NC 다이노스</option>
+								<option value="5">SK 와이번스</option>
+								<option value="6">LG 트윈스</option>
+								<option value="7">넥센 히어로즈</option>
+								<option value="8">한화 이글스</option>
+								<option value="9">삼성 라이온즈</option>
+								<option value="10">KT 위즈</option>
 							</select>
 						</div>
 					</div>
@@ -81,23 +120,22 @@
 					<div class="form-group row px-3">
 						<label for="writeName" class="col-sm-2 col-4 col-form-label">작성자</label>
 						<div class="col-sm-4 col-8">
-							<input type="text" class="form-control" id="writeName"
-								placeholder="딩동댕" readonly>
+							<input type="text" class="form-control" id="writer" name="writer"
+								placeholder="<%=memberDto.getName()%>" readonly>
 						</div>
 					</div>
 
 					<div class="form-group row px-3">
 						<label for="inputSubject" class="col-sm-2 col-12 col-form-label">제목</label>
 						<div class="col-sm-10 col-12">
-							<input type="text" class="form-control" id="inputSubject"
-								placeholder="">
+							<input type="text" class="form-control" id="subject" name="subject"
+								placeholder="" size="76" maxlength="150">
 						</div>
 					</div>
 
 					<div class="form-group row px-3">
 						<div class="col-md-12">
-							<textarea class="form-control" id="exampleFormControlTextarea1"
-								rows="20"></textarea>
+							<textarea class="form-control" rows="20" id="editor" name="editor"></textarea>
 						</div>
 					</div>
 
@@ -122,15 +160,15 @@
 				<div class="border-b mb-3"></div>
 				<div class="d-flex">
 					<div class="mr-auto p-2">
-						<a class="btn btn-primary btn-sm" href="#" role="button"
+						<a class="btn btn-primary btn-sm" href="javascript:history.back();" role="button"
 							style="color: white !important;">목록보기</a>
 					</div>
 					<div class="p-2">
-						<a class="btn btn-secondary btn-sm" href="#" role="button"
+						<a class="btn btn-secondary btn-sm" href="javascript:history.back();" role="button"
 							style="color: white !important;">취소</a>
 					</div>
 					<div class="p-2">
-						<a class="btn btn-primary btn-sm" href="#" role="button"
+						<a class="btn btn-primary btn-sm" href="javascript: writeArticle();" role="button"
 							style="color: white !important;">등록</a>
 					</div>
 				</div>
@@ -181,5 +219,5 @@
 </div>
 
 
-<!-- footer영역 -->
-<%@ include file="/common/footer.jsp"%>
+<!-- alice용 footer영역 -->
+<%@ include file="/community/boardfooter.jsp"%>

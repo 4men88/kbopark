@@ -2,11 +2,13 @@ package com.baseball.schedule.action;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.baseball.action.Action;
 import com.baseball.schedule.scheduleDto.ScheduleDto;
@@ -17,15 +19,16 @@ public class ScheduleAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 			
-		ScheduleDto scheduleDto = ScheduleServiceImpl.getScheduleService().viewSchedule();
+		List<ScheduleDto> list = ScheduleServiceImpl.getScheduleService().viewSchedule();
 
-		request.setAttribute("schedulemap", scheduleDto);
+		HttpSession session = request.getSession();
+		session.setAttribute("viewschedule", list);
 
-		System.out.println("ScheduleAction" + scheduleDto);
+		System.out.println("ScheduleAction" + list);
 		
-		return "/schedule/daily.jsp";
-		
+		return "/schedule/monthly.jsp";
 	}
 
 }

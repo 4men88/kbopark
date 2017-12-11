@@ -720,3 +720,7 @@ html, body {
 .pagination .page-item.active .page-link {
 	color: white !important;
 }
+
+#communitylist .list-group .active {
+	color: white !important;
+}

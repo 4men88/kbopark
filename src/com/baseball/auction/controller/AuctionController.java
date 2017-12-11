@@ -16,7 +16,7 @@ import com.baseball.factory.AuctionActionFactory;
 import com.baseball.util.Constance;
 import com.baseball.util.PageMove;
 
-@WebServlet("/auctionlist")
+@WebServlet("/auctioncontroller")
 
 public class AuctionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -41,11 +41,20 @@ public class AuctionController extends HttpServlet {
 			out.print(time);
 //			out.print("<font color='red' size='5'><b>" + time + "</b></font>");
 		}
+		else if("statuschange".equals(act))
+		{
+			path = AuctionActionFactory.getAuctionEndListAction().execute(request, response);
+			PageMove.forward(request, response, path);
+		}
+		else if("categorylist".equals(act))
+		{
+			path = AuctionActionFactory.getAuctionCategoryListAction().execute(request, response);
+			PageMove.forward(request, response, path);
+		}
 		else 
 		{
 			PageMove.redirect(request, response, path);
-		}
-		
+		}	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

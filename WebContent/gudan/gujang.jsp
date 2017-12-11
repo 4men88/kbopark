@@ -3,6 +3,19 @@
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
 
+<script type="text/javascript">
+function listArticle(tno) {
+	document.getElementById("cact").value = "listarticle";
+	document.getElementById("ctno").value = tno;
+	document.getElementById("cpg").value = 1;
+	
+	document.getElementById("commonForm").action = root + "/board";
+	document.getElementById("commonForm").submit();
+}
+
+</script>
+
+>>>>>>>>>>>>>>>>>>>>>>><%=tno %>
 <div class="py-5 text-center opaque-overlay"
 	style="background-image: url(<%=root%>/img/etc/grass.jpg);">
 	<div class="container py-5">
@@ -34,10 +47,10 @@
 <div id="gudan-nav">
 	<div class="container">
 		<div class="d-flex justify-content-center">
-			<div class="gudan-nav-inner p-3">메인</div>
-			<div class="gudan-nav-inner p-3">구장안내</div>
-			<div class="gudan-nav-inner p-3">스케줄</div>
-			<div class="gudan-nav-inner p-3">커뮤니티</div>
+			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvhome&tno=<%=tno %>">메인</a></div>
+			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvstadium&tno=<%=tno %>">구장안내</a></div>
+			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvweekly&tno=<%=tno %>">스케줄</a></div>
+			<div class="gudan-nav-inner p-3"><a href="javascript:listArticle('<%=tno%>');">커뮤니티</a></div>
 		</div>
 		<div class="border-b p-0"></div>
 	</div>

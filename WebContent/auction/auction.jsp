@@ -1,8 +1,11 @@
+
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
    pageEncoding="EUC-KR" import="com.baseball.auction.model.AuctionDetailDto,
    java.util.*, java.text.*,java.io.*"%>
 <!--header 영역 -->
 <%@ include file="/common/header.jsp"%>
+
+
 <%!
 //리스트 길이 담을 변수
 int bestListLen;	
@@ -17,7 +20,7 @@ int newListLen;
    List<AuctionDetailDto> endList = (List<AuctionDetailDto>)request.getAttribute("endList");
    List<AuctionDetailDto> hitList = (List<AuctionDetailDto>)request.getAttribute("hitList");
    List<AuctionDetailDto> newList = (List<AuctionDetailDto>)request.getAttribute("newList");
-
+   List<Integer> newNumArray = (List<Integer>)request.getAttribute("newNumArray");
    //endTime만 따로 리스트에 담을 리스트
    List<String> bestListTimeArr = new ArrayList<String>();	
    List<String> endListTimeArr = new ArrayList<String>();
@@ -59,14 +62,12 @@ int newListLen;
 <script type="text/javascript" src="/kbopark/js/httpRequest.js"></script>
 <script type="text/javascript">
 
-
 function startTime() {
 //   httpRequest = getXMLHttpRequest();
 //   httpRequest.onreadystatechange = getTime;
-//   httpRequest.open("GET", "<%=root%>/auction/auction-time.jsp", true);
 //   httpRequest.send(null);
    var params = "act=timelist";
-   sendRequest("<%=root%>/auctionlist", params, getTime, "GET");   
+   sendRequest("<%=root%>/auctioncontroller", params, getTime, "POST");   
 }
 function getTime() {
    if(httpRequest.readyState == 4) {
@@ -137,11 +138,18 @@ function getTime() {
 			
 			else{	//남은시간이 없다면
             document.getElementById("besttime" + <%=i%>).innerHTML 
-= "<font color=\"red\"size=\"4\"><b>마감</b></font>";				
-			}
-			
+= "<font color=\"red\"size=\"4\"><b>마감</b></font>";
+				if(<%=bestList.get(i).getAstatus()%> == 1)
+					{
+						document.getElementById("aano").value = "<%=bestList.get(i).getAno()%>";
+						document.getElementById("aact").value = "statuschange";
+						document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+						document.getElementById("auctionForm").submit();
+						
+					}
+				}
 <%            
-         }
+}
 %>
 
 <%
@@ -192,10 +200,17 @@ for(int i=0; i<endListLen; i++)
 	
 	else{	//남은시간이 없다면
     document.getElementById("endtime" + <%=i%>).innerHTML 
-= "<font color=\"red\"size=\"4\"><b>마감</b></font>";				
-	}
-	
-<%            
+= "<font color=\"red\"size=\"4\"><b>마감</b></font>";
+			if(<%=endList.get(i).getAstatus()%> == 1)
+			{
+				document.getElementById("aano").value = "<%=endList.get(i).getAno()%>";
+				document.getElementById("aact").value = "statuschange";
+				document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+				document.getElementById("auctionForm").submit();
+			
+			}
+		}
+	<%            
  }
 %>
 
@@ -247,8 +262,17 @@ for(int i=0; i<hitListLen; i++)
 	
 	else{	//남은시간이 없다면
     document.getElementById("hittime" + <%=i%>).innerHTML 
-= "<font color=\"red\"size=\"4\"><b>마감</b></font>";				
-	}
+= "<font color=\"red\"size=\"4\"><b>마감</b></font>";	
+		if(<%=hitList.get(i).getAstatus()%> == 1)
+			{
+			document.getElementById("aano").value = "<%=hitList.get(i).getAno()%>";
+			document.getElementById("aact").value = "statuschange";
+			document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+			document.getElementById("auctionForm").submit();
+			
+		//		document.location.href = "<%=root%>/auctionlist?act=statuschange";
+			}
+		}
 	
 <%            
  }
@@ -302,11 +326,18 @@ for(int i=0; i<newListLen; i++)
 	
 	else{	//남은시간이 없다면
     document.getElementById("newtime" + <%=i%>).innerHTML 
-= "<font color=\"red\"size=\"4\"><b>마감</b></font>";				
-	}
+= "<font color=\"red\"size=\"4\"><b>마감</b></font>";	
+			if(<%=newList.get(i).getAstatus()%> == 1)
+			{
+				document.getElementById("aano").value = "<%=newList.get(i).getAno()%>";
+				document.getElementById("aact").value = "statuschange";
+				document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+				document.getElementById("auctionForm").submit();		
+			}
+		}
 	
 <%            
- }
+}
 %>
          window.setTimeout("startTime();", 1000);
    //      alert(ctime);
@@ -317,11 +348,16 @@ for(int i=0; i<newListLen; i++)
 window.onload=function() {
    startTime();
 }
-</script>
 
-<div class="container py-5 my-5">
-   <div class="navbar-template text-center"></div>
-</div>
+function categoryList(category1, category2)
+{
+	document.getElementById("acategory1").value = category1; 
+	document.getElementById("acategory2").value = category2; 
+	document.getElementById("aact").value = "categorylist";
+	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+	document.getElementById("auctionForm").submit();		
+}
+</script>
 
 <div id="auction-maincarousel">
    <div class="container-fluid">
@@ -331,23 +367,53 @@ window.onload=function() {
             <ul class="list-group">
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  전체보기 <span class="badge badge-primary badge-pill">14</span>
+                  <a href="javascript:categoryList('','');">
+                  전체보기 </a><span class="badge badge-primary badge-pill">
+<%
+if(newNumArray != null)                  
+                  out.print(newNumArray.get(0).toString());
+%> 
+                  </span>
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  유니폼 <span class="badge badge-primary badge-pill">2</span>
+                  <a href="javascript:categoryList('1','');">
+                  유니폼</a><span class="badge badge-primary badge-pill">
+<%
+if(newNumArray != null)                  
+                  out.print(newNumArray.get(1).toString());
+%> 
+                  </span>
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  경기용품 <span class="badge badge-primary badge-pill">1</span>
+                  <a href="javascript:categoryList('2','');">
+                  경기용품 </a><span class="badge badge-primary badge-pill">
+<%
+if(newNumArray != null)                  
+                  out.print(newNumArray.get(2).toString());
+%>                   
+                  </span>
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  응원용품 <span class="badge badge-primary badge-pill">1</span>
+                  <a href="javascript:categoryList('3','');">
+                  응원용품</a> <span class="badge badge-primary badge-pill">
+<%
+if(newNumArray != null)                  
+                  out.print(newNumArray.get(3).toString());
+%>                  
+                  </span>
                </li>
                <li
                   class="list-group-item d-flex justify-content-between align-items-center">
-                  기타잡화 <span class="badge badge-primary badge-pill">1</span>
+                  <a href="javascript:categoryList('4','');">
+                  기타잡화</a> <span class="badge badge-primary badge-pill">
+<%
+if(newNumArray != null)                  
+                  out.print(newNumArray.get(4).toString());
+%>                  
+                  </span>
                </li>
                <li
                   class="bg-pingendo list-group-item d-flex justify-content-between align-items-center">
@@ -393,8 +459,6 @@ window.onload=function() {
 <!--
 <!-- 추천별 경매물품 섹션: best pick: 관리자가 초이스한 상품들 -->
 <div id="auc-recommended" class="py-5">
-
-
 <div class="container py-5">
    <!-- Nav tabs -->
    <ul class="nav nav-tabs nav-justified" role="tablist">
@@ -419,10 +483,10 @@ if(bestList != null)
    {
 %>            
          
-            <div class="col-md-3">
-               <div class="row p-2">
-                  <div class="col-md-12 col-4 align-self-center">
-                     <img src="<%=root%>/<%=bestList.get(i).getAimage()%>" class="img-fluid">
+            <div class="col-md-3" >
+               <div class="row p-2" >
+                  <div class="col-md-12 col-4 align-self-center" >
+                     <img height="100"src="<%=root%>/<%=bestList.get(i).getAimage()%>" class="img-fluid">
                   </div>
                   <div class="col-md-12 col-8 align-self-center">
                      <p class="mb-2">
@@ -431,7 +495,7 @@ if(bestList != null)
                         <div id="besttime<%=i%>"></div>
                      </p>
                      <p style="color: red;">
-                        <strong>현재입찰가 : <%=bestList.get(i).getBidPrice()%></strong>
+                        <strong>현재입찰가 : <%=bestList.get(i).getBidPrice()%>원</strong>
                      </p>
                   </div>
                </div>
@@ -464,7 +528,7 @@ if(endList != null)
                         <div id="endtime<%=i%>"></div>
                      </p>
                      <p style="color: red;">
-                        <strong>현재입찰가 : <%=endList.get(i).getBidPrice()%></strong>
+                        <strong>현재입찰가 : <%=endList.get(i).getBidPrice()%>원</strong>
                      </p>
                   </div>
                </div>
@@ -495,7 +559,7 @@ if(hitList != null)
                        <div id="hittime<%=i%>"></div>
                      </p>
                      <p style="color: red;">
-                        <strong>현재입찰가 : <%=hitList.get(i).getBidPrice()%></strong>
+                        <strong>현재입찰가 : <%=hitList.get(i).getBidPrice()%>원</strong>
                      </p>
                   </div>
                </div>
@@ -610,6 +674,5 @@ if(newList != null)
       </div>
    </div>
 </div>
-
 <!-- footer영역 -->
 <%@ include file="/common/footer.jsp"%>

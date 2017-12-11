@@ -8,4 +8,5 @@ public interface AuctionMainDao {
 	List<AuctionDetailDto> auctionEndList();
 	List<AuctionDetailDto> auctionHitList();
 	List<AuctionDetailDto> auctionNewList();
+	List<Integer> auctionNewNumArray();
 }

@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR" import="com.baseball.auction.model.AuctionDetailDto,
+   java.util.*, java.text.*,java.io.*"%>
 <!-- 상품눌렀을때 뜨는 상세 페이지. -->
 <!-- header영역 -->
 <%@ include file="/common/header.jsp"%>
 
+<%
+	List<AuctionDetailDto> categoryAllList = (List<AuctionDetailDto>)request.getAttribute("categoryAllList");
+%>
 <script type="text/javascript">
 	$(function() {
 		'use strict'
@@ -113,6 +117,8 @@
 										</div>
 									</div>
 									<div class="row p-2 text-center">
+									
+									
 										<div class="col-md-3">
 											<div class="row p-2">
 												<div class="col-md-12 col-4 align-self-center">
@@ -177,6 +183,7 @@
 													</p>
 												</div>
 											</div>
+<!-- ------------------------------------------------------------------------------------------------------------------------------ -->											
 										</div>
 										<div class="col-md-3">
 											<div class="row p-2">
@@ -244,7 +251,7 @@
 										</div>
 									</div>
 								</div>
-
+<!-- 
 								<div id="menu2" class="container tab-pane fade">
 									<div class="row p-2 text-center">
 										<div class="col-md-3">
@@ -315,7 +322,7 @@
 									</div>
 								</div>
 
-
+ 
 
 							</div>
 						</div>
