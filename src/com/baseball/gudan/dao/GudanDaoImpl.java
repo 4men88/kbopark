@@ -3,6 +3,7 @@ package com.baseball.gudan.dao;
 import java.sql.*;
 
 import com.baseball.gudan.model.GudanDto;
+import com.baseball.gudan.model.StadiumDto;
 import com.baseball.util.db.DBClose;
 import com.baseball.util.db.DBConnection;
 
@@ -122,5 +123,38 @@ public class GudanDaoImpl implements GudanDao {
 			DBClose.close(conn, pstmt, rs);
 		}
 		return gudanDto;
+	}
+
+	@Override
+	public StadiumDto stadiumArticle(int sno) {
+		StadiumDto stadiumDto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		System.out.println("GudanDaoImpl sno >>> " + sno);
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("SELECT sno, sname, sloc, image, lat, lng \n");
+			sql.append("FROM stadium \n");
+			sql.append("WHERE sno = ?");
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, sno);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				stadiumDto = new StadiumDto();
+				stadiumDto.setSno(rs.getInt("sno"));
+				stadiumDto.setSname(rs.getString("sname"));
+				stadiumDto.setSloc(rs.getString("sloc"));
+				stadiumDto.setImage(rs.getString("image"));
+				stadiumDto.setLat(rs.getInt("lat"));
+				stadiumDto.setLng(rs.getInt("lng"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		return stadiumDto;
 	}
 }

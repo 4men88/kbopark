@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR" import="com.baseball.gudan.model.GudanDto"%>
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
-
+<%
+GudanDto gudanDto = (GudanDto) session.getAttribute("gudandto");
+%>
 <link rel="stylesheet" type="text/css" HREF="<%=root %>/css/alice.css">
 <link rel="stylesheet" type="text/css" HREF="<%=root %>/css/oz.css">
 <script type="text/javascript" src="<%=root %>/js/prototype.js"></script>
@@ -16,13 +18,12 @@ Event.observe(window, "load", function() {
 
 });	
 </script>
-
 <div class="py-5 text-center opaque-overlay"
 	style="background-image: url(<%=root%>/img/etc/grass.jpg);">
 	<div class="container py-5">
 		<div class="row">
 			<div class="col-md-12 text-white">
-				<h1 class="display-3">KIA TIGERS</h1>
+				<h1 class="display-3"><%=gudanDto.getEnname() %></h1>
 			</div>
 		</div>
 	</div>
@@ -36,9 +37,9 @@ Event.observe(window, "load", function() {
 					<ol class="breadcrumb justify-content-end"
 						style="background-color: white;">
 						<li class="breadcrumb-item"><i class="fa fa-home mr-2"
-							aria-hidden="true"></i><a href="#">구단</a></li>
-						<li class="breadcrumb-item"><a href="#">기아타이거즈</a></li>
-						<li class="breadcrumb-item active" aria-current="page">커뮤니티</li>
+							aria-hidden="true"></i><a href="<%=root%>/gudan?act=viewgudan">구단</a></li>
+						<li class="breadcrumb-item"><a href="<%=root%>/gudan?act=mvhome&tno=<%=gudanDto.getTno() %>"><%=gudanDto.getTname() %></a></li>
+						<li class="breadcrumb-item active" aria-current="page">메인</li>
 					</ol>
 				</nav>
 			</div>
@@ -48,10 +49,10 @@ Event.observe(window, "load", function() {
 <div id="gudan-nav">
 	<div class="container">
 		<div class="d-flex justify-content-center">
-			<div class="gudan-nav-inner p-3">메인</div>
-			<div class="gudan-nav-inner p-3">구장안내</div>
-			<div class="gudan-nav-inner p-3">스케줄</div>
-			<div class="gudan-nav-inner p-3">커뮤니티</div>
+			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvhome&tno=<%=gudanDto.getTno() %>">메인</a></div>
+			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvstadium&sno=<%=gudanDto.getSno1() %>">구장안내</a></div>
+			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvweekly&tno=<%=gudanDto.getTno() %>">스케줄</a></div>
+			<div class="gudan-nav-inner p-3"><a href="javascript:listArticle('<%=gudanDto.getTno()%>');">커뮤니티</a></div>
 		</div>
 		<div class="border-b p-0"></div>
 	</div>
