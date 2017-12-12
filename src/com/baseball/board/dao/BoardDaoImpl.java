@@ -57,8 +57,8 @@ public class BoardDaoImpl implements BoardDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("insert into board (bno, mid, bname, bdetail, tno, bcount, bdate, bstatus) \n");
-			sql.append("			values (?, ?, ?, ?, ?, 0, sysdate, 0) \n");
+			sql.append("insert into board (bno, mid, bname, bdetail, tno, bcount, bdate, bstatus, mname) \n");
+			sql.append("			values (?, ?, ?, ?, ?, 0, sysdate, 0, ?) \n");
 			pstmt = conn.prepareStatement(sql.toString());
 			int idx = 0;
 			pstmt.setInt(++idx, boardDto.getBno());
@@ -66,6 +66,7 @@ public class BoardDaoImpl implements BoardDao {
 			pstmt.setString(++idx, boardDto.getBname());
 			pstmt.setString(++idx, boardDto.getBdetail());
 			pstmt.setInt(++idx, boardDto.getTno());
+			pstmt.setString(++idx, boardDto.getMname());
 			cnt = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

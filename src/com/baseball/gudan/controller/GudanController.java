@@ -32,23 +32,16 @@ public class GudanController extends HttpServlet {
 		} else if ("mvhome".equals(act)) {
 			path = GudanActionFactory.getGudanAction().execute(request, response);
 //			path += queryString;
-			path = "/gudan/home.jsp";
 			PageMove.forward(request, response, path);			
 		} else if ("mvstadium".equals(act)) {
-			path = GudanActionFactory.getGudanAction().execute(request, response);
-			path = "/gudan/gujang.jsp";
+			path = GudanActionFactory.getStadiumAction().execute(request, response);
 			PageMove.forward(request, response, path);			
-			
 		} else if ("mvweekly".equals(act)) {
-			path = GudanActionFactory.getGudanAction().execute(request, response);
 			path = "/gudan/weekly.jsp";
 			PageMove.forward(request, response, path);			
-			
 		} else if ("mvcommunity".equals(act)) {
-			path = GudanActionFactory.getGudanAction().execute(request, response);
 			path = "/community/list.jsp";
 			PageMove.forward(request, response, path);			
-			
 		} else if("mvteamweb".equals(act)) {	//각구단공식홈페이지로이동
 			System.out.println("GudanController tno >>> " + tno);
 			path = GudanServiceImpl.getGudanService().getGudanWeb(tno);
