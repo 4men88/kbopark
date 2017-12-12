@@ -34,6 +34,7 @@ public class BoardWriteAction implements Action {
 				boardDto.setBname(StringEncoder.isoToMain(request.getParameter("subject")).replace("<", "&lt;").replace(">", "&gt;"));
 				boardDto.setBdetail(StringEncoder.isoToMain(request.getParameter("content")));
 				boardDto.setTno(NullCheck.nullToZero(request.getParameter("boardtno")));
+				boardDto.setMname(memberDto.getName());
 				
 				System.out.println(boardDto.getBno()+boardDto.getMid()+boardDto.getBname()+boardDto.getBdetail()+boardDto.getTno());
 				//조회수, 작성시각, 신고상태는 작성시 설정필요없음.

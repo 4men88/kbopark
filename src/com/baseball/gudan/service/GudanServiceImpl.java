@@ -2,6 +2,7 @@ package com.baseball.gudan.service;
 
 import com.baseball.gudan.dao.GudanDaoImpl;
 import com.baseball.gudan.model.GudanDto;
+import com.baseball.gudan.model.StadiumDto;
 
 public class GudanServiceImpl implements GudanService {
 
@@ -32,6 +33,11 @@ public class GudanServiceImpl implements GudanService {
 	@Override
 	public GudanDto gudanArticle(int tno) {
 		return GudanDaoImpl.getGudanDao().gudanArticle(tno);
+	}
+
+	@Override
+	public StadiumDto stadiumArticle(int sno) {
+		return GudanDaoImpl.getGudanDao().stadiumArticle(sno);
 	}
 	
 }
