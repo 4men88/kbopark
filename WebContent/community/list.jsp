@@ -5,7 +5,7 @@
 <%
 List<BoardDto> list = (List<BoardDto>) request.getAttribute("articlelist");
 List<BoardDto> bestlist = (List<BoardDto>) request.getAttribute("bestlist");
-GudanDto gudanDto = (GudanDto) request.getAttribute("gudandto");
+GudanDto gudanDto = (GudanDto) session.getAttribute("gudandto");
 
 System.out.println("list.jsp size >>> " + list.size());
 System.out.println("list.jsp bestsize >>> " + bestlist.size());
@@ -42,7 +42,7 @@ function searchArticle() {
 						<li class="breadcrumb-item"><i class="fa fa-home mr-2"
 							aria-hidden="true"></i><a href="<%=root%>/gudan?act=viewgudan">구단</a></li>
 						<li class="breadcrumb-item"><a href="<%=root%>/gudan?act=mvhome&tno=<%=tno %>"><%=gudanDto.getTname() %></a></li>
-						<li class="breadcrumb-item active" aria-current="page">메인</li>
+						<li class="breadcrumb-item active" aria-current="page">커뮤니티</li>
 					</ol>
 				</nav>
 			</div>
@@ -52,10 +52,10 @@ function searchArticle() {
 <div id="gudan-nav">
 	<div class="container">
 		<div class="d-flex justify-content-center">
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvhome&tno=<%=tno %>">메인</a></div>
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvstadium&tno=<%=tno %>">구장안내</a></div>
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvweekly&tno=<%=tno %>">스케줄</a></div>
-			<div class="gudan-nav-inner p-3"><a href="javascript:listArticle('<%=tno%>');">커뮤니티</a></div>
+			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvhome&tno=<%=gudanDto.getTno() %>">메인</a></div>
+			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvstadium&sno=<%=gudanDto.getSno1() %>">구장안내</a></div>
+			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvweekly&tno=<%=gudanDto.getTno() %>">스케줄</a></div>
+			<div class="gudan-nav-inner p-3"><a href="javascript:listArticle('<%=gudanDto.getTno()%>','1','','');">커뮤니티</a></div>
 		</div>
 		<div class="border-b p-0"></div>
 	</div>
@@ -70,7 +70,8 @@ function searchArticle() {
 		<div class="border-b-strong"></div>
 		<div class="row">
 <%
-for(int i=0;i<10;i++) {
+int len = bestlist.size();
+for(int i=0;i<len;i++) {
 	BoardDto bestBoardDto = bestlist.get(i);
 	if(i%5==0) {
 %>		

@@ -21,6 +21,8 @@ int newListLen;
    List<AuctionDetailDto> hitList = (List<AuctionDetailDto>)request.getAttribute("hitList");
    List<AuctionDetailDto> newList = (List<AuctionDetailDto>)request.getAttribute("newList");
    List<Integer> newNumArray = (List<Integer>)request.getAttribute("newNumArray");
+   
+   int asort;
    //endTime만 따로 리스트에 담을 리스트
    List<String> bestListTimeArr = new ArrayList<String>();	
    List<String> endListTimeArr = new ArrayList<String>();
@@ -335,7 +337,6 @@ for(int i=0; i<newListLen; i++)
 				document.getElementById("auctionForm").submit();		
 			}
 		}
-	
 <%            
 }
 %>

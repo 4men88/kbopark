@@ -5,10 +5,36 @@
 <!-- header영역 -->
 <%@ include file="/common/header.jsp"%>
 
+<%!
+//리스트 길이 담을 변수
+int categoryConListLen;	
+int categoryEndListLen;
+%>
 <%
 	List<AuctionDetailDto> categoryConList = (List<AuctionDetailDto>)request.getAttribute("categoryConList");
 	List<AuctionDetailDto> categoryEndList = (List<AuctionDetailDto>)request.getAttribute("categoryEndList");
+ 	//endTime만 따로 리스트에 담을 리스트
+   List<String> categoryConListTimeArr = new ArrayList<String>();	
+   List<String> categoryEndListTimeArr = new ArrayList<String>();	
+      
+   if(categoryConList != null)	//리스트가 널이 아니면
+   {
+	   categoryConListLen = categoryConList.size();	//사이즈 재고
+   		for(int i=0; i<categoryConListLen; i++)	//사이즈만큼
+   		{
+   			categoryConListTimeArr.add(i, categoryConList.get(i).getEndTime());	//endTime만 빼서 따로 리스트 만듬
+ 		}
+   }
+   if(categoryEndList != null)
+   {
+	   categoryEndListLen = categoryEndList.size();
+	   for(int i=0; i<categoryEndListLen; i++)
+  		{
+		   categoryEndListTimeArr.add(i, categoryEndList.get(i).getEndTime());	//endTime만 빼서 따로 리스트 만듬
+  		}
+   }
 %>
+<script type="text/javascript" src="/kbopark/js/httpRequest.js"></script>
 <script type="text/javascript">
 	$(function() {
 		'use strict'
@@ -17,40 +43,213 @@
 			$('.row-offcanvas').toggleClass('active')
 		})
 	})
+	
+function getTime() {
+   if(httpRequest.readyState == 4) {
+      if(httpRequest.status == 200) {
+         var ctime = httpRequest.responseText;	//현재시간(2017.12.07.11.42.30) 포멧
+         var ctimearr = ctime.split("."); 	// .빼고 배열로 만들고
+         var cdate;		//현재시간으로 Date 객체 만들 변수
+         var csec;		//현재시간을초로 변환할 변수
+         
+         var dtime;	//db에서 얻어온 시간 담을 변수
+         var dtimearr;	
+         var ddate; //DB에서 얻어온시간을로 만든 Date 객체
+         var dsec;	//DB에서 얻어온시간을초로 변환
+         
+         var sresult;	//두 시간 차 초
+         var day = 0;
+         var time = 0;
+         var min = 0;
+         var sec = 0;
+         // 서버에서 가져온 현재시간으로 Date객체 생성
+			cdate = new Date(ctimearr[0]+"-"+ctimearr[1] +"-"+ctimearr[2]+"T"+ctimearr[3]+":"+ctimearr[4]+":"+ctimearr[5]+".323");
+			csec = cdate.getTime();	//밀리커리 세컨드 단위로 변환
+<%
+		
+		for(int i=0; i<categoryConListLen; i++)
+		{
+%>			
+			dtime = "<%=categoryConListTimeArr.get(i)%>";	
+			dtimearr = dtime.split(".");
+			ddate = new Date(dtimearr[0]+"-"+dtimearr[1] +"-"+dtimearr[2]+"T"+dtimearr[3]+":"+dtimearr[4]+":"+dtimearr[5]+".323");
+			dsec = ddate.getTime();
+			
+//			cdate = new Date(ctimearr[0],ctimearr[1],ctimearr[2],ctimearr[3],ctimearr[4],ctimearr[5]);
+			result = dsec - csec;
+//					alert(dsec + "        " + csec + "         " + result);
+			if(result >0)	//남은시간이 있다면
+				{
+					day = Math.floor(result/86400000);
+					result -= day*86400000;
+					
+					time =Math.floor(result/3600000);
+					result -= time*3600000;
+					
+					min = Math.floor(result/60000);
+					result -= min*60000;
+					
+					sec = Math.floor(result/1000);					
+					
+					if(day>0)	
+						{
+						document.getElementById("categorycontime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+day+"일 "+time+"시간 "+min+"분 "+sec+"초</b></font>";
+						}
+					else if(time >0)
+						{
+						document.getElementById("categorycontime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+time+"시간 "+min+"분 "+sec+"초</b></font>";						
+						}
+					else if(min > 0)
+						{
+						document.getElementById("categorycontime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+min+"분 "+sec+"초</b></font>";
+						}
+					else{
+						document.getElementById("categorycontime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+sec+"초</b></font>";
+					}
+				}
+			
+			else{	//남은시간이 없다면
+            document.getElementById("categorycontime" + <%=i%>).innerHTML 
+= "<font color=\"red\"size=\"4\"><b>마감</b></font>";
+				if(<%=categoryConList.get(i).getAstatus()%> == 1)
+					{
+						document.getElementById("aano").value = "<%=categoryConList.get(i).getAno()%>";
+						document.getElementById("aact").value = "statuschange";
+						document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+						document.getElementById("auctionForm").submit();						
+					}
+				}
+<%  
+}
+%>
+
+<%
+for(int i=0; i<categoryEndListLen; i++)
+{
+%>			
+	dtime = "<%=categoryEndListTimeArr.get(i)%>";	
+	dtimearr = dtime.split(".");
+	ddate = new Date(dtimearr[0]+"-"+dtimearr[1] +"-"+dtimearr[2]+"T"+dtimearr[3]+":"+dtimearr[4]+":"+dtimearr[5]+".323");
+	dsec = ddate.getTime();
+	
+//	cdate = new Date(ctimearr[0],ctimearr[1],ctimearr[2],ctimearr[3],ctimearr[4],ctimearr[5]);
+	result = dsec - csec;
+//			alert(dsec + "        " + csec + "         " + result);
+	if(result >0)	//남은시간이 있다면
+		{
+			day = Math.floor(result/86400000);
+			result -= day*86400000;
+			
+			time =Math.floor(result/3600000);
+			result -= time*3600000;
+			
+			min = Math.floor(result/60000);
+			result -= min*60000;
+			
+			sec = Math.floor(result/1000);					
+			
+			if(day>0)	
+				{
+				document.getElementById("categoryendtime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+day+"일 "+time+"시간 "+min+"분 "+sec+"초</b></font>";
+				}
+			else if(time >0)
+				{
+				document.getElementById("categoryendtime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+time+"시간 "+min+"분 "+sec+"초</b></font>";						
+				}
+			else if(min > 0)
+				{
+				document.getElementById("categoryendtime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+min+"분 "+sec+"초</b></font>";
+				}
+			else{
+				document.getElementById("categoryendtime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+sec+"초</b></font>";
+			}
+		}
+	
+	else{	//남은시간이 없다면
+    document.getElementById("categoryendtime" + <%=i%>).innerHTML 
+= "<font color=\"red\"size=\"4\"><b>마감</b></font>";
+		if(<%=categoryEndList.get(i).getAstatus()%> == 1)
+			{
+				document.getElementById("aano").value = "<%=categoryEndList.get(i).getAno()%>";
+				document.getElementById("aact").value = "statuschange";
+				document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+				document.getElementById("auctionForm").submit();						
+			}
+		}
+<%  
+}
+%>	
+			window.setTimeout("startTime();", 1000);
+      }
+   }
+}
+window.onload=function() {
+	   startTime();
+	}
+	
+	function startTime() {
+   var params = "act=timelist";
+   sendRequest("<%=root%>/auctioncontroller", params, getTime, "POST");   
+}
+	
+function categoryList(key, word, category1, category2, sort)
+{
+	document.getElementById("aact").value = "categorylist";
+	document.getElementById("apg").value = "1";
+	document.getElementById("asort").value = sort;
+	document.getElementById("akey").value = "";
+	document.getElementById("aword").value = "";
+	document.getElementById("acategory1").value = category1; 
+	document.getElementById("acategory2").value = category2; 
+	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+	document.getElementById("auctionForm").submit();		
+}	
+function auctionsort(sort)
+{
+	document.getElementById("asort").value = sort;
+}
 </script>
 <div class="container-fluid auction-category">
 	<div class="row row-offcanvas row-offcanvas-left">
 		<nav class="col-6 col-md-2 bg-light sidebar-offcanvas pt-3 pb-5"
 			id="sidebar">
 			<div class="pb-5">
-				<a class="nav-link" href="#item-total">전체보기</a> <a class="nav-link"
-					href="#item-gudan">구단별보기</a> <a class="nav-link" href="#item-1">유니폼</a>
+				<a class="nav-link" href="javascript:categoryList('','','','','');">전체보기</a> <a class="nav-link"
+					href="#item-gudan">구단별보기</a> <a class="nav-link" href="javascript:categoryList('','','1','','');">유니폼</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-1-1">상의</a> <a
-						class="nav-link ml-3" href="#item-1-2">하의</a> <a
-						class="nav-link ml-3" href="#item-1-3">모자</a> <a
-						class="nav-link ml-3" href="#item-1-4">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1','');">상의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','2','');">하의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','3','');">모자</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','4','');">기타</a>
 				</nav>
-				<a class="nav-link" href="#item-2">경기용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','2','','');">경기용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-2-1">야구공</a> <a
-						class="nav-link ml-3" href="#item-2-2">배트</a> <a
-						class="nav-link ml-3" href="#item-2-3">글러브</a> <a
-						class="nav-link ml-3" href="#item-2-4">보호장구</a> <a
-						class="nav-link ml-3" href="#item-2-4">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','2','1','');">야구공</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','2','');">배트</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','3','');">글러브</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','4','');">보호장구</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','5','');">기타</a>
 				</nav>
-				<a class="nav-link" href="#item-3">응원용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','3','','');">응원용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-3-1">피켓</a> <a
-						class="nav-link ml-3" href="#item-3-2">LED피켓</a> <a
-						class="nav-link ml-3" href="#item-3-3">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1','');">피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','2','');">LED피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','3','');">기타</a>
 				</nav>
-				<a class="nav-link" href="#item-3">기타잡화</a>
+				<a class="nav-link" href="javascript:categoryList('','','4','','');">기타잡화</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-4-1">사진</a> <a
-						class="nav-link ml-3" href="#item-4-2">티켓</a> <a
-						class="nav-link ml-3" href="#item-4-3">카드</a> <a
-						class="nav-link ml-3" href="#item-4-4">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1','');">사진</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','2','');">티켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','3','');">카드</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','4','');">기타</a>
 				</nav>
 			</div>
 		</nav>
@@ -108,23 +307,24 @@
 												aria-haspopup="true" aria-expanded="false" style="width: 160px;"> 정렬보기 </a>
 
 											<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-												<a class="dropdown-item" href="#">구단별기준</a>
-												<a class="dropdown-item" href="#">인기경매순</a>
-												<a class="dropdown-item" href="#">마감임박순</a>
-												<a class="dropdown-item" href="#">신규경매순</a>
-												<a class="dropdown-item" href="#">조회많은순</a>
-												<a class="dropdown-item" href="#">조회적은순</a>
-												<a class="dropdown-item" href="#">높은가격순</a>
-												<a class="dropdown-item" href="#">낮은가격순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('1');">인기경매순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('2');">구단별기준</a>
+												<a class="dropdown-item" href="javascript:auctionsort('3');">마감임박순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('4');">신규경매순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('5');">조회많은순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('6');">조회적은순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('7');">높은가격순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('8');">낮은가격순</a>
 											</div>
 										</div>
 									</div>
 									
 									<div class="row p-2 text-center">									
 <%
-int len = categoryConList.size();
-for(int i=0;i<len;i++) {
-	AuctionDetailDto auctionDetailDto = categoryConList.get(i);
+if(categoryConList != null)
+{
+	for(int i=0; i<categoryConListLen; i++) {
+		AuctionDetailDto auctionDetailDto = categoryConList.get(i);
 %>								
 										<div class="col-md-3">
 											<div class="row p-2">
@@ -134,8 +334,8 @@ for(int i=0;i<len;i++) {
 												<div class="col-md-12 col-8 align-self-center">
 													<p class="mb-2">
 														<strong><%=auctionDetailDto.getAname()%></strong><br>입찰자수 : 
-														<%=auctionDetailDto.getBidNum()%>명<br>남은시간
-														: 5일 3시간 20분
+														<%=auctionDetailDto.getBidNum()%>명<br>
+														<div id="categorycontime<%=i%>"></div>
 													</p>
 													<p style="color: red;">
 														<strong>현재입찰가 : <%=auctionDetailDto.getBidPrice()%></strong>
@@ -144,199 +344,42 @@ for(int i=0;i<len;i++) {
 											</div>
 										</div>
 <%
+	}
 }
 %>
-<!-- 
-										<div class="col-md-3">
-											<div class="row p-2">
-												<div class="col-md-12 col-4 align-self-center">
-													<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-												</div>
-												<div class="col-md-12 col-8 align-self-center">
-													<p class="mb-2">
-														<strong>KBO 팀코리아 중 아대1</strong><br>입찰자수 : 31명<br>남은시간
-														: 1일 2시간 15분
-													</p>
-													<p>
-														<strong>현재입찰가 : 5,000원</strong>
-													</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="row p-2">
-												<div class="col-md-12 col-4 align-self-center">
-													<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-												</div>
-												<div class="col-md-12 col-8 align-self-center">
-													<p class="mb-2">
-														<strong>KBO 팀코리아 중 아대2</strong><br>입찰자수 : 202명<br>남은시간
-														: 3일 3시간 20분
-													</p>
-													<p>
-														<strong>현재입찰가 : 5,000원</strong>
-													</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="row p-2">
-												<div class="col-md-12 col-4 align-self-center">
-													<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-												</div>
-												<div class="col-md-12 col-8 align-self-center">
-													<p class="mb-2">
-														<strong>KBO 팀코리아 중 아대3</strong><br>입찰자수 : 98명<br>남은시간
-														: 1일 1시간 12분
-													</p>
-													<p>
-														<strong>현재입찰가 : 100,000원</strong>
-													</p>
-												</div>
-											</div>
-										</div>
-										
-										
-										<div class="col-md-3">
-											<div class="row p-2">
-												<div class="col-md-12 col-4 align-self-center">
-													<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-												</div>
-												<div class="col-md-12 col-8 align-self-center">
-													<p class="mb-2">
-														<strong>KBO 팀코리아 중 아대3</strong><br>입찰자수 : 98명<br>남은시간
-														: 1일 1시간 12분
-													</p>
-													<p>
-														<strong>현재입찰가 : 100,000원</strong>
-													</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="row p-2">
-												<div class="col-md-12 col-4 align-self-center">
-													<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-												</div>
-												<div class="col-md-12 col-8 align-self-center">
-													<p class="mb-2">
-														<strong>KBO 팀코리아 중 아대3</strong><br>입찰자수 : 98명<br>남은시간
-														: 1일 1시간 12분
-													</p>
-													<p>
-														<strong>현재입찰가 : 100,000원</strong>
-													</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="row p-2">
-												<div class="col-md-12 col-4 align-self-center">
-													<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-												</div>
-												<div class="col-md-12 col-8 align-self-center">
-													<p class="mb-2">
-														<strong>KBO 팀코리아 중 아대3</strong><br>입찰자수 : 98명<br>남은시간
-														: 1일 1시간 12분
-													</p>
-													<p>
-														<strong>현재입찰가 : 100,000원</strong>
-													</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="row p-2">
-												<div class="col-md-12 col-4 align-self-center">
-													<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-												</div>
-												<div class="col-md-12 col-8 align-self-center">
-													<p class="mb-2">
-														<strong>KBO 팀코리아 중 아대3</strong><br>입찰자수 : 98명<br>남은시간
-														: 1일 1시간 12분
-													</p>
-													<p>
-														<strong>현재입찰가 : 100,000원</strong>
-													</p>
-												</div>
-											</div>
-										</div>
-										
 									</div>
-								</div>	 -->
-<!-- ---------------------------------------------------------------------------------------------------------------------------------- -->
+								</div>	
 								<div id="menu2" class="container tab-pane fade">
 									<div class="row p-2 text-center">
+<%
+if(categoryEndList != null)
+{
+	for(int i=0; i<categoryEndListLen; i++) {
+		AuctionDetailDto auctionDetailDto = categoryEndList.get(i);
+%>											
 										<div class="col-md-3">
 											<div class="row p-2">
 												<div class="col-md-12 col-4 align-self-center">
-													<img src="<%=root%>/img/auction/auc1.jpg" class="img-fluid">
+													<img src="<%=root%>/<%=auctionDetailDto.getAimage()%>" class="img-fluid">
 												</div>
 												<div class="col-md-12 col-8 align-self-center">
 													<p class="mb-2">
-														<strong>KBO 2017 공인구</strong><br>입찰자수 : 21명<br>남은시간
-														: 3일 2시간 20분
+														<strong><%=auctionDetailDto.getAname()%></strong><br>입찰자수 : <%=auctionDetailDto.getBidNum()%>명
+														<br><div id="categoryendtime<%=i%>"></div>
 													</p>
 													<p style="color: red;">
-														<strong>현재입찰가 : 50,000원</strong>
+														<strong>현재입찰가 : <%=auctionDetailDto.getBidPrice()%>원</strong>
 													</p>
 												</div>
 											</div>
 										</div>
-
-										<div class="col-md-3">
-											<div class="row p-2">
-												<div class="col-md-12 col-4 align-self-center">
-													<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-												</div>
-												<div class="col-md-12 col-8 align-self-center">
-													<p class="mb-2">
-														<strong>KBO 팀코리아 중 아대1</strong><br>입찰자수 : 21명<br>남은시간
-														: 2일 2시간 15분
-													</p>
-													<p>
-														<strong>현재입찰가 : 4,000원</strong>
-													</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="row p-2">
-												<div class="col-md-12 col-4 align-self-center">
-													<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-												</div>
-												<div class="col-md-12 col-8 align-self-center">
-													<p class="mb-2">
-														<strong>KBO 팀코리아 중 아대2</strong><br>입찰자수 : 202명<br>남은시간
-														: 3일 3시간 20분
-													</p>
-													<p>
-														<strong>현재입찰가 : 5,000원</strong>
-													</p>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-3">
-											<div class="row p-2">
-												<div class="col-md-12 col-4 align-self-center">
-													<img src="<%=root%>/img/auction/auc2.jpg" class="img-fluid">
-												</div>
-												<div class="col-md-12 col-8 align-self-center">
-													<p class="mb-2">
-														<strong>KBO 팀코리아 중 아대3</strong><br>입찰자수 : 97명<br>남은시간
-														: 1일 1시간 12분
-													</p>
-													<p>
-														<strong>현재입찰가 : 120,000원</strong>
-													</p>
-												</div>
-											</div>
-										</div>
+<%
+	}
+}
+%>																				
 									</div>
 								</div>
-
- 
-
+								
 							</div>
 						</div>
 
