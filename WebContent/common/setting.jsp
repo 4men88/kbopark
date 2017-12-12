@@ -41,6 +41,7 @@ root = "<%=root%>";
 <form id="auctionForm" name="auctionForm" method="get" action="">
 	<input type="hidden" id="aact" name="act" value="">
 	<input type="hidden" id="aano" name="ano" value="">
+	<input type="hidden" id="asort" name="sort" value="">
 	<input type="hidden" id="acategory1" name="category1" value="">
 	<input type="hidden" id="acategory2" name="category2" value="">
 	<input type="hidden" id="akey" name="key" value="">

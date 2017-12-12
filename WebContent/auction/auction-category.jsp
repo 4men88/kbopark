@@ -16,6 +16,7 @@ int categoryEndListLen;
  	//endTime만 따로 리스트에 담을 리스트
    List<String> categoryConListTimeArr = new ArrayList<String>();	
    List<String> categoryEndListTimeArr = new ArrayList<String>();	
+      
    if(categoryConList != null)	//리스트가 널이 아니면
    {
 	   categoryConListLen = categoryConList.size();	//사이즈 재고
@@ -198,40 +199,57 @@ window.onload=function() {
    var params = "act=timelist";
    sendRequest("<%=root%>/auctioncontroller", params, getTime, "POST");   
 }
+	
+function categoryList(key, word, category1, category2, sort)
+{
+	document.getElementById("aact").value = "categorylist";
+	document.getElementById("apg").value = "1";
+	document.getElementById("asort").value = sort;
+	document.getElementById("akey").value = "";
+	document.getElementById("aword").value = "";
+	document.getElementById("acategory1").value = category1; 
+	document.getElementById("acategory2").value = category2; 
+	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+	document.getElementById("auctionForm").submit();		
+}	
+function auctionsort(sort)
+{
+	document.getElementById("asort").value = sort;
+}
 </script>
 <div class="container-fluid auction-category">
 	<div class="row row-offcanvas row-offcanvas-left">
 		<nav class="col-6 col-md-2 bg-light sidebar-offcanvas pt-3 pb-5"
 			id="sidebar">
 			<div class="pb-5">
-				<a class="nav-link" href="#item-total">전체보기</a> <a class="nav-link"
-					href="#item-gudan">구단별보기</a> <a class="nav-link" href="#item-1">유니폼</a>
+				<a class="nav-link" href="javascript:categoryList('','','','','');">전체보기</a> <a class="nav-link"
+					href="#item-gudan">구단별보기</a> <a class="nav-link" href="javascript:categoryList('','','1','','');">유니폼</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-1-1">상의</a> <a
-						class="nav-link ml-3" href="#item-1-2">하의</a> <a
-						class="nav-link ml-3" href="#item-1-3">모자</a> <a
-						class="nav-link ml-3" href="#item-1-4">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1','');">상의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','2','');">하의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','3','');">모자</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','4','');">기타</a>
 				</nav>
-				<a class="nav-link" href="#item-2">경기용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','2','','');">경기용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-2-1">야구공</a> <a
-						class="nav-link ml-3" href="#item-2-2">배트</a> <a
-						class="nav-link ml-3" href="#item-2-3">글러브</a> <a
-						class="nav-link ml-3" href="#item-2-4">보호장구</a> <a
-						class="nav-link ml-3" href="#item-2-4">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','2','1','');">야구공</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','2','');">배트</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','3','');">글러브</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','4','');">보호장구</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','5','');">기타</a>
 				</nav>
-				<a class="nav-link" href="#item-3">응원용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','3','','');">응원용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-3-1">피켓</a> <a
-						class="nav-link ml-3" href="#item-3-2">LED피켓</a> <a
-						class="nav-link ml-3" href="#item-3-3">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1','');">피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','2','');">LED피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','3','');">기타</a>
 				</nav>
-				<a class="nav-link" href="#item-3">기타잡화</a>
+				<a class="nav-link" href="javascript:categoryList('','','4','','');">기타잡화</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-4-1">사진</a> <a
-						class="nav-link ml-3" href="#item-4-2">티켓</a> <a
-						class="nav-link ml-3" href="#item-4-3">카드</a> <a
-						class="nav-link ml-3" href="#item-4-4">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1','');">사진</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','2','');">티켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','3','');">카드</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','4','');">기타</a>
 				</nav>
 			</div>
 		</nav>
@@ -289,14 +307,14 @@ window.onload=function() {
 												aria-haspopup="true" aria-expanded="false" style="width: 160px;"> 정렬보기 </a>
 
 											<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-												<a class="dropdown-item" href="#">구단별기준</a>
-												<a class="dropdown-item" href="#">인기경매순</a>
-												<a class="dropdown-item" href="#">마감임박순</a>
-												<a class="dropdown-item" href="#">신규경매순</a>
-												<a class="dropdown-item" href="#">조회많은순</a>
-												<a class="dropdown-item" href="#">조회적은순</a>
-												<a class="dropdown-item" href="#">높은가격순</a>
-												<a class="dropdown-item" href="#">낮은가격순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('1');">인기경매순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('2');">구단별기준</a>
+												<a class="dropdown-item" href="javascript:auctionsort('3');">마감임박순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('4');">신규경매순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('5');">조회많은순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('6');">조회적은순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('7');">높은가격순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('8');">낮은가격순</a>
 											</div>
 										</div>
 									</div>
