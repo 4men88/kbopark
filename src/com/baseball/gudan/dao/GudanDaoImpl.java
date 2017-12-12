@@ -135,7 +135,7 @@ public class GudanDaoImpl implements GudanDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("SELECT sno, sname, sloc, image, lat, lng \n");
+			sql.append("SELECT sno, sname, sloc, image, lat, lng, locid \n");
 			sql.append("FROM stadium \n");
 			sql.append("WHERE sno = ?");
 			pstmt = conn.prepareStatement(sql.toString());
@@ -147,8 +147,9 @@ public class GudanDaoImpl implements GudanDao {
 				stadiumDto.setSname(rs.getString("sname"));
 				stadiumDto.setSloc(rs.getString("sloc"));
 				stadiumDto.setImage(rs.getString("image"));
-				stadiumDto.setLat(rs.getInt("lat"));
-				stadiumDto.setLng(rs.getInt("lng"));
+				stadiumDto.setLat(rs.getDouble("lat"));
+				stadiumDto.setLng(rs.getDouble("lng"));
+				stadiumDto.setLocid(rs.getInt("locid"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
