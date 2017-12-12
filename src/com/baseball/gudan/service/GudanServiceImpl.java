@@ -1,6 +1,7 @@
 package com.baseball.gudan.service;
 
 import com.baseball.gudan.dao.GudanDaoImpl;
+import com.baseball.gudan.model.GudanDto;
 
 public class GudanServiceImpl implements GudanService {
 
@@ -27,6 +28,10 @@ public class GudanServiceImpl implements GudanService {
 	public String getReservationWeb(int tno) {
 		return GudanDaoImpl.getGudanDao().getReservationWeb(tno);
 	}
-	
+
+	@Override
+	public GudanDto gudanArticle(int tno) {
+		return GudanDaoImpl.getGudanDao().gudanArticle(tno);
+	}
 	
 }

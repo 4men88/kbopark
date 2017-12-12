@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.baseball.factory.BoardActionFactory;
+import com.baseball.factory.GudanActionFactory;
 import com.baseball.util.Constance;
 import com.baseball.util.NullCheck;
 import com.baseball.util.PageMove;
@@ -33,7 +34,7 @@ public class BoardController extends HttpServlet {
 		
 		String path = "/index.jsp";
 		if("mvwrite".equals(act)) {
-			path = "/board/write.jsp" + queryString;
+			path = "/community/write.jsp" + queryString;
 			PageMove.redirect(request, response, path);
 		} else if("newarticle".equals(act)) {
 			path = BoardActionFactory.getBoardWriteAction().execute(request, response);

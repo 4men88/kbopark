@@ -11,6 +11,7 @@ public interface BoardServcie {
 	int writeArticle(BoardDto boardDto);
 	BoardDto viewArticle(int seq);
 	List<BoardDto> listArticle(int tno, int pg, String key, String word);
+	List<BoardDto> bestArticle(int tno);
 	
 //	int replyArticle(ReboardDto reboardDto);
 //	void modifyArticle(ReboardDto reboardDto);

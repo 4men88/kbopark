@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR" import="com.baseball.gudan.model.GudanDto"%>
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
-
+<%
+GudanDto gudanDto = (GudanDto) request.getAttribute("gudandto");
+System.out.println("weekly.jsp gudandto >>> " + gudanDto);
+System.out.println("weekly.jsp tno >>> "+NullCheck.nullToZero(request.getParameter("tno")));
+%>
 <script type="text/javascript">
 
 function listArticle(tno) {
@@ -16,13 +20,12 @@ function listArticle(tno) {
 
 </script>
 
->>>>>>>>>>>>>>>>>>>>>>><%=tno %>
 <div class="py-5 text-center opaque-overlay"
 	style="background-image: url(<%=root%>/img/etc/grass.jpg);">
 	<div class="container py-5">
 		<div class="row">
 			<div class="col-md-12 text-white">
-				<h1 class="display-3">KIA TIGERS</h1>
+				<h1 class="display-3"><%=gudanDto.getEnname() %></h1>
 			</div>
 		</div>
 	</div>
@@ -36,9 +39,9 @@ function listArticle(tno) {
 					<ol class="breadcrumb justify-content-end"
 						style="background-color: white;">
 						<li class="breadcrumb-item"><i class="fa fa-home mr-2"
-							aria-hidden="true"></i><a href="#">구단</a></li>
-						<li class="breadcrumb-item"><a href="#">기아타이거즈</a></li>
-						<li class="breadcrumb-item active" aria-current="page">스케줄</li>
+							aria-hidden="true"></i><a href="<%=root%>/gudan?act=viewgudan">구단</a></li>
+						<li class="breadcrumb-item"><a href="<%=root%>/gudan?act=mvhome&tno=<%=tno %>"><%=gudanDto.getTname() %></a></li>
+						<li class="breadcrumb-item active" aria-current="page">메인</li>
 					</ol>
 				</nav>
 			</div>
@@ -48,7 +51,7 @@ function listArticle(tno) {
 <div id="gudan-nav">
 	<div class="container">
 		<div class="d-flex justify-content-center">
-<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvhome&tno=<%=tno %>">메인</a></div>
+			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvhome&tno=<%=tno %>">메인</a></div>
 			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvstadium&tno=<%=tno %>">구장안내</a></div>
 			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvweekly&tno=<%=tno %>">스케줄</a></div>
 			<div class="gudan-nav-inner p-3"><a href="javascript:listArticle('<%=tno%>');">커뮤니티</a></div>
@@ -56,6 +59,7 @@ function listArticle(tno) {
 		<div class="border-b p-0"></div>
 	</div>
 </div>
+
 
 <div id="weekly-list">
 	<div class="container py-5">
@@ -111,10 +115,10 @@ function listArticle(tno) {
 		</div>
 		<div class="col-md-9 p-4">
 			<h5 class="mb-3">2017 티켓 예매</h5>
-			<h5 class="mb-0">두산 베어스</h5>
+			<h5 class="mb-0"><%=gudanDto.getTname() %></h5>
 			<h6 class="mb-3">입장권 구입에 대해 상세히 알려드립니다.</h6>
 			<h5 class="mb-3">예매바로가기<i class="fa fa-chevron-right mx-2" aria-hidden="true"></i></h5>
-			<p class="text-center mb-0"><a href="<%=root%>/gudan?act=mvreservation&tno=<%=tno%>" target="_blank"><img class="img-fluid mx-auto"
+			<p class="text-center mb-0"><a href="<%=gudanDto.getWeb2()%>" target="_blank"><img class="img-fluid mx-auto"
 					src="<%=root%>/img/community/ticket.png" style="width:240px; height:auto;"></a></p>
 		</div>
 		<div class="col-md-12">
