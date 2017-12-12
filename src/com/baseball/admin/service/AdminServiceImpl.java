@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.baseball.admin.dao.AdminDaoImpl;
+import com.baseball.admin.model.NoticeDto;
 import com.baseball.member.model.MemberDetailDto;
 
 public class AdminServiceImpl implements AdminService{
@@ -46,6 +47,20 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public int writeNotice(Map<String, String> map) {
 		return AdminDaoImpl.getAdminDao().writeNotice(map);
+	}
+
+
+
+	@Override
+	public List<NoticeDto> noticeList() {
+		return AdminDaoImpl.getAdminDao().noticeList();
+	}
+
+
+
+	@Override
+	public List<NoticeDto> noticeList(Map<String, String> map) {
+		return AdminDaoImpl.getAdminDao().noticeList(map);
 	}
 
 
