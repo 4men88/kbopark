@@ -6,7 +6,8 @@
 <%@ include file="/common/header.jsp"%>
 
 <%
-	List<AuctionDetailDto> categoryAllList = (List<AuctionDetailDto>)request.getAttribute("categoryAllList");
+	List<AuctionDetailDto> categoryConList = (List<AuctionDetailDto>)request.getAttribute("categoryConList");
+	List<AuctionDetailDto> categoryEndList = (List<AuctionDetailDto>)request.getAttribute("categoryEndList");
 %>
 <script type="text/javascript">
 	$(function() {
@@ -96,8 +97,10 @@
 							</ul>
 
 							<!-- Tab panes -->
-							<div class="tab-content">
+							<div class="tab-content">							
+							
 								<div id="menu1" class="container tab-pane active">
+								
 									<div class="row p-2 text-right">
 										<div class="dropdown show col-md-12 align-self-end">
 											<a class="btn dropdown-toggle btn-sm" href="#"
@@ -116,26 +119,34 @@
 											</div>
 										</div>
 									</div>
-									<div class="row p-2 text-center">
 									
-									
+									<div class="row p-2 text-center">									
+<%
+int len = categoryConList.size();
+for(int i=0;i<len;i++) {
+	AuctionDetailDto auctionDetailDto = categoryConList.get(i);
+%>								
 										<div class="col-md-3">
 											<div class="row p-2">
 												<div class="col-md-12 col-4 align-self-center">
-													<img src="<%=root%>/img/auction/auc1.jpg" class="img-fluid">
+													<img src="<%=root%>/<%=auctionDetailDto.getAimage()%>" class="img-fluid">
 												</div>
 												<div class="col-md-12 col-8 align-self-center">
 													<p class="mb-2">
-														<strong>KBO 2017 공인구</strong><br>입찰자수 : 22명<br>남은시간
+														<strong><%=auctionDetailDto.getAname()%></strong><br>입찰자수 : 
+														<%=auctionDetailDto.getBidNum()%>명<br>남은시간
 														: 5일 3시간 20분
 													</p>
 													<p style="color: red;">
-														<strong>현재입찰가 : 70,000원</strong>
+														<strong>현재입찰가 : <%=auctionDetailDto.getBidPrice()%></strong>
 													</p>
 												</div>
 											</div>
 										</div>
-
+<%
+}
+%>
+<!-- 
 										<div class="col-md-3">
 											<div class="row p-2">
 												<div class="col-md-12 col-4 align-self-center">
@@ -183,8 +194,9 @@
 													</p>
 												</div>
 											</div>
-<!-- ------------------------------------------------------------------------------------------------------------------------------ -->											
 										</div>
+										
+										
 										<div class="col-md-3">
 											<div class="row p-2">
 												<div class="col-md-12 col-4 align-self-center">
@@ -249,9 +261,10 @@
 												</div>
 											</div>
 										</div>
+										
 									</div>
-								</div>
-<!-- 
+								</div>	 -->
+<!-- ---------------------------------------------------------------------------------------------------------------------------------- -->
 								<div id="menu2" class="container tab-pane fade">
 									<div class="row p-2 text-center">
 										<div class="col-md-3">
@@ -327,7 +340,7 @@
 							</div>
 						</div>
 
-						<div class="col-12 py-3">
+						<div class="col-12 py-3" >
 							<ul class="pagination pagination-sm">
 								<li class="page-item disabled"><a class="page-link"
 									href="#">Previous</a></li>
