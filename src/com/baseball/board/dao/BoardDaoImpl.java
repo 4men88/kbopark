@@ -187,11 +187,11 @@ public class BoardDaoImpl implements BoardDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("select b.* \n");
+			sql.append("select b.*, (SELECT COUNT(*) FROM board_reply r WHERE r.bno=b.bno) replycnt \n");
 			sql.append("from ( \n");
 			sql.append("	  select rownum rn, a.* \n");
 			sql.append("	  from ( \n");
-			sql.append("	  	  select  bno, mid, bname, bdetail, tno, bcount, bstatus, \n");
+			sql.append("	  	  select  bno, mid, mname, bname, bdetail, tno, bcount, bstatus, \n");
 			sql.append("				  case  \n");
 			sql.append("					when to_char(bdate, 'yymmdd') = to_char(sysdate, 'yymmdd') \n");
 			sql.append("					then to_char(bdate, 'hh24:mi:ss') \n");
@@ -202,10 +202,10 @@ public class BoardDaoImpl implements BoardDao {
 			String word = map.get("word");
 			if (!word.isEmpty()) {
 				String key = map.get("key");
-				if ("bname".equals(key))
-					sql.append("	  	  and bname like '%'||?||'%' \n");
+				if ("mname".equals(key))
+					sql.append("	  	  and mname = ? \n");
 				else
-					sql.append("	  	  and " + key + " = ? \n");
+					sql.append("	  	  and " + key + " like '%'||?||'%' \n");
 			}
 			sql.append("	  	  order by bdate desc \n");
 			sql.append("	 	  ) a \n");
@@ -224,12 +224,14 @@ public class BoardDaoImpl implements BoardDao {
 				BoardDto boardDto = new BoardDto();
 				boardDto.setBno(rs.getInt("bno"));
 				boardDto.setMid(rs.getString("mid"));
+				boardDto.setMname(rs.getString("mname"));
 				boardDto.setBname(rs.getString("bname"));
 				boardDto.setBdetail(rs.getString("bdetail"));
 				boardDto.setTno(rs.getInt("tno"));
 				boardDto.setBcount(rs.getInt("bcount"));
 				boardDto.setBdate(rs.getString("bdate"));
 				boardDto.setBstatus(rs.getInt("bstatus"));
+				boardDto.setTotalreply(rs.getInt("replycnt"));
 				list.add(boardDto);
 			}
 		} catch (SQLException e) {
@@ -238,6 +240,46 @@ public class BoardDaoImpl implements BoardDao {
 			DBClose.close(conn, pstmt, rs);
 		}
 		return list;
+	}
+
+	@Override
+	public List<BoardDto> bestArticle(int tno) {
+		List<BoardDto> bestlist = new ArrayList<BoardDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("select rownum rn, a.*, (SELECT COUNT(*) FROM board_reply r WHERE r.bno=a.bno) replycnt \n");
+			sql.append("from ( \n");
+			sql.append("	select bno, mid, bname, bdetail, tno, bcount, bstatus, bdate \n");
+			sql.append("	from board \n");
+			sql.append("	where tno = ? \n");
+			sql.append("	order by bcount desc) a \n");
+			sql.append("where rownum <= 10");
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, tno);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				BoardDto boardDto = new BoardDto();
+				boardDto.setBno(rs.getInt("bno"));
+				boardDto.setMid(rs.getString("mid"));
+				boardDto.setBname(rs.getString("bname"));
+				boardDto.setBdetail(rs.getString("bdetail"));
+				boardDto.setTno(rs.getInt("tno"));
+				boardDto.setBcount(rs.getInt("bcount"));
+				boardDto.setBdate(rs.getString("bdate"));
+				boardDto.setBstatus(rs.getInt("bstatus"));
+				boardDto.setTotalreply(rs.getInt("replycnt"));
+				bestlist.add(boardDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		return bestlist;
 	}
 }
 

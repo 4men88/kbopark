@@ -2,6 +2,7 @@ package com.baseball.gudan.dao;
 
 import java.sql.*;
 
+import com.baseball.gudan.model.GudanDto;
 import com.baseball.util.db.DBClose;
 import com.baseball.util.db.DBConnection;
 
@@ -85,5 +86,41 @@ public class GudanDaoImpl implements GudanDao {
 		System.out.println("GudanDaoImpl web2 >>> " + web);
 		return web;
 	}
-	
+
+	@Override
+	public GudanDto gudanArticle(int tno) {
+		GudanDto gudanDto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		System.out.println("GudanDaoImpl tno >>> " + tno);
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			
+			sql.append("SELECT tno, tname, emblem, sno1, sno2, web1, web2, enname \n");
+			sql.append("FROM team \n");
+			sql.append("WHERE tno = ?");
+			
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, tno);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				gudanDto = new GudanDto();
+				gudanDto.setTno(rs.getInt("tno"));
+				gudanDto.setTname(rs.getString("tname"));
+				gudanDto.setEmblem(rs.getString("emblem"));
+				gudanDto.setSno1(rs.getInt("sno1"));
+				gudanDto.setSno2(rs.getInt("sno2"));
+				gudanDto.setWeb1(rs.getString("web1"));
+				gudanDto.setWeb2(rs.getString("web2"));
+				gudanDto.setEnname(rs.getString("enname"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		return gudanDto;
+	}
 }

@@ -9,7 +9,14 @@ public class GudanDto {
 	private int sno2;//제2구장
 	private String web1; //공식페이지
 	private String web2; //예매페이지
+	private String enname; //영문이름
 	
+	public String getEnname() {
+		return enname;
+	}
+	public void setEnname(String enname) {
+		this.enname = enname;
+	}
 	public int getTno() {
 		return tno;
 	}

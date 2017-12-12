@@ -52,6 +52,11 @@ public class BoardServiceImpl implements BoardServcie {
 		map.put("word", word);
 
 		return BoardDaoImpl.getBoardDao().listArticle(map);		
+	}
+
+	@Override
+	public List<BoardDto> bestArticle(int tno) {
+		return BoardDaoImpl.getBoardDao().bestArticle(tno);	
 	}	
 
 /*	@Override

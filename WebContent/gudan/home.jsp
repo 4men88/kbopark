@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR" %>
+	pageEncoding="EUC-KR" import="com.baseball.gudan.model.GudanDto"%>
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
 <%
+GudanDto gudanDto = (GudanDto) request.getAttribute("gudandto");
+System.out.println("home.jsp gudandto >>> " + gudanDto);
 System.out.println("home.jsp tno >>> "+NullCheck.nullToZero(request.getParameter("tno")));
 %>
 <script type="text/javascript">
@@ -24,7 +26,7 @@ function listArticle(tno) {
 	<div class="container py-5">
 		<div class="row">
 			<div class="col-md-12 text-white">
-				<h1 class="display-3">KIA TIGERS</h1>
+				<h1 class="display-3"><%=gudanDto.getEnname() %></h1>
 			</div>
 		</div>
 	</div>
@@ -38,8 +40,8 @@ function listArticle(tno) {
 					<ol class="breadcrumb justify-content-end"
 						style="background-color: white;">
 						<li class="breadcrumb-item"><i class="fa fa-home mr-2"
-							aria-hidden="true"></i><a href="#">구단</a></li>
-						<li class="breadcrumb-item"><a href="#">기아타이거즈</a></li>
+							aria-hidden="true"></i><a href="<%=root%>/gudan?act=viewgudan">구단</a></li>
+						<li class="breadcrumb-item"><a href="<%=root%>/gudan?act=mvhome&tno=<%=tno %>"><%=gudanDto.getTname() %></a></li>
 						<li class="breadcrumb-item active" aria-current="page">메인</li>
 					</ol>
 				</nav>
@@ -114,7 +116,7 @@ function listArticle(tno) {
 					</li>
 				</ul>
 				
-				<p class="text-dark text-right py-1" style="font-size: 14px;">+ 전체보기</p>
+				<p class="text-dark text-right py-1" style="font-size: 14px;"><a href="#">+ 전체보기</a></p>
 			</div>
 			<div class="col-md-6 py-5">
 
@@ -173,14 +175,14 @@ function listArticle(tno) {
 						</div>
 					</li>
 				</ul>
-				<p class="text-dark text-right py-1" style="font-size: 14px;">+ 전체보기</p>
+				<p class="text-dark text-right py-1" style="font-size: 14px;"><a href="javascript:listArticle('<%=tno%>');">+ 전체보기</a></p>
 			</div>
 		</div>
 	</div>
 </div>
 
 
-<a class="py-4 btn btn-primary btn-lg btn-block" href="<%=root%>/gudan?act=mvteamweb&tno=<%=tno%>" role="button" style="border-radius: 0; color: white !important;" target="_blank">구단 공식 홈페이지 바로가기</a>
+<a class="py-4 btn btn-primary btn-lg btn-block" href="<%=gudanDto.getWeb1()%>" role="button" style="border-radius: 0; color: white !important;" target="_blank">구단 공식 홈페이지 바로가기</a>
 
 <!-- footer영역 -->
 <%@ include file="/common/footer.jsp"%>
