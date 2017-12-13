@@ -1,8 +1,12 @@
 package com.baseball.gudan.service;
 
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 import com.baseball.gudan.dao.GudanDaoImpl;
 import com.baseball.gudan.model.GudanDto;
 import com.baseball.gudan.model.StadiumDto;
+import com.baseball.schedule.scheduleDto.ScheduleDto;
 
 public class GudanServiceImpl implements GudanService {
 
@@ -38,6 +42,38 @@ public class GudanServiceImpl implements GudanService {
 	@Override
 	public StadiumDto stadiumArticle(int sno) {
 		return GudanDaoImpl.getGudanDao().stadiumArticle(sno);
+	}
+
+	@Override
+	public List<ScheduleDto> weeklyArticle(int tno) {
+		List<ScheduleDto> list = new ArrayList<ScheduleDto>();
+		List<String> weekday = new ArrayList<String>();
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyMMdd");
+		Calendar cal = Calendar.getInstance();
+		
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY); 
+		weekday.add(formatter.format(cal.getTime()));
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY); 
+		weekday.add(formatter.format(cal.getTime()));
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY); 
+		weekday.add(formatter.format(cal.getTime()));
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY); 
+		weekday.add(formatter.format(cal.getTime()));
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY); 
+		weekday.add(formatter.format(cal.getTime()));
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY); 
+		weekday.add(formatter.format(cal.getTime()));
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY); 
+		weekday.add(formatter.format(cal.getTime()));
+		
+		System.out.println("GudanServiceImpl tno >>> " + tno);
+		for(int i=0;i<7;i++) {
+			list.add(GudanDaoImpl.getGudanDao().weeklyArticle(tno, weekday.get(i)));
+			System.out.println(list.get(i) == null? "³Î" :"³Î¾Æ´Ô");
+		}
+		
+		return list;
 	}
 	
 }
