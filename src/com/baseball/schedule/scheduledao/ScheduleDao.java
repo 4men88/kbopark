@@ -7,7 +7,14 @@ import com.baseball.schedule.scheduleDto.ScheduleDto;
 
 public interface ScheduleDao {
 
+
+
+
+
 	List<ScheduleDto> getSchedule();
+
+
+
 	
 
 	

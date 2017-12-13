@@ -29,7 +29,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 
 	@Override
-	public List<ScheduleDto> viewSchedule() {
+	public List<ScheduleDto> viewSchedule(){
 		System.out.println("ScheduleServiceImpl ¿Ô´Ù°¨ ?");
 		return ScheduleDaoImpl.getScheduleDao().getSchedule();
 	}
