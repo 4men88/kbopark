@@ -48,6 +48,7 @@ public class AuctionController extends HttpServlet {
 		}
 		else if("categorylist".equals(act))
 		{
+			System.out.println("pg = " + request.getParameter("pg") + "sort" + request.getParameter("sort"));
 			path = AuctionActionFactory.getAuctionCategoryListAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		}

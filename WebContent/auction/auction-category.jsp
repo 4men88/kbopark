@@ -215,6 +215,7 @@ function categoryList(key, word, category1, category2)
 function auctionsort(sort)
 {
 	document.getElementById("asort").value = sort;
+//	categoryList('','','','')
 	
 }
 </script>

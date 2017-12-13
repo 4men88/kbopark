@@ -25,13 +25,18 @@ public class AuctionCategoryListAction implements Action {
 //		String key = StringEncoder.isoToMain(request.getParameter("key"));
 //		String word = StringEncoder.isoToMain(request.getParameter("word"));
 		int pg = NullCheck.nullToOne(request.getParameter("pg"));
-		int sort = NullCheck.nullToOne(request.getParameter("sort"));
+		String sort = StringEncoder.isoToMain(request.getParameter("sort"));
 		System.out.println("pg =====================" + pg);
 		// 경매상태 진행중 리스트
 		List<AuctionDetailDto> categoryConList = AuctionCategoryServiceImpl.getAuctionCategoryService().auctionCategoryList(category1, category2, pg, 1, sort);
 		// 경매상태 진행중 완료
 		List<AuctionDetailDto> categoryEndList = AuctionCategoryServiceImpl.getAuctionCategoryService().auctionCategoryList(category1, category2, pg, 2, sort);
-		 
+		
+		int len = categoryConList.size();
+		for(int i=0; i<len; i++)
+		{
+			System.out.println("입찰가 : " + categoryConList.get(i).getBidPrice());
+		}
 		request.setAttribute("categoryConList", categoryConList);
 		request.setAttribute("categoryEndList", categoryEndList);
 		return "/auction/auction-category.jsp";

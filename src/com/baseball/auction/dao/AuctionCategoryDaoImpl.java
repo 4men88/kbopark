@@ -39,9 +39,10 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 			category_all.append("    from( \n");
 			category_all.append("    select rownum rn, r.*        \n");
 			category_all.append("    from( \n");
-			category_all.append("        select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, to_char(a_ad.starttime, 'yyyy.mm.dd.hh24.mi.ss') as starttime, a_ad.bidprice, a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano \n");
+			category_all.append("        select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, to_char(a_ad.starttime, 'yyyy.mm.dd.hh24.mi.ss') as starttime,\n"); 
+			category_all.append("				a_ad.bidprice,a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano, a_ad.acount \n");
 			category_all.append("        from auction_image ai,( \n");
-			category_all.append("                                select a.*, ad.bidprice, ad.bidnum \n");
+			category_all.append("                                select a.*, NVL(ad.bidprice,0)as bidprice, NVL(ad.bidnum,0) as bidnum \n");
 			category_all.append("                                from auction a,( \n");
 			category_all.append("                                                select ano, max(bidprice) as bidprice, count(*) as bidnum \n");
 			category_all.append("                                                from auction_detail \n");
@@ -69,19 +70,19 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 			if(sort.equals("1"))
 				category_all.append("order by a_ad.bidnum desc\n");	// 인기경매순 -  입찰자 많은 순 
 			else if(sort.equals("2"))
-				category_all.append("order by a_ad.starttime desc \n");	// 기본은 등록시간순으로 
+				category_all.append("order by a_ad.starttime desc \n");	// 
 			else if(sort.equals("3"))
 				category_all.append("order by a_ad.endtime \n");	// 마감임박순
 			else if(sort.equals("4"))
-				category_all.append("order by a_ad.starttime desc \n");	// 기본은 등록시간순으로 
+				category_all.append("order by a_ad.starttime desc \n");	// 신규경매순
 			else if(sort.equals("5"))
-				category_all.append("order by a_ad.starttime desc \n");	// 기본은 등록시간순으로 
+				category_all.append("order by a_ad.acount desc \n");	// 조회많은순
 			else if(sort.equals("6"))
-				category_all.append("order by a_ad.starttime desc \n");	// 기본은 등록시간순으로 
+				category_all.append("order by a_ad.acount \n");	// 조회적은순
 			else if(sort.equals("7"))
-				category_all.append("order by a_ad.starttime desc \n");	// 기본은 등록시간순으로 
+				category_all.append("order by a_ad.bidprice desc \n");	// 입찰가격 높은순
 			else if(sort.equals("8"))
-				category_all.append("order by a_ad.starttime desc \n");	// 기본은 등록시간순으로 
+				category_all.append("order by a_ad.bidprice \n");	// 입찰가격 낮은순 
 			category_all.append("        )r \n");
 			category_all.append("    where rownum <= ?\n");
 			category_all.append("    )rr \n");
@@ -113,7 +114,6 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 				auctionDetailDto.setAimage(rs.getString("aimage"));
 				auctionDetailDto.setAstatus(rs.getInt("astatus"));
 				auctionDetailDto.setAno(rs.getInt("ano"));
-				
 				list.add(auctionDetailDto);				
 			}
 		} catch (SQLException e) {
