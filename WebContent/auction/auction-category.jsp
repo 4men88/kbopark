@@ -16,6 +16,8 @@ int categoryEndListLen;
  	//endTime만 따로 리스트에 담을 리스트
    List<String> categoryConListTimeArr = new ArrayList<String>();	
    List<String> categoryEndListTimeArr = new ArrayList<String>();	
+   String category1 = (String)request.getAttribute("category1");
+   String category2 = (String)request.getAttribute("category2");
       
    if(categoryConList != null)	//리스트가 널이 아니면
    {
@@ -215,7 +217,7 @@ function categoryList(key, word, category1, category2)
 function auctionsort(sort)
 {
 	document.getElementById("asort").value = sort;
-//	categoryList('','','','')
+	categoryList('','','<%=category1%>','<%=category2%>')
 	
 }
 </script>

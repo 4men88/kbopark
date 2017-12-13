@@ -39,6 +39,9 @@ public class AuctionCategoryListAction implements Action {
 		}
 		request.setAttribute("categoryConList", categoryConList);
 		request.setAttribute("categoryEndList", categoryEndList);
+		request.setAttribute("category1", category1);
+		request.setAttribute("category2", category2);
+		
 		return "/auction/auction-category.jsp";
 	}
 }
