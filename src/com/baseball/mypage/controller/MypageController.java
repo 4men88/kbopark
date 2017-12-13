@@ -27,8 +27,8 @@ public class MypageController extends HttpServlet {
 		
 		String path = "/index.jsp";
 		
-		if("mypageMain".equals(act)) {
-			path = "/reboard/write.jsp" ;
+		if("mypagemain".equals(act)) {
+			path="/mypage/mypageMain.jsp";
 			PageMove.redirect(request, response, path);
 		} else if("mypage".equals(act)) {
 			

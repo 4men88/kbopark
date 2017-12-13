@@ -12,7 +12,7 @@ if(memberDto!=null){
 				<div class="col-md-12">
 					<span style="margin-right: 20px;"><%=memberDto.getName()%>님 반갑습니다</span>
 					<a href="<%=root %>/kbopark?act=logout" style="margin-right: 20px">로그아웃</a>
-					<a href="<%=root %>/kbopark?act=mypage">마이페이지</a>
+					<a href="<%=root %>/mypage?act=mypagemain">마이페이지</a>
 				</div>
 			</div>
 		</div>
