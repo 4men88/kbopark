@@ -18,7 +18,7 @@ public class ModifyInfoAction implements Action {
 			throws ServletException, IOException {
 		String path="/index.jsp";
 
-		
+		int cnt=0;
 		MemberDetailDto memberDto = new MemberDetailDto();
 		memberDto.setId(request.getParameter("id"));
 		memberDto.setName(request.getParameter("name"));
@@ -33,7 +33,7 @@ public class ModifyInfoAction implements Action {
 		memberDto.setTel2(request.getParameter("tel2"));
 		memberDto.setTel3(request.getParameter("tel3"));
 
-		int cnt = MypageServiceImpl.getMypageService().modifyMember(memberDto);
+		cnt = MypageServiceImpl.getMypageService().modifyMember(memberDto);
 		if(cnt!=0) {
 			request.setAttribute("modifyInfo", memberDto);
 			path="/mypage/mypageMain.jsp";
