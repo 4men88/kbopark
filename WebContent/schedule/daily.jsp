@@ -1,10 +1,15 @@
+<%@page import="java.util.List"%>
+<%@page import="com.baseball.schedule.scheduledao.ScheduleDaoImpl"%>
 <%@page import="com.baseball.schedule.scheduleDto.ScheduleDto"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!--header ¿µ¿ª-->
 <%@ include file="/common/header.jsp"%>
-<%ScheduleDto scheduleDto = new ScheduleDto(); %>
+<%
+List<ScheduleDto> list = (List<ScheduleDto>)request.getAttribute("sch");
+%>
+
 
 <%
 	Calendar cal = Calendar.getInstance();
@@ -92,53 +97,36 @@
 			
 			
 		
-		<!--  
-	String y = year+"";
- 	String m = (cal.get(Calendar.MONTH)+1)+"";
- 	//String d = cal.get(Calendar.DATE)+"";
- 	String ymd = y+m;
-	String d = (cal.get(Calendar.DATE))+"";
-	String cday = ymd+d;
-	--> 	
+	
 <% 
-
 int i = 0;
 for(i= 0; i<5; i++){
-		
 		 %>
 				<div class="row text-white text-center mb-3">
 				<div class="mx-auto rounded daily-size-wrapper"
 					style="background-image: url(<%=root%>/img/etc/grass.jpg);">
 					<div class="col-md-12 text-white p-2"
 						style="background-color: rgba(50, 50, 50, 0.75);">
-						<!--  
-						if(scheduleDto.getPlaydate() == cday){
-						-->
-						<span class="px-3 border-r"><%=scheduleDto.getSname() %></span>
-						<!--  
-						}
-						-->
-						<span class="px-3">17:00</span>
+						<span class="px-3 border-r"><%= %></span>
+						<span class="px-3"></span>
 					</div>
 					<div class="col-md-12 opaque-overlay py-2 px-3">
 						<div class="row">
 							<div class="col-md-5 p-0 col-12" style="text-align: left;">
-								<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
+								<img src="<%=root%><%=scheduleDto.getAwayemblem()%>"
 									class="img-thumbnail">
 									
-									<label><%=scheduleDto.getHometeam() %></label>
+									<label><%=scheduleDto.getHometeam()%></label>
 							</div>
 							<div class="col-md-2 p-0 col-12 align-self-center">
 								<h2 class="m-0">
-									<strong><%=scheduleDto.getScore1() %> VS <%=scheduleDto.getScore2() %></strong>
+									<strong><%=scheduleDto.getScore1()%> VS <%=scheduleDto.getScore2() %></strong>
 								</h2>
 							</div>
 							<div class="col-md-5 p-0 col-12" style="text-align: right;">
 								
-								<label><%=scheduleDto.getAwayteam() %></label>
-								
-								
-								<img src="<%=root%><%=scheduleDto.getAwayemblem() %>"
+								<label><%=scheduleDto.getHometeam()%></label>
+								<img src="<%=root%><%=scheduleDto.getHomeemblem() %>"
 									class="img-thumbnail">
 							</div>
 						</div>
@@ -148,6 +136,7 @@ for(i= 0; i<5; i++){
 			<%
 }
 			%>
+			
 			<!--  
 			<div class="row text-white text-center mb-3">
 				<div class="mx-auto rounded daily-size-wrapper"
