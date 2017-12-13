@@ -26,11 +26,13 @@ public class AuctionCategoryListAction implements Action {
 //		String word = StringEncoder.isoToMain(request.getParameter("word"));
 		int pg = NullCheck.nullToOne(request.getParameter("pg"));
 		String sort = StringEncoder.isoToMain(request.getParameter("sort"));
+		String gudan = StringEncoder.isoToMain(request.getParameter("gudan"));
+		
 		System.out.println("pg =====================" + pg);
 		// 경매상태 진행중 리스트
-		List<AuctionDetailDto> categoryConList = AuctionCategoryServiceImpl.getAuctionCategoryService().auctionCategoryList(category1, category2, pg, 1, sort);
+		List<AuctionDetailDto> categoryConList = AuctionCategoryServiceImpl.getAuctionCategoryService().auctionCategoryList(category1, category2, pg, 1, sort, gudan);
 		// 경매상태  완료 리스트
-		List<AuctionDetailDto> categoryEndList = AuctionCategoryServiceImpl.getAuctionCategoryService().auctionCategoryList(category1, category2, pg, 2, sort);
+		List<AuctionDetailDto> categoryEndList = AuctionCategoryServiceImpl.getAuctionCategoryService().auctionCategoryList(category1, category2, pg, 2, sort, gudan);
 		
 		int len = categoryConList.size();
 		for(int i=0; i<len; i++)

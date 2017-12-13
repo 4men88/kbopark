@@ -66,6 +66,9 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 			{				
 				category_all.append("where a_ad.astatus = ? and a_ad.ano = ai.ano(+) and a_ad.category1 = ? and a_ad.category2 = ?\n");
 			}
+			String gudan = map.get("gudan");
+			if(!gudan.isEmpty())
+				category_all.append(" and a_ad.tno = ? \n");
 			String sort = map.get("sort");
 			if(sort.equals("1"))
 				category_all.append("order by a_ad.bidnum desc\n");	// 인기경매순 -  입찰자 많은 순 
@@ -95,6 +98,10 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 				{
 					pstmt.setString(++idx,category2);
 				}
+			}
+			if(!gudan.isEmpty())
+			{
+				pstmt.setString(++idx, gudan);
 			}
 			pstmt.setString(++idx, map.get("end"));
 			pstmt.setString(++idx, map.get("start"));

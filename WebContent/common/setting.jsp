@@ -44,6 +44,7 @@ root = "<%=root%>";
 	<input type="hidden" id="asort" name="sort" value="">
 	<input type="hidden" id="acategory1" name="category1" value="">
 	<input type="hidden" id="acategory2" name="category2" value="">
+	<input type="hidden" id="agudan" name="gudan" value="">
 	<input type="hidden" id="akey" name="key" value="">
 	<input type="hidden" id="aword" name="word" value="">
 	<input type="hidden" id="apg" name="pg" value="">

@@ -485,12 +485,12 @@ if(bestList != null)
 {
    for(int i=0; i<bestListLen; i++)
    {
-%>            
-         
+%>                   
             <div class="col-md-3" >
                <div class="row p-2" >
                   <div class="col-md-12 col-4 align-self-center" >
-                     <img height="100"src="<%=root%>/<%=bestList.get(i).getAimage()%>" class="img-fluid">
+                     <img style="max-height:200px;"
+                      src="<%=root%>/<%=bestList.get(i).getAimage()%>" class="img-fluid">
                   </div>
                   <div class="col-md-12 col-8 align-self-center">
                      <p class="mb-2">

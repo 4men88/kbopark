@@ -203,7 +203,7 @@ window.onload=function() {
 }
 	
 	document.getElementById("asort").value = 4;
-function categoryList(key, word, category1, category2)
+function categoryList(key, word, category1, category2, gudan)
 {
 	document.getElementById("aact").value = "categorylist";
 	document.getElementById("apg").value = "1";
@@ -211,14 +211,14 @@ function categoryList(key, word, category1, category2)
 	document.getElementById("aword").value = "";
 	document.getElementById("acategory1").value = category1; 
 	document.getElementById("acategory2").value = category2; 
+	document.getElementById("agudan").value = gudan; 
 	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 	document.getElementById("auctionForm").submit();		
 }	
 function auctionsort(sort)
 {
 	document.getElementById("asort").value = sort;
-	categoryList('','','<%=category1%>','<%=category2%>')
-	
+	categoryList('','','<%=category1%>','<%=category2%>','');	
 }
 </script>
 <div class="container-fluid auction-category">
@@ -226,20 +226,20 @@ function auctionsort(sort)
 		<nav class="col-6 col-md-2 bg-light sidebar-offcanvas pt-3 pb-5"
 			id="sidebar">
 			<div class="pb-5">
-				<a class="nav-link" href="javascript:categoryList('','','','','');">전체보기</a>
-				<a class="nav-link" href="javascript:categoryList('','','1','');">유니폼</a>
+				<a class="nav-link" href="javascript:categoryList('','','','','','');">전체보기</a>
+				<a class="nav-link" href="javascript:categoryList('','','1','','');">유니폼</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1');">상의</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','1','2');">하의</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','1','3');">모자</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','1','4');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1','');">상의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','2','');">하의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','3','');">모자</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','4','');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','2','');">경기용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','2','','');">경기용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','2','1');">야구공</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','2');">배트</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','3');">글러브</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','4');">보호장구</a> <a
+					<a class="nav-link ml-3" href="javascript:categoryList('','','2','1','');">야구공</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','2','');">배트</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','3','');">글러브</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','4','');">보호장구</a> <a
 						class="nav-link ml-3" href="javascript:categoryList('','','2','5');">기타</a>
 				</nav>
 				<a class="nav-link" href="javascript:categoryList('','','3','');">응원용품</a>
@@ -253,7 +253,7 @@ function auctionsort(sort)
 					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1');">사진</a> <a
 						class="nav-link ml-3" href="javascript:categoryList('','','4','2');">티켓</a> <a
 						class="nav-link ml-3" href="javascript:categoryList('','','4','3');">카드</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','4');">기타</a>
+						class="nav-link ml-3" href="javascript:categoryList('','','4','4','');">기타</a>
 				</nav>
 			</div>
 		</nav>
@@ -413,65 +413,58 @@ if(categoryEndList != null)
 						</div>
 					</div>
 					<div class="row">
-						<div class="p-0 col-md-1 col-12"></div>
-						<div class="p-0 col-md-1 col-12 text-center main-doosan-mobile">
-							<a href="javascript:categoryList('','','','','');"> <img
-								src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
-								class="img-fluid">
-							</a>
-						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="javascript:categoryList('','','','','');"> <img
+							<a href="javascript:categoryList('','','','','3');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-lotte.png"
 								class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="javascript:categoryList('','','','','');"> <img
+							<a href="javascript:categoryList('','','','','10');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-kt.png" class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="javascript:categoryList('','','','','');"> <img
+							<a href="javascript:categoryList('','','','','7');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-nexen.png"
 								class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="javascript:categoryList('','','','','');"> <img
+							<a href="javascript:categoryList('','','','','1');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-kia.png"
 								class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center main-doosan-pc">
-							<a href="javascript:categoryList('','','','','');"> <img
+							<a href="javascript:categoryList('','','','','2');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
 								class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="javascript:categoryList('','','','','');"> <img
+							<a href="javascript:categoryList('','','','','6');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-lg.png" class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="javascript:categoryList('','','','','');"> <img
+							<a href="javascript:categoryList('','','','','8');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
 								class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="javascript:categoryList('','','','','');"> <img
+							<a href="javascript:categoryList('','','','','5');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-sk.png" class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="javascript:categoryList('','','','','');"> <img
+							<a href="javascript:categoryList('','','','','4');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-nc.png" class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="javascript:categoryList('','','','','');"> <img
+							<a href="javascript:categoryList('','','','','9');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-samsung.png"
 								class="img-fluid">
 							</a>
