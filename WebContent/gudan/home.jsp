@@ -3,7 +3,7 @@
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
 <%
-GudanDto gudanDto = (GudanDto) request.getAttribute("gudandto");
+GudanDto gudanDto = (GudanDto) session.getAttribute("gudandto");
 System.out.println("home.jsp gudandto >>> " + gudanDto);
 System.out.println("home.jsp tno >>> "+NullCheck.nullToZero(request.getParameter("tno")));
 %>
@@ -52,10 +52,10 @@ function listArticle(tno) {
 <div id="gudan-nav">
 	<div class="container">
 		<div class="d-flex justify-content-center">
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvhome&tno=<%=tno %>">메인</a></div>
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvstadium&tno=<%=tno %>">구장안내</a></div>
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvweekly&tno=<%=tno %>">스케줄</a></div>
-			<div class="gudan-nav-inner p-3"><a href="javascript:listArticle('<%=tno%>');">커뮤니티</a></div>
+			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvhome&tno=<%=gudanDto.getTno() %>">메인</a></div>
+			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvstadium&sno=<%=gudanDto.getSno1() %>">구장안내</a></div>
+			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvweekly&tno=<%=gudanDto.getTno() %>">스케줄</a></div>
+			<div class="gudan-nav-inner p-3"><a href="javascript:listArticle('<%=gudanDto.getTno()%>');">커뮤니티</a></div>
 		</div>
 		<div class="border-b p-0"></div>
 	</div>

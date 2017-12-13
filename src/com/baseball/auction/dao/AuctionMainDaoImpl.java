@@ -252,7 +252,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			StringBuffer sql2 = new StringBuffer();
 			sql2.append("select count(*) as count\n");
 			sql2.append("from auction\n");
-			sql2.append("where starttime = sysdate and category1 ='유니폼'\n");
+			sql2.append("where starttime = sysdate and category1 = 1\n");
 			pstmt = conn.prepareStatement(sql2.toString());
 			rs = pstmt.executeQuery();
 			rs.next();
@@ -262,7 +262,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			StringBuffer sql3 = new StringBuffer();
 			sql3.append("select count(*) as count\n");
 			sql3.append("from auction\n");
-			sql3.append("where starttime = sysdate and category1 ='경기용품'\n");
+			sql3.append("where starttime = sysdate and category1 = 2\n");
 			pstmt = conn.prepareStatement(sql3.toString());
 			rs = pstmt.executeQuery();
 			rs.next();
@@ -272,7 +272,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			StringBuffer sql4 = new StringBuffer();
 			sql4.append("select count(*) as count\n");
 			sql4.append("from auction\n");
-			sql4.append("where starttime = sysdate and category1 ='응원용품'\n");
+			sql4.append("where starttime = sysdate and category1 = 3\n");
 			pstmt = conn.prepareStatement(sql4.toString());
 			rs = pstmt.executeQuery();
 			rs.next();
@@ -282,7 +282,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			StringBuffer sql5 = new StringBuffer();
 			sql5.append("select count(*) as count\n");
 			sql5.append("from auction\n");
-			sql5.append("where starttime = sysdate and category1 ='기타잡화'\n");
+			sql5.append("where starttime = sysdate and category1 =4\n");
 			pstmt = conn.prepareStatement(sql5.toString());
 			rs = pstmt.executeQuery();
 			rs.next();
