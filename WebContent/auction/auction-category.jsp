@@ -226,8 +226,8 @@ function auctionsort(sort)
 		<nav class="col-6 col-md-2 bg-light sidebar-offcanvas pt-3 pb-5"
 			id="sidebar">
 			<div class="pb-5">
-				<a class="nav-link" href="javascript:categoryList('','','','','');">전체보기</a> <a class="nav-link"
-					href="#item-gudan">구단별보기</a> <a class="nav-link" href="javascript:categoryList('','','1','');">유니폼</a>
+				<a class="nav-link" href="javascript:categoryList('','','','','');">전체보기</a>
+				<a class="nav-link" href="javascript:categoryList('','','1','');">유니폼</a>
 				<nav class="nav nav-pills flex-column">
 					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1');">상의</a> <a
 						class="nav-link ml-3" href="javascript:categoryList('','','1','2');">하의</a> <a
@@ -312,13 +312,12 @@ function auctionsort(sort)
 
 											<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 												<a class="dropdown-item" href="javascript:auctionsort('1');">인기경매순</a>
-												<a class="dropdown-item" href="javascript:auctionsort('2');">구단별기준</a>
-												<a class="dropdown-item" href="javascript:auctionsort('3');">마감임박순</a>
-												<a class="dropdown-item" href="javascript:auctionsort('4');">신규경매순</a>
-												<a class="dropdown-item" href="javascript:auctionsort('5');">조회많은순</a>
-												<a class="dropdown-item" href="javascript:auctionsort('6');">조회적은순</a>
-												<a class="dropdown-item" href="javascript:auctionsort('7');">높은가격순</a>
-												<a class="dropdown-item" href="javascript:auctionsort('8');">낮은가격순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('2');">마감임박순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('3');">신규경매순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('4');">조회많은순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('5');">조회적은순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('6');">높은가격순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('7');">낮은가격순</a>
 											</div>
 										</div>
 									</div>
@@ -416,63 +415,63 @@ if(categoryEndList != null)
 					<div class="row">
 						<div class="p-0 col-md-1 col-12"></div>
 						<div class="p-0 col-md-1 col-12 text-center main-doosan-mobile">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
 								class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-lotte.png"
 								class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-kt.png" class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-nexen.png"
 								class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-kia.png"
 								class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center main-doosan-pc">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
 								class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-lg.png" class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
 								class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-sk.png" class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-nc.png" class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-samsung.png"
 								class="img-fluid">
 							</a>

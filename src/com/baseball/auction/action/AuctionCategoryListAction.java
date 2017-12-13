@@ -29,7 +29,7 @@ public class AuctionCategoryListAction implements Action {
 		System.out.println("pg =====================" + pg);
 		// 경매상태 진행중 리스트
 		List<AuctionDetailDto> categoryConList = AuctionCategoryServiceImpl.getAuctionCategoryService().auctionCategoryList(category1, category2, pg, 1, sort);
-		// 경매상태 진행중 완료
+		// 경매상태  완료 리스트
 		List<AuctionDetailDto> categoryEndList = AuctionCategoryServiceImpl.getAuctionCategoryService().auctionCategoryList(category1, category2, pg, 2, sort);
 		
 		int len = categoryConList.size();

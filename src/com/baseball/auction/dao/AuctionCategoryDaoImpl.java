@@ -70,18 +70,16 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 			if(sort.equals("1"))
 				category_all.append("order by a_ad.bidnum desc\n");	// 인기경매순 -  입찰자 많은 순 
 			else if(sort.equals("2"))
-				category_all.append("order by a_ad.starttime desc \n");	// 
-			else if(sort.equals("3"))
 				category_all.append("order by a_ad.endtime \n");	// 마감임박순
-			else if(sort.equals("4"))
+			else if(sort.equals("3"))
 				category_all.append("order by a_ad.starttime desc \n");	// 신규경매순
-			else if(sort.equals("5"))
+			else if(sort.equals("4"))
 				category_all.append("order by a_ad.acount desc \n");	// 조회많은순
-			else if(sort.equals("6"))
+			else if(sort.equals("5"))
 				category_all.append("order by a_ad.acount \n");	// 조회적은순
-			else if(sort.equals("7"))
+			else if(sort.equals("6"))
 				category_all.append("order by a_ad.bidprice desc \n");	// 입찰가격 높은순
-			else if(sort.equals("8"))
+			else if(sort.equals("7"))
 				category_all.append("order by a_ad.bidprice \n");	// 입찰가격 낮은순 
 			category_all.append("        )r \n");
 			category_all.append("    where rownum <= ?\n");

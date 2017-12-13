@@ -9,8 +9,7 @@ import com.baseball.admin.model.NoticeDto;
 import com.baseball.member.model.MemberDetailDto;
 import com.baseball.util.Constance;
 import com.baseball.util.PageNavigation;
-import com.kitri.common.dao.CommonDaoImpl;
-import com.kitri.util.BoardConstance;
+
 
 
 public class AdminServiceImpl implements AdminService{
