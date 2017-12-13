@@ -14,11 +14,60 @@ int categoryEndListLen;
 	List<AuctionDetailDto> categoryConList = (List<AuctionDetailDto>)request.getAttribute("categoryConList");
 	List<AuctionDetailDto> categoryEndList = (List<AuctionDetailDto>)request.getAttribute("categoryEndList");
  	//endTime만 따로 리스트에 담을 리스트
-   List<String> categoryConListTimeArr = new ArrayList<String>();	
-   List<String> categoryEndListTimeArr = new ArrayList<String>();	
-   String category1 = (String)request.getAttribute("category1");
-   String category2 = (String)request.getAttribute("category2");
-      
+   List<String> categoryConListTimeArr = new ArrayList<String>();	//진행중 경매 종료시간만 리스트로
+   List<String> categoryEndListTimeArr = new ArrayList<String>();	//마감 경매 종료시간만 리스트로
+   String category1 = (String)request.getAttribute("category1");	//대분류
+   String category2 = (String)request.getAttribute("category2");	//중분류
+   String bigSubject ="";
+   String smallSubject ="";
+   if(category1.equals("1")){
+	   bigSubject = "유니폼";
+	   if(category2.equals("1")){
+		   smallSubject = "상의";
+	   }else if(category2.equals("2")){
+		   smallSubject = "하의";
+	   }else if(category2.equals("3")){
+		   smallSubject = "모자";
+	   }else if(category2.equals("4")){
+		   smallSubject = "기타";
+	   }
+	}
+   else if(category1.equals("2")){
+	   bigSubject = "경기용품";
+	   if(category2.equals("1")){
+		   smallSubject = "야구공";
+	   }else if(category2.equals("2")){
+		   smallSubject = "배트";
+	   }else if(category2.equals("3")){
+		   smallSubject = "보호장비";
+	   }else if(category2.equals("4")){
+		   smallSubject = "기타";
+	   }
+   	}
+   else if(category1.equals("3")){
+	   bigSubject = "응원용품";
+	   if(category2.equals("1")){
+		   smallSubject = "피켓";
+	   }else if(category2.equals("2")){
+		   smallSubject = "LED피켓";
+	   }else if(category2.equals("3")){
+		   smallSubject = "기타";
+	   }
+   }
+   else if(category1.equals("4")){
+	   bigSubject = "기타잡화";
+	   if(category2.equals("1")){
+		   smallSubject = "사진";
+	   }else if(category2.equals("2")){
+		   smallSubject = "티켓";
+	   }else if(category2.equals("3")){
+		   smallSubject = "카드";
+	   }else if(category2.equals("4")){
+		   smallSubject = "기타";
+	   }
+   }
+   
+   
    if(categoryConList != null)	//리스트가 널이 아니면
    {
 	   categoryConListLen = categoryConList.size();	//사이즈 재고
@@ -275,8 +324,8 @@ function auctionsort(sort)
 					<ol class="breadcrumb justify-content-end mb-0"
 						style="background-color: white;">
 						<li class="breadcrumb-item"><a href="#">전체</a></li>
-						<li class="breadcrumb-item"><a href="#">유니폼</a></li>
-						<li class="breadcrumb-item active" aria-current="page">모자</li>
+						<li class="breadcrumb-item"><a href="#"><%=bigSubject%></a></li>
+						<li class="breadcrumb-item active" aria-current="page"><%=smallSubject%></li>
 					</ol>
 				</nav>
 			</div>
