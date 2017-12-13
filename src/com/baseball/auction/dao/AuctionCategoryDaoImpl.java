@@ -65,7 +65,23 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 			{				
 				category_all.append("where a_ad.astatus = ? and a_ad.ano = ai.ano(+) and a_ad.category1 = ? and a_ad.category2 = ?\n");
 			}
-			category_all.append("order by a_ad.starttime desc \n");	// 기본은 등록시간순으로 
+			String sort = map.get("sort");
+			if(sort.equals("1"))
+				category_all.append("order by a_ad.bidnum desc\n");	// 인기경매순 -  입찰자 많은 순 
+			else if(sort.equals("2"))
+				category_all.append("order by a_ad.starttime desc \n");	// 기본은 등록시간순으로 
+			else if(sort.equals("3"))
+				category_all.append("order by a_ad.endtime \n");	// 마감임박순
+			else if(sort.equals("4"))
+				category_all.append("order by a_ad.starttime desc \n");	// 기본은 등록시간순으로 
+			else if(sort.equals("5"))
+				category_all.append("order by a_ad.starttime desc \n");	// 기본은 등록시간순으로 
+			else if(sort.equals("6"))
+				category_all.append("order by a_ad.starttime desc \n");	// 기본은 등록시간순으로 
+			else if(sort.equals("7"))
+				category_all.append("order by a_ad.starttime desc \n");	// 기본은 등록시간순으로 
+			else if(sort.equals("8"))
+				category_all.append("order by a_ad.starttime desc \n");	// 기본은 등록시간순으로 
 			category_all.append("        )r \n");
 			category_all.append("    where rownum <= ?\n");
 			category_all.append("    )rr \n");

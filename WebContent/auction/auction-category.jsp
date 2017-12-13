@@ -200,11 +200,11 @@ window.onload=function() {
    sendRequest("<%=root%>/auctioncontroller", params, getTime, "POST");   
 }
 	
-function categoryList(key, word, category1, category2, sort)
+	document.getElementById("asort").value = 4;
+function categoryList(key, word, category1, category2)
 {
 	document.getElementById("aact").value = "categorylist";
 	document.getElementById("apg").value = "1";
-	document.getElementById("asort").value = sort;
 	document.getElementById("akey").value = "";
 	document.getElementById("aword").value = "";
 	document.getElementById("acategory1").value = category1; 
@@ -215,6 +215,7 @@ function categoryList(key, word, category1, category2, sort)
 function auctionsort(sort)
 {
 	document.getElementById("asort").value = sort;
+	
 }
 </script>
 <div class="container-fluid auction-category">
@@ -223,33 +224,33 @@ function auctionsort(sort)
 			id="sidebar">
 			<div class="pb-5">
 				<a class="nav-link" href="javascript:categoryList('','','','','');">전체보기</a> <a class="nav-link"
-					href="#item-gudan">구단별보기</a> <a class="nav-link" href="javascript:categoryList('','','1','','');">유니폼</a>
+					href="#item-gudan">구단별보기</a> <a class="nav-link" href="javascript:categoryList('','','1','');">유니폼</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1','');">상의</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','1','2','');">하의</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','1','3','');">모자</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','1','4','');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1');">상의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','2');">하의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','3');">모자</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','4');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','2','','');">경기용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','2','');">경기용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','2','1','');">야구공</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','2','');">배트</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','3','');">글러브</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','4','');">보호장구</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','5','');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','2','1');">야구공</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','2');">배트</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','3');">글러브</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','4');">보호장구</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','5');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','3','','');">응원용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','3','');">응원용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1','');">피켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','3','2','');">LED피켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','3','3','');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1');">피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','2');">LED피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','3');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','4','','');">기타잡화</a>
+				<a class="nav-link" href="javascript:categoryList('','','4','');">기타잡화</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1','');">사진</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','2','');">티켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','3','');">카드</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','4','');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1');">사진</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','2');">티켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','3');">카드</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','4');">기타</a>
 				</nav>
 			</div>
 		</nav>
