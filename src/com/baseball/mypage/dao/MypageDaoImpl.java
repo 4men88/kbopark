@@ -2,13 +2,19 @@ package com.baseball.mypage.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import com.baseball.auction.model.AuctionDto;
+import com.baseball.board.model.BoardDto;
 import com.baseball.member.dao.MemberDao;
 import com.baseball.member.dao.MemberDaoImpl;
 import com.baseball.member.model.MemberDetailDto;
 import com.baseball.member.model.MemberDto;
+import com.baseball.util.db.DBClose;
 import com.baseball.util.db.DBConnection;
 
 public class MypageDaoImpl implements MypageDao {
@@ -88,6 +94,48 @@ public class MypageDaoImpl implements MypageDao {
 		return cnt;
 			
 	}
+	
+	@Override
+	public List<BoardDto> myListArticle(MemberDetailDto memberDto) {
+		List<BoardDto> mylist = new ArrayList<BoardDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("select rownum rn, a.*, (SELECT COUNT(*) FROM board_reply r WHERE r.bno=a.bno) replycnt \n");
+			sql.append("from ( \n");
+			sql.append("	select bno, bname, bdetail, tno, bcount, bstatus, bdate \n");
+			sql.append("	from board \n");
+			sql.append("	where mid = ? \n");
+			sql.append("	order by bno desc) a \n");
+			sql.append("where rownum <= 10");
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, memberDto.getId());
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				BoardDto boardDto = new BoardDto();
+				boardDto.setBno(rs.getInt("bno"));
+				boardDto.setBname(rs.getString("bname"));
+				boardDto.setBdetail(rs.getString("bdetail"));
+				boardDto.setTno(rs.getInt("tno"));
+				boardDto.setBcount(rs.getInt("bcount"));
+				boardDto.setBstatus(rs.getInt("bstatus"));
+				boardDto.setBdate(rs.getString("bdate"));
+				boardDto.setTotalreply(rs.getInt("replycnt"));
+				mylist.add(boardDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		return mylist;
+	}
+	
+	
+	
 
 	@Override
 	public AuctionDto selling(MemberDto memberDto) {

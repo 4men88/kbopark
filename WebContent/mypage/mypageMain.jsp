@@ -1,3 +1,5 @@
+<%@page import="com.baseball.member.dao.MemberDaoImpl"%>
+<%@page import="com.baseball.mypage.dao.MypageDaoImpl"%>
 <%@page import="com.baseball.member.model.MemberDetailDto"%>
 <%@page import="com.baseball.member.model.MemberDetailDto"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -168,31 +170,31 @@
 				    </tr>
 	</thead>
 	<tbody>
-        <div class="clearfix"></div>    
-        <tr class="">
+        <div class="clearfix"></div>   
+         <tr class="">
 		
-			<td class="subject"><strong><a src='#' class='btnRead' value='47'>내 글 목록1입니다. </a></strong><small></small></td>
+			<td class="subject"><strong><a src='#' class='btnRead' value='47'>내 댓글 원글1입니다. </a></strong><small></small></td>
 			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
 			<td class="text-center regdate">2016-02-28</td>
 		
     	</tr>    
     	<tr class="">
 		
-			<td class="subject"><strong><a src='#' class='btnRead' value='44'>내 글 목록2입니다. </a></strong><small></small></td>
+			<td class="subject"><strong><a src='#' class='btnRead' value='44'>내 댓글 원글2입니다. </a></strong><small></small></td>
 			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
 			<td class="text-center regdate">2015-02-22</td>
 		
    		</tr>
   	    <tr class="">
 			
-			<td class="subject"><strong><a src='#' class='btnRead' value='47'>내 글 목록3입니다.</a></strong><small></small></td>
+			<td class="subject"><strong><a src='#' class='btnRead' value='47'>내 댓글 원글3입니다.</a></strong><small></small></td>
 			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
 			<td class="text-center regdate">2016-02-28</td>
 			
    	    </tr> 
    	     <tr class="">
 			
-			<td class="subject"><strong><a src='#' class='btnRead' value='47'>내 글 목록4입니다.</a></strong><small></small></td>
+			<td class="subject"><strong><a src='#' class='btnRead' value='47'>내 댓글 원글4입니다.</a></strong><small></small></td>
 			<td class="text-center writer"><span title=admin data-toggle="tooltip" data-placement="right auto">Admin</span></td>
 			<td class="text-center regdate">2016-02-28</td>
 			

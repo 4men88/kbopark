@@ -6,11 +6,15 @@ import com.baseball.mypage.action.ModifyInfoAction;
 
 public class MypageActionFactory {
 
+	
 	private static ModifyInfoAction modifyInfoAction;
-
+	private static MypageActionFactory mypageActionFactory;
+	
+	
+	
 	static {
 		modifyInfoAction = new ModifyInfoAction();
-
+		mypageActionFactory = new MypageActionFactory();
 	}
 
 	
@@ -18,6 +22,10 @@ public class MypageActionFactory {
 		return modifyInfoAction;
 	}
 
+
+	public static MypageActionFactory getMypageActionFactory() {
+		return mypageActionFactory;
+	}
 	
 	
 }
