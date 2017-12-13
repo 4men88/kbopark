@@ -80,9 +80,8 @@ public class MemberController extends HttpServlet {
 			session.invalidate(); //技记 昏力肺流
 			PageMove.redirect(request, response, "/index.jsp");
 		
-		}else if("mypage".equals(act)){
-			path="/mypage/mypageMain.jsp";
-			PageMove.redirect(request, response, path);
+		}else if("".equals(act)){
+			
 		}else if("idfind".equals(act)){
 			String name = StringEncoder.isoToMain(request.getParameter("fname"));
 			String email1 = request.getParameter("email1");

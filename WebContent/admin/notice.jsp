@@ -4,18 +4,21 @@
 <%@ include file="/common/header.jsp" %>
 
 <%
-
 List<NoticeDto> list = (List<NoticeDto>)request.getAttribute("notilist");
+int ntype = NullCheck.nullToZero(request.getParameter("ntype"));
 %>
 
 <script>
-function noticelist(){
+
+function noticelist(ntype,pg,key,word){
 	document.location.href = "<%=root%>/admin?act=noticelist";
 }
 function noticeWrite(){
 	document.location.href = "<%=root%>/admin?act=mvnowrite";
 }
-
+function viewnotice(no){
+	document.location.href = "<%=root%>/admin?act=viewnotice&nno="+no;
+}
 </script>
 <div id="notice" class="py-5">
 	<div class="container py-5">
@@ -27,10 +30,10 @@ function noticeWrite(){
 		</div>
 
 		<div class="d-flex justify-content-center">
-			<div class="notice-inner p-3"><a href="<%=root%>/admin?act=notice">전체공지</a></div>
-			<div class="notice-inner p-3"><a href="<%=root%>/admin?act=noticelist&ntype=1">일반공지</a></div>
-			<div class="notice-inner p-3"><a href="<%=root%>/admin?act=noticelist&ntype=2">경매공지</a></div>
-			<div class="notice-inner p-3"><a href="<%=root%>/admin?act=noticelist&ntype=3">1:1문의</a></div>
+			<div class="notice-inner p-3"><a href="<%=root%>/admin?act=noticelist('0','1','','')">전체공지</a></div>
+			<div class="notice-inner p-3"><a href="<%=root%>/admin?act=noticelist('1','1','','')">일반공지</a></div>
+			<div class="notice-inner p-3"><a href="<%=root%>/admin?act=noticelist('2','1','','')">경매공지</a></div>
+			<div class="notice-inner p-3"><a href="<%=root%>/admin?act=noticelist('3','1','','')">1:1문의</a></div>
 		</div>
 <%
 if(memberDto != null){
@@ -80,8 +83,23 @@ document.location.href="<%=root%>/index.jsp";
 				</table>
 			</div>
 		</div>
-
+		<form id="searchForm" name="searchForm" action="">
+		<input type="hidden" id="act" name="act" value="listarticle">
+		<input type="hidden" id="ntype" name="ntype" value="ntype">
+		<input type="hidden" id="pg" name="pg" value="1">
+			<div style="text-align:center;height:80px">
+			<span>
+			<select id="key" name="key">
+				<option value="no">글번호</option>
+				<option value="subject">제목</option>
+			</select>
+			<input type="text" id="word" name="word">
+			<input type="button" name="" id="" value="검색" onclick="javascript:searchnotice()">
+			</span>
+			</div>
+		</form>
 		<div class="d-flex justify-content-center" name="" id="">
+
 			<div>
 				<ul class="pagination pagination-sm">
 					<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
