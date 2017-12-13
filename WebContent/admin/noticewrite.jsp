@@ -1,10 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<%@ include file="/admin/adcom/adheader.jsp"%>
-<script>
-function writeNotice(){
-	document.getElementById("noticeForm").onclick = "<%=root%>/admin";
-	document.getElementById("noticeForm").submit();
+<%@ include file="/common/header.jsp" %>
+<script type="text/javascript">
+function writenotice(){
+	if(document.getElementById("subject").value==""){
+		alert("제목을 입력하세요");
+		return;
+	}else if(document.getElementById("context").value==""){
+		alert("내용을 입력하세요");
+		return;
+	}else{
+		document.noticeForm.action ="<%=root%>/admin";
+		document.noticeForm.submit();	
+	}
+	
 }
 </script>
 
@@ -25,9 +34,10 @@ function writeNotice(){
 		<div class="form-group row px-3">
 			<label for="selectgudan" class="col-sm-2 col-4 col-form-label">구단</label>
 			<div class="col-sm-4 col-8">
-				<select id="notitype" class="form-control">
-					<option value="normal">일반공지</option>
-					<option value="auction">경매공지<option>
+				<select id="notitype" name="notitype" class="form-control">
+					<option value="1">일반공지</option>
+					<option value="2">경매공지<option>
+					<option value="3">1:1답변<option>
 				</select>
 			</div>
 		</div>
@@ -35,21 +45,21 @@ function writeNotice(){
 		<div class="form-group row px-3">
 			<label for="writeName" class="col-sm-2 col-4 col-form-label">작성자</label>
 			<div class="col-sm-4 col-8">
-				<input type="text" class="form-control" id="writer" value="admin" readonly="readonly">
+				<input type="text" class="form-control" id="writer" name="writer" value="admin" readonly="readonly">
 			</div>
 		</div>
 
 		<div class="form-group row px-3">
 			<label for="inputSubject" class="col-sm-2 col-12 col-form-label">제목</label>
 			<div class="col-sm-10 col-12">
-				<input type="text" class="form-control" id="subject"
+				<input type="text" class="form-control" id="subject" name="subject"
 					placeholder="">
 			</div>
 		</div>
 
 		<div class="form-group row px-3">
 			<div class="col-md-12">
-				<textarea class="form-control" id="context"
+				<textarea class="form-control" id="context" name="context"
 					rows="20"></textarea>
 			</div>
 		</div>
@@ -83,8 +93,9 @@ function writeNotice(){
 				style="color: white !important;">취소</a>
 		</div>
 		<div class="p-2">
-			<input class="btn btn-secondary btn-sm" type="button" value="등록" onclick="javascript:writeNotice();">
+			<a class="btn btn-secondary btn-sm" href="javascript:writenotice();" role="button"
+				style="color: white !important;">등록</a>
 		</div>
 	</div>
 </div>
-	<%@ include file="/admin/adcom/adfooter.jsp"%>
+<%@ include file="/common/footer.jsp" %>

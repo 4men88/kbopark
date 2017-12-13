@@ -30,34 +30,29 @@ public class LoginAction implements Action {
 		MemberDetailDto memberDetailDto= MemberServiceImpl.getMemberService().logIn(map);
 		if(memberDetailDto!=null) {
 			String idsv = request.getParameter("idsv");
-			if("gksdjf".equals(memberDetailDto.getId())) {
-				HttpSession session = request.getSession();
-				session.setAttribute("userInfo", memberDetailDto);
-				path = "/admin/adhome.jsp";
+			if("saveid".equals(idsv)) {
+				Cookie cookie = new Cookie("nid_sid",id);
+				cookie.setPath(root);
+				cookie.setMaxAge(60*60*24*365*50);
+				response.addCookie(cookie);
 			}else {
-				if("saveid".equals(idsv)) {
-					Cookie cookie = new Cookie("nid_sid",id);
-					cookie.setPath(root);
-					cookie.setMaxAge(60*60*24*365*50);
-					response.addCookie(cookie);
-				}else {
-					Cookie cookie[] = request.getCookies();
-					if(cookie!=null){
-						int len = cookie.length;
-						for(int i=0;i<len;i++){
-							if("nid_sid".equals(cookie[i].getName())){
-								cookie[i].setMaxAge(0);
+				Cookie cookie[] = request.getCookies();
+				if(cookie!=null){
+					int len = cookie.length;
+					for(int i=0;i<len;i++){
+						if("nid_sid".equals(cookie[i].getName())){
+							cookie[i].setMaxAge(0);
 //								cookie[i].setPath(root);
-								response.addCookie(cookie[i]);
-								break;
-							}
+							response.addCookie(cookie[i]);
+							break;
 						}
 					}
 				}
-				HttpSession session = request.getSession();
-				session.setAttribute("userInfo", memberDetailDto);
-				path = "/index.jsp";
 			}
+			HttpSession session = request.getSession();
+			session.setAttribute("userInfo", memberDetailDto);
+			path = "/index.jsp";
+			
 		} else 
 			path = "/index.jsp?id="+id;
 		

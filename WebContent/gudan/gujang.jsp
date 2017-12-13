@@ -7,6 +7,7 @@ GudanDto gudanDto = (GudanDto) session.getAttribute("gudandto");
 StadiumDto stadiumDto = (StadiumDto) request.getAttribute("stadiumdto");
 System.out.println("gujang.jsp gudandto >>> " + gudanDto);
 System.out.println("gujang.jsp tno >>> "+NullCheck.nullToZero(request.getParameter("tno")));
+System.out.println(stadiumDto.getLat() + " " +stadiumDto.getLng() + " " + stadiumDto.getLocid());
 %>
 <script type="text/javascript">
 function listArticle(tno) {
@@ -19,7 +20,6 @@ function listArticle(tno) {
 }
 
 </script>
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><%=gudanDto.getEmblem()%>
 <div class="py-5 text-center opaque-overlay"
 	style="background-image: url(<%=root%>/img/etc/grass.jpg);">
 	<div class="container py-5">
@@ -88,7 +88,7 @@ function listArticle(tno) {
 <script>
 var mapContainer = document.getElementById('map'), // 지도의 중심좌표
     mapOption = { 
-        center: new daum.maps.LatLng(33.451475, 126.570528), // 지도의 중심좌표
+        center: new daum.maps.LatLng(<%=stadiumDto.getLat()%>, <%=stadiumDto.getLng()%>), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     }; 
 
@@ -97,7 +97,7 @@ var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 // 지도에 마커를 표시합니다 
 var marker = new daum.maps.Marker({
     map: map, 
-    position: new daum.maps.LatLng(33.450701, 126.570667)
+    position: new daum.maps.LatLng(<%=stadiumDto.getLat()%>, <%=stadiumDto.getLng()%>)
 });
 
 // 커스텀 오버레이에 표시할 컨텐츠 입니다
@@ -115,7 +115,7 @@ var content = '<div class="wrap">' +
             '           </div>' + 
             '            <div class="desc">' + 
             '                <div class="ellipsis"><%=stadiumDto.getSloc()%></div>' + 
-            '                <div><a href="<%=gudanDto.getWeb1()%>" target="_blank" class="link">구단홈페이지</a></div>' + 
+            '                <div><a href="http://place.map.daum.net/'+ <%=stadiumDto.getLocid()%> + '" target="_blank" class="link">구장 상세보기</a></div>' + 
             '            </div>' + 
             '        </div>' + 
             '    </div>' +    
