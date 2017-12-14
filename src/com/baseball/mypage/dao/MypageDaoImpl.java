@@ -52,7 +52,8 @@ public class MypageDaoImpl implements MypageDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt3 = null;
-		int cnt = 0;
+		int cnt1 = 0;
+		int cnt2 =0;
 		try {
 			System.out.println("MypageDaoImpl>>>>>>>>modifyinfo 실행");
 			conn=DBConnection.makeConnection();
@@ -69,13 +70,13 @@ public class MypageDaoImpl implements MypageDao {
 			pstmt.setString(++idx, memberDto.getEmail1());
 			pstmt.setString(++idx, memberDto.getEmail2());
 			pstmt.setString(++idx, memberDto.getId());
-			cnt=pstmt.executeUpdate();
-			System.out.println("memberDetaildto>>>modifyinfo>>>member 테이블 완료==="+cnt);
-			cnt=0;
-			sql2.append("update member_dateil");
+			cnt1=pstmt.executeUpdate();
+			System.out.println("memberDetaildto>>>modifyinfo>>>member 테이블 완료==="+cnt1);
+			
+			idx=0;
+			sql2.append("update member_detail");
 			sql2.append("set tel1=?, tel2=?, tel3=?, zip1=?, addr1=?, addr2=?, tno=?");
 			sql2.append("where mid=?");
-			idx=0;
 			
 			pstmt3= conn.prepareStatement(sql.toString());
 			pstmt3.setString(++idx, memberDto.getTel1());
@@ -86,14 +87,14 @@ public class MypageDaoImpl implements MypageDao {
 			pstmt3.setString(++idx, memberDto.getAddr2());
 			pstmt3.setInt(++idx, memberDto.getTno());
 			pstmt3.setString(++idx, memberDto.getId());
-			cnt=pstmt3.executeUpdate();
-			System.out.println("memberDetaildto>>>modifyinfo>>>member_detail 테이블 완료==="+cnt);
+			cnt2=pstmt3.executeUpdate();
+			System.out.println("memberDetaildto>>>modifyinfo>>>member_detail 테이블 완료==="+cnt2);
 			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 		}
-		return cnt;
+		return cnt1*cnt2;
 			
 	}
 	

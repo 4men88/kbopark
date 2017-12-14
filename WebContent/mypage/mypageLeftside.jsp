@@ -37,7 +37,7 @@ function myarticle(){
 }
 
 function logout(){
-	
+	document.location.href = "<%=root %>/kbopark?act=logout";
 }
 
 
@@ -80,7 +80,7 @@ function logout(){
     	<div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/mypage/myauction.jsp'" style="height:50px;width:100%;margin:5px;">경매 관리</button></div>
     	<div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/mypage/lookie.jsp'" style="height:50px;width:100%;margin:5px;">루키 관리</button></div>
     	<div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/mypage/myarticle.jsp'" style="height:50px;width:100%;margin:5px;">게시물 관리</button></div>
-       	<div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/index.jsp'" style="height:50px;width:100%;margin:5px;">로그아웃</button></div>
+       	<div><button type="button" class="btn btn-primary" onclick="javascript:logout();" style="height:50px;width:100%;margin:5px;">로그아웃</button></div>
       </div>
       
 

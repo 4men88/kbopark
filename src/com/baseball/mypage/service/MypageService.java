@@ -10,7 +10,7 @@ import com.baseball.member.model.MemberDto;
 
 public interface MypageService {
 
-	int modifyMember(MemberDetailDto memberdto);
+	int modifyMember(MemberDetailDto memberDto);
 	List<BoardDto> listArticle(MemberDetailDto memberdto);
 	List<ReplyDto> listReply(MemberDetailDto memberdto);
 	
