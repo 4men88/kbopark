@@ -38,9 +38,9 @@ public class MypageController extends HttpServlet {
 
 		if ("mvmypage".equals(act)) {
 			path = MypageActionFactory.getMypageMainAction().execute(request, response);
-			PageMove.redirect(request, response, path);
+			PageMove.forward(request, response, path);
 		} else if ("mypage".equals(act)) {
-
+			
 		} else if ("movemodify".equals(act)) {
 			path = "/mypage/modifyinfo.jsp";
 			PageMove.redirect(request, response, path);

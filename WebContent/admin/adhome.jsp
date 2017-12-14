@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<%@ include file="/admin/adcom/adheader.jsp" %>
+<%@ include file="/common/header.jsp" %>
 관리자 메인
-<%@ include file="/admin/adcom/adfooter.jsp" %>
+<%@ include file="/common/footer.jsp" %>

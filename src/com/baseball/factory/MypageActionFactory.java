@@ -3,18 +3,19 @@ package com.baseball.factory;
 
 
 import com.baseball.mypage.action.ModifyInfoAction;
+import com.baseball.mypage.action.MypageMainAction;
 
 public class MypageActionFactory {
 
 	
 	private static ModifyInfoAction modifyInfoAction;
-	private static MypageActionFactory mypageActionFactory;
+	private static MypageMainAction mypageMainAction;
 	
 	
 	
 	static {
 		modifyInfoAction = new ModifyInfoAction();
-		mypageActionFactory = new MypageActionFactory();
+		mypageMainAction = new MypageMainAction();
 	}
 
 	
@@ -23,9 +24,13 @@ public class MypageActionFactory {
 	}
 
 
-	public static MypageActionFactory getMypageActionFactory() {
-		return mypageActionFactory;
+	public static MypageMainAction getMypageMainAction() {
+	
+		return mypageMainAction;
 	}
+
+
+
 	
 	
 }

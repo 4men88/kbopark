@@ -10,6 +10,8 @@ import java.util.Map;
 
 import com.baseball.auction.model.AuctionDto;
 import com.baseball.board.model.BoardDto;
+import com.baseball.board.model.ReplyDto;
+import com.baseball.board.model.ReplyDto;
 import com.baseball.member.dao.MemberDao;
 import com.baseball.member.dao.MemberDaoImpl;
 import com.baseball.member.model.MemberDetailDto;
@@ -40,7 +42,7 @@ public class MypageDaoImpl implements MypageDao {
 	
 	
 	@Override
-	public MemberDetailDto myInfo(MemberDto memberDto) {
+	public MemberDetailDto myInfo(MemberDetailDto memberDto) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -96,21 +98,19 @@ public class MypageDaoImpl implements MypageDao {
 	}
 	
 	@Override
-	public List<BoardDto> myListArticle(MemberDetailDto memberDto) {
-		List<BoardDto> mylist = new ArrayList<BoardDto>();
+	public List<BoardDto> listArticle(MemberDetailDto memberDto) {
+		List<BoardDto> boardlist = new ArrayList<BoardDto>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		System.out.println("dao.listarticle()왔어");
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("select rownum rn, a.*, (SELECT COUNT(*) FROM board_reply r WHERE r.bno=a.bno) replycnt \n");
-			sql.append("from ( \n");
 			sql.append("	select bno, bname, bdetail, tno, bcount, bstatus, bdate \n");
 			sql.append("	from board \n");
 			sql.append("	where mid = ? \n");
-			sql.append("	order by bno desc) a \n");
-			sql.append("where rownum <= 10");
+			sql.append("	order by bno desc \n");
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, memberDto.getId());
 			rs = pstmt.executeQuery();
@@ -123,30 +123,64 @@ public class MypageDaoImpl implements MypageDao {
 				boardDto.setBcount(rs.getInt("bcount"));
 				boardDto.setBstatus(rs.getInt("bstatus"));
 				boardDto.setBdate(rs.getString("bdate"));
-				boardDto.setTotalreply(rs.getInt("replycnt"));
-				mylist.add(boardDto);
+				boardDto.setMid(memberDto.getId());
+				boardlist.add(boardDto);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBClose.close(conn, pstmt, rs);
 		}
-		return mylist;
+		return boardlist;
 	}
 	
 	
 	
 
+
 	@Override
-	public AuctionDto selling(MemberDto memberDto) {
+	public AuctionDto selling(MemberDetailDto memberdto) {
 		
 		return null;
 	}
 
 	@Override
-	public AuctionDto buying(MemberDto memberDto) {
+	public AuctionDto buying(MemberDetailDto memberdto) {
 		
 		return null;
 	}
+
+	@Override
+	public List<ReplyDto> replyArticle(MemberDetailDto memberDto) {
+		List<ReplyDto> replylist = new ArrayList<ReplyDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		System.out.println("dao.replyarticle()왔어");
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("	select reno, bno, recontent \n");
+			sql.append("	from board_reply \n");
+			sql.append("	where mid = ? \n");
+			sql.append("	order by reno desc \n");
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, memberDto.getId());
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ReplyDto replyDto = new ReplyDto();
+				replyDto.setReno(rs.getInt("bdetail"));
+				replyDto.setBno(rs.getInt("bno"));
+				replyDto.setRecontent(rs.getString("bname"));
+				replylist.add(replyDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		return replylist;
+	}
+
 
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR" import="com.baseball.member.model.MemberDetailDto,java.util.*"%>
-<%@ include file="/admin/adcom/adheader.jsp" %>
+<%@ include file="/common/header.jsp" %>
 
 <script type="text/javascript" src="<%=root %>/js/httpRequest.js"></script>
 <script type="text/javascript">
@@ -159,7 +159,6 @@ function statusChange(obj){
 	var td = tr.children();
 	var userid = td.eq(0).text();
 	var stat = obj.value;
-	alert("아이디="+userid+"상태="+stat);
 	var params = "act=changestat&id="+userid+"&stat="+stat;
 	sendRequest("<%=root%>/admin", params, memberlist, "GET");
 }
@@ -206,5 +205,5 @@ function statusChange(obj){
 <tbody id="mlist"></tbody>
 </table>
 </center>
-<%@ include file="/admin/adcom/adfooter.jsp" %>
+<%@ include file="/common/footer.jsp" %>
 

@@ -36,25 +36,35 @@ public class AdminController extends HttpServlet {
 			String id = request.getParameter("id");
 			String type = request.getParameter("type");
 			AdminDaoImpl.getAdminDao().updatePen(id,type);;
+		
 		}else if("changestat".equals(act)){
 			String id = request.getParameter("id");
 			int stat = Integer.parseInt(request.getParameter("stat"));
 			AdminDaoImpl.getAdminDao().changestat(id, stat);
+		
 		}else if("notice".equals(act)){
-			path="/admin/notice.jsp";
-			PageMove.redirect(request, response, path);
+			path=AdminActionFactory.getListNoticeAction().execute(request, response);
+			PageMove.forward(request, response, path);
+		
 		}else if("todaypl".equals(act)){
 			
+		
 		}else if("mvnowrite".equals(act)){
 			PageMove.redirect(request, response, "/admin/noticewrite.jsp");
+		
 		}else if("writeno".equals(act)){
-			System.out.println("dd");
 			path=AdminActionFactory.getWriteNoticeAction().execute(request, response);
 			PageMove.forward(request, response, path);
-		}else if("".equals(act)){
-			
-		}else if("".equals(act)){
-			
+		
+		}else if("noticelist".equals(act)){
+			System.out.println("공지사항 탭");
+			path=AdminActionFactory.getNtypeListAction().execute(request, response);
+			PageMove.forward(request, response, path);
+		
+		}else if("viewnotice".equals(act)){
+			System.out.println("공지사항보기");
+			path=AdminActionFactory.getViewNoticeAction().execute(request, response);
+			PageMove.forward(request, response, path);
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){
