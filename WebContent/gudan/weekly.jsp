@@ -7,10 +7,6 @@
 GudanDto gudanDto = (GudanDto) session.getAttribute("gudandto");
 List<ScheduleDto> playlist = (List<ScheduleDto>) request.getAttribute("playlist");
 List<StadiumDto> playstadium = (List<StadiumDto>) request.getAttribute("playstadium");
-
-System.out.println("weekly.jsp stadiumdto >>> " + playstadium.size());
-System.out.println("weekly.jsp gudandto >>> " + gudanDto);
-System.out.println("weekly.jsp tno >>> "+NullCheck.nullToZero(request.getParameter("tno")));
 %>
 <script type="text/javascript">
 function listArticle(tno) {
