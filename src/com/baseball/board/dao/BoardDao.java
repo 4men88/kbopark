@@ -8,7 +8,9 @@ import com.baseball.board.model.BoardDto;
 public interface BoardDao {
 	int getNextSeq();
 	void updateHit(int seq);
-//	PageNavigation makePageNavigation(int bcode, int pg, String key, String word, int listsize);
+	void updateStatus(int seq);
+
+	//	PageNavigation makePageNavigation(int bcode, int pg, String key, String word, int listsize);
 	
 	int writeArticle(BoardDto boardDto);
 	BoardDto viewArticle(int seq);
@@ -18,8 +20,7 @@ public interface BoardDao {
 	List<BoardDto> bestArticle(int tno);
 
 	int getTotalArticleCount(Map<String, String> map);
-	
-//	int getNewArticleCount(int tno);
-//	int replyArticle(BoardDto BoardDto);
+	int getPrevBno(int tno, int seq);
+	int getNextBno(int tno, int seq);
 
 }

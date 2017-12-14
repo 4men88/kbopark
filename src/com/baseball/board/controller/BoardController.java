@@ -68,6 +68,22 @@ public class BoardController extends HttpServlet {
 			System.out.println("controller deletearticle path >>>   " + path);
 			PageMove.forward(request, response, path);
 			
+		} else if("notifyarticle".equals(act)) {
+			path = BoardActionFactory.getBoardNotifyAction().execute(request, response);
+			path += queryString;
+			PageMove.forward(request, response, path);
+			
+		} else if("prevarticle".equals(act)) {
+			path = BoardActionFactory.getBoardPrevAction().execute(request, response);
+			path += queryString;
+			PageMove.forward(request, response, path);
+		} else if("nextarticle".equals(act)) {
+			path = BoardActionFactory.getBoardNextAction().execute(request, response);
+			path += queryString;
+			PageMove.forward(request, response, path);
+			
+		} else if("".equals(act)) {
+			
 		} else {
 			PageMove.redirect(request, response, path);
 		}

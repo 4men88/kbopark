@@ -37,6 +37,24 @@ public class BoardServiceImpl implements BoardServcie {
 		BoardDaoImpl.getBoardDao().updateHit(seq);
 		return BoardDaoImpl.getBoardDao().viewArticle(seq);
 	}
+	@Override
+	public BoardDto notifyArticle(int seq) {
+		BoardDaoImpl.getBoardDao().updateStatus(seq);
+		BoardDaoImpl.getBoardDao().updateHit(seq);
+		return BoardDaoImpl.getBoardDao().viewArticle(seq);
+	}
+	@Override
+	public BoardDto prevArticle(int tno, int seq) {
+		int pseq = BoardDaoImpl.getBoardDao().getPrevBno(tno, seq);
+		BoardDaoImpl.getBoardDao().updateHit(pseq);
+		return BoardDaoImpl.getBoardDao().viewArticle(pseq);
+	}
+	@Override
+	public BoardDto nextArticle(int tno, int seq) {
+		int nseq = BoardDaoImpl.getBoardDao().getNextBno(tno, seq);
+		BoardDaoImpl.getBoardDao().updateHit(nseq);
+		return BoardDaoImpl.getBoardDao().viewArticle(nseq);
+	}
 
 	@Override
 	public List<BoardDto> listArticle(int tno, int pg, String key, String word) {
@@ -91,13 +109,5 @@ public class BoardServiceImpl implements BoardServcie {
 	public int deleteArticle(int seq) {
 		return BoardDaoImpl.getBoardDao().deleteArticle(seq);
 	}
-
-
-/*	@Override
-	public int replyArticle(BoardDto boardDto) {
-		return BoardDaoImpl.getBoardDao().replyArticle(boardDto);
-	}
-*/
-	
 
 }

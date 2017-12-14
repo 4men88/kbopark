@@ -318,33 +318,84 @@ public class BoardDaoImpl implements BoardDao {
 		}
 		System.out.println("BoardDI totalcount >> " + count);
 		return count;
-	}	
-	
-}
+	}
 
-/*	@Override
-	public int getNewArticleCount(int tno) {
-		int count = 0;
+	@Override
+	public void updateStatus(int seq) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("update board \n");
+			sql.append("set bstatus = '1' \n");
+			sql.append("where bno = ?");
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, seq);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt);
+		}
+	}
+
+	@Override
+	public int getPrevBno(int tno, int seq) {
+		int pseq = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("select count(bno) \n");
-			sql.append("from board \n");
-			sql.append("where tno = ? \n");
-			sql.append("and to_char(bdate, 'yymmdd') = to_char(sysdate, 'yymmdd')");
-
+			sql.append("SELECT MAX(bno) \n");
+			sql.append("FROM board \n");
+			sql.append("WHERE tno = ? AND bno < ?");
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setInt(1, tno);
+			pstmt.setInt(2, seq);
 			rs = pstmt.executeQuery();
-			rs.next();
-			count = rs.getInt(1);
+			if(rs.next())
+				pseq = rs.getInt(1);
+			else
+				pseq = seq;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBClose.close(conn, pstmt, rs);
 		}
-		return count;
-	}*/
+		System.out.println("BoardDI pseq >> " + pseq);
+		return pseq;
+	}
+
+	@Override
+	public int getNextBno(int tno, int seq) {
+		int nseq = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("SELECT MIN(bno) \n");
+			sql.append("FROM board \n");
+			sql.append("WHERE tno = ? AND bno > ?");
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, tno);
+			pstmt.setInt(2, seq);
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				nseq = rs.getInt(1);
+			else
+				nseq = seq;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		System.out.println("BoardDI nseq >> " + nseq);
+		return nseq;
+	}	
+	
+}

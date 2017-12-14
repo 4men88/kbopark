@@ -35,6 +35,30 @@ function viewArticle(tno, pg, key, word, seq) {
 	document.getElementById("commonForm").submit();
 }
 
+function prevArticle(tno, pg, key, word, seq) {
+	document.getElementById("cact").value = "prevarticle";
+	document.getElementById("ctno").value = tno;
+	document.getElementById("cpg").value = pg;
+	document.getElementById("ckey").value = key;
+	document.getElementById("cword").value = word;
+	document.getElementById("cseq").value = seq;
+	
+	document.getElementById("commonForm").action = root + control;
+	document.getElementById("commonForm").submit();
+}
+
+function nextArticle(tno, pg, key, word, seq) {
+	document.getElementById("cact").value = "nextarticle";
+	document.getElementById("ctno").value = tno;
+	document.getElementById("cpg").value = pg;
+	document.getElementById("ckey").value = key;
+	document.getElementById("cword").value = word;
+	document.getElementById("cseq").value = seq;
+	
+	document.getElementById("commonForm").action = root + control;
+	document.getElementById("commonForm").submit();
+}
+
 function movemodify(tno, pg, key, word, seq) {
 	document.getElementById("cact").value = "movemodify";
 	document.getElementById("ctno").value = tno;

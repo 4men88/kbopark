@@ -10,17 +10,17 @@ BoardDto boardDto = (BoardDto) request.getAttribute("article");
 <script type="text/javascript">
 control = "/board";
 
-function notifyReply() {
-	alert("신고됨!");
-	<%-- 	document.getElementById("cact").value = "mvreply";
+function notifyArticle() {
+	document.getElementById("cact").value = "notifyarticle";
 	document.getElementById("ctno").value = "<%=tno%>";
-	document.getElementById("cpg").value = "1";
-	document.getElementById("ckey").value = "";
-	document.getElementById("cword").value = "";
+	document.getElementById("cpg").value = "<%=pg%>";
+	document.getElementById("ckey").value = "<%=key%>";
+	document.getElementById("cword").value = "<%=word%>";
 	document.getElementById("cseq").value = "<%=boardDto.getBno()%>";
 	
-	document.getElementById("commonForm").action = "<%=root%>/reboard";
-	document.getElementById("commonForm").submit(); --%>
+	document.getElementById("commonForm").action = "<%=root%>/board";
+	document.getElementById("commonForm").submit();
+	$('#notifyModal').modal('hide');
 }
 
 function moveReply() {
@@ -165,11 +165,11 @@ if(memberDto != null && memberDto.getId().equals(boardDto.getMid())) {
 						<a href="javascript:listArticle('<%=gudanDto.getTno()%>','<%=pg%>','<%=key%>','<%=word%>');">목록</a>
 					</div>
 					<div class="px-2">
-						<a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i>
+						<a href="javascript:prevArticle('<%=tno%>','<%=pg%>','<%=key%>','<%=word%>','<%=boardDto.getBno()%>');"><i class="fa fa-caret-left" aria-hidden="true"></i>
 							이전글</a>
 					</div>
 					<div class="px-2">
-						<a href="#">다음글 <i class="fa fa-caret-right"
+						<a href="javascript:nextArticle('<%=tno%>','<%=pg%>','<%=key%>','<%=word%>','<%=boardDto.getBno()%>');">다음글 <i class="fa fa-caret-right"
 							aria-hidden="true"></i></a>
 					</div>
 				</div>
@@ -201,8 +201,8 @@ if(memberDto != null && memberDto.getId().equals(boardDto.getMid())) {
 							
 					</div>
 					<div class="px-2">
-						<a href="#" style="color: #E64628 !important;"><i
-							class="fa fa-bell" aria-hidden="true" data-toggle="modal" data-target="#notifyModal"></i> 신고</a>
+						<a href="#" style="color: #E64628 !important;" data-toggle="modal" data-target="#notifyModal"><i
+							class="fa fa-bell" aria-hidden="true"></i> 신고</a>
 					</div>
 					<div class="px-2">
 						<a href="javascript:listArticle('<%=gudanDto.getTno()%>','1','','');">최신목록</a>
@@ -211,11 +211,11 @@ if(memberDto != null && memberDto.getId().equals(boardDto.getMid())) {
 						<a href="javascript:listArticle('<%=gudanDto.getTno()%>','<%=pg%>','<%=key%>','<%=word%>');">목록</a>
 					</div>
 					<div class="px-2">
-						<a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i>
+						<a href="javascript:prevArticle('<%=gudanDto.getTno()%>','<%=pg%>','<%=key%>','<%=word%>','<%=boardDto.getBno()%>');"><i class="fa fa-caret-left" aria-hidden="true"></i>
 							이전글</a>
 					</div>
 					<div class="px-2">
-						<a href="#">다음글 <i class="fa fa-caret-right"
+						<a href="javascript:nextArticle('<%=gudanDto.getTno()%>','<%=pg%>','<%=key%>','<%=word%>','<%=boardDto.getBno()%>');">다음글 <i class="fa fa-caret-right"
 							aria-hidden="true"></i></a>
 					</div>
 				</div>

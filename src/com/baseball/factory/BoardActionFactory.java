@@ -5,6 +5,9 @@ import com.baseball.board.action.BoardDeleteAction;
 import com.baseball.board.action.BoardListAction;
 import com.baseball.board.action.BoardModifyAction;
 import com.baseball.board.action.BoardMoveModifyAction;
+import com.baseball.board.action.BoardNextAction;
+import com.baseball.board.action.BoardNotifyAction;
+import com.baseball.board.action.BoardPrevAction;
 import com.baseball.board.action.BoardViewAction;
 import com.baseball.board.action.BoardWriteAction;
 import com.baseball.board.action.ReplyDeleteAction;
@@ -19,6 +22,9 @@ public class BoardActionFactory {
 	private static Action boardDeleteAction;
 	private static Action boardModifyAction;
 	private static Action boardMoveModifyAction;
+	private static Action boardNotifyAction;
+	private static Action boardPrevAction;
+	private static Action boardNextAction;
 	
 	private static Action replyWriteAction;
 	private static Action replyListAction;
@@ -32,10 +38,25 @@ public class BoardActionFactory {
 		boardDeleteAction = new BoardDeleteAction();
 		boardModifyAction = new BoardModifyAction();
 		boardMoveModifyAction = new BoardMoveModifyAction();
+		boardNotifyAction = new BoardNotifyAction();
+		boardPrevAction = new BoardPrevAction();
+		boardNextAction = new BoardNextAction();
 		
 		replyWriteAction = new ReplyWriteAction();
 		replyListAction = new ReplyListAction();
 		replyDeleteAction = new ReplyDeleteAction();
+	}
+
+	public static Action getBoardNotifyAction() {
+		return boardNotifyAction;
+	}
+
+	public static Action getBoardPrevAction() {
+		return boardPrevAction;
+	}
+
+	public static Action getBoardNextAction() {
+		return boardNextAction;
 	}
 
 	public static Action getBoardWriteAction() {

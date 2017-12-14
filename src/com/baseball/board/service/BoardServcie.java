@@ -16,6 +16,9 @@ public interface BoardServcie {
 	
 	int modifyArticle(BoardDto boardDto);
 	int deleteArticle(int seq);
+	BoardDto notifyArticle(int seq);
+	BoardDto prevArticle(int tno, int seq);
+	BoardDto nextArticle(int tno, int seq);
 	
 //	int replyArticle(BoardDto boardDto);
 	
