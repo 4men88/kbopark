@@ -12,6 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.baseball.action.Action;
 import com.baseball.admin.model.NoticeDto;
 import com.baseball.admin.service.AdminServiceImpl;
+import com.baseball.admin.util.PageNavi;
+import com.baseball.util.Constance;
+import com.baseball.util.NullCheck;
+import com.baseball.util.PageNavigation;
+import com.baseball.util.StringEncoder;
+
 
 public class ListNoticeAction implements Action {
 
@@ -19,13 +25,22 @@ public class ListNoticeAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String path = "/index";
-		List<NoticeDto> list=AdminServiceImpl.getAdminService().noticeList();
-		if(list!=null) {
-			System.out.println("list ¿÷¥Ÿ");
-			request.setAttribute("notilist", list);
-			path = "/admin/notice.jsp";
-		}
-		return path;
+		int ntype = NullCheck.nullToZero(request.getParameter("ntype"));
+		int pg = NullCheck.nullToOne(request.getParameter("pg"));
+		String key = StringEncoder.isoToMain(request.getParameter("key"));
+		String word = StringEncoder.isoToMain(request.getParameter("word"));
+		System.out.println("ListNotice Action==="+ntype+"  "+pg+"  "+key+"  "+word);
+		List<NoticeDto> list=AdminServiceImpl.getAdminService().noticeList(ntype, pg, key, word);
+		PageNavi navigation = AdminServiceImpl.getAdminService().makePageNavigation(ntype, pg, key, word,Constance.BOARD_LIST_SIZE);
+		navigation.setRoot(request.getContextPath());
+		navigation.setNtype(ntype);
+		navigation.setKey(key);
+		navigation.setWord(word);
+		navigation.setNavigator();
+		
+		request.setAttribute("notilist", list);
+		request.setAttribute("navigator", navigation);
+		return "/admin/notice/notice.jsp";
 	}
 
 }

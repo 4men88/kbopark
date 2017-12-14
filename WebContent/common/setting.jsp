@@ -5,6 +5,7 @@ String root = request.getContextPath();//root ¾ò±â
 MemberDetailDto memberDto = (MemberDetailDto)session.getAttribute("userInfo");
 
 int tno = NullCheck.nullToZero(request.getParameter("tno"));
+int ntype = NullCheck.nullToZero(request.getParameter("ntype"));
 int pg = NullCheck.nullToOne(request.getParameter("pg"));
 String key = StringEncoder.isoToMain(request.getParameter("key"));
 String word = StringEncoder.isoToMain(request.getParameter("word"));
@@ -55,4 +56,14 @@ root = "<%=root%>";
 	<input type="hidden" id="ckey" name="key" value="">
 	<input type="hidden" id="cword" name="word" value="">
 	<input type="hidden" id="cseq" name="seq" value="">
+</form>
+<body>
+<form id="notiform" name="notiform" method="get" action="">
+	<input type="hidden" id="nact" name="act" value="">
+	<input type="hidden" id="ntype" name="ntype" value="">
+	<input type="hidden" id="npg" name="pg" value="">
+	<input type="hidden" id="nkey" name="key" value="">
+	<input type="hidden" id="nword" name="word" value="">
+	<input type="hidden" id="nno" name="nno" value="">
+	
 </form>

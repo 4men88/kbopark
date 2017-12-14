@@ -11,11 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.baseball.admin.dao.AdminDaoImpl;
 import com.baseball.factory.AdminActionFactory;
+import com.baseball.factory.BoardActionFactory;
 import com.baseball.util.Constance;
+import com.baseball.util.NullCheck;
 import com.baseball.util.PageMove;
 import com.baseball.member.model.MemberDetailDto;
 import com.baseball.member.service.MemberServiceImpl;
 import com.baseball.util.StringEncoder;
+
 
 @WebServlet("/admin")
 public class AdminController extends HttpServlet {
@@ -24,9 +27,13 @@ public class AdminController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String act = request.getParameter("act");
 		String path = "/index.jsp";
-		
+		int ntype = NullCheck.nullToZero(request.getParameter("ntype"));
+		int pg = NullCheck.nullToOne(request.getParameter("pg"));
+		String key = StringEncoder.isoToMain(request.getParameter("key"));
+		String word = StringEncoder.isoToMain(request.getParameter("word"));
+		String queryString ="?ntype=" + ntype + "&pg=" + pg+ "&key=" + key+ "&word=" + StringEncoder.urlFormat(word);
 		if("usermanage".equals(act)) {
-			path = "/admin/adminuser.jsp";
+			path = "/admin/user/adminuser.jsp";
 			PageMove.forward(request, response, path);
 		}else if("memberlist".equals(act)) {
 			path=AdminActionFactory.getUserListAction().execute(request, response);
@@ -44,27 +51,32 @@ public class AdminController extends HttpServlet {
 		
 		}else if("notice".equals(act)){
 			path=AdminActionFactory.getListNoticeAction().execute(request, response);
+			path+=queryString;
 			PageMove.forward(request, response, path);
 		
 		}else if("todaypl".equals(act)){
 			
 		
 		}else if("mvnowrite".equals(act)){
-			PageMove.redirect(request, response, "/admin/noticewrite.jsp");
+			path="/admin/notice/noticewrite.jsp"+ queryString;
+			PageMove.redirect(request, response, path);
 		
 		}else if("writeno".equals(act)){
 			path=AdminActionFactory.getWriteNoticeAction().execute(request, response);
 			PageMove.forward(request, response, path);
-		
-		}else if("noticelist".equals(act)){
-			System.out.println("공지사항 탭");
-			path=AdminActionFactory.getNtypeListAction().execute(request, response);
+			
+		}else if("viewnotice".equals(act)){
+			System.out.println("공지사항보기");
+			path=AdminActionFactory.getViewNoticeAction().execute(request, response);
+			path+=queryString;
 			PageMove.forward(request, response, path);
 		
-		}else if("".equals(act)){
-			
-		}else if("".equals(act)){
-			
+		}else if("community".equals(act)){
+			path=AdminActionFactory.getListBoardAction().execute(request, response);
+			PageMove.forward(request, response,path);
+		}else if("deleteboard".equals(act)){
+			path = AdminActionFactory.getDeleteBoardAction().execute(request, response);
+			PageMove.redirect(request, response, path);
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){
