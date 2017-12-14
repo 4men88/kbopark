@@ -34,3 +34,25 @@ function viewArticle(tno, pg, key, word, seq) {
 	document.getElementById("commonForm").action = root + control;
 	document.getElementById("commonForm").submit();
 }
+
+function movemodify(tno, pg, key, word, seq) {
+	document.getElementById("cact").value = "movemodify";
+	document.getElementById("ctno").value = tno;
+	document.getElementById("cpg").value = pg;
+	document.getElementById("ckey").value = "";
+	document.getElementById("cword").value = "";
+	document.getElementById("cseq").value = seq;
+	
+	document.getElementById("commonForm").action = root + control;
+	document.getElementById("commonForm").submit();
+}
+
+function deletearticle(tno, pg, seq) {
+	document.getElementById("cact").value = "deletearticle";
+	document.getElementById("ctno").value = tno;
+	document.getElementById("cpg").value = pg;
+	document.getElementById("cseq").value = seq;
+	
+	document.getElementById("commonForm").action = root + control;
+	document.getElementById("commonForm").submit();
+}

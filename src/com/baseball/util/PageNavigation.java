@@ -10,7 +10,24 @@ public class PageNavigation {
 	private int totalPageCount;
 	private int pageNo;
 	private String navigator;
-	private int bcode;
+	private String category1;
+	private String category2;
+	public String getCategory1() {
+		return category1;
+	}
+
+	public void setCategory1(String category1) {
+		this.category1 = category1;
+	}
+
+	public String getCategory2() {
+		return category2;
+	}
+
+	public void setCategory2(String category2) {
+		this.category2 = category2;
+	}
+
 	private String key;
 	private String word;
 	private int tno;	//구단번호별 게시판확인위해서 추가
@@ -80,14 +97,6 @@ public class PageNavigation {
 		this.pageNo = pageNo;
 	}
 
-	public int getBcode() {
-		return bcode;
-	}
-
-	public void setBcode(int bcode) {
-		this.bcode = bcode;
-	}
-
 	public String getKey() {
 		return key;
 	}
@@ -116,15 +125,15 @@ public class PageNavigation {
 		tmpNavigator.append("<table cellpadding='0' cellspacing='0' border='0'>\n");
 		tmpNavigator.append(" <tr>\n");
 		if (this.isNowFirst()) {
-			tmpNavigator.append("  <td><font color='#999999'>\n<a href=\"javascript:listArticle('" + bcode + "', '1', '', '');\">");
+			tmpNavigator.append("  <td><font color='#999999'>\n<a href=\"javascript:listArticle('', '1', '', '');\">");
 			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev02.gif' width='7' height='11' border='0' align='absmiddle' hspace='3'>최신목록</a>\n");
 			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev01_dim.gif' width='3' height='11' border='0' align='absmiddle' hspace='3'>\n");
 			tmpNavigator.append("   이전</font>\n");
 		} else {
 			int prePage = (pageNo - 1) / pageSize * pageSize;
-			tmpNavigator.append("  <td>\n<a href=\"javascript:listArticle('" + bcode + "', '1', '', '');\">");
+			tmpNavigator.append("  <td>\n<a href=\"javascript:listArticle('', '1', '', '');\">");
 			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev02.gif' width='7' height='11' border='0' align='absmiddle' hspace='3'>최신목록 </a>\n");
-			tmpNavigator.append("   <a href=\"javascript:listArticle('" + bcode + "', '" + prePage + "', '" + key + "', '" + word + "');\">");
+			tmpNavigator.append("   <a href=\"javascript:listArticle('', '" + prePage + "', '" + key + "', '" + word + "');\">");
 			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev01_dim.gif' width='3' height='11' border='0' align='absmiddle' hspace='3'>\n");
 			tmpNavigator.append("   이전</a>");
 		}
@@ -147,7 +156,7 @@ public class PageNavigation {
 				tmpNavigator.append("     <td width='1' nowrap><img src='" + root + "/img/board/n_tab.gif' width='1'");
 				tmpNavigator.append(" height='11' border='0' align='absmiddle'><br>\n");
 			} else {
-				tmpNavigator.append("     <td style='padding:0 7 0 7;' nowrap><a href=\"javascript:listArticle('" + bcode + "', '" + i + "', '" + key + "', '" + word + "');\">" + i + "</td>\n");
+				tmpNavigator.append("     <td style='padding:0 7 0 7;' nowrap><a href=\"javascript:listArticle('', '" + i + "', '" + key + "', '" + word + "');\">" + i + "</td>\n");
 				tmpNavigator.append("     <td width='1' nowrap><img src='" + root + "/img/board/n_tab.gif' width='1'");
 				tmpNavigator.append(" height='11' border='0' align='absmiddle'><br>\n");
 			}
@@ -166,10 +175,10 @@ public class PageNavigation {
 			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'></font>\n");
 		} else {
 			int nextPage = (pageNo - 1) / pageSize * pageSize + pageSize + 1;//(pageNo + pageSize - 1) / pageSize * pageSize + 1
-			tmpNavigator.append("   <a href=\"javascript:listArticle('" + bcode + "', '" + nextPage + "', '" + key + "', '" + word + "');\">다음<img");
+			tmpNavigator.append("   <a href=\"javascript:listArticle('', '" + nextPage + "', '" + key + "', '" + word + "');\">다음<img");
 			tmpNavigator.append(" src='" + root + "/img/board/icon_next01_dim.gif' width='3' height='11'");
 			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'></a>\n");
-			tmpNavigator.append("   <a href=\"javascript:listArticle('" + bcode + "', '" + totalPageCount + "', '" + key + "', '" + word + "');\">끝목록<img src='" + root + "/img/board/icon_next02_dim.gif' width='7' height='11'");
+			tmpNavigator.append("   <a href=\"javascript:listArticle('', '" + totalPageCount + "', '" + key + "', '" + word + "');\">끝목록<img src='" + root + "/img/board/icon_next02_dim.gif' width='7' height='11'");
 			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'>\n");
 		}
 

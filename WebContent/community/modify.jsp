@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR" import="com.baseball.gudan.model.GudanDto"%>
+	pageEncoding="EUC-KR" import="com.baseball.gudan.model.GudanDto,com.baseball.board.model.BoardDto"%>
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
 <%
 GudanDto gudanDto = (GudanDto) session.getAttribute("gudandto");
+BoardDto boardDto = (BoardDto) request.getAttribute("parentarticle");
+
+if(memberDto != null) {
 %>
 <link rel="stylesheet" type="text/css" HREF="<%=root %>/css/alice.css">
 <link rel="stylesheet" type="text/css" HREF="<%=root %>/css/oz.css">
@@ -12,11 +15,29 @@ GudanDto gudanDto = (GudanDto) session.getAttribute("gudandto");
 <script type="text/javascript" src="<%=root %>/js/oz.js"></script>	
 <script type="text/javascript" src="<%=root %>/js/alice.js"></script>
 <script type="text/javascript">
+control = "/board";
+
 var alice;
 Event.observe(window, "load", function() {
 	alice = Web.EditorManager.instance("editor",{type:'detail',width:'96%',height:'100%',limit:20,family:'돋움',size:'13px'});
 
 });	
+
+function writeArticle(){
+	if(document.getElementById("subject").value == "") {
+		alert("제목을 입력하세요");
+		return;
+	}else if(alice.getContent() == ""){
+		alert("내용을 입력하세요");
+		return;
+	}else{
+		document.getElementById("content").value = alice.getContent();
+		document.getElementById("boardtno").value = document.getElementById("selectgudan").value;
+		document.getElementById("writeForm").action = "<%=root%>/board";
+		document.getElementById("writeForm").submit();
+	}
+}
+
 </script>
 <div class="py-5 text-center opaque-overlay"
 	style="background-image: url(<%=root%>/img/etc/grass.jpg);">
@@ -71,24 +92,28 @@ Event.observe(window, "load", function() {
 				<div class="border-b-strong mb-5"></div>
 
 
+<form id="writeForm" name="writeForm" class="">
 
-
-
-				<form id="" class="">
+<input type="hidden" name="act" value="modifyarticle">
+<input type="hidden" name="tno" value="<%=tno%>">
+<input type="hidden" name="pg" value="1">
+<input type="hidden" name="seq" value="<%=boardDto.getBno()%>">
+<input type="hidden" id="content" name="content" value=""> <!-- 앨리스때문에 필요함 -->
+				
 					<div class="form-group row px-3">
 						<label for="selectgudan" class="col-sm-2 col-4 col-form-label">구단</label>
 						<div class="col-sm-4 col-8">
-							<select id="selectgudan" class="form-control">
-								<option selected>두산 베어스</option>
-								<option>롯데 자이언츠</option>
-								<option>KIA 타이거즈</option>
-								<option>NC 다이노스</option>
-								<option>SK 와이번스</option>
-								<option>LG 트윈스</option>
-								<option>넥센 히어로즈</option>
-								<option>한화 이글스</option>
-								<option>삼성 라이온즈</option>
-								<option>KT 위즈</option>
+							<select id="selectgudan" name="selectgudan" class="form-control">
+								<option value="2" selected>두산 베어스</option>
+								<option value="3">롯데 자이언츠</option>
+								<option value="1">KIA 타이거즈</option>
+								<option value="4">NC 다이노스</option>
+								<option value="5">SK 와이번스</option>
+								<option value="6">LG 트윈스</option>
+								<option value="7">넥센 히어로즈</option>
+								<option value="8">한화 이글스</option>
+								<option value="9">삼성 라이온즈</option>
+								<option value="10">KT 위즈</option>
 							</select>
 						</div>
 					</div>
@@ -96,22 +121,22 @@ Event.observe(window, "load", function() {
 					<div class="form-group row px-3">
 						<label for="writeName" class="col-sm-2 col-4 col-form-label">작성자</label>
 						<div class="col-sm-4 col-8">
-							<input type="text" class="form-control" id="writeName"
-								placeholder="딩동댕" readonly>
+							<input type="text" class="form-control" id="writer" name="writer"
+								placeholder="<%=memberDto.getName()%>" readonly>
 						</div>
 					</div>
 
 					<div class="form-group row px-3">
 						<label for="inputSubject" class="col-sm-2 col-12 col-form-label">제목</label>
 						<div class="col-sm-10 col-12">
-							<input type="text" class="form-control" id="inputSubject"
-								placeholder="수정될글제목">
+							<input type="text" class="form-control" id="subject" name="subject"
+								placeholder="" size="76" maxlength="150" value="<%=boardDto.getBname()%>">
 						</div>
 					</div>
 
 					<div class="form-group row px-3">
 						<div class="col-md-12">
-							<textarea class="form-control" id="editor" name="editor" rows="20">수정될글내용</textarea>
+							<textarea class="form-control" rows="20" id="editor" name="editor"><%=boardDto.getBdetail()%></textarea>
 						</div>
 					</div>
 
@@ -122,8 +147,6 @@ Event.observe(window, "load", function() {
 							<input type="file" class="form-control-file mb-2"
 								id="exampleFormControlFile1"> <label
 								style="font-size: 14px;">이미지 크기는 3MB이하로 제한됩니다.(수정)</label>
-								<br><label
-								style="font-size: 14px; color: red;">글 수정시 이미지는 초기화 됩니다.(?)</label>
 							<!-- 왜안먹히지..ㅠㅠ
 								<label class="custom-file">
 								<input type="file" id="file2" class="custom-file-input mb-2"> <span
@@ -138,15 +161,15 @@ Event.observe(window, "load", function() {
 				<div class="border-b mb-3"></div>
 				<div class="d-flex">
 					<div class="mr-auto p-2">
-						<a class="btn btn-primary btn-sm" href="#" role="button"
+						<a class="btn btn-primary btn-sm" href="javascript:listArticle('<%=gudanDto.getTno()%>','<%=pg%>','<%=key%>','<%=word%>');" role="button"
 							style="color: white !important;">목록보기</a>
 					</div>
 					<div class="p-2">
-						<a class="btn btn-secondary btn-sm" href="#" role="button"
+						<a class="btn btn-secondary btn-sm" href="javascript:history.back();" role="button"
 							style="color: white !important;">취소</a>
 					</div>
 					<div class="p-2">
-						<a class="btn btn-primary btn-sm" href="#" role="button"
+						<a class="btn btn-primary btn-sm" href="javascript: writeArticle();" role="button"
 							style="color: white !important;">수정</a>
 					</div>
 				</div>
@@ -190,11 +213,18 @@ Event.observe(window, "load", function() {
 
 		</div>
 
-
-
-
 	</div>
 </div>
+<%
+} else {
+%>
+<script>
+alert("로그인이 필요한 페이지입니다.");
+document.location.href = "<%=root%>/login/login.jsp";
+</script>
+<%
+}
+%>
 
 
 <!-- alice용 footer영역 -->

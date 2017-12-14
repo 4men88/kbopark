@@ -10,6 +10,19 @@ BoardDto boardDto = (BoardDto) request.getAttribute("article");
 <script type="text/javascript">
 control = "/board";
 
+function notifyReply() {
+	alert("신고됨!");
+	<%-- 	document.getElementById("cact").value = "mvreply";
+	document.getElementById("ctno").value = "<%=tno%>";
+	document.getElementById("cpg").value = "1";
+	document.getElementById("ckey").value = "";
+	document.getElementById("cword").value = "";
+	document.getElementById("cseq").value = "<%=boardDto.getBno()%>";
+	
+	document.getElementById("commonForm").action = "<%=root%>/reboard";
+	document.getElementById("commonForm").submit(); --%>
+}
+
 function moveReply() {
 	document.getElementById("cact").value = "mvreply";
 	document.getElementById("ctno").value = "<%=tno%>";
@@ -132,14 +145,24 @@ window.onload = function() {
 				<!-- 모바일 라인 다시 잡아야함!!!! -->
 				<div class="d-flex">
 					<div class="mr-auto px-2">
-						<a href="#"><i class="fa fa-pencil" aria-hidden="true"></i>
-							새글쓰기</a> <a href="#">수정</a> <a href="#">삭제</a>
+						<a href="javascript:moveWrite('<%=tno%>');"><i class="fa fa-pencil" aria-hidden="true"></i>
+							새글쓰기</a>
+<%
+if(memberDto != null && memberDto.getId().equals(boardDto.getMid())) {
+%>									
+							
+							<a href="javascript:movemodify('<%=gudanDto.getTno()%>','<%=pg%>','<%=key%>','<%=word%>','<%=boardDto.getBno()%>');">수정</a>
+							<a href="javascript:deletearticle('<%=gudanDto.getTno()%>','<%=pg%>','<%=boardDto.getBno()%>');">삭제</a>							
+<%
+}
+%>					
+					
 					</div>
 					<div class="px-2">
-						<a href="#">최신목록</a>
+						<a href="javascript:listArticle('<%=gudanDto.getTno()%>','1','','');">최신목록</a>
 					</div>
 					<div class="px-2">
-						<a href="#">목록</a>
+						<a href="javascript:listArticle('<%=gudanDto.getTno()%>','<%=pg%>','<%=key%>','<%=word%>');">목록</a>
 					</div>
 					<div class="px-2">
 						<a href="#"><i class="fa fa-caret-left" aria-hidden="true"></i>
@@ -164,11 +187,22 @@ window.onload = function() {
 				<div class="d-flex">
 					<div class="mr-auto px-2">
 						<a href="javascript:moveWrite('<%=tno%>');"><i class="fa fa-pencil" aria-hidden="true"></i>
-							새글쓰기</a> <a href="#">수정</a> <a href="#">삭제</a>
+							새글쓰기</a>
+							
+<%
+if(memberDto != null && memberDto.getId().equals(boardDto.getMid())) {
+%>									
+							
+							<a href="javascript:movemodify('<%=gudanDto.getTno()%>','<%=pg%>','<%=key%>','<%=word%>','<%=boardDto.getBno()%>');">수정</a>
+							<a href="javascript:deletearticle('<%=gudanDto.getTno()%>','<%=pg%>','<%=boardDto.getBno()%>');">삭제</a>							
+<%
+}
+%>	
+							
 					</div>
 					<div class="px-2">
 						<a href="#" style="color: #E64628 !important;"><i
-							class="fa fa-bell" aria-hidden="true"></i> 신고</a>
+							class="fa fa-bell" aria-hidden="true" data-toggle="modal" data-target="#notifyModal"></i> 신고</a>
 					</div>
 					<div class="px-2">
 						<a href="javascript:listArticle('<%=gudanDto.getTno()%>','1','','');">최신목록</a>
@@ -254,6 +288,28 @@ window.onload = function() {
 
 	</div>
 </div>
+
+<div class="modal" id="notifyModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">게시물 신고</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>게시물을 정말 신고하시겠습니까?</p>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary text-white" href="javascript:notifyArticle();">신고</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 
 <!-- footer영역 -->

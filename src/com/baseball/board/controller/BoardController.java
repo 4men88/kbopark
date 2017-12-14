@@ -48,22 +48,26 @@ public class BoardController extends HttpServlet {
 			path = BoardActionFactory.getBoardListAction().execute(request, response);
 			path += queryString;
 			PageMove.forward(request, response, path);
-	/*	} else if("mvreply".equals(act)) {
-			path = BoardActionFactory.getBoardMoveReplyAction().execute(request, response);
+			
+		} else if("movemodify".equals(act)) {
+			System.out.println("controller movemodify 진입 !");
+			path = BoardActionFactory.getBoardMoveModifyAction().execute(request, response);
 			path += queryString;
+			System.out.println("controller movemodify path >>> " + path);
 			PageMove.forward(request, response, path);
-		} else if("replyarticle".equals(act)) {
-			path = BoardActionFactory.getBoardReplyAction().execute(request, response);
+		} else if("modifyarticle".equals(act)) {
+			System.out.println("controller modifyarticle 진입 !");		
+			path = BoardActionFactory.getBoardModifyAction().execute(request, response);
 			path += queryString;
+			System.out.println("controller modifyarticle path >>>   " + path);
 			PageMove.forward(request, response, path);
-		} else if("".equals(act)) {
+		} else if("deletearticle".equals(act)) {
+			System.out.println("controller deletearticle 진입 !");
+			path = BoardActionFactory.getBoardDeleteAction().execute(request, response);
+			path += queryString;
+			System.out.println("controller deletearticle path >>>   " + path);
+			PageMove.forward(request, response, path);
 			
-		} else if("".equals(act)) {
-			
-		} else if("".equals(act)) {
-			
-		} else if("".equals(act)) {
-			*/
 		} else {
 			PageMove.redirect(request, response, path);
 		}

@@ -14,6 +14,8 @@ if(memberDto != null) {
 <script type="text/javascript" src="<%=root %>/js/oz.js"></script>	
 <script type="text/javascript" src="<%=root %>/js/alice.js"></script>
 <script type="text/javascript">
+control = "/board";
+
 var alice;
 Event.observe(window, "load", function() {
 	alice = Web.EditorManager.instance("editor",{type:'detail',width:'96%',height:'100%',limit:20,family:'돋움',size:'13px'});
@@ -162,7 +164,7 @@ window.onload=function(){
 				<div class="border-b mb-3"></div>
 				<div class="d-flex">
 					<div class="mr-auto p-2">
-						<a class="btn btn-primary btn-sm" href="javascript:history.back();" role="button"
+						<a class="btn btn-primary btn-sm" href="javascript:listArticle('<%=gudanDto.getTno()%>','<%=pg%>','<%=key%>','<%=word%>');" role="button"
 							style="color: white !important;">목록보기</a>
 					</div>
 					<div class="p-2">
