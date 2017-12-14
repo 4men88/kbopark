@@ -17,8 +17,6 @@ import com.baseball.util.Constance;
 import com.baseball.util.NullCheck;
 import com.baseball.util.PageNavigation;
 import com.baseball.util.StringEncoder;
-import com.kitri.common.service.CommonServiceImpl;
-import com.kitri.util.BoardConstance;
 
 public class BoardListAction implements Action {
 
@@ -34,30 +32,21 @@ public class BoardListAction implements Action {
 		GudanDto gudanDto = GudanServiceImpl.getGudanService().gudanArticle(tno);
 		List<BoardDto> bestlist = BoardServiceImpl.getBoardService().bestArticle(tno);
 		List<BoardDto> list = BoardServiceImpl.getBoardService().listArticle(tno, pg, key, word);
-		
-		/*		PageNavigation navigation = BoardServiceImpl.getCommonService().makePageNavigation(bcode, pg, key, word, Constance.BOARD_LIST_SIZE);
-		navigation.setRoot(request.getContextPath());
-		navigation.setBcode(bcode);
-		navigation.setKey(key);
-		navigation.setWord(word);
-		navigation.setNavigator();*/
-//		request.setAttribute("navigator", navigation);
 
-		PageNavigation navigation = CommonServiceImpl.getCommonService().makePageNavigation(bcode, pg, key, word, BoardConstance.BOARD_LIST_SIZE);
+		PageNavigation navigation = BoardServiceImpl.getBoardService().makePageNavigation(tno, pg, key, word, Constance.BOARD_LIST_SIZE);
 		navigation.setRoot(request.getContextPath());
-		navigation.setBcode(bcode);
-		navigation.setPageNo(pg);
+		navigation.setTno(tno);
 		navigation.setKey(key);
 		navigation.setWord(word);
-		
-		navigation.setNavigator();
-		
-		request.setAttribute("articlelist", list);
-		request.setAttribute("navigator", navigation);		
+//		navigation.setNavigator();
+		navigation.setBoardnavigator();
+		System.out.println("BoardListAction navigation >> " + navigation.getBoardnavigator());
 		
 		request.setAttribute("gudandto", gudanDto);
 		request.setAttribute("articlelist", list);
 		request.setAttribute("bestlist", bestlist);
+		request.setAttribute("navigator", navigation);	
+		
 		return "/community/list.jsp";
 	}
 

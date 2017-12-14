@@ -169,7 +169,7 @@ if(size != 0) {
 
 
 
-<div class="container py-5">
+<div id="listnav" class="container py-5">
 
 	<div class="d-flex justify-content-center">
 <!-- 		<div>
@@ -181,7 +181,7 @@ if(size != 0) {
 				<li class="page-item"><a class="page-link" href="#">Next</a></li>
 			</ul>
 		</div> -->
-		<%=navigator.getNavigator() %>
+		<%=navigator.getBoardnavigator() %>
 	</div>
 </div>
 

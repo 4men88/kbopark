@@ -282,81 +282,69 @@ public class BoardDaoImpl implements BoardDao {
 		}
 		return bestlist;
 	}
+
+	@Override
+	public int getTotalArticleCount(Map<String, String> map) {
+		int count = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("select count(bno) \n");
+			sql.append("from board \n");
+			sql.append("where tno = ? \n");
+			String word = map.get("word");
+			if(!word.isEmpty()) {
+				String key = map.get("key");
+				if ("mname".equals(key))
+					sql.append("	  	  and mname = ? \n");
+				else
+					sql.append("	  	  and " + key + " like '%'||?||'%' \n");
+			}
+			
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, map.get("tno"));
+			if(!word.isEmpty())
+				pstmt.setString(2, word);
+			rs = pstmt.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		System.out.println("BoardDI totalcount >> " + count);
+		return count;
+	}	
+	
 }
 
-/*
- * @Override public int getNewArticleCount(int bcode) { int count = 0;
- * Connection conn = null; PreparedStatement pstmt = null; ResultSet rs = null;
- * try { conn = DBConnection.makeConnection(); StringBuffer sql = new
- * StringBuffer(); sql.append("select count(seq) \n");
- * sql.append("from board \n"); sql.append("where bcode = ? \n");
- * sql.append("and to_char(logtime, 'yymmdd') = to_char(sysdate, 'yymmdd')");
- * pstmt = conn.prepareStatement(sql.toString()); pstmt.setInt(1, bcode); rs =
- * pstmt.executeQuery(); rs.next(); count = rs.getInt(1); } catch (SQLException
- * e) { e.printStackTrace(); } finally { DBClose.close(conn, pstmt, rs); }
- * return count; }
- * 
- * @Override public int getTotalArticleCount(Map<String, String> map) { int
- * count = 0; Connection conn = null; PreparedStatement pstmt = null; ResultSet
- * rs = null; try { conn = DBConnection.makeConnection(); StringBuffer sql = new
- * StringBuffer(); sql.append("select count(seq) \n");
- * sql.append("from board \n"); sql.append("where bcode = ? \n"); String word =
- * map.get("word"); if(!word.isEmpty()) { String key = map.get("key");
- * if("subject".equals(key)) { sql.append("and subject like '%'||?||'%'"); }
- * else { sql.append("and " + key + " = ? \n"); } } pstmt =
- * conn.prepareStatement(sql.toString()); pstmt.setString(1, map.get("bcode"));
- * if(!word.isEmpty()) pstmt.setString(2, word); rs = pstmt.executeQuery();
- * rs.next(); count = rs.getInt(1); } catch (SQLException e) {
- * e.printStackTrace(); } finally { DBClose.close(conn, pstmt, rs); } return
- * count; }
- */
-/*
- * 
- * 
- * @Override public int replyArticle(BoardDto BoardDto) { int cnt = 0;
- * Connection conn = null; PreparedStatement pstmt = null; try { conn =
- * DBConnection.makeConnection(); conn.setAutoCommit(false);
- * 
- * //step 증가 StringBuffer update_step = new StringBuffer();
- * update_step.append("update reboard \n");
- * update_step.append("set step = step + 1 \n");
- * update_step.append("where ref = ? and step > ?"); pstmt =
- * conn.prepareStatement(update_step.toString()); pstmt.setInt(1,
- * BoardDto.getRef()); pstmt.setInt(2, BoardDto.getStep());
- * pstmt.executeUpdate(); pstmt.close();
- * 
- * //답글쓰기 StringBuffer insert_reply = new StringBuffer();
- * insert_reply.append("insert all \n"); insert_reply.
- * append("	into board (seq, name, id, email, subject, content, hit, logtime, bcode) \n"
- * ); insert_reply.append("	values (?, ?, ?, ?, ?, ?, 0, sysdate, ?) \n");
- * insert_reply.
- * append("	into reboard (rseq, seq, ref, lev, step, pseq, reply) \n");
- * insert_reply.append("	values (reboard_rseq.nextval, ?, ?, ?, ?, ?, 0) \n"
- * ); insert_reply.append("select * from dual"); pstmt =
- * conn.prepareStatement(insert_reply.toString()); int idx = 0;
- * pstmt.setInt(++idx, BoardDto.getSeq()); pstmt.setString(++idx,
- * BoardDto.getName()); pstmt.setString(++idx, BoardDto.getId());
- * pstmt.setString(++idx, BoardDto.getEmail()); pstmt.setString(++idx,
- * BoardDto.getSubject()); pstmt.setString(++idx, BoardDto.getContent());
- * pstmt.setInt(++idx, BoardDto.getBcode()); pstmt.setInt(++idx,
- * BoardDto.getSeq()); pstmt.setInt(++idx, BoardDto.getRef());
- * pstmt.setInt(++idx, BoardDto.getLev() + 1); pstmt.setInt(++idx,
- * BoardDto.getStep() + 1); pstmt.setInt(++idx, BoardDto.getPseq());
- * pstmt.executeUpdate(); pstmt.close();
- * 
- * //답글수 증가 StringBuffer update_reply = new StringBuffer();
- * update_reply.append("update reboard \n");
- * update_reply.append("set reply = reply + 1 \n");
- * update_reply.append("where seq = ?"); pstmt =
- * conn.prepareStatement(update_reply.toString()); pstmt.setInt(1,
- * BoardDto.getPseq()); pstmt.executeUpdate();
- * 
- * conn.commit(); cnt = 1; } catch (SQLException e) { e.printStackTrace(); try {
- * conn.rollback(); cnt = 0; } catch (SQLException e1) { e1.printStackTrace(); }
- * } finally { DBClose.close(conn, pstmt); } return cnt; }
- * 
- * 
- * 
- * 
- * 
- */
+/*	@Override
+	public int getNewArticleCount(int tno) {
+		int count = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("select count(bno) \n");
+			sql.append("from board \n");
+			sql.append("where tno = ? \n");
+			sql.append("and to_char(bdate, 'yymmdd') = to_char(sysdate, 'yymmdd')");
+
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, tno);
+			rs = pstmt.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		return count;
+	}*/
