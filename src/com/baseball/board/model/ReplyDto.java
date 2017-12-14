@@ -5,10 +5,9 @@ public class ReplyDto {
 	private int reno; //댓글번호
 	private int bno; //원글번호
 	private String mid; //작성회원아이디
-	private String rename; //작성회원이름..?이거컬럼명바꾼거같은데 확인할것
+	private String replyname; //작성회원이름..?이거컬럼명바꾼거같은데 확인할것
 	private String recontent; //댓글내용
 	private String retime; //댓글작성일
-	
 	public int getReno() {
 		return reno;
 	}
@@ -27,11 +26,11 @@ public class ReplyDto {
 	public void setMid(String mid) {
 		this.mid = mid;
 	}
-	public String getRename() {
-		return rename;
+	public String getReplyname() {
+		return replyname;
 	}
-	public void setRename(String rename) {
-		this.rename = rename;
+	public void setReplyname(String replyname) {
+		this.replyname = replyname;
 	}
 	public String getRecontent() {
 		return recontent;
@@ -45,4 +44,5 @@ public class ReplyDto {
 	public void setRetime(String retime) {
 		this.retime = retime;
 	}
+	
 }

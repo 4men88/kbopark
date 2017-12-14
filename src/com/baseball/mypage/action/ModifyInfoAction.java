@@ -37,11 +37,11 @@ public class ModifyInfoAction implements Action {
 		cnt = MypageServiceImpl.getMypageService().modifyMember(memberDto);
 		if(cnt!=0) {
 			request.setAttribute("modifyInfo", memberDto);
-			path="/mypage/mypageMain.jsp";
+			path="/index.jsp";
 			System.out.println("modifyinfoAction>>>>>>>>>>잘하고있냐 성공");
 		}else {
 			System.out.println("modifyinfoAction>>>>>>>>>>잘하고있냐 실패");
-			path="/index.jsp";
+			path="/index.jsp/////////fail";
 		}
 		return path;
 	}

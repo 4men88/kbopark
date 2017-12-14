@@ -1,6 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.baseball.member.dao.MemberDaoImpl"%>
+<%@page import="com.baseball.mypage.dao.MypageDaoImpl"%>
+<%@page import="com.baseball.member.model.MemberDetailDto"%>
+<%@page import="com.baseball.member.model.MemberDetailDto"%>
+<%@page import="com.baseball.admin.model.NoticeDto"%>
+<%@page import="com.baseball.board.model.BoardDto"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.baseball.board.model.ReplyDto"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ include file="/mypage/mypageLeftside.jsp"%>
+ 
+<%
+	List<BoardDto> boardList = (List<BoardDto>) request.getAttribute("boardList");
+	List<ReplyDto> replyList = (List<ReplyDto>) request.getAttribute("replyList");
+%> 
+ 
+ 
       
  <!-- --------------------------내 글 정보------------------------------------------------------- -->
     <div id="content" class="col-sm-9" style="min-height:600px";>
@@ -24,6 +40,7 @@
 	</thead>
 	<tbody>
         <div class="clearfix"></div>    
+      
         <tr class="">
 		
 			<td class="subject"><strong><a src='#' class='btnRead' value='47'>내 글 목록1입니다. </a></strong><small></small></td>
@@ -57,7 +74,7 @@
     <div class="clearfix"></div>    	</tbody>
 	</table>
    		
-   		 <center><button type="button" class="btn btn-primary" onclick="" style="height:30px;width:100%;margin:5px;max-width:300px;">내가 쓴 글 바로가기</button></center>
+   		 <div align=center><button type="button" class="btn btn-primary" onclick="" style="height:30px;width:100%;margin:5px;max-width:300px;">내가 쓴 글 바로가기</button></div>
    		 </div>
    		 </div>
    		 
@@ -116,7 +133,8 @@
     <div class="clearfix"></div>    	</tbody>
 	</table>
    		
-   		 <center><button type="button" class="btn btn-primary" onclick="" style="height:30px;width:100%;margin:5px;max-width:300px;">내 댓글 바로가기</button></center>
+   		 <div align=center><button type="button" class="btn btn-primary" onclick="" style="height:30px;width:100%;margin:5px;max-width:300px;">내 댓글 바로가기</button>
+   		 </div>
    		 </div>
    		 </div>
 	 <!-- --------------------------내 댓글 목록------------------------------------------------------- -->
@@ -127,11 +145,11 @@
     	 </div>
   </div>  	
   <!--     -----------------------aside---------------------- -->
-    <div id="aside" class="col-sm-1" style="background-color:lavender;">
-    	<h3>Aside</h3>
+    <div id="aside" class="col-sm-1">
+    	<h3></h3>
     </div>
 
-</div>
+
 <%@ include file="/common/footer.jsp"%> 	 
     	 
     	 

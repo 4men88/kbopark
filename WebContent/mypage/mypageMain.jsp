@@ -113,9 +113,12 @@
 				</table>
 
 				<div align="center">
+				<a href="<%=request.getContextPath() %>/admin?act=notice">
 					<button type="button" class="btn btn-primary" onclick=""
 						style="height: 30px; width: 100%; margin: 5px; max-width: 300px;">공지사항
 						바로가기</button>
+						</a>
+						
 				</div>
 			</div>
 		</div>
@@ -178,14 +181,21 @@
 					<!--카테고리-->
 
 					<table class="table table-hover">
-						
+												<thead class="text-center">
+							<tr>
+								<th class="col-xs-6 col-md-6 subject" style=min-width:65px;max-width:65px;>제목</th>
+								<th class="col-xs-2 col-md-2 writer" style=min-width:65px;max-width:65px;>작성자</th>
+								<th class="col-xs-2 col-md-2 regdate">시간</th>
+							</tr>
+						</thead>		
+						<tbody>
 
 <%
 int len=boardList.size();
 	if(len==0){
 	
 %>	
-							<tbody>
+
 							
 							<div class="clearfix"></div>
 								<tr class="">
@@ -196,19 +206,13 @@ int len=boardList.size();
 <%
 	}else{
 		if(len>5){
+			
 			for (int i = 0; i < 6; i++) {
 				BoardDto boardDto = boardList.get(i);
 		
 	
 %>							
-						<thead class="text-center">
-							<tr>
-								<th class="col-xs-6 col-md-6 subject" style="writing-mode":lr>제목</th>
-								<th class="col-xs-2 col-md-2 writer" style="writing-mode":lr>작성자</th>
-								<th class="col-xs-2 col-md-2 regdate" style="writing-mode":lr>시간</th>
-							</tr>
-						</thead>		
-						<tbody>
+
 							
 							<div class="clearfix"></div>
 								<tr class="">
@@ -227,25 +231,19 @@ int len=boardList.size();
 			for(int i=0; i<len;i++){
 				BoardDto boardDto = boardList.get(i);
 				
+				
 %>
-						<thead class="text-center">
-							<tr>
-								<th class="col-xs-6 col-md-6 subject" style=min-width:65px>제목</th>
-								<th class="col-xs-2 col-md-2 writer" style=min-width:65px>작성자</th>
-								<th class="col-xs-2 col-md-2 regdate" style=min-width:65px>시간</th>
-							</tr>
-						</thead>		
-						<tbody>
+
 							
 							<div class="clearfix"></div>
 								<tr class="">
-
-									<td class="subject"><strong><a src='#'
+									
+									<td class="subject"><strong><a src='<%=root%>/board?act=listarticle&tno=<%=boardDto.getTno()%>&pg=1&key=mname&word=<%=memberDto.getName()%>'
 											class='btnRead' value='47'><%=boardDto.getBname() %></a></strong><small></small></td>
 									<td class="text-center writer"><span title=admin
 										data-toggle="tooltip" data-placement="right auto"><%=memberDto.getId()%></span></td>
 									<td class="text-center regdate"><%=boardDto.getBdate()%></td>
-
+									
 								</tr>
 <%
 			}
@@ -263,15 +261,19 @@ int len=boardList.size();
 if(len==0){
 %>
 						<div align="center">
-							<button type="button" class="btn btn-primary" onclick=""
+								<a href="<%=root %>/gudan?act=viewgudan">
+							<button type="button" class="btn btn-primary" onclick="" 
 								style="height: 30px; width: 100%; margin: 5px; max-width: 300px;">구단커뮤니티 바로가기</button>
+						</a>
 						</div>
 <%
 }else{
 %>
 						<div align="center">
+							
 							<button type="button" class="btn btn-primary" onclick=""
 								style="height: 30px; width: 100%; margin: 5px; max-width: 300px;">내가 쓴 글 바로가기</button>
+						
 						</div>
 <%
 }
@@ -297,14 +299,21 @@ if(len==0){
 					<!--카테고리-->
 
 					<table class="table table-hover">
-						
+												<thead class="text-center">
+							<tr>
+								<th class="col-xs-6 col-md-6 subject" style=min-width:65px;max-width:65px;>제목</th>
+								<th class="col-xs-2 col-md-2 writer" style=min-width:65px;max-width:65px;>작성자</th>
+								<th class="col-xs-2 col-md-2 regdate" >시간</th>
+							</tr>
+						</thead>		
+						<tbody>
 
 <%
 int len2=replyList.size();
 	if(len2==0){
 	
 %>	
-							<tbody>
+						
 							
 							<div class="clearfix"></div>
 								<tr class="">
@@ -320,14 +329,7 @@ int len2=replyList.size();
 		
 	
 %>							
-						<thead class="text-center">
-							<tr>
-								<th class="col-xs-6 col-md-6 subject" style="writing-mode":lr>제목</th>
-								<th class="col-xs-2 col-md-2 writer" style="writing-mode":lr>작성자</th>
-								<th class="col-xs-2 col-md-2 regdate" style="writing-mode":lr>시간</th>
-							</tr>
-						</thead>		
-						<tbody>
+
 							
 							<div class="clearfix"></div>
 								<tr class="">
@@ -347,14 +349,7 @@ int len2=replyList.size();
 				ReplyDto replyDto = replyList.get(i);
 				
 %>
-						<thead class="text-center">
-							<tr>
-								<th class="col-xs-6 col-md-6 subject" style=min-width:65px>제목</th>
-								<th class="col-xs-2 col-md-2 writer" style=min-width:65px>작성자</th>
-								<th class="col-xs-2 col-md-2 regdate" style=min-width:65px>시간</th>
-							</tr>
-						</thead>		
-						<tbody>
+
 							
 							<div class="clearfix"></div>
 								<tr class="">
@@ -407,8 +402,8 @@ if(len2==0){
 
 
 	</div>
-</div>
+
 
 <div id="rightarea" class="col-sm-1"></div>
-</div>
+
 

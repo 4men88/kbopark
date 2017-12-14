@@ -22,6 +22,12 @@
 		}else if(document.getElementById("tno").value ==""){
 			alert("선호구단을 선택해 주세요!!");
 			return;
+		}else if(document.getElementById("zip1").value ==""){
+			alert("우편주소를 선택해주세요");
+			return;
+		}else if(document.getElementById("addr2").value ==""){
+			alert("상세주소를 입력해주세요");
+			return;
 		}else{
 			document.getElementById("modifyForm").action = "<%=root %>/mypage";
 			document.getElementById("modifyForm").submit();
@@ -173,7 +179,7 @@
 					<div class="col-sm-4 col-8">
 						<label class="sr-only" for="inputZipcode">zipcode</label>
 						<input type="text" class="form-control mb-2 mb-sm-0" id="zip1" name="zip1"
-							value="" readonly>
+							value="<%=NullCheck.isNotNull(memberDto.getZip1())%>" readonly>
 					</div>
 					<div class="col-sm-2 pl-0 col-4 align-self-center">
 						<input type="button" class="btn btn-primary" value="주소검색" onclick="javascript:zipsearch();">
@@ -185,12 +191,12 @@
 					<div class="col-sm-4">
 						<div class="input-group mb-2 mb-sm-0">
 							<input type="text" class="form-control" id="addr1" name="addr1"
-								value="" readonly>
+								value="<%=StringEncoder.isoToMain(NullCheck.isNotNull(memberDto.getAddr1()))%>" readonly>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<input type="text" class="form-control" id="addr2" name="addr2"
-							value="">
+							value="<%=StringEncoder.isoToMain(NullCheck.isNotNull(memberDto.getAddr2()))%>">
 					</div>
 				</div>
 
@@ -199,7 +205,7 @@
 					<label for="inputTeam" class="col-sm-2 col-form-label">선호구단</label>
 					<div class="col-sm-4">
 						<select id="tno" name="tno" class="form-control" onchange="javascript:tnochange(this);" style=min-height:36px;>
-							<option selected="selected" value="">--선택하세요--</option>
+							<option selected="<%=memberDto.getTno()%>" value="<%=memberDto.getTno()%>">--선택하세요--</option>
 							<option value="2">두산 베어스</option>
 							<option value="3">롯데 자이언츠</option>
 							<option value="1">KIA 타이거즈</option>

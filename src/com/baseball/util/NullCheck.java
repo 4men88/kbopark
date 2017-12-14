@@ -10,6 +10,15 @@ public class NullCheck {
 		return num;
 	}
 	
+	public static String isNotNull(String tmp) {
+		
+		if(tmp==null) {
+			tmp="";
+		}
+		return tmp;
+	}
+	
+	
 	public static int nullToOne(String tmp) {
 		int num = 1;
 		if(isNumber(tmp)) {
