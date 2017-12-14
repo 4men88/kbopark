@@ -1,14 +1,16 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR" import="com.baseball.gudan.model.GudanDto"%>
+	pageEncoding="EUC-KR" import="com.baseball.gudan.model.GudanDto,com.baseball.schedule.scheduleDto.ScheduleDto,java.util.List"%>
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
 <%
 GudanDto gudanDto = (GudanDto) session.getAttribute("gudandto");
+List<ScheduleDto> playlist = (List<ScheduleDto>) request.getAttribute("playlist");
+
 System.out.println("weekly.jsp gudandto >>> " + gudanDto);
 System.out.println("weekly.jsp tno >>> "+NullCheck.nullToZero(request.getParameter("tno")));
 %>
 <script type="text/javascript">
-
 function listArticle(tno) {
 	document.getElementById("cact").value = "listarticle";
 	document.getElementById("ctno").value = tno;
@@ -76,20 +78,32 @@ function listArticle(tno) {
 			</div>
 			<div class="col-md-6">
 				<ul class="list-group">
-					<li class="list-group-item"><span class="week">월</span> 예정된
-						경기가 없습니다.</li>
-					<li class="list-group-item"><span class="week">화</span> 두산
-						VS 한화 기아챔피언스필드 6:30</li>
-					<li class="list-group-item"><span class="week">수</span> 두산
-						VS 한화 기아챔피언스필드 6:30</li>
-					<li class="list-group-item"><span class="week">목</span> 두산
-						VS 한화 기아챔피언스필드 6:30</li>
-					<li class="list-group-item"><span class="week">금</span> 두산
-						VS 한화 기아챔피언스필드 6:30</li>
-					<li class="list-group-item"><span class="week" style="color: #2453a5;">토</span> 두산
-						VS 한화 기아챔피언스필드 6:30</li>
-					<li class="list-group-item"><span class="week" style="color: #cc2220;">일</span> 두산
-						VS 한화 기아챔피언스필드 6:30</li>
+				<%
+					String[] week = {"월","화","수","목","금","토","일"};
+					int len = playlist.size();
+					System.out.println("weekly.jsp listsize >>>" + len);
+					for (int i=0;i<len;i++) {
+						ScheduleDto sdto = playlist.get(i);
+				%>	
+					<li class="list-group-item">
+					
+				<%		if ("토".equals(week[i])) { %>
+						<span class="week" style="color: #2453a5;">토</span>	
+				<%		} else if ("일".equals(week[i])) { %>
+							<span class="week" style="color: #cc2220;">일</span>
+				<%		} else { %>
+							<span class="week"><%=week[i]%></span>
+				<%		} %>	
+
+					<%	if(sdto != null) { %>
+							<%=sdto.getHometeam()%>&nbsp;VS&nbsp;<%=sdto.getAwayteam()%>&nbsp;<%=sdto.getSname()%>&nbsp;<%=sdto.getPlaytime() %>
+					<%	} else { %>
+							예정된 경기가 없습니다.
+					<%	} %>
+					</li>
+				<%
+					}
+				%>
 				</ul>
 			</div>
 		</div>

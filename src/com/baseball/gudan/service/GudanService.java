@@ -1,7 +1,10 @@
 package com.baseball.gudan.service;
 
+import java.util.List;
+
 import com.baseball.gudan.model.GudanDto;
 import com.baseball.gudan.model.StadiumDto;
+import com.baseball.schedule.scheduleDto.ScheduleDto;
 
 public interface GudanService {
 	
@@ -9,4 +12,5 @@ public interface GudanService {
 	String getReservationWeb(int tno);
 	GudanDto gudanArticle(int tno);
 	StadiumDto stadiumArticle(int sno);
+	List<ScheduleDto> weeklyArticle(int tno);
 }

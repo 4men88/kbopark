@@ -7,15 +7,7 @@ public class NoticeDto {
 	private String subject;
 	private String context;
 	private String wdate;
-	private String name;
 	
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
 	public String getSubject() {
 		return subject;
 	}

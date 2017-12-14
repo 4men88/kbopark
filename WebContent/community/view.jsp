@@ -10,6 +10,79 @@ BoardDto boardDto = (BoardDto) request.getAttribute("article");
 <script type="text/javascript">
 control = "/board";
 
+function moveReply() {
+	document.getElementById("cact").value = "mvreply";
+	document.getElementById("ctno").value = "<%=tno%>";
+	document.getElementById("cpg").value = "1";
+	document.getElementById("ckey").value = "";
+	document.getElementById("cword").value = "";
+	document.getElementById("cseq").value = "<%=boardDto.getBno()%>";
+	
+	document.getElementById("commonForm").action = "<%=root%>/reboard";
+	document.getElementById("commonForm").submit();
+}
+
+function replyWrite(seq) {
+	var recontent = document.getElementById("recontent").value;
+	document.getElementById("recontent").value = "";
+	if(recontent != "") {
+		var url = "<%=root%>/reply";
+		var params = "act=writeReply&seq=" + seq + "&recontent=" + recontent;
+		sendRequest(url, params, replyList, "POST");
+	}
+}
+
+function replyDelete(reno, seq) {
+	var url = "<%=root%>/reply";
+	var params = "act=deleteReply&seq=" + seq + "&reno=" + reno;
+	sendRequest(url, params, replyList, "GET");
+}
+
+function replyList() {
+	if(httpRequest.readyState == 4) {
+		if(httpRequest.status == 200) {
+			var listxml = httpRequest.responseXML;
+			makelist(listxml);
+		} else {
+			alert("error: " + httpRequest.status);
+		}
+	}
+}
+
+function makelist(data) {
+	var output = "";
+	var len = data.getElementsByTagName("reply").length;
+	for(var i=0;i<len;i++) {
+		
+		var reno = data.getElementsByTagName("reno")[i].firstChild.data;
+		var seq = data.getElementsByTagName("bno")[i].firstChild.data;
+		var id = data.getElementsByTagName("id")[i].firstChild.data;
+		
+		output += "<tr>";
+		output += "<td>" + data.getElementsByTagName("name")[i].firstChild.data + "</td>";
+		output += "<td nowrap colspan=\"3\">" + data.getElementsByTagName("recontent")[i].firstChild.data;
+<%
+	if(memberDto != null) {
+%>		
+		if(id == "<%=memberDto.getId()%>") {
+			output += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"javascript:replyDelete('" + reno + "', '" + seq + "');\">x</a>";
+		}
+<%
+	}
+%>	
+		output += "</td>";
+		output += "<td align=\"right\">" + data.getElementsByTagName("retime")[i].firstChild.data + "</td>";
+		output += "</tr>";
+	}
+
+	document.getElementById("replylist").innerHTML = output;
+}
+
+window.onload = function() {
+	var url = "<%=root%>/reply";
+	var params = "act=listReply&seq=<%=boardDto.getBno()%>";
+	sendRequest(url, params, replyList, "GET");
+}
 </script>
 <div class="py-5 text-center opaque-overlay"
 	style="background-image: url(<%=root%>/img/etc/grass.jpg);">
@@ -125,33 +198,18 @@ control = "/board";
 				<div class="p-3" style="background-color: #f0f0f0;">
 					<form>
 						<div class="form-group mb-1">
-							<textarea class="form-control" id="exampleFormControlTextarea1"
-								rows="3"></textarea>
+							<textarea class="form-control" id="recontent" name="recontent" rows="3"></textarea>
 						</div>
 						<div class="text-right">
-							<button type="submit" class="btn btn-sm btn-primary">등록</button>
+							<a class="btn btn-sm btn-primary text-white" href="javascript:replyWrite('<%=boardDto.getBno()%>');">등록</a>
 						</div>
 					</form>
 				</div>
 				<div class="border-b p-0"></div>
 
 				<table class="table table-sm">
-					<tbody>
-						<tr>
-							<td>김수한무</td>
-							<td nowrap colspan="3">Ottddddddddddddddddddddddddddddddddddd<br>ddddddddddddddddddddddddddddddddddddddddd<br>ddddddddddddddddddo</td>
-							<td align="right">17.09.21</td>
-						</tr>
-						<tr>
-							<td>거북이와</td>
-							<td colspan="3">Thornton</td>
-							<td align="right">17.09.21</td>
-						</tr>
-						<tr>
-							<td>두루미</td>
-							<td colspan="3">Larry the Bird</td>
-							<td align="right">17.09.21</td>
-						</tr>
+					<tbody id="replylist">
+					
 					</tbody>
 				</table>
 

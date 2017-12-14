@@ -61,10 +61,8 @@ public class AdminController extends HttpServlet {
 			path=AdminActionFactory.getNtypeListAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		
-		}else if("viewnotice".equals(act)){
-			System.out.println("공지사항보기");
-			path=AdminActionFactory.getViewNoticeAction().execute(request, response);
-			PageMove.forward(request, response, path);
+		}else if("".equals(act)){
+			
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){

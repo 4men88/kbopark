@@ -37,8 +37,10 @@ public class GudanController extends HttpServlet {
 			path = GudanActionFactory.getStadiumAction().execute(request, response);
 			PageMove.forward(request, response, path);			
 		} else if ("mvweekly".equals(act)) {
-			path = "/gudan/weekly.jsp";
+
+			path = GudanActionFactory.getWeeklyAction().execute(request, response);
 			PageMove.forward(request, response, path);			
+			
 		} else if ("mvcommunity".equals(act)) {
 			path = "/community/list.jsp";
 			PageMove.forward(request, response, path);			

@@ -15,7 +15,14 @@ public class ScheduleDto {
 	private int score2;// 어웨이 득점
 	private String sname; // 구장이름
 	private String pstatus; //경기상태
+	private String playtime; //경기시간 
 	
+	public String getPlaytime() {
+		return playtime;
+	}
+	public void setPlaytime(String playtime) {
+		this.playtime = playtime;
+	}
 	public String getPlaydate() {
 		return playdate;
 	}

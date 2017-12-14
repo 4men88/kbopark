@@ -16,7 +16,10 @@ public interface BoardDao {
 	int modifyArticle(BoardDto boardDto);
 	List<BoardDto> listArticle(Map<String, String> map);
 	List<BoardDto> bestArticle(int tno);
+
+	int getTotalArticleCount(Map<String, String> map);
 	
-/*	int replyArticle(BoardDto BoardDto);
-	*/
+//	int getNewArticleCount(int tno);
+//	int replyArticle(BoardDto BoardDto);
+
 }

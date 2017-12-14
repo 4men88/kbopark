@@ -6,11 +6,7 @@
 List<BoardDto> list = (List<BoardDto>) request.getAttribute("articlelist");
 List<BoardDto> bestlist = (List<BoardDto>) request.getAttribute("bestlist");
 GudanDto gudanDto = (GudanDto) session.getAttribute("gudandto");
-
-System.out.println("list.jsp size >>> " + list.size());
-System.out.println("list.jsp bestsize >>> " + bestlist.size());
-System.out.println("list.jsp gudandto >>> " + gudanDto);
-System.out.println("list.jsp tno >>> "+NullCheck.nullToZero(request.getParameter("tno")));
+PageNavigation navigator = (PageNavigation) request.getAttribute("navigator");
 %>
 <script type="text/javascript">
 control = "/board";
@@ -173,10 +169,10 @@ if(size != 0) {
 
 
 
-<div class="container py-5">
+<div id="listnav" class="container py-5">
 
 	<div class="d-flex justify-content-center">
-		<div>
+<!-- 		<div>
 			<ul class="pagination pagination-sm">
 				<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
 				<li class="page-item active"><a class="page-link" href="#">1</a></li>
@@ -184,7 +180,8 @@ if(size != 0) {
 				<li class="page-item"><a class="page-link" href="#">3</a></li>
 				<li class="page-item"><a class="page-link" href="#">Next</a></li>
 			</ul>
-		</div>
+		</div> -->
+		<%=navigator.getBoardnavigator() %>
 	</div>
 </div>
 

@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 import com.baseball.schedule.scheduleDto.ScheduleDto;
 import com.baseball.util.db.DBClose;
@@ -29,8 +31,8 @@ public class ScheduleDaoImpl implements ScheduleDao {
 
 	@Override
 	public List<ScheduleDto> getSchedule() {
-
 		List<ScheduleDto> list = new ArrayList<ScheduleDto>();
+
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -38,7 +40,8 @@ public class ScheduleDaoImpl implements ScheduleDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("select to_char(ppp.playdate,'yyyymmdd') playdate, ppp.tname hometeam, ppp.emblem homeemblem, t.tname awayteam, t.emblem awayemblem, ppp.score1, ppp.score2, ppp.sname, ppp.pstatus \n");
+			sql.append("select * \n");
+			sql.append("from(select to_char(ppp.playdate,'yyyymmdd') playdate, ppp.tname hometeam, ppp.emblem homeemblem, t.tname awayteam, t.emblem awayemblem, ppp.score1, ppp.score2, ppp.sname, ppp.pstatus \n");
 			sql.append("from team t, \n");
 			sql.append("(select pp.playdate, t.tname, t.emblem, pp.tno2, pp.score1, pp.score2, pp.sname, pp.pstatus \n");
 			sql.append("from team t, \n");
@@ -46,9 +49,11 @@ public class ScheduleDaoImpl implements ScheduleDao {
 			sql.append("from plan p, stadium s \n");
 			sql.append("where p.sno = s.sno) pp \n");
 			sql.append("where pp.tno1 = t.tno) ppp \n");
-			sql.append("where ppp.tno2 = t.tno");
+			sql.append("where ppp.tno2 = t.tno)");
+			sql.append("where playdate = to_date('20170707','yyyymmdd')");
 
 			pstmt = conn.prepareStatement(sql.toString());
+//			pstmt.setString(1, map.get("playdate"));
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				ScheduleDto scheduleDto = new ScheduleDto();
@@ -61,8 +66,8 @@ public class ScheduleDaoImpl implements ScheduleDao {
 				 scheduleDto.setScore2(rs.getInt("score2"));
 				 scheduleDto.setSname(rs.getString("sname"));
 				 scheduleDto.setPstatus(rs.getString("pstatus"));
-
-				list.add(scheduleDto);
+				 
+				 list.add(scheduleDto);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -70,11 +75,7 @@ public class ScheduleDaoImpl implements ScheduleDao {
 		} finally {
 			DBClose.close(conn, pstmt, rs);
 		}
-
-		System.out.println("ScheduleDaoImpl" + list.size());
-		System.out.println("ScheduleDaoImpl" + list);
-
+		System.out.println("ScheduleDaoImpl"+ list.size());
 		return list;
 	}
-
 }
