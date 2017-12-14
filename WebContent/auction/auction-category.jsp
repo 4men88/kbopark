@@ -20,6 +20,8 @@ int categoryEndListLen;
    String category2 = (String)request.getAttribute("category2");	//중분류
    String bigSubject ="";
    String smallSubject ="";
+if(category1 != null)
+{
    if(category1.equals("1")){
 	   bigSubject = "유니폼";
 	   if(category2.equals("1")){
@@ -66,7 +68,7 @@ int categoryEndListLen;
 		   smallSubject = "기타";
 	   }
    }
-   
+}  
    
    if(categoryConList != null)	//리스트가 널이 아니면
    {

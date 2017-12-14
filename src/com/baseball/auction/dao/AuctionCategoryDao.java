@@ -7,4 +7,5 @@ import com.baseball.auction.model.AuctionDetailDto;
 
 public interface AuctionCategoryDao {
 	List<AuctionDetailDto> auctionCategoryList(Map<String, String> map);
+	int getAuctionCount(Map<String, String> map);
 }

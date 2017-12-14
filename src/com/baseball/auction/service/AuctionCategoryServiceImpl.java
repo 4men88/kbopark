@@ -39,25 +39,10 @@ public class AuctionCategoryServiceImpl implements AuctionCategoryService {
 //		map.put("word", word);
 		return AuctionCategoryDaoImpl.getAuctionCategoryDao().auctionCategoryList(map);
 	}
-//	int end = pg * BoardConstance.ALBUM_LIST_SIZE;
-//	int start = end - BoardConstance.ALBUM_LIST_SIZE;
-//	Map<String, String> map = new HashMap<String, String>();
-//	map.put("bcode", bcode + "");
-//	map.put("start", start + "");
-//	map.put("end", end + "");
-//	map.put("key", key);
-//	map.put("word", word);
-//	return AlbumDaoImpl.getAlbumDao().listArticle(map);
-	
-//	public List<AlbumDto> listArticle(int bcode, int pg, String key, String word) {
-//		int end = pg * BoardConstance.ALBUM_LIST_SIZE;
-//		int start = end - BoardConstance.ALBUM_LIST_SIZE;
-//		Map<String, String> map = new HashMap<String, String>();
-//		map.put("bcode", bcode + "");
-//		map.put("start", start + "");
-//		map.put("end", end + "");
-//		map.put("key", key);
-//		map.put("word", word);
-//		return AlbumDaoImpl.getAlbumDao().listArticle(map);
-//	}
+
+	@Override
+	public int getAuctionCount(String category1, String category2, int pg, int astatus, String sort, String gudan) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

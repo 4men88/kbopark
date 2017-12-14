@@ -35,7 +35,7 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer category_all = new StringBuffer();
-			category_all.append("select rr.*  \n");
+			category_all.append("select rr.*, COUNT(*) AS allcount \n");
 			category_all.append("    from( \n");
 			category_all.append("    select rownum rn, r.*        \n");
 			category_all.append("    from( \n");
