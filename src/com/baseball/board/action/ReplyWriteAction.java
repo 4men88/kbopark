@@ -12,6 +12,8 @@ import com.baseball.action.Action;
 import com.baseball.board.model.ReplyDto;
 import com.baseball.board.service.ReplyServiceImpl;
 import com.baseball.member.model.MemberDto;
+import com.baseball.util.Constance;
+import com.baseball.util.StringEncoder;
 
 public class ReplyWriteAction implements Action {
 
@@ -28,7 +30,6 @@ public class ReplyWriteAction implements Action {
 			replyDto.setMid(memberDto.getId());
 			replyDto.setReplyname(memberDto.getName());
 			replyDto.setRecontent(request.getParameter("recontent"));
-			System.out.println("ReplyWriteAction >>> " + request.getParameter("recontent"));
 			ReplyServiceImpl.getReplyService().writeReply(replyDto);
 			List<ReplyDto> list = ReplyServiceImpl.getReplyService().listReply(seq);
 			System.out.println("ReplyWriteAction¸Þ¸ð±Û °¹¼ö : " + list.size());

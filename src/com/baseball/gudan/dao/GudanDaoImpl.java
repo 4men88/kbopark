@@ -178,8 +178,8 @@ public class GudanDaoImpl implements GudanDao {
 			sql.append("		C.sname, C.playtime, SUBSTR(C.playdate,1,1) playdate \n");
 			sql.append("from (SELECT t1.tname myteam, B.* \n");
 			sql.append("		FROM (select A.mytno, A.entno, s.sname, A.playtime, A.playdate \n");
-			sql.append("				from (SELECT CASE WHEN tno1=2 THEN tno1 ELSE tno2 END mytno,  \n");
-			sql.append("				CASE WHEN tno2=2 THEN tno1 ELSE tno2 END entno, \n");
+			sql.append("				from (SELECT CASE WHEN tno1=? THEN tno1 ELSE tno2 END mytno,  \n");
+			sql.append("				CASE WHEN tno2=? THEN tno1 ELSE tno2 END entno, \n");
 			sql.append("				sno, to_char(playdate, 'hh24:mi') playtime, \n");
 			sql.append("				to_char(playdate, 'day') playdate \n");
 			sql.append("				from plan \n");
@@ -192,7 +192,9 @@ public class GudanDaoImpl implements GudanDao {
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setInt(1, tno);
 			pstmt.setInt(2, tno);
-			pstmt.setString(3, day);
+			pstmt.setInt(3, tno);
+			pstmt.setInt(4, tno);
+			pstmt.setString(5, day);
 			
 			rs = pstmt.executeQuery();
 			if (rs.next()) {

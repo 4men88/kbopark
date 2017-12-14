@@ -18,6 +18,7 @@ public class ReplyListAction implements Action {
 			throws ServletException, IOException {
 		int seq = Integer.parseInt(request.getParameter("seq"));
 		List<ReplyDto> list = ReplyServiceImpl.getReplyService().listReply(seq);
+		System.out.println("replylistaction size >>> " + list.size());
 		request.setAttribute("replylist", list);
 		return "/community/reply.jsp";
 	}

@@ -17,6 +17,8 @@ import com.baseball.util.Constance;
 import com.baseball.util.NullCheck;
 import com.baseball.util.PageNavigation;
 import com.baseball.util.StringEncoder;
+import com.kitri.common.service.CommonServiceImpl;
+import com.kitri.util.BoardConstance;
 
 public class BoardListAction implements Action {
 
@@ -41,6 +43,18 @@ public class BoardListAction implements Action {
 		navigation.setNavigator();*/
 //		request.setAttribute("navigator", navigation);
 
+		PageNavigation navigation = CommonServiceImpl.getCommonService().makePageNavigation(bcode, pg, key, word, BoardConstance.BOARD_LIST_SIZE);
+		navigation.setRoot(request.getContextPath());
+		navigation.setBcode(bcode);
+		navigation.setPageNo(pg);
+		navigation.setKey(key);
+		navigation.setWord(word);
+		
+		navigation.setNavigator();
+		
+		request.setAttribute("articlelist", list);
+		request.setAttribute("navigator", navigation);		
+		
 		request.setAttribute("gudandto", gudanDto);
 		request.setAttribute("articlelist", list);
 		request.setAttribute("bestlist", bestlist);
@@ -48,14 +62,3 @@ public class BoardListAction implements Action {
 	}
 
 }
-/*		int bcode = Integer.parseInt(request.getParameter("bcode"));
-		int pg = NullCheck.nullToOne(request.getParameter("pg"));
-		String key = StringEncoder.isoToMain(request.getParameter("key"));
-		String word = StringEncoder.isoToMain(request.getParameter("word"));
-		List<AlbumDto> list = AlbumServiceImpl.getAlbumService().listArticle(bcode, pg, key, word);
-		PageNavigation navigation = CommonServiceImpl.getCommonService().makePageNavigation(bcode, pg, key, word, BoardConstance.ALBUM_LIST_SIZE);
-		navigation.setRoot(request.getContextPath());
-		navigation.setBcode(bcode);
-		navigation.setKey(key);
-		navigation.setWord(word);
-		navigation.setNavigator();*/

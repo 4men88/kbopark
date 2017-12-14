@@ -42,33 +42,41 @@ function replyList() {
 	if(httpRequest.readyState == 4) {
 		if(httpRequest.status == 200) {
 			var listxml = httpRequest.responseXML;
-			alert(listxml);
+			makelist(listxml);
 		} else {
-			alert(httpRequest.status);
+			alert("error: " + httpRequest.status);
 		}
 	}
 }
 
-<%-- function makelist(data) {
+function makelist(data) {
 	var output = "";
 	var len = data.getElementsByTagName("reply").length;
 	for(var i=0;i<len;i++) {
-		var mseq = data.getElementsByTagName("reno")[i].firstChild.data;
-		var seq = data.getElementsByTagName("seq")[i].firstChild.data;
+		
+		var reno = data.getElementsByTagName("reno")[i].firstChild.data;
+		var seq = data.getElementsByTagName("bno")[i].firstChild.data;
 		var id = data.getElementsByTagName("id")[i].firstChild.data;
 		
 		output += "<tr>";
 		output += "<td>" + data.getElementsByTagName("name")[i].firstChild.data + "</td>";
 		output += "<td nowrap colspan=\"3\">" + data.getElementsByTagName("recontent")[i].firstChild.data;
+<%
+	if(memberDto != null) {
+%>		
 		if(id == "<%=memberDto.getId()%>") {
 			output += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"javascript:replyDelete('" + reno + "', '" + seq + "');\">x</a>";
 		}
+<%
+	}
+%>	
 		output += "</td>";
 		output += "<td align=\"right\">" + data.getElementsByTagName("retime")[i].firstChild.data + "</td>";
 		output += "</tr>";
 	}
+
 	document.getElementById("replylist").innerHTML = output;
-} --%>
+}
 
 window.onload = function() {
 	var url = "<%=root%>/reply";
@@ -193,14 +201,16 @@ window.onload = function() {
 							<textarea class="form-control" id="recontent" name="recontent" rows="3"></textarea>
 						</div>
 						<div class="text-right">
-							<a class="btn btn-sm btn-primary" href="javascript:replyWrite('<%=boardDto.getBno()%>');">등록</a>
+							<a class="btn btn-sm btn-primary text-white" href="javascript:replyWrite('<%=boardDto.getBno()%>');">등록</a>
 						</div>
 					</form>
 				</div>
 				<div class="border-b p-0"></div>
 
 				<table class="table table-sm">
-					<tbody id="replylist"></tbody>
+					<tbody id="replylist">
+					
+					</tbody>
 				</table>
 
 

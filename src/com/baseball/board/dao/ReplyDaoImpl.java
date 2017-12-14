@@ -61,7 +61,7 @@ public class ReplyDaoImpl implements ReplyDao {
 			sql.append("		decode(to_char(retime, 'yymmdd'), ");
 			sql.append("				to_char(sysdate, 'yymmdd'), to_char(retime, 'hh24:mi:ss'), ");
 			sql.append("				to_char(retime, 'yy.mm.dd')) retime \n");
-			sql.append("from reply \n");
+			sql.append("from board_reply \n");
 			sql.append("where bno = ? \n");
 			sql.append("order by retime desc \n");
 			pstmt = conn.prepareStatement(sql.toString());
@@ -93,7 +93,7 @@ public class ReplyDaoImpl implements ReplyDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("delete reply \n");
+			sql.append("delete board_reply \n");
 			sql.append("where reno = ?");
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setInt(1, reno);

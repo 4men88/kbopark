@@ -13,6 +13,15 @@ public class PageNavigation {
 	private int bcode;
 	private String key;
 	private String word;
+	private int tno;	//구단번호별 게시판확인위해서 추가
+
+	public int getTno() {
+		return tno;
+	}
+
+	public void setTno(int tno) {
+		this.tno = tno;
+	}
 
 	public String getRoot() {
 		return root;
