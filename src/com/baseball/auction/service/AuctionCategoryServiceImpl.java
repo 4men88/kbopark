@@ -7,6 +7,7 @@ import java.util.Map;
 import com.baseball.auction.dao.AuctionCategoryDaoImpl;
 import com.baseball.auction.model.AuctionDetailDto;
 import com.baseball.util.Constance;
+import com.baseball.util.PageNavigation;
 
 public class AuctionCategoryServiceImpl implements AuctionCategoryService {
 
@@ -41,8 +42,23 @@ public class AuctionCategoryServiceImpl implements AuctionCategoryService {
 	}
 
 	@Override
-	public int getAuctionCount(String category1, String category2, int pg, int astatus, String sort, String gudan) {
-		// TODO Auto-generated method stub
-		return 0;
+	public PageNavigation getAuctionCount(String category1, String category2, int pg, int astatus, String sort, String gudan) {
+		
+		PageNavigation pageNavigation = new PageNavigation();
+		int pgSize = Constance.CATEGORY_PAGE_SIZE;
+		pageNavigation.setPageNo(pg);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("astatus", astatus +"");
+		map.put("category1", category1);
+		map.put("category2", category2);
+		map.put("sort",  sort );
+		map.put("gudan",  gudan );
+		int totalAuctionCount = AuctionCategoryDaoImpl.getAuctionCategoryDao().getAuctionCount(map);
+		pageNavigation.setTotalArticleCount(totalAuctionCount);
+		int totalPageCount = (totalAuctionCount - 1) / Constance.CATEGORY_LIST_SIZE + 1;
+		pageNavigation.setTotalPageCount(totalPageCount);
+		pageNavigation.setNowFirst(pg <= pgSize);
+		pageNavigation.setNowEnd(pg > (totalPageCount - 1) / pgSize * pgSize);
+		return pageNavigation;
 	}
 }
