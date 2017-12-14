@@ -40,7 +40,6 @@ public class BoardListAction implements Action {
 		navigation.setWord(word);
 //		navigation.setNavigator();
 		navigation.setBoardnavigator();
-		System.out.println("BoardListAction navigation >> " + navigation.getBoardnavigator());
 		
 		request.setAttribute("gudandto", gudanDto);
 		request.setAttribute("articlelist", list);
