@@ -26,11 +26,11 @@ public class MypageMainAction implements Action {
 		HttpSession session = request.getSession();
 		MemberDetailDto memberDto = (MemberDetailDto) session.getAttribute("userInfo");
 		
-//		List<NoticeDto> noticeList = AdminServiceImpl.getAdminService().noticeList();
+		List<NoticeDto> noticeList = AdminServiceImpl.getAdminService().noticeList();
 		List<BoardDto> boardList = MypageServiceImpl.getMypageService().listArticle(memberDto);
 		List<ReplyDto> replyList = MypageServiceImpl.getMypageService().listReply(memberDto);
 		
-//		request.setAttribute("noticeList", noticeList);
+		request.setAttribute("noticeList", noticeList);
 		request.setAttribute("boardList", boardList);
 		request.setAttribute("replyList", replyList);
 	
