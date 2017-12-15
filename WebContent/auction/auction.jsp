@@ -523,7 +523,7 @@ if(endList != null)
             <div class="col-md-3">
                <div class="row p-2">
                   <div class="col-md-12 col-4 align-self-center">            
-                     <img src="<%=root%>/<%=endList.get(i).getAimage()%>" class="img-fluid">                                    
+                     <img style="max-height:200px;" src="<%=root%>/<%=endList.get(i).getAimage()%>" class="img-fluid">                                    
                   </div>
                   <div class="col-md-12 col-8 align-self-center">
                      <p class="mb-2">
@@ -555,7 +555,7 @@ if(hitList != null)
             <div class="col-md-3">
                <div class="row p-2">
                   <div class="col-md-12 col-4 align-self-center">
-                     <img src="<%=root%>/<%=hitList.get(i).getAimage()%>" class="img-fluid">
+                     <img style="max-height:200px;" src="<%=root%>/<%=hitList.get(i).getAimage()%>" class="img-fluid">
                   </div>
                   <div class="col-md-12 col-8 align-self-center">
                      <p class="mb-2">
@@ -586,7 +586,7 @@ if(newList != null)
             <div class="col-md-3">
                <div class="row p-2">
                   <div class="col-md-12 col-4 align-self-center">
-                     <img src="<%=root%>/<%=newList.get(i).getAimage()%>" class="img-fluid">
+                     <img style="max-height:200px;" src="<%=root%>/<%=newList.get(i).getAimage()%>" class="img-fluid">
                   </div>
                   <div class="col-md-12 col-8 align-self-center">
                      <p class="mb-2">

@@ -28,9 +28,9 @@ public class AuctionCategoryListAction implements Action {
 		String word = StringEncoder.isoToMain(request.getParameter("word"));
 		int pg = NullCheck.nullToOne(request.getParameter("pg"));
 		String sort = StringEncoder.isoToMain(request.getParameter("sort"));
-		String gudan = StringEncoder.isoToMain(request.getParameter("gudan"));
+		String gudan = StringEncoder.isoToMain(request.getParameter("gudan"));	
 		
-		System.out.println("pg =====================" + pg);
+		System.out.println("gudan =====================" + gudan);
 		// 경매상태 진행중 리스트
 		List<AuctionDetailDto> categoryConList = AuctionCategoryServiceImpl.getAuctionCategoryService().auctionCategoryList(category1, category2, pg, 1, sort, gudan);
 		AuctionPageNavigation conPageNavigation = AuctionCategoryServiceImpl.getAuctionCategoryService().getAuctionCount(category1, category2, pg, 1, sort, gudan);

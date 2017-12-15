@@ -383,7 +383,8 @@ if(categoryConList != null)
 										<div class="col-md-3">
 											<div class="row p-2">
 												<div class="col-md-12 col-4 align-self-center">
-													<img src="<%=root%>/<%=auctionDetailDto.getAimage()%>" class="img-fluid">
+													<img style="max-height:200px;"
+													src="<%=root%>/<%=auctionDetailDto.getAimage()%>" class="img-fluid">
 												</div>
 												<div class="col-md-12 col-8 align-self-center">
 													<p class="mb-2">
@@ -414,7 +415,8 @@ if(categoryEndList != null)
 										<div class="col-md-3">
 											<div class="row p-2">
 												<div class="col-md-12 col-4 align-self-center">
-													<img src="<%=root%>/<%=auctionDetailDto.getAimage()%>" class="img-fluid">
+													<img style="max-height:200px;"
+													src="<%=root%>/<%=auctionDetailDto.getAimage()%>" class="img-fluid">
 												</div>
 												<div class="col-md-12 col-8 align-self-center">
 													<p class="mb-2">
