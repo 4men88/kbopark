@@ -81,6 +81,7 @@ public class MemberDaoImpl implements MemberDao {
 			sql.append("	   mt.penalty,mt.mtype,mt.mstatus\n");
 			sql.append("from member m,member_detail mt\n");
 			sql.append("where m.mid=mt.mid and m.mid=? and m.pass=?");
+		
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, map.get("id"));
 			pstmt.setString(2, map.get("pass"));

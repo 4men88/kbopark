@@ -36,8 +36,8 @@ function writenotice(){
 			<div class="col-sm-4 col-8">
 				<select id="notitype" name="notitype" class="form-control">
 					<option value="1">일반공지</option>
-					<option value="2">경매공지<option>
-					<option value="3">1:1답변<option>
+					<option value="2">경매공지</option>
+					<option value="3">1:1답변</option>
 				</select>
 			</div>
 		</div>
