@@ -208,7 +208,7 @@ public class BoardDaoImpl implements BoardDao {
 				else
 					sql.append("	  	  and " + key + " like '%'||?||'%' \n");
 			}
-			sql.append("	  	  order by bdate desc \n");
+			sql.append("	  	  order by bno desc \n");
 			sql.append("	 	  ) a \n");
 			sql.append("	  where rownum <= ? \n");
 			sql.append("	 ) b \n");

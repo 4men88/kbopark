@@ -16,7 +16,9 @@ function writenotice(){
 	
 }
 </script>
-
+<%
+if("gksdjf".equals(memberDto.getId())){
+%>
 <div class="col-md-8 py-5">
 	<div class="">
 		<h5>
@@ -98,4 +100,14 @@ function writenotice(){
 		</div>
 	</div>
 </div>
+<%
+}else{
+%>
+<script>
+alert("관리자 전용 페이지 입니다");
+document.location.href="<%=root%>/index.jsp";
+</script>
+<%
+}
+%>
 <%@ include file="/common/footer.jsp" %>
