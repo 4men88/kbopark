@@ -71,14 +71,25 @@ function listArticle(tno) {
 			</div>
 			<div class="col-md-6">
 
+<%
+int stadiumlist = playstadium.size();
+System.out.println("weekly.jsp len >>>>>>>>>>>>>>>>>>>>>>> " + stadiumlist);
+if(stadiumlist != 0) {
+%>
 			<div id="map" style="width:100%;height:350px;"></div>
-					
+<%
+} else {
+%>
+			<div class="text-center">경기가 예정된 구장 정보가 없습니다.</div>
+<%
+}
+%>		
 			</div>
 			<div class="col-md-6">
 				<ul class="list-group">
 				<%
 					String[] week = {"월","화","수","목","금","토","일"};
-					int len = playlist.size();
+					int len = playlist.size(); 
 					System.out.println("weekly.jsp listsize >>>" + len);
 					for (int i=0;i<len;i++) {
 						ScheduleDto sdto = playlist.get(i);
