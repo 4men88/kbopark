@@ -14,11 +14,6 @@ int categoryEndListLen;
 	List<AuctionDetailDto> categoryConList = (List<AuctionDetailDto>)request.getAttribute("categoryConList");
 	List<AuctionDetailDto> categoryEndList = (List<AuctionDetailDto>)request.getAttribute("categoryEndList");
  	//endTime만 따로 리스트에 담을 리스트
-<<<<<<< HEAD
-   List<String> categoryConListTimeArr = new ArrayList<String>();	
-   List<String> categoryEndListTimeArr = new ArrayList<String>();	
-      
-=======
    List<String> categoryConListTimeArr = new ArrayList<String>();	//진행중 경매 종료시간만 리스트로
    List<String> categoryEndListTimeArr = new ArrayList<String>();	//마감 경매 종료시간만 리스트로
    String category1 = (String)request.getAttribute("category1");	//대분류
@@ -75,7 +70,6 @@ if(category1 != null)
    }
 }  
    
->>>>>>> ad94f839fb35a40dbb79a42563887b30a6dff9f2
    if(categoryConList != null)	//리스트가 널이 아니면
    {
 	   categoryConListLen = categoryConList.size();	//사이즈 재고
@@ -259,21 +253,23 @@ window.onload=function() {
    sendRequest("<%=root%>/auctioncontroller", params, getTime, "POST");   
 }
 	
-function categoryList(key, word, category1, category2, sort)
+	document.getElementById("asort").value = 4;
+function categoryList(key, word, category1, category2, gudan)
 {
 	document.getElementById("aact").value = "categorylist";
 	document.getElementById("apg").value = "1";
-	document.getElementById("asort").value = sort;
 	document.getElementById("akey").value = "";
 	document.getElementById("aword").value = "";
 	document.getElementById("acategory1").value = category1; 
 	document.getElementById("acategory2").value = category2; 
+	document.getElementById("agudan").value = gudan; 
 	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 	document.getElementById("auctionForm").submit();		
 }	
 function auctionsort(sort)
 {
 	document.getElementById("asort").value = sort;
+	categoryList('','','<%=category1%>','<%=category2%>','');	
 }
 </script>
 <div class="container-fluid auction-category">
@@ -281,8 +277,8 @@ function auctionsort(sort)
 		<nav class="col-6 col-md-2 bg-light sidebar-offcanvas pt-3 pb-5"
 			id="sidebar">
 			<div class="pb-5">
-				<a class="nav-link" href="javascript:categoryList('','','','','');">전체보기</a> <a class="nav-link"
-					href="#item-gudan">구단별보기</a> <a class="nav-link" href="javascript:categoryList('','','1','','');">유니폼</a>
+				<a class="nav-link" href="javascript:categoryList('','','','','','');">전체보기</a>
+				<a class="nav-link" href="javascript:categoryList('','','1','','');">유니폼</a>
 				<nav class="nav nav-pills flex-column">
 					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1','');">상의</a> <a
 						class="nav-link ml-3" href="javascript:categoryList('','','1','2','');">하의</a> <a
@@ -295,19 +291,19 @@ function auctionsort(sort)
 						class="nav-link ml-3" href="javascript:categoryList('','','2','2','');">배트</a> <a
 						class="nav-link ml-3" href="javascript:categoryList('','','2','3','');">글러브</a> <a
 						class="nav-link ml-3" href="javascript:categoryList('','','2','4','');">보호장구</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','5','');">기타</a>
+						class="nav-link ml-3" href="javascript:categoryList('','','2','5');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','3','','');">응원용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','3','');">응원용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1','');">피켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','3','2','');">LED피켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','3','3','');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1');">피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','2');">LED피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','3');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','4','','');">기타잡화</a>
+				<a class="nav-link" href="javascript:categoryList('','','4','');">기타잡화</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1','');">사진</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','2','');">티켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','3','');">카드</a> <a
+					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1');">사진</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','2');">티켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','3');">카드</a> <a
 						class="nav-link ml-3" href="javascript:categoryList('','','4','4','');">기타</a>
 				</nav>
 			</div>
@@ -330,8 +326,8 @@ function auctionsort(sort)
 					<ol class="breadcrumb justify-content-end mb-0"
 						style="background-color: white;">
 						<li class="breadcrumb-item"><a href="#">전체</a></li>
-						<li class="breadcrumb-item"><a href="#">유니폼</a></li>
-						<li class="breadcrumb-item active" aria-current="page">모자</li>
+						<li class="breadcrumb-item"><a href="#"><%=bigSubject%></a></li>
+						<li class="breadcrumb-item active" aria-current="page"><%=smallSubject%></li>
 					</ol>
 				</nav>
 			</div>
@@ -367,13 +363,12 @@ function auctionsort(sort)
 
 											<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 												<a class="dropdown-item" href="javascript:auctionsort('1');">인기경매순</a>
-												<a class="dropdown-item" href="javascript:auctionsort('2');">구단별기준</a>
-												<a class="dropdown-item" href="javascript:auctionsort('3');">마감임박순</a>
-												<a class="dropdown-item" href="javascript:auctionsort('4');">신규경매순</a>
-												<a class="dropdown-item" href="javascript:auctionsort('5');">조회많은순</a>
-												<a class="dropdown-item" href="javascript:auctionsort('6');">조회적은순</a>
-												<a class="dropdown-item" href="javascript:auctionsort('7');">높은가격순</a>
-												<a class="dropdown-item" href="javascript:auctionsort('8');">낮은가격순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('2');">마감임박순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('3');">신규경매순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('4');">조회많은순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('5');">조회적은순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('6');">높은가격순</a>
+												<a class="dropdown-item" href="javascript:auctionsort('7');">낮은가격순</a>
 											</div>
 										</div>
 									</div>
@@ -469,65 +464,58 @@ if(categoryEndList != null)
 						</div>
 					</div>
 					<div class="row">
-						<div class="p-0 col-md-1 col-12"></div>
-						<div class="p-0 col-md-1 col-12 text-center main-doosan-mobile">
-							<a href="#"> <img
-								src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
-								class="img-fluid">
-							</a>
-						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','3');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-lotte.png"
 								class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','10');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-kt.png" class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','7');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-nexen.png"
 								class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','1');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-kia.png"
 								class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center main-doosan-pc">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','2');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
 								class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','6');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-lg.png" class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','8');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
 								class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','5');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-sk.png" class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','4');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-nc.png" class="img-fluid">
 							</a>
 						</div>
 						<div class="p-0 col-md-1 col-12 text-center">
-							<a href="#"> <img
+							<a href="javascript:categoryList('','','','','9');"> <img
 								src="<%=root%>/img/gudan/emblem/emblem-samsung.png"
 								class="img-fluid">
 							</a>

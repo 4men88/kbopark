@@ -10,28 +10,23 @@ public class PageNavigation {
 	private int totalPageCount;
 	private int pageNo;
 	private String navigator;
-	private String category1;
-	private String category2;
-	public String getCategory1() {
-		return category1;
-	}
+	private int bcode;
+	
 
-	public void setCategory1(String category1) {
-		this.category1 = category1;
-	}
-
-	public String getCategory2() {
-		return category2;
-	}
-
-	public void setCategory2(String category2) {
-		this.category2 = category2;
-	}
 
 	private String key;
 	private String word;
 	private int tno;	//구단번호별 게시판확인위해서 추가
 	private String boardnavigator;
+
+	
+	public int getBcode() {
+		return bcode;
+	}
+
+	public void setBcode(int bcode) {
+		this.bcode = bcode;
+	}
 
 	public int getTno() {
 		return tno;
