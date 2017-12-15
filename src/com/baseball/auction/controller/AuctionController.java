@@ -22,9 +22,10 @@ public class AuctionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	//	response.getWriter().append("Served at: ").append(request.getContextPath());
 		String act = request.getParameter("act");
+		String pg = request.getParameter("pg");
 		System.out.println(act);
+		System.out.println(pg);
 		String path = "/auction.jsp";
 		if("mainlist".equals(act)) 
 		{
@@ -35,11 +36,9 @@ public class AuctionController extends HttpServlet {
 		{
 			DateFormat df = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 			String time = df.format(new Date());
-			System.out.println(time);
 			response.setContentType("text/plain;charset=EUC-KR");
 			PrintWriter out = response.getWriter();
 			out.print(time);
-//			out.print("<font color='red' size='5'><b>" + time + "</b></font>");
 		}
 		else if("statuschange".equals(act))
 		{
@@ -48,9 +47,6 @@ public class AuctionController extends HttpServlet {
 		}
 		else if("categorylist".equals(act))
 		{
-			System.out.println("pg = " + request.getParameter("pg") + "sort" + request.getParameter("sort"));
-			System.out.println("category1 = " + request.getParameter("category1") + "category2" + request.getParameter("category2"));
-			
 			path = AuctionActionFactory.getAuctionCategoryListAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		}

@@ -50,8 +50,13 @@ public class AuctionCategoryListAction implements Action {
 		endPageNavigation.setWord(word);
 		endPageNavigation.setNavigator();
 		
+		
 		request.setAttribute("categoryConList", categoryConList);
+		request.setAttribute("conPageNavigation", conPageNavigation);
+		
 		request.setAttribute("categoryEndList", categoryEndList);
+		request.setAttribute("endPageNavigation", endPageNavigation);
+		
 		request.setAttribute("category1", category1);
 		request.setAttribute("category2", category2);
 		
