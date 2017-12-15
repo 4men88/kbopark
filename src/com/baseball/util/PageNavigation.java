@@ -13,7 +13,6 @@ public class PageNavigation {
 	private int bcode;
 	
 
-
 	private String key;
 	private String word;
 	private int tno;	//구단번호별 게시판확인위해서 추가
