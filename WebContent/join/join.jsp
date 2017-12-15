@@ -253,7 +253,6 @@
 							<option value="9">삼성 라이온즈</option>
 							<option value="10">KT 위즈</option>
 						</select>
-						<input type="text" name="tnowiew" id="tnowiew">
 					</div>
 				</div>
 

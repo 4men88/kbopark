@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Map;
 
 import com.baseball.member.model.MemberDetailDto;
@@ -68,8 +67,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public MemberDto logIn(Map<String,String> map) {
-		MemberDto memberDto=null;
+	public MemberDetailDto logIn(Map<String,String> map) {
+		MemberDetailDto memberDetailDto=null;
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -77,20 +76,34 @@ public class MemberDaoImpl implements MemberDao {
 			
 			conn=DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("select mid,name,email1,email2\n");
-			sql.append("from member\n");
-			sql.append("where mid=? and pass=?");
+			sql.append("select m.mid,m.name,m.email1,m.email2,to_char(m.joindate,'yyyy-mm-dd') joindate,\n");
+			sql.append("	   mt.tel1,mt.tel2,mt.tel3,mt.zip1,mt.addr1,mt.addr2,mt.tno,mt.rookie,\n");
+			sql.append("	   mt.penalty,mt.mtype,mt.mstatus\n");
+			sql.append("from member m,member_detail mt\n");
+			sql.append("where m.mid=mt.mid and m.mid=? and m.pass=?");
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, map.get("id"));
 			pstmt.setString(2, map.get("pass"));
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-				memberDto = new MemberDto();
-				memberDto.setId(rs.getString("mid"));
-				memberDto.setName(rs.getString("name"));
-				memberDto.setEmail1(rs.getString("email1"));
-				memberDto.setEmail1(rs.getString("email2"));
-				System.out.println(memberDto.getId());
+				memberDetailDto = new MemberDetailDto();
+				memberDetailDto.setId(rs.getString("mid"));
+				memberDetailDto.setName(rs.getString("name"));
+				memberDetailDto.setEmail1(rs.getString("email1"));
+				memberDetailDto.setEmail2(rs.getString("email2"));
+				memberDetailDto.setJoindate(rs.getString("joindate"));
+				memberDetailDto.setTel1(rs.getString("tel1"));
+				memberDetailDto.setTel2(rs.getString("tel2"));
+				memberDetailDto.setTel3(rs.getString("tel3"));
+				memberDetailDto.setZip1(rs.getString("zip1"));
+				memberDetailDto.setAddr1(rs.getString("addr1"));
+				memberDetailDto.setAddr2(rs.getString("addr2"));
+				memberDetailDto.setTno(rs.getInt("tno"));
+				memberDetailDto.setRookie(rs.getInt("rookie"));
+				memberDetailDto.setPenalty(rs.getInt("penalty"));
+				memberDetailDto.setMstatus(rs.getString("mstatus"));
+				
+				
 				
 			}
 			
@@ -100,7 +113,7 @@ public class MemberDaoImpl implements MemberDao {
 		} finally {
 			DBClose.close(conn, pstmt,rs);
 		}
-		return memberDto;
+		return memberDetailDto;
 	}
 
 	@Override
@@ -131,7 +144,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public String idFind(MemberDetailDto memberDto) {
+	public String idFind(MemberDto memberDto) {
 		String id=null;
 		Connection conn=null;
 		PreparedStatement pstmt = null;

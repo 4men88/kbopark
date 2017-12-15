@@ -2,7 +2,21 @@
 	pageEncoding="EUC-KR"%>
 <!--header 영역 -->
 <%@ include file="/common/header.jsp"%>
-
+<%
+String saveid = "";
+String checkid = "";
+Cookie cookie[] = request.getCookies();
+if(cookie!=null){
+	int len = cookie.length;
+	for(int i=0;i<len;i++){
+		if("nid_sid".equals(cookie[i].getName())){
+			saveid = cookie[i].getValue();
+			checkid = "checked=\"checked\"";
+			break;
+		}
+	}
+}
+%>
 <script>
 function login(){
 	if(document.getElementById("id").value==""){
@@ -13,6 +27,10 @@ function login(){
 		document.getElementById("loginform").action="<%=root%>/kbopark";
 		document.getElementById("loginform").submit();
 	}
+}
+
+function idfind(){
+	window.open("<%=root%>/kbopark?act=mvidfind","idck","width=550,height=420,top=300,left=200,location=no,status=no,titlebar=no,toolbar=no,resizable=no,scrollbars=no");	
 }
 </script>
 
@@ -26,7 +44,7 @@ function login(){
 			<form class="" id="loginform" name="loginform" method="post" action="">
 			<input type="hidden" name="act" id="act" value="login">
 				<div class="form-group">
-					<input type="text" id="id" name="id" class="form-control" placeholder="아이디">
+					<input type="text" id="id" name="id" class="form-control" placeholder="아이디" value="<%= saveid %>">
 				</div>
 				<div class="form-group">
 					<input type="password" id="pass" name="pass" class="form-control"
@@ -38,13 +56,13 @@ function login(){
 				<div class="d-flex mb-3">
 					<div class="mr-auto px-2 my-0">
 						<div class="form-check my-0">
-							<label class="form-check-label"> <input type="checkbox"
-								class="form-check-input">ID저장
+							<label class="form-check-label"> 
+							<input id="idsv" name="idsv" type="checkbox" class="form-check-input" value="saveid" <%=checkid %>>ID저장
 							</label>
 						</div>
 					</div>
 					<div class="px-2 border-r">
-						<span><a href="">ID찾기</a></span>
+						<span><a href="javascript:idfind();">ID찾기</a></span>
 					</div>
 					<div class="px-2"><a href="">비밀번호찾기</a></div>
 				</div>

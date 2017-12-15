@@ -2,6 +2,7 @@ package com.baseball.schedule.service;
 
 import java.sql.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.baseball.schedule.scheduleDto.ScheduleDto;
@@ -28,7 +29,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 
 	@Override
-	public ScheduleDto viewSchedule() {
+	public List<ScheduleDto> viewSchedule(){
+		System.out.println("ScheduleServiceImpl ¿Ô´Ù°¨ ?");
 		return ScheduleDaoImpl.getScheduleDao().getSchedule();
 	}
 

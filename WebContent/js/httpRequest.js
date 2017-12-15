@@ -1,3 +1,4 @@
+
 function getXMLHttpRequest(){
 	if(window.ActiveXObject){
 		try{

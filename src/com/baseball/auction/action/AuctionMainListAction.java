@@ -8,9 +8,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.omg.CORBA.INTERNAL;
+
 import com.baseball.action.Action;
 import com.baseball.auction.model.AuctionDetailDto;
-import com.baseball.auction.service.AuctionServiceImpl;
+import com.baseball.auction.service.AuctionMainServiceImpl;
 
 public class AuctionMainListAction implements Action {
 
@@ -18,16 +20,19 @@ public class AuctionMainListAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 	
-		List<AuctionDetailDto> bestList = AuctionServiceImpl.getAuctionService().auctionBestList();
-		List<AuctionDetailDto> endList = AuctionServiceImpl.getAuctionService().auctionEndList();
-		List<AuctionDetailDto> hitList = AuctionServiceImpl.getAuctionService().auctionHitList();
-		List<AuctionDetailDto> newList = AuctionServiceImpl.getAuctionService().auctionNewList();
-//		for(int i=0; i<bestList.size() + endList.size() + hitList.size() + newList.size(); i++)
-//		{
-//			mainList.add(list.get(i));
-//		}
-//		System.out.println(list.get(0).getAimage());
-//		System.out.println(list.get(1).getAimage());
+		List<AuctionDetailDto> bestList = AuctionMainServiceImpl.getAuctionService().auctionBestList();
+		List<AuctionDetailDto> endList = AuctionMainServiceImpl.getAuctionService().auctionEndList();
+		List<AuctionDetailDto> hitList = AuctionMainServiceImpl.getAuctionService().auctionHitList();
+		List<AuctionDetailDto> newList = AuctionMainServiceImpl.getAuctionService().auctionNewList();
+		List<Integer> newNumArray = AuctionMainServiceImpl.getAuctionService().auctionNewNumArray();
+
+		System.out.println("endList»óÅÂ: " + endList.get(0).getAstatus());
+		System.out.println("newNumArray1 = " + newNumArray.get(0));
+		System.out.println("newNumArray2 = " + newNumArray.get(1));
+		System.out.println("newNumArray3 = " + newNumArray.get(2));
+		System.out.println("newNumArray4 = " + newNumArray.get(3));
+		System.out.println("newNumArray5 = " + newNumArray.get(4));
+		request.setAttribute("newNumArray", newNumArray);
 		request.setAttribute("bestList", bestList);
 		request.setAttribute("endList", endList);
 		request.setAttribute("hitList", hitList);

@@ -1,41 +1,76 @@
 package com.baseball.gudan.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class GudanController
- */
-@WebServlet("/GudanController")
+import com.baseball.factory.GudanActionFactory;
+import com.baseball.gudan.service.GudanServiceImpl;
+import com.baseball.util.NullCheck;
+import com.baseball.util.PageMove;
+import com.baseball.util.StringEncoder;
+
+@WebServlet("/gudan")
 public class GudanController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GudanController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String root = request.getContextPath();
+		
+		String act = request.getParameter("act");
+		int tno = NullCheck.nullToZero(request.getParameter("tno"));
+		System.out.println("GudanController act >>> " + act);
+				
+		String path = "/index.jsp";
+		if("viewgudan".equals(act)) {
+			path = "/gudan/teammain.jsp";
+			PageMove.forward(request, response, path);
+		} else if ("mvhome".equals(act)) {
+			path = GudanActionFactory.getGudanAction().execute(request, response);
+//			path += queryString;
+			PageMove.forward(request, response, path);			
+		} else if ("mvstadium".equals(act)) {
+			path = GudanActionFactory.getStadiumAction().execute(request, response);
+			PageMove.forward(request, response, path);			
+		} else if ("mvweekly".equals(act)) {
+
+			path = GudanActionFactory.getWeeklyAction().execute(request, response);
+			PageMove.forward(request, response, path);			
+			
+		} else if ("mvcommunity".equals(act)) {
+			path = "/community/list.jsp";
+			PageMove.forward(request, response, path);			
+		} else if("mvteamweb".equals(act)) {	//각구단공식홈페이지로이동
+			System.out.println("GudanController tno >>> " + tno);
+			path = GudanServiceImpl.getGudanService().getGudanWeb(tno);
+			System.out.println("GudanController path >>> " + path);
+			response.sendRedirect(path);
+		} else if("mvreservation".equals(act)) {
+			System.out.println("GudanController tno >>> " + tno);
+			path = GudanServiceImpl.getGudanService().getReservationWeb(tno);
+			System.out.println("GudanController path >>> " + path);
+			response.sendRedirect(path);		
+		}
+//		} else if("deletearticle".equals(act)) {
+//			System.out.println("controller deletearticle 진입 !");
+//			path = BoardActionFactory.getReboardDeleteAction().execute(request, response);
+//			path += queryString;
+//			System.out.println("controller deletearticle path >>>   " + path);
+//			PageMove.forward(request, response, path);
+		
+		else if("".equals(act)) {
+			PageMove.redirect(request, response, path);
+		}
+	
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("EUC-KR");
 		doGet(request, response);
 	}
-
+	
 }

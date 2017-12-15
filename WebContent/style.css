@@ -1,6 +1,7 @@
 @charset "EUC-KR";
 
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
 @import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 
 /* °øÅë */
@@ -23,6 +24,11 @@ body>* {
 .border-b {
 	padding: 1px;
 	border-bottom: 1px solid rgb(233, 233, 233);
+}
+
+.border-b-strong {
+	padding: 1px;
+	border-bottom: 2px solid #777777;
 }
 
 .border-r {
@@ -93,12 +99,14 @@ body>* {
 	background: transparent !important;
 }
 
-#main-carousel .carousel-control-prev-icon, #daily .carousel-control-prev-icon {
+#main-carousel .carousel-control-prev-icon, #daily .carousel-control-prev-icon
+	{
 	background-image:
 		url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23aaa' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
 }
 
-#main-carousel .carousel-control-next-icon, #daily .carousel-control-next-icon {
+#main-carousel .carousel-control-next-icon, #daily .carousel-control-next-icon
+	{
 	background-image:
 		url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23aaa' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
 }
@@ -134,11 +142,13 @@ body>* {
 	margin-right: 0;
 }
 
-#main-carousel .home-team-m, #main-carousel .away-team-m, #daily .home-team-m, #daily .away-team-m {
+#main-carousel .home-team-m, #main-carousel .away-team-m, #daily .home-team-m,
+	#daily .away-team-m {
 	display: inline;
 }
 
-#main-carousel .home-team, #main-carousel .away-team, #daily .home-team, #daily .away-team {
+#main-carousel .home-team, #main-carousel .away-team, #daily .home-team,
+	#daily .away-team {
 	display: none;
 }
 
@@ -594,7 +604,7 @@ html, body {
 	.calendar .daylist {
 		display: table-cell;
 		padding-left: 10px;
-	}	
+	}
 	.calendar>ul>li>div>time span.Ym {
 		font-size: 10px;
 		display: block;
@@ -626,13 +636,25 @@ html, body {
 	color: #2453a5;
 }
 
-.calendar * {margin:0;padding:0;font:13px/1.4 "JeJu Gothic", "Nanum Gothic";font-weight:200;color:#555;vertical-align:0px;-webkit-text-size-adjust:none;}
-.calendar a {cursor:pointer;}
-.calendar ol, ul{list-style:none;}
+.calendar * {
+	margin: 0;
+	padding: 0;
+	font: 13px/1.4 "JeJu Gothic", "Nanum Gothic";
+	font-weight: 200;
+	color: #555;
+	vertical-align: 0px;
+	-webkit-text-size-adjust: none;
+}
 
+.calendar a {
+	cursor: pointer;
+}
+
+.calendar ol, ul {
+	list-style: none;
+}
 
 /* schedule daily */
-
 @media ( min-width : 768px) {
 	#daily .daily-size-wrapper {
 		width: 586px;
@@ -647,10 +669,188 @@ html, body {
 }
 
 /* notice */
+#notice .notice-inner {
+	border-bottom: 3px solid white;
+}
+
 #notice .notice-inner:hover, .notice-inner:active {
 	border-bottom: 3px solid #066ED2;
 }
 
 #notice .pagination .page-item.active .page-link {
 	color: white !important;
+}
+
+/* community */
+#gudan-nav .gudan-nav-inner {
+	border-bottom: 3px solid white;
+}
+
+#gudan-nav .gudan-nav-inner:hover, .gudan-nav-inner:active {
+	border-bottom: 3px solid #066ED2;
+}
+
+/* community - board */
+#comm-best .bestnum, #weekly-list .week {
+	font-family: Jeju Gothic;
+	font-weight: 800;
+	margin-right: 1rem;
+}
+
+#weekly-ticket .infosubject {
+	font-family: Jeju Gothic;
+	font-weight: 800;
+	font-size: 28px;
+	border-right: 1px dashed rgb(175, 175, 175);
+}
+
+#hideborder-wrapper {
+	display: none;
+}
+
+@media ( max-width : 768px) {
+	#weekly-ticket .infosubject {
+		border-right: none;
+	}
+	#hideborder-wrapper {
+		display: block;
+	}
+	#hideborder {
+		border-bottom: 1px dashed rgb(175, 175, 175);
+	}
+}
+
+#comm-best .list-group-item {
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	margin-bottom: 0px;
+}
+
+#comm-home .list-group-item, #weekly-list .list-group-item {
+	border-left: none;
+	border-right: none;
+	border-top: none;
+	margin-bottom: 0px;
+}
+
+.pagination .page-item.active .page-link {
+	color: white !important;
+}
+
+#communitylist .list-group .active {
+	color: white !important;
+}
+
+/* map */
+#stadium-map .wrap {
+	position: absolute !important;
+	left: 0 !important;
+	bottom: 40px !important;
+	width: 288px !important;
+	height: 132px !important;
+	margin-left: -144px !important;
+	text-align: left !important;
+	overflow: hidden !important;
+	font-size: 12px !important;
+	font-family: 'Malgun Gothic', dotum, 'µ¸¿ò', sans-serif !important;
+	line-height: 1.5 !important;
+}
+
+#stadium-map .wrap * {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
+#stadium-map .wrap .info {
+	width: 286px !important;
+	height: 120px !important;
+	border-radius: 5px !important;
+	border-bottom: 2px solid #ccc !important;
+	border-right: 1px solid #ccc !important;
+	overflow: hidden !important;
+	background: #fff !important;
+}
+
+#stadium-map .wrap .info:nth-child(1) {
+	border: 0 !important;
+	box-shadow: 0px 1px 2px #888 !important;
+}
+
+#stadium-map .info .title {
+	padding: 5px 0 0 10px !important;
+	height: 30px !important;
+	background: #eee !important;
+	border-bottom: 1px solid #ddd !important;
+	font-size: 16px !important;
+	font-weight: bold !important;
+}
+
+#stadium-map .info .close {
+	position: absolute !important;
+	top: 10px !important;
+	right: 10px !important;
+	color: #888 !important;
+	width: 16px !important;
+	height: 16px !important;
+	background:
+		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+}
+
+#stadium-map .info .close:hover {
+	cursor: pointer !important;
+}
+
+#stadium-map .info .body {
+	position: relative !important;
+	overflow: hidden !important;
+}
+
+#stadium-map .info .desc {
+	position: relative !important;
+	margin: 13px 0 0 90px !important;
+	height: 75px !important;
+}
+
+#stadium-map .desc .ellipsis {
+	overflow: hidden !important;
+	text-overflow: ellipsis !important;
+	white-space: nowrap !important;
+}
+
+#stadium-map .desc .jibun {
+	font-size: 11px !important;
+	color: #888 !important;
+	margin-top: -2px !important;
+}
+
+#stadium-map .info .img {
+	position: absolute !important;
+	top: 6px !important;
+	left: 5px !important;
+	width: 73px !important;
+	height: 71px !important;
+	border: 1px solid #ddd !important;
+	color: #888 !important;
+	overflow: hidden !important;
+}
+
+#stadium-map .info:after {
+	content: '';
+	position: absolute !important;
+	margin-left: -12px !important;
+	left: 50% !important;
+	bottom: 0 !important;
+	width: 22px !important;
+	height: 12px !important;
+	background:
+		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+}
+
+#stadium-map .info .link {
+	color: #5085BB !important;
+}
+
+#listnav td>a, #listnav td>font>b {
+	margin: 3px;	
 }

@@ -22,9 +22,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int registMember(MemberDetailDto memberdto) {
+	public int registMember(MemberDetailDto memberDetailDto) {
 		System.out.println("서비스임플로보낸당");
-		return MemberDaoImpl.getMemberDao().registMember(memberdto);
+		return MemberDaoImpl.getMemberDao().registMember(memberDetailDto);
 		
 	}
 
@@ -36,14 +36,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public String idFind(MemberDetailDto memberDto) {
+	public String idFind(MemberDto memberDto) {
 		return MemberDaoImpl.getMemberDao().idFind(memberDto);
 	}
 
 
 
 	@Override
-	public MemberDto logIn(Map<String, String> map) {
+	public MemberDetailDto logIn(Map<String, String> map) {
 		
 		return MemberDaoImpl.getMemberDao().logIn(map);
 	}
