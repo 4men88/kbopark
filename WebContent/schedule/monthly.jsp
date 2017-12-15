@@ -14,7 +14,6 @@
 <%@ include file="/common/header.jsp"%>
 <%
 List<ScheduleDto> list = (List<ScheduleDto>)request.getAttribute("sch");
-
 %>
 
 <!--리스트가아니라 map을 받아와요
@@ -119,11 +118,6 @@ List<ScheduleDto> list = (List<ScheduleDto>)request.getAttribute("sch");
 											String cday = ymd + d;
 								%>
 								<div><%=d%>
-									<div>
-									<%= %>
-									
-									</div>
-							
 								</div> 
 <%
  	if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY)
