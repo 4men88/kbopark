@@ -71,7 +71,9 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public int getNextSeq() {
 		return AdminDaoImpl.getAdminDao().getNextSeq();
+		
 	}
+
 
 	@Override
 	public PageNavi makePageNavigation(int ntype,int pg, String key, String word, int listsize) {

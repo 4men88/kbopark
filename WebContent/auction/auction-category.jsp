@@ -295,15 +295,15 @@ function auctionsort(sort)
 				</nav>
 				<a class="nav-link" href="javascript:categoryList('','','3','');">응원용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1');">피켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','3','2');">LED피켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','3','3');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1','');">피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','2','');">LED피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','3','');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','4','');">기타잡화</a>
+				<a class="nav-link" href="javascript:categoryList('','','4','','');">기타잡화</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1');">사진</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','2');">티켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','3');">카드</a> <a
+					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1','');">사진</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','2','');">티켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','3','');">카드</a> <a
 						class="nav-link ml-3" href="javascript:categoryList('','','4','4','');">기타</a>
 				</nav>
 			</div>

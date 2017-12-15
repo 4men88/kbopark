@@ -1,43 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-   pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR"%>
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
 <script>
 function mypage(){
-   alert()
-   
+	alert()
+	
 }
 
 function modifyinfo(){
-   
+	
 }
 
 function moveModify() {
-   document.location.href = "<%=root%>/mypage?act=movemodify";
+	document.location.href = "<%=root%>/mypage?act=movemodify";
 }
 
 
 function myauction(){
-   
+	
 }
 
 function lookie(){
-   
+	
 }
 
 function myarticle(){
-   document.getElementById("cact").value = "listarticle";
-   document.getElementById("cbcode").value = bcode;
-   document.getElementById("cpg").value = pg;
-   document.getElementById("ckey").value = key;
-   document.getElementById("cword").value = word;
-   
-   document.getElementById("commonForm").action = root + control;
-   document.getElementById("commonForm").submit();
+	document.getElementById("cact").value = "listarticle";
+	document.getElementById("cbcode").value = bcode;
+	document.getElementById("cpg").value = pg;
+	document.getElementById("ckey").value = key;
+	document.getElementById("cword").value = word;
+	
+	document.getElementById("commonForm").action = root + control;
+	document.getElementById("commonForm").submit();
 }
 
 function logout(){
-   document.location.href = "<%=root %>/kbopark?act=logout";
+	document.location.href = "<%=root %>/kbopark?act=logout";
 }
 
 
@@ -74,13 +74,13 @@ function logout(){
 <div class="container-fluid">
 
     <div id="menuarea" class="col-sm-2" style="background-color:#F8F8FF;">
-                
-       <div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/mypage?act=mvmypage'" style="height:50px;width:100%;margin:5px;">마이페이지</button></div>
-       <div><button type="button" class="btn btn-primary" onclick="javascript:moveModify();" style="height:50px;width:100%;margin:5px;">정보수정</button></div>
-       <div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/mypage/myauction.jsp'" style="height:50px;width:100%;margin:5px;">경매 관리</button></div>
-       <div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/mypage/lookie.jsp'" style="height:50px;width:100%;margin:5px;">루키 관리</button></div>
-       <div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/mypage/myarticle.jsp'" style="height:50px;width:100%;margin:5px;">게시물 관리</button></div>
-          <div><button type="button" class="btn btn-primary" onclick="javascript:logout();" style="height:50px;width:100%;margin:5px;">로그아웃</button></div>
+    				
+    	<div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/mypage?act=mvmypage'" style="height:50px;width:100%;margin:5px;">마이페이지</button></div>
+    	<div><button type="button" class="btn btn-primary" onclick="javascript:moveModify();" style="height:50px;width:100%;margin:5px;">정보수정</button></div>
+    	<div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/mypage/myauction.jsp'" style="height:50px;width:100%;margin:5px;">경매 관리</button></div>
+    	<div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/mypage/lookie.jsp'" style="height:50px;width:100%;margin:5px;">루키 관리</button></div>
+    	<div><button type="button" class="btn btn-primary" onclick="location.href='<%=root%>/mypage/myarticle.jsp'" style="height:50px;width:100%;margin:5px;">게시물 관리</button></div>
+       	<div><button type="button" class="btn btn-primary" onclick="javascript:logout();" style="height:50px;width:100%;margin:5px;">로그아웃</button></div>
       </div>
       
 
