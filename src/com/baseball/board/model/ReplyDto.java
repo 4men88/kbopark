@@ -44,5 +44,9 @@ public class ReplyDto {
 	public void setRetime(String retime) {
 		this.retime = retime;
 	}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> dea173dce3d466e73643cd3e951b710f15ecf46f
 	
 }

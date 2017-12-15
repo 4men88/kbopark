@@ -120,7 +120,7 @@ List<ScheduleDto> list = (List<ScheduleDto>)request.getAttribute("sch");
 								%>
 								<div><%=d%>
 									<div>
-									<%= %>
+								
 									
 									</div>
 							

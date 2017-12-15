@@ -3,41 +3,22 @@
 <%@ include file="/common/setting.jsp"%>
 
 <header class="sticky-top" style="background-color: white;">
-<script type="text/javascript">
-function mypage(){
-	
-	
-	
-	
-	
-}
-
-
-
-</script>
-
-
-
 <%
 if(memberDto!=null){
 	if("gksdjf".equals(memberDto.getId())){
 %>
-
 	<div id="top-header" class="py-2 text-right border-b">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<span style="margin-right: 20px;"><%=memberDto.getName()%>님 반갑습니다</span>
+					<span style="margin-right: 20px;"><%=memberDto.getName()%>(관리자)님 반갑습니다</span>
 					<a href="<%=root %>/kbopark?act=logout" style="margin-right: 20px">로그아웃</a>
-					<a href="<%=root %>/mypage?act=mvmypage">마이페이지</a>
-
-		
-					</div>
+				</div>
 
 				</div>
 			</div>
 		</div>
-
+		
 		<nav id="main-header" class="navbar navbar-expand-md border-b">
 		<div class="container py-2">
 			<a class="navbar-brand" href="<%=root%>/admin/adhome.jsp"> <img class="d-block"
@@ -53,8 +34,8 @@ if(memberDto!=null){
 					<li class="nav-item mx-1"><a class="nav-link" href="<%=root%>/admin?act=usermanage">회원관리</a></li>
 					<li class="nav-item mx-1"><a class="nav-link" href="">경매관리</a></li>
 					<li class="nav-item mx-1"><a class="nav-link" href="">구단정보관리</a></li>
-					<li class="nav-item mx-1"><a class="nav-link" href="">게시판관리</a></li>
-					<li class="nav-item mx-1"><a class="nav-link" href="<%=root%>/admin?act=notice">공지사항</a></li>
+					<li class="nav-item mx-1"><a class="nav-link" href="<%=root%>/admin?act=community">게시판관리</a></li>
+					<li class="nav-item mx-1"><a class="nav-link" href="<%=root%>/admin?act=notice&ntype=0&pg=1">공지사항</a></li>
 				</ul>
 				<form class="form-inline m-0">
 					<input class="form-control mr-2" type="text" style="">
@@ -76,7 +57,7 @@ if(memberDto!=null){
 						<div class="col-md-12">
 							<span style="margin-right: 20px;"><%=memberDto.getName()%>님 반갑습니다</span>
 							<a href="<%=root %>/kbopark?act=logout" style="margin-right: 20px">로그아웃</a>
-								<a href="<%=root %>/mypage?act=mvmypage">마이페이지</a>
+							<a href="<%=root %>/kbopark?act=mypage">마이페이지</a>
 						</div>
 					</div>
 				</div>

@@ -10,7 +10,6 @@ import com.baseball.action.Action;
 import com.baseball.member.model.MemberDetailDto;
 import com.baseball.member.service.MemberServiceImpl;
 import com.baseball.mypage.service.MypageServiceImpl;
-import com.baseball.util.StringEncoder;
 
 public class ModifyInfoAction implements Action {
 
@@ -22,7 +21,7 @@ public class ModifyInfoAction implements Action {
 		int cnt=0;
 		MemberDetailDto memberDto = new MemberDetailDto();
 		memberDto.setId(request.getParameter("id"));
-		memberDto.setName(StringEncoder.isoToMain(request.getParameter("name")));
+		memberDto.setName(request.getParameter("name"));
 		memberDto.setPass(request.getParameter("pass"));
 		memberDto.setEmail1(request.getParameter("email1"));
 		memberDto.setEmail2(request.getParameter("email2"));

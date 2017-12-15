@@ -39,7 +39,7 @@ public class UserListAction implements Action{
 				request.setAttribute("mlist", list);
 				path="/admin/mlistxml.jsp";
 			}else {
-				path="/admin/adhome.jsp";
+				path="/index.jsp";
 				
 			}
 		}else {

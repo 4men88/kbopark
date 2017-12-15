@@ -8,6 +8,7 @@
 <%@ include file="/common/header.jsp"%>
 <%
 List<ScheduleDto> list = (List<ScheduleDto>)request.getAttribute("sch");
+ScheduleDto scheduleDto = new ScheduleDto();
 %>
 
 
@@ -94,10 +95,6 @@ List<ScheduleDto> list = (List<ScheduleDto>)request.getAttribute("sch");
 					<a href= "<%=root %>/schedule/daily.jsp?y=<%=nextYear%>&m=<%=nextMonth%>&d=<%=nextDay%>">&gt;</a>
 				</p>
 			</div>
-			
-			
-		
-	
 <% 
 int i = 0;
 for(i= 0; i<5; i++){
@@ -137,112 +134,6 @@ for(i= 0; i<5; i++){
 }
 			%>
 			
-			<!--  
-			<div class="row text-white text-center mb-3">
-				<div class="mx-auto rounded daily-size-wrapper"
-					style="background-image: url(<%=root%>/img/etc/grass.jpg);">
-					<div class="col-md-12 text-white p-2"
-						style="background-color: rgba(50, 50, 50, 0.75);">
-						<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
-					</div>
-					<div class="col-md-12 opaque-overlay py-2 px-3">
-						<div class="row">
-							<div class="col-md-5 p-0 col-12" style="text-align: left;">
-								<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
-									class="img-thumbnail"><label>SK 와이번즈</label>
-							</div>
-							<div class="col-md-2 p-0 col-12 align-self-center">
-								<h2 class="m-0">
-									<strong>0 VS 0</strong>
-								</h2>
-							</div>
-							<div class="col-md-5 p-0 col-12" style="text-align: right;">
-								<label>KT 위즈</label><img
-									src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
-									class="img-thumbnail">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row text-white text-center mb-3">
-				<div class="mx-auto rounded daily-size-wrapper"
-					style="background-image: url(<%=root%>/img/etc/grass.jpg);">
-					<div class="col-md-12 text-white p-2"
-						style="background-color: rgba(50, 50, 50, 0.75);">
-						<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
-					</div>
-					<div class="col-md-12 opaque-overlay py-2 px-3">
-						<div class="row">
-							<div class="col-md-5 p-0 col-12" style="text-align: left;">
-								<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
-									class="img-thumbnail"><label>SK 와이번즈</label>
-							</div>
-							<div class="col-md-2 p-0 col-12 align-self-center">
-								<h2 class="m-0">
-									<strong>0 VS 0</strong>
-								</h2>
-							</div>
-							<div class="col-md-5 p-0 col-12" style="text-align: right;">
-								<label>KT 위즈</label><img
-									src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
-									class="img-thumbnail">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row text-white text-center mb-3">
-				<div class="mx-auto rounded daily-size-wrapper"
-					style="background-image: url(<%=root%>/img/etc/grass.jpg);">
-					<div class="col-md-12 text-white p-2"
-						style="background-color: rgba(50, 50, 50, 0.75);">
-						<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
-					</div>
-					<div class="col-md-12 opaque-overlay py-2 px-3">
-						<div class="row">
-							<div class="col-md-5 p-0 col-12" style="text-align: left;">
-								<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
-									class="img-thumbnail"><label>SK 와이번즈</label>
-							</div>
-							<div class="col-md-2 p-0 col-12 align-self-center">
-								<h2 class="m-0">
-									<strong>0 VS 0</strong>
-								</h2>
-							</div>
-							<div class="col-md-5 p-0 col-12" style="text-align: right;">
-								<label>KT 위즈</label><img
-									src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
-									class="img-thumbnail">
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row text-white text-center mb-3">
-				<div class="mx-auto rounded daily-size-wrapper"
-					style="background-image: url(<%=root%>/img/etc/grass.jpg);">
-					<div class="col-md-12 text-white p-2"
-						style="background-color: rgba(50, 50, 50, 0.75);">
-						<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
-					</div>
-					<div class="col-md-12 opaque-overlay py-2 px-3">
-						<div class="row">
-							<div class="col-md-5 p-0 col-12" style="text-align: left;">
-								<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
-									class="img-thumbnail"><label>SK 와이번즈</label>
-							</div>
-							<div class="col-md-2 p-0 col-12 align-self-center">
-								<h2 class="m-0">
-									<strong>0 VS 0</strong>
-								</h2>
-							</div>
-							<div class="col-md-5 p-0 col-12" style="text-align: right;">
-								<label>KT 위즈</label><img
-									src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
-									class="img-thumbnail">
-							</div>
-							-->
 						</div>
 					</div>
 				</div>

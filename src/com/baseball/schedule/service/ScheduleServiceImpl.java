@@ -30,8 +30,12 @@ public class ScheduleServiceImpl implements ScheduleService {
 
 	@Override
 	public List<ScheduleDto> viewSchedule(){
+		
+		
+		Map<String, String> map = new HashMap<String, String>();
+		System.out.println("ScheduleServiceImpl viewSchedule" +map);
 		System.out.println("ScheduleServiceImpl ¿Ô´Ù°¨ ?");
-		return ScheduleDaoImpl.getScheduleDao().getSchedule();
+		return ScheduleDaoImpl.getScheduleDao().getSchedule(map);
 	}
 
 }

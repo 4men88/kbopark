@@ -10,8 +10,4 @@ public interface ScheduleService {
 
 	List<ScheduleDto> viewSchedule();
 	
-	
-	
-	
-
 }

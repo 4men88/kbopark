@@ -13,6 +13,9 @@
 		if(document.getElementById("name").value==""){
 			alert("이름을 입력하세요!!!");
 			return;
+		}else if(document.getElementById("id").value==""){
+			alert("아이디를 입력하세요!!!");
+			return;
 		}else if(document.getElementById("pass").value==""){
 			alert("비밀번호를 입력하세요!!!");
 			return;

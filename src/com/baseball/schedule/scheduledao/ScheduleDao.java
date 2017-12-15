@@ -8,10 +8,9 @@ import com.baseball.schedule.scheduleDto.ScheduleDto;
 public interface ScheduleDao {
 
 
+	List<ScheduleDto> getSchedule(Map<String, String> map);
 
 
-
-	List<ScheduleDto> getSchedule();
 
 
 

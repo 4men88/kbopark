@@ -2,6 +2,7 @@ package com.baseball.schedule.action;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -20,11 +21,13 @@ import com.baseball.schedule.service.ScheduleServiceImpl;
 
 public class ScheduleAction implements Action {
 
+
+
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		List<ScheduleDto> list = ScheduleDaoImpl.getScheduleDao().getSchedule();
+		List<ScheduleDto> list = ScheduleServiceImpl.getScheduleService().viewSchedule();
 		
 		request.setAttribute("sch", list);
 		System.out.println("ScheduleAction" + list);

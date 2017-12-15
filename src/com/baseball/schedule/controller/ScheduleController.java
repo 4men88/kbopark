@@ -1,6 +1,8 @@
 package com.baseball.schedule.controller;
 
 import java.io.IOException;
+import java.util.Calendar;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +18,7 @@ public class ScheduleController extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-	
+		
 		String root = request.getContextPath();
 		String act = request.getParameter("act");
 		System.out.println("ScheduleController act ==" + act);
@@ -24,6 +26,7 @@ public class ScheduleController extends HttpServlet {
 		String path = "/index.jsp";
 		
 		if("viewschedule".equals(act)) {
+			System.out.println("viewschedule ³ª¿È ?");
 			path = ScheduleActionFactory.getScheduleAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		} else if("".equals(act)) {
