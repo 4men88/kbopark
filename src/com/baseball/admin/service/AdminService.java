@@ -18,4 +18,5 @@ public interface AdminService {
 	int getNextSeq();
 	PageNavi makePageNavigation(int ntype,int pg,String key, String word,int listsize);
 	List<BoardDto> boardlist();
+	List<NoticeDto> noticeList();
 }
