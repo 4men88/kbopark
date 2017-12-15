@@ -3,12 +3,16 @@
 <%@ include file="/common/header.jsp" %>
 <%
 List<BoardDto> list = (List<BoardDto>)request.getAttribute("clist");
+
 %>
 <script>
 function deleteBoard(bno){
 	document.location.href="/admin?act=deleteboard&bno="+bno;
 }
 </script>
+<%
+if("gksdjf".equals(memberDto.getId())){
+%>
 <center>
 <h3>게시물관리</h3>
 <table border="1" width="1024px">
@@ -22,7 +26,7 @@ function deleteBoard(bno){
 	<td width="70px">신고횟수</td>
 </tr>
 <%
-for(BoardDto boardDto : list){
+	for(BoardDto boardDto : list){
 %>
 	<tr>
 		<td width="70px"><%=boardDto.getBno() %></td>
@@ -37,10 +41,20 @@ for(BoardDto boardDto : list){
 		</td>
 	</tr>
 <%
-}
+	}
 %>
 
 
 </table>
 </center>
+<%
+}else{
+%>
+<script>
+alert("관리자 전용 페이지 입니다");
+document.location.href="<%=root%>/index.jsp";
+</script>
+<%
+}
+%>
 <%@ include file="/common/footer.jsp" %>
