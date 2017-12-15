@@ -444,4 +444,47 @@ public class AdminDaoImpl implements AdminDao {
 		}
 		return list;
 	}
+
+	@Override
+	public List<NoticeDto> noticeList() {
+		List<NoticeDto> list = new ArrayList<NoticeDto>();
+		
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("select no,subject,detail,count,ntype,\n");
+			sql.append("		case  \n");
+			sql.append("		when to_char(writedate, 'yymmdd') = to_char(sysdate, 'yymmdd')\n");
+			sql.append("		then to_char(writedate, 'hh24:mi:ss')\n");
+			sql.append("		else to_char(writedate, 'yy.mm.dd')\n");
+			sql.append("		end writedate\n");
+			sql.append("from notice order by no desc");
+			
+			pstmt = conn.prepareStatement(sql.toString());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				NoticeDto noticeDto = new NoticeDto();
+				noticeDto.setNo(rs.getInt("no"));
+				noticeDto.setSubject(rs.getString("subject"));
+				noticeDto.setContext(rs.getString("detail"));
+				noticeDto.setCount(rs.getInt("count"));
+				noticeDto.setWdate(rs.getString("writedate"));
+				noticeDto.setNtype(rs.getInt("ntype"));
+				
+				list.add(noticeDto);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		return list;
+	}
 }

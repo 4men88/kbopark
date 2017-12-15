@@ -20,4 +20,5 @@ public interface AdminDao {
 	int getNewArticleCount();
 	int getTotalArticleCount(Map<String,String> map);
 	List<BoardDto> boardlist();
+	List<NoticeDto> noticeList();
 }
