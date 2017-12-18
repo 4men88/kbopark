@@ -39,6 +39,7 @@ public class AuctionCategoryListAction implements Action {
 		conPageNavigation.setCategoty1(category2);
 		conPageNavigation.setKey(key);
 		conPageNavigation.setWord(word);
+		conPageNavigation.setGudan(gudan);
 		conPageNavigation.setNavigator();
 		// 경매상태  완료 리스트
 		List<AuctionDetailDto> categoryEndList = AuctionCategoryServiceImpl.getAuctionCategoryService().auctionCategoryList(category1, category2, pg, 2, sort, gudan);
@@ -48,6 +49,7 @@ public class AuctionCategoryListAction implements Action {
 		endPageNavigation.setCategoty1(category2);
 		endPageNavigation.setKey(key);
 		endPageNavigation.setWord(word);
+		endPageNavigation.setGudan(gudan);
 		endPageNavigation.setNavigator();
 		
 		

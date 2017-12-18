@@ -296,9 +296,9 @@ function auctionsort(sort)
 						class="nav-link ml-3" href="javascript:categoryList('','','2','2','','1');">배트</a> <a
 						class="nav-link ml-3" href="javascript:categoryList('','','2','3','','1');">글러브</a> <a
 						class="nav-link ml-3" href="javascript:categoryList('','','2','4','','1');">보호장구</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','5','1');">기타</a>
+						class="nav-link ml-3" href="javascript:categoryList('','','2','5','','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','3','','1','1');">응원용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','3','1','','1');">응원용품</a>
 				<nav class="nav nav-pills flex-column">
 					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1','','1');">피켓</a> <a
 						class="nav-link ml-3" href="javascript:categoryList('','','3','2','','1');">LED피켓</a> <a
@@ -405,6 +405,14 @@ if(categoryConList != null)
 										</div>
 <%
 	}
+	if(conPageNavigation != null)
+	{
+%>
+									<div class="col-12 py-3" width="100%" align="center">
+									<%=conPageNavigation.getNavigator() %>
+									</div>
+<% 	
+	}
 }
 %>
 									</div>
@@ -436,39 +444,24 @@ if(categoryEndList != null)
 										</div>
 <%
 	}
+	if(endPageNavigation != null)
+	{
+%>
+									<div class="col-12 py-3" width="100%" align="center">
+									<%=endPageNavigation.getNavigator() %>
+									</div>
+<% 	
+	}
 }
-%>																				
+%>																		
 									</div>
 								</div>
 								
 							</div>
 						</div>
-<!--  ------------------------------페이징 처리 ---------------------------------------- -->
-<% 
-if(conPageNavigation != null)
-{
-%>
-							<div class="col-12 py-3" width="100%" align="center">
-							<%=conPageNavigation.getNavigator() %>
-							</div>
-<% 
-}
-%>							
-<!-- 						<div class="col-12 py-3" >
-							<ul class="pagination pagination-sm">
-								<li class="page-item disabled"><a class="page-link"
-									href="#">Previous</a></li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">Next</a></li>
-							</ul>
-						</div> -->
 					</div>
 				</div>
-				<!--right section-->
 			</div>
-			<!--/row-->
 
 
 

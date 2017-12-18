@@ -10,8 +10,8 @@ public class AuctionPageNavigation {
 	private int totalPageCount;
 	private int pageNo;
 	private String navigator;
-	private String category1;
-	private String category2;
+	private String category1 = "";
+	private String category2 = "";
 	private String key;
 	private String word;
 	private String gudan;

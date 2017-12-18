@@ -105,6 +105,7 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 			}
 			pstmt.setString(++idx, map.get("end"));
 			pstmt.setString(++idx, map.get("start"));
+			System.out.println(category_all);
 			rs = pstmt.executeQuery();
 			System.out.println("rs       = " + rs );
 			int cnt = 0;
