@@ -26,31 +26,34 @@ public class AuctionCategoryListAction implements Action {
 		
 		String key = StringEncoder.isoToMain(request.getParameter("key"));
 		String word = StringEncoder.isoToMain(request.getParameter("word"));
-		int pg = NullCheck.nullToOne(request.getParameter("pg"));
+		int conpg = NullCheck.nullToOne(request.getParameter("conpg"));
+		int endpg = NullCheck.nullToOne(request.getParameter("endpg"));
 		String sort = StringEncoder.isoToMain(request.getParameter("sort"));
 		String gudan = StringEncoder.isoToMain(request.getParameter("gudan"));	
 		
 		System.out.println("gudan =====================" + gudan);
 		// 경매상태 진행중 리스트
-		List<AuctionDetailDto> categoryConList = AuctionCategoryServiceImpl.getAuctionCategoryService().auctionCategoryList(category1, category2, pg, 1, sort, gudan);
-		AuctionPageNavigation conPageNavigation = AuctionCategoryServiceImpl.getAuctionCategoryService().getAuctionCount(category1, category2, pg, 1, sort, gudan);
+		
+		
+		List<AuctionDetailDto> categoryConList = AuctionCategoryServiceImpl.getAuctionCategoryService().auctionCategoryList(category1, category2, conpg, 1, sort, gudan);
+		AuctionPageNavigation conPageNavigation = AuctionCategoryServiceImpl.getAuctionCategoryService().getAuctionCount(category1, category2, conpg, 1, sort, gudan);
 		conPageNavigation.setRoot(request.getContextPath());
 		conPageNavigation.setCategoty1(category1);
 		conPageNavigation.setCategoty1(category2);
 		conPageNavigation.setKey(key);
 		conPageNavigation.setWord(word);
 		conPageNavigation.setGudan(gudan);
-		conPageNavigation.setNavigator();
+		conPageNavigation.setConNavigator();
 		// 경매상태  완료 리스트
-		List<AuctionDetailDto> categoryEndList = AuctionCategoryServiceImpl.getAuctionCategoryService().auctionCategoryList(category1, category2, pg, 2, sort, gudan);
-		AuctionPageNavigation endPageNavigation = AuctionCategoryServiceImpl.getAuctionCategoryService().getAuctionCount(category1, category2, pg, 2, sort, gudan);
+		List<AuctionDetailDto> categoryEndList = AuctionCategoryServiceImpl.getAuctionCategoryService().auctionCategoryList(category1, category2, endpg, 2, sort, gudan);
+		AuctionPageNavigation endPageNavigation = AuctionCategoryServiceImpl.getAuctionCategoryService().getAuctionCount(category1, category2, endpg, 2, sort, gudan);
 		endPageNavigation.setRoot(request.getContextPath());
 		endPageNavigation.setCategoty1(category1);
 		endPageNavigation.setCategoty1(category2);
 		endPageNavigation.setKey(key);
 		endPageNavigation.setWord(word);
 		endPageNavigation.setGudan(gudan);
-		endPageNavigation.setNavigator();
+		endPageNavigation.setEndNavigator();
 		
 		
 		request.setAttribute("categoryConList", categoryConList);
@@ -62,6 +65,9 @@ public class AuctionCategoryListAction implements Action {
 		request.setAttribute("category1", category1);
 		request.setAttribute("category2", category2);
 		
+		request.setAttribute("conpg", conpg + "");
+		request.setAttribute("endpg", endpg + "");
+				
 		return "/auction/auction-category.jsp";
 	}
 }

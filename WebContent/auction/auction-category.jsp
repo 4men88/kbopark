@@ -18,13 +18,30 @@ int categoryEndListLen;
 	List<AuctionDetailDto> categoryEndList = (List<AuctionDetailDto>)request.getAttribute("categoryEndList");
 	AuctionPageNavigation endPageNavigation = (AuctionPageNavigation) request.getAttribute("endPageNavigation");
 	
+
  	//endTime만 따로 리스트에 담을 리스트
    List<String> categoryConListTimeArr = new ArrayList<String>();	//진행중 경매 종료시간만 리스트로
    List<String> categoryEndListTimeArr = new ArrayList<String>();	//마감 경매 종료시간만 리스트로
-   String category1 = (String)request.getAttribute("category1");	//대분류
-   String category2 = (String)request.getAttribute("category2");	//중분류
-   String bigSubject ="";
-   String smallSubject ="";
+   
+   
+   
+   String bigSubject ="";  //대분류 이름
+   String smallSubject ="";//중분류 이름
+   
+   String conpg = (String)request.getAttribute("conpg"); //진행중 경매 페이지
+   String endpg = (String)request.getAttribute("endpg"); //종료된 경매 페이지
+   
+	//진행중/마감 경매 선택 구분할 변수
+	String active1 = "active";
+	String active2 = "";
+   if(conpg != null && !endpg.equals("1"))
+   {
+	   active1 = "";
+	   active2 = "active";	   
+   }
+   
+   String category1 = (String)request.getAttribute("category1");	//대분류 번호
+   String category2 = (String)request.getAttribute("category2");	//중분류 번호
 if(category1 != null)
 {
    if(category1.equals("1")){
@@ -250,7 +267,7 @@ for(int i=0; i<categoryEndListLen; i++)
    }
 }
 window.onload=function() {
-	   startTime();
+	   startTime();	   
 	}
 	
 	function startTime() {
@@ -259,10 +276,11 @@ window.onload=function() {
 }
 	
 	document.getElementById("asort").value = 4;
-function categoryList(key, word, category1, category2, gudan, pg)
+function categoryList(key, word, category1, category2, gudan, conpg, endpg)
 {
 	document.getElementById("aact").value = "categorylist";
-	document.getElementById("apg").value = pg;
+	document.getElementById("aconpg").value = conpg;
+	document.getElementById("aendpg").value = endpg;
 	document.getElementById("akey").value = "";
 	document.getElementById("aword").value = "";
 	document.getElementById("acategory1").value = category1; 
@@ -274,42 +292,43 @@ function categoryList(key, word, category1, category2, gudan, pg)
 function auctionsort(sort)
 {
 	document.getElementById("asort").value = sort;
-	categoryList('','','<%=category1%>','<%=category2%>','','1');	
+	categoryList('','','<%=category1%>','<%=category2%>','','1','1');	
 }
+
 </script>
 <div class="container-fluid auction-category">
 	<div class="row row-offcanvas row-offcanvas-left">
 		<nav class="col-6 col-md-2 bg-light sidebar-offcanvas pt-3 pb-5"
 			id="sidebar">
 			<div class="pb-5">
-				<a class="nav-link" href="javascript:categoryList('','','','','','1');">전체보기</a>
-				<a class="nav-link" href="javascript:categoryList('','','1','','','1');">유니폼</a>
+				<a class="nav-link" href="javascript:categoryList('','','','','','1','1');">전체보기</a>
+				<a class="nav-link" href="javascript:categoryList('','','1','','','1','1');">유니폼</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1','','1');">상의</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','1','2','','1');">하의</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','1','3','','1');">모자</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','1','4','','1');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1','','1','1');">상의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','2','','1','1');">하의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','3','','1','1');">모자</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','4','','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','2','','','1');">경기용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','2','','','1','1');">경기용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','2','1','','1');">야구공</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','2','','1');">배트</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','3','','1');">글러브</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','4','','1');">보호장구</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','5','','1');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','2','1','','1','1');">야구공</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','2','','1','1');">배트</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','3','','1','1');">글러브</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','4','','1','1');">보호장구</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','5','','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','3','1','','1');">응원용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','3','1','','1','1');">응원용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1','','1');">피켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','3','2','','1');">LED피켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','3','3','','1');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1','','1','1');">피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','2','','1','1');">LED피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','3','','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','4','','','1');">기타잡화</a>
+				<a class="nav-link" href="javascript:categoryList('','','4','','','1','1');">기타잡화</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1','','1');">사진</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','2','','1');">티켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','3','','1');">카드</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','4','','1');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1','','1','1');">사진</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','2','','1','1');">티켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','3','','1','1');">카드</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','4','','1','1');">기타</a>
 				</nav>
 			</div>
 		</nav>
@@ -349,16 +368,16 @@ function auctionsort(sort)
 						<div class="container py-5">
 							<!-- Nav tabs -->
 							<ul class="nav nav-tabs nav-justified" role="tablist">
-								<li class="nav-item"><a class="nav-link active"
+								<li class="nav-item"><a class="nav-link <%=active1%>"
 									data-toggle="tab" href="#menu1">진행경매</a></li>
-								<li class="nav-item"><a class="nav-link" data-toggle="tab"
-									href="#menu2">종료경매</a></li>
+								<li class="nav-item"><a class="nav-link <%=active2%>" 
+									data-toggle="tab" href="#menu2">종료경매</a></li>
 							</ul>
 
 							<!-- Tab panes -->
 							<div class="tab-content">							
 							
-								<div id="menu1" class="container tab-pane active">
+								<div id="menu1" class="container tab-pane <%=active1%>">
 								
 									<div class="row p-2 text-right">
 										<div class="dropdown show col-md-12 align-self-end">
@@ -417,7 +436,7 @@ if(categoryConList != null)
 %>
 									</div>
 								</div>	
-								<div id="menu2" class="container tab-pane fade">
+								<div id="menu2" class="container tab-pane <%=active2%>">
 									<div class="row p-2 text-center">
 <%
 if(categoryEndList != null)

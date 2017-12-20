@@ -48,7 +48,8 @@ root = "<%=root%>";
 	<input type="hidden" id="acategory2" name="category2" value="">
 	<input type="hidden" id="akey" name="key" value="">
 	<input type="hidden" id="aword" name="word" value="">
-	<input type="hidden" id="apg" name="pg" value="">
+	<input type="hidden" id="aconpg" name="conpg" value="">
+	<input type="hidden" id="aendpg" name="endpg" value="">
 </form>
 <form id="commonForm" name="commonForm" method="get" action="">
 	<input type="hidden" id="cact" name="act" value="">
