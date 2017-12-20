@@ -34,12 +34,19 @@ int categoryEndListLen;
 	//진행중/마감 경매 선택 구분할 변수
 	String active1 = "active";
 	String active2 = "";
-   if(conpg != null && !endpg.equals("1"))
+	String choice = (String)request.getAttribute("choice");
+if(choice != null){	
+   if(choice.equals("1"))
+  {
+	   active1 = "active";   
+	   active2 = "";
+  }
+   else if(choice.equals("2"))
    {
-	   active1 = "";
-	   active2 = "active";	   
+	   active1 = "";	   
+	   active2 = "active";   
    }
-   
+}
    String category1 = (String)request.getAttribute("category1");	//대분류 번호
    String category2 = (String)request.getAttribute("category2");	//중분류 번호
 if(category1 != null)
@@ -276,9 +283,10 @@ window.onload=function() {
 }
 	
 	document.getElementById("asort").value = 4;
-function categoryList(key, word, category1, category2, gudan, conpg, endpg)
+function categoryList(key, word, category1, category2, gudan, conpg, endpg, choice)
 {
 	document.getElementById("aact").value = "categorylist";
+	document.getElementById("achoice").value = choice;
 	document.getElementById("aconpg").value = conpg;
 	document.getElementById("aendpg").value = endpg;
 	document.getElementById("akey").value = "";
@@ -292,7 +300,7 @@ function categoryList(key, word, category1, category2, gudan, conpg, endpg)
 function auctionsort(sort)
 {
 	document.getElementById("asort").value = sort;
-	categoryList('','','<%=category1%>','<%=category2%>','','1','1');	
+	categoryList('','','<%=category1%>','<%=category2%>','','1','1','1');	
 }
 
 </script>
@@ -301,34 +309,34 @@ function auctionsort(sort)
 		<nav class="col-6 col-md-2 bg-light sidebar-offcanvas pt-3 pb-5"
 			id="sidebar">
 			<div class="pb-5">
-				<a class="nav-link" href="javascript:categoryList('','','','','','1','1');">전체보기</a>
-				<a class="nav-link" href="javascript:categoryList('','','1','','','1','1');">유니폼</a>
+				<a class="nav-link" href="javascript:categoryList('','','','','','1','1','1');">전체보기</a>
+				<a class="nav-link" href="javascript:categoryList('','','1','','','1','1','1');">유니폼</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1','','1','1');">상의</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','1','2','','1','1');">하의</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','1','3','','1','1');">모자</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','1','4','','1','1');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1','','1','1','1');">상의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','2','','1','1','1');">하의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','3','','1','1','1');">모자</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','4','','1','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','2','','','1','1');">경기용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','2','','','1','1','1');">경기용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','2','1','','1','1');">야구공</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','2','','1','1');">배트</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','3','','1','1');">글러브</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','4','','1','1');">보호장구</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','5','','1','1');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','2','1','','1','1','1');">야구공</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','2','','1','1','1');">배트</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','3','','1','1','1');">글러브</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','4','','1','1','1');">보호장구</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','5','','1','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','3','1','','1','1');">응원용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','3','1','','1','1','1');">응원용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1','','1','1');">피켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','3','2','','1','1');">LED피켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','3','3','','1','1');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1','','1','1','1');">피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','2','','1','1','1');">LED피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','3','','1','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','4','','','1','1');">기타잡화</a>
+				<a class="nav-link" href="javascript:categoryList('','','4','','','1','1','1');">기타잡화</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1','','1','1');">사진</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','2','','1','1');">티켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','3','','1','1');">카드</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','4','','1','1');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1','','1','1','1');">사진</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','2','','1','1','1');">티켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','3','','1','1','1');">카드</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','4','','1','1','1');">기타</a>
 				</nav>
 			</div>
 		</nav>

@@ -28,6 +28,7 @@ public class AuctionCategoryListAction implements Action {
 		String word = StringEncoder.isoToMain(request.getParameter("word"));
 		int conpg = NullCheck.nullToOne(request.getParameter("conpg"));
 		int endpg = NullCheck.nullToOne(request.getParameter("endpg"));
+		int choice = NullCheck.nullToOne(request.getParameter("choice"));
 		String sort = StringEncoder.isoToMain(request.getParameter("sort"));
 		String gudan = StringEncoder.isoToMain(request.getParameter("gudan"));	
 		
@@ -67,6 +68,7 @@ public class AuctionCategoryListAction implements Action {
 		
 		request.setAttribute("conpg", conpg + "");
 		request.setAttribute("endpg", endpg + "");
+		request.setAttribute("choice", choice + "");
 				
 		return "/auction/auction-category.jsp";
 	}

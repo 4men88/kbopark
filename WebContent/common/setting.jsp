@@ -50,6 +50,7 @@ root = "<%=root%>";
 	<input type="hidden" id="aword" name="word" value="">
 	<input type="hidden" id="aconpg" name="conpg" value="">
 	<input type="hidden" id="aendpg" name="endpg" value="">
+	<input type="hidden" id="achoice" name="choice" value="">
 </form>
 <form id="commonForm" name="commonForm" method="get" action="">
 	<input type="hidden" id="cact" name="act" value="">
