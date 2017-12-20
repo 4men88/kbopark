@@ -48,6 +48,11 @@ public class AuctionController extends HttpServlet {
 			path = AuctionActionFactory.getAuctionCategoryListAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		}
+		else if("biddetail".equals(act))
+		{
+			path = AuctionActionFactory.getAuctionBidDetailAction().execute(request, response);
+			PageMove.forward(request, response, path);
+		}
 		else 
 		{
 			PageMove.redirect(request, response, path);

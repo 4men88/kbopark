@@ -49,6 +49,7 @@ root = "<%=root%>";
 	<input type="hidden" id="abidprice" name="bidprice" value="">
 	<input type="hidden" id="abidnum" name="bidnum" value="">
 	<input type="hidden" id="aaimage" name="aimage" value="">
+	<input type="hidden" id="aastatus" name="astatus" value="">
 	<input type="hidden" id="aacount" name="acount" value="">
 	<input type="hidden" id="ainitprice" name="initprice" value="">
 	<input type="hidden" id="atno" name="tno" value="">		

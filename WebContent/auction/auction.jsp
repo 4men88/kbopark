@@ -364,19 +364,21 @@ function categoryList(key, word, category1, category2, conpg, endpg, choice)
 	document.getElementById("auctionForm").submit();		
 }	
 
-function mainDetail(ano,category1,category2,aname,starttime,endtime,bidprice,bidnum,aimage,acount,initprice,tno){
-	document.getElementById("aano").value = ;
-	document.getElementById("acategory1").value = ;
-	document.getElementById("acategory2").value = ;
-	document.getElementById("aaname").value = ;
-	document.getElementById("astarttime").value = ;
-	document.getElementById("aendtime").value = ;
-	document.getElementById("abidprice").value = ;
-	document.getElementById("abidnum").value = ;
-	document.getElementById("aaimage").value = ;
-	document.getElementById("aacount").value = ;
-	document.getElementById("ainitprice").value = ;
-	document.getElementById("atno").value = ;
+function mainDetail(ano,category1,category2,aname,starttime,endtime,bidprice,bidnum,aimage,astatus, acount,initprice,tno){
+	document.getElementById("aact").value = "biddetail";
+	document.getElementById("aano").value = ano;
+	document.getElementById("acategory1").value = category1;
+	document.getElementById("acategory2").value = category2;
+	document.getElementById("aaname").value = aname;
+	document.getElementById("astarttime").value = starttime;
+	document.getElementById("aendtime").value = endtime;
+	document.getElementById("abidprice").value = bidprice;
+	document.getElementById("abidnum").value = bidnum;
+	document.getElementById("aaimage").value = astatus;
+	document.getElementById("aastatus").value = aimage;
+	document.getElementById("aacount").value = acount;
+	document.getElementById("ainitprice").value = initprice;
+	document.getElementById("atno").value = tno;
 	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 	document.getElementById("auctionForm").submit();	
 }
@@ -510,7 +512,7 @@ if(bestList != null)
                   <div class="col-md-12 col-4 align-self-center" >
                   <a href="javascript:mainDetail('<%=bestList.get(i).getAno()%>','<%=bestList.get(i).getCategory1()%>','<%=bestList.get(i).getCategory2()%>',
                   '<%=bestList.get(i).getAname()%>','<%=bestList.get(i).getStartTime()%>','<%=bestList.get(i).getEndTime()%>',
-                  '<%=bestList.get(i).getBidPrice()%>','<%=bestList.get(i).getBidNum()%>','<%=bestList.get(i).getAimage()%>',
+                  '<%=bestList.get(i).getBidPrice()%>','<%=bestList.get(i).getBidNum()%>','<%=bestList.get(i).getAimage()%>','<%=bestList.get(i).getAstatus()%>',
                   '<%=bestList.get(i).getAcount()%>','<%=bestList.get(i).getInitPrice()%>','<%=bestList.get(i).getTno()%>');">
                      <img style="max-height:200px;"
                       src="<%=root%>/<%=bestList.get(i).getAimage()%>" class="img-fluid">
@@ -549,7 +551,7 @@ if(endList != null)
                   <div class="col-md-12 col-4 align-self-center">     
                   <a href="javascript:mainDetail('<%=endList.get(i).getAno()%>','<%=endList.get(i).getCategory1()%>','<%=endList.get(i).getCategory2()%>',
                   '<%=endList.get(i).getAname()%>','<%=endList.get(i).getStartTime()%>','<%=endList.get(i).getEndTime()%>',
-                  '<%=endList.get(i).getBidPrice()%>','<%=endList.get(i).getBidNum()%>','<%=endList.get(i).getAimage()%>',
+                  '<%=endList.get(i).getBidPrice()%>','<%=endList.get(i).getBidNum()%>','<%=endList.get(i).getAimage()%>','<%=endList.get(i).getAstatus()%>',
                   '<%=endList.get(i).getAcount()%>','<%=endList.get(i).getInitPrice()%>','<%=endList.get(i).getTno()%>');">       
                      <img style="max-height:200px;" src="<%=root%>/<%=endList.get(i).getAimage()%>" class="img-fluid">   
                      </a>                                 
@@ -586,7 +588,7 @@ if(hitList != null)
                   <div class="col-md-12 col-4 align-self-center">
                   <a href="javascript:mainDetail('<%=hitList.get(i).getAno()%>','<%=hitList.get(i).getCategory1()%>','<%=hitList.get(i).getCategory2()%>',
                   '<%=hitList.get(i).getAname()%>','<%=hitList.get(i).getStartTime()%>','<%=hitList.get(i).getEndTime()%>',
-                  '<%=hitList.get(i).getBidPrice()%>','<%=hitList.get(i).getBidNum()%>','<%=hitList.get(i).getAimage()%>',
+                  '<%=hitList.get(i).getBidPrice()%>','<%=hitList.get(i).getBidNum()%>','<%=hitList.get(i).getAimage()%>','<%=hitList.get(i).getAstatus()%>',
                   '<%=hitList.get(i).getAcount()%>','<%=hitList.get(i).getInitPrice()%>','<%=hitList.get(i).getTno()%>');">
                      <img style="max-height:200px;" src="<%=root%>/<%=hitList.get(i).getAimage()%>" class="img-fluid">
                      </a>
@@ -622,7 +624,7 @@ if(newList != null)
                   <div class="col-md-12 col-4 align-self-center">
                   <a href="javascript:mainDetail('<%=newList.get(i).getAno()%>','<%=newList.get(i).getCategory1()%>','<%=newList.get(i).getCategory2()%>',
                   '<%=newList.get(i).getAname()%>','<%=newList.get(i).getStartTime()%>','<%=newList.get(i).getEndTime()%>',
-                  '<%=newList.get(i).getBidPrice()%>','<%=newList.get(i).getBidNum()%>','<%=newList.get(i).getAimage()%>',
+                  '<%=newList.get(i).getBidPrice()%>','<%=newList.get(i).getBidNum()%>','<%=newList.get(i).getAimage()%>','<%=newList.get(i).getAstatus()%>',
                   '<%=newList.get(i).getAcount()%>','<%=newList.get(i).getInitPrice()%>','<%=newList.get(i).getTno()%>');">
                      <img style="max-height:200px;" src="<%=root%>/<%=newList.get(i).getAimage()%>" class="img-fluid">
                      </a>

@@ -64,8 +64,8 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 				auctionDetailDto.setAcount(rs.getInt("acount"));
 				auctionDetailDto.setInitPrice(rs.getInt("initprice"));
 				auctionDetailDto.setTno(rs.getInt("tno"));
-				auctionDetailDto.setCategory1("category1");
-				auctionDetailDto.setCategory2("category2");
+				auctionDetailDto.setCategory1(rs.getString("category1"));
+				auctionDetailDto.setCategory2(rs.getString("category2"));
 				
 				list.add(auctionDetailDto);
 				if(++cnt == 4)
@@ -122,8 +122,8 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 				auctionDetailDto.setAcount(rs.getInt("acount"));
 				auctionDetailDto.setInitPrice(rs.getInt("initprice"));
 				auctionDetailDto.setTno(rs.getInt("tno"));
-				auctionDetailDto.setCategory1("category1");
-				auctionDetailDto.setCategory2("category2");
+				auctionDetailDto.setCategory1(rs.getString("category1"));
+				auctionDetailDto.setCategory2(rs.getString("category2"));
 				
 				list.add(auctionDetailDto);
 				if(++cnt == 4)
@@ -181,8 +181,8 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 				auctionDetailDto.setAcount(rs.getInt("acount"));
 				auctionDetailDto.setInitPrice(rs.getInt("initprice"));
 				auctionDetailDto.setTno(rs.getInt("tno"));
-				auctionDetailDto.setCategory1("category1");
-				auctionDetailDto.setCategory2("category2");
+				auctionDetailDto.setCategory1(rs.getString("category1"));
+				auctionDetailDto.setCategory2(rs.getString("category2"));
 				
 				list.add(auctionDetailDto);
 				if(++cnt == 4)
@@ -239,8 +239,8 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 				auctionDetailDto.setAcount(rs.getInt("acount"));
 				auctionDetailDto.setInitPrice(rs.getInt("initprice"));
 				auctionDetailDto.setTno(rs.getInt("tno"));
-				auctionDetailDto.setCategory1("category1");
-				auctionDetailDto.setCategory2("category2");
+				auctionDetailDto.setCategory1(rs.getString("category1"));
+				auctionDetailDto.setCategory2(rs.getString("category2"));
 				
 				list.add(auctionDetailDto);
 				if(++cnt == 4)
