@@ -41,11 +41,20 @@ root = "<%=root%>";
 <body>
 <form id="auctionForm" name="auctionForm" method="get" action="">
 	<input type="hidden" id="aact" name="act" value="">
+	<input type="hidden" id="acategory1" name="category1" value="">
+	<input type="hidden" id="acategory2" name="category2" value="">
+	<input type="hidden" id="aaname" name="aname" value="">
+	<input type="hidden" id="astarttime" name="starttime" value="">
+	<input type="hidden" id="aendtime" name="endtime" value="">
+	<input type="hidden" id="abidprice" name="bidprice" value="">
+	<input type="hidden" id="abidnum" name="bidnum" value="">
+	<input type="hidden" id="aaimage" name="aimage" value="">
+	<input type="hidden" id="aacount" name="acount" value="">
+	<input type="hidden" id="ainitprice" name="initprice" value="">
+	<input type="hidden" id="atno" name="tno" value="">		
 	<input type="hidden" id="aano" name="ano" value="">
 	<input type="hidden" id="asort" name="sort" value="">
 	<input type="hidden" id="agudan" name="gudan" value="">
-	<input type="hidden" id="acategory1" name="category1" value="">
-	<input type="hidden" id="acategory2" name="category2" value="">
 	<input type="hidden" id="akey" name="key" value="">
 	<input type="hidden" id="aword" name="word" value="">
 	<input type="hidden" id="aconpg" name="conpg" value="">
