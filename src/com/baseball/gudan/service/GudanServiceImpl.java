@@ -3,6 +3,7 @@ package com.baseball.gudan.service;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import com.baseball.auction.model.AuctionDetailDto;
 import com.baseball.gudan.dao.GudanDaoImpl;
 import com.baseball.gudan.model.GudanDto;
 import com.baseball.gudan.model.StadiumDto;
@@ -90,6 +91,11 @@ public class GudanServiceImpl implements GudanService {
 		stadiumlist = GudanDaoImpl.getGudanDao().weeklyStadium(tno, monday);
 		
 		return stadiumlist;
+	}
+
+	@Override
+	public List<AuctionDetailDto> hotAuctionArticle(int tno) {
+		return GudanDaoImpl.getGudanDao().hotAuctionArticle(tno);
 	}
 	
 }

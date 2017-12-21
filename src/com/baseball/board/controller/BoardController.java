@@ -48,7 +48,10 @@ public class BoardController extends HttpServlet {
 			path = BoardActionFactory.getBoardListAction().execute(request, response);
 			path += queryString;
 			PageMove.forward(request, response, path);
-			
+		} else if("bestarticle".equals(act)) {
+			path = BoardActionFactory.getBoardBestListAction().execute(request, response);
+			path += queryString;
+			PageMove.forward(request, response, path);			
 		} else if("movemodify".equals(act)) {
 			System.out.println("controller movemodify ¡¯¿‘ !");
 			path = BoardActionFactory.getBoardMoveModifyAction().execute(request, response);

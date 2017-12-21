@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.baseball.auction.model.AuctionDetailDto;
 import com.baseball.gudan.model.GudanDto;
 import com.baseball.gudan.model.StadiumDto;
 import com.baseball.schedule.scheduleDto.ScheduleDto;
@@ -258,5 +259,24 @@ public class GudanDaoImpl implements GudanDao {
 		}
 		System.out.println("stadiumlist size >> " + list.size());
 		return list;
+	}
+
+	@Override
+	public List<AuctionDetailDto> hotAuctionArticle(int tno) {
+		List<AuctionDetailDto> hotlist = new ArrayList<AuctionDetailDto>();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return hotlist;
 	}
 }

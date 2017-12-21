@@ -110,4 +110,9 @@ public class BoardServiceImpl implements BoardServcie {
 		return BoardDaoImpl.getBoardDao().deleteArticle(seq);
 	}
 
+	@Override
+	public List<BoardDto> hotBoardArticle(int tno) {
+		return BoardDaoImpl.getBoardDao().hotBoardArticle(tno);	
+	}
+
 }

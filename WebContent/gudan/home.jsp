@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR" import="com.baseball.gudan.model.GudanDto"%>
+	pageEncoding="EUC-KR" import="java.util.List,com.baseball.gudan.model.GudanDto,com.baseball.board.model.BoardDto,com.baseball.auction.model.AuctionDetailDto"%>
 <!--header ¿µ¿ª-->
 <%@ include file="/common/header.jsp"%>
 <%
 GudanDto gudanDto = (GudanDto) session.getAttribute("gudandto");
+List<BoardDto> hotboard = (List<BoardDto>) request.getAttribute("hotboard");
+List<AuctionDetailDto> hotauction = (List<AuctionDetailDto>)request.getAttribute("hotauction");
+
+System.out.println("home.jsp >>> " + hotboard.size() + " >>> " + hotauction.size());
 System.out.println("home.jsp gudandto >>> " + gudanDto);
 System.out.println("home.jsp tno >>> "+NullCheck.nullToZero(request.getParameter("tno")));
 %>
