@@ -14,7 +14,6 @@ int hitListLen;
 int newListLen;
 
 %>
-
 <%
    List<AuctionDetailDto> bestList = (List<AuctionDetailDto>)request.getAttribute("bestList");
    List<AuctionDetailDto> endList = (List<AuctionDetailDto>)request.getAttribute("endList");
@@ -55,7 +54,7 @@ int newListLen;
    if(newList != null)
    {
 	   newListLen = newList.size();
-	   for(int i=0; i<bestListLen; i++)
+	   for(int i=0; i<newListLen; i++)
   		{
 		   newListTimeArr.add(i, newList.get(i).getEndTime());	//endTime¸¸ »©¼­ µû·Î ¸®½ºÆ® ¸¸µë
   		}
