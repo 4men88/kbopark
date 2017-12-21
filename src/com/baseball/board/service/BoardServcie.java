@@ -19,6 +19,7 @@ public interface BoardServcie {
 	BoardDto notifyArticle(int seq);
 	BoardDto prevArticle(int tno, int seq);
 	BoardDto nextArticle(int tno, int seq);
+	List<BoardDto> hotBoardArticle(int tno);
 	
 //	int replyArticle(BoardDto boardDto);
 	
