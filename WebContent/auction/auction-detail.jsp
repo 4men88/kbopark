@@ -9,7 +9,8 @@
 List<AuctionDetailDto> list = (List<AuctionDetailDto>)request.getAttribute("list");
 AuctionDetailDto auctionDetailDto = (AuctionDetailDto)request.getAttribute("auctionDetailDto");
 int gudan = auctionDetailDto.getTno();
-String time = auctionDetailDto.getEndTime();
+String endTime = auctionDetailDto.getEndTime();
+String endTimeArr[] = auctionDetailDto.getStartTime().split("\\.");
 String gudanname ="";
 
 if(gudan == 1)
@@ -76,7 +77,7 @@ else
 					cdate = new Date(ctimearr[0]+"-"+ctimearr[1] +"-"+ctimearr[2]+"T"+ctimearr[3]+":"+ctimearr[4]+":"+ctimearr[5]+".323");
 					csec = cdate.getTime();	//밀리커리 세컨드 단위로 변환
 	
-					dtime = "<%=time%>";	
+					dtime = "<%=endTime%>";	
 					dtimearr = dtime.split(".");
 					ddate = new Date(dtimearr[0]+"-"+dtimearr[1] +"-"+dtimearr[2]+"T"+dtimearr[3]+":"+dtimearr[4]+":"+dtimearr[5]+".323");
 					dsec = ddate.getTime();	
@@ -214,7 +215,7 @@ else
 							</tr>
 							<tr>
 								<th scope="row">경매기간</th>
-								<td>2017/11/05 05:30:30 - 2017/11/15 23:00:30</td>
+								<td><%=auctionDetailDto.getStartTime()%> - <%=endTimeArr[0]%>/<%=endTimeArr[1]%>/<%=endTimeArr[2]%> <%=endTimeArr[3]%>:<%=endTimeArr[4]%>:<%=endTimeArr[5]%></td>
 							</tr>
 							<tr>
 								<th scope="row">입찰자수</th>

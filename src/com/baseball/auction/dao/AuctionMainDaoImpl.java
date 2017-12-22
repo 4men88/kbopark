@@ -93,7 +93,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			StringBuffer sql = new StringBuffer();
 			//마감임박순
 			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano \n");
-			sql.append("	   ,to_char(a_ad.starttime, 'yyyy.mm.dd.hh24.mi.ss') as starttime, a_ad.acount, a_ad.initprice, a_ad.tno, a_ad.category1, a_ad.category2\n");
+			sql.append("	   ,to_char(a_ad.starttime, 'yyyy/mm/dd hh24:mi:ss') as starttime, a_ad.acount, a_ad.initprice, a_ad.tno, a_ad.category1, a_ad.category2\n");
 			sql.append("from auction_image ai,( \n");
 			sql.append("                        select a.*, ad.bidprice, ad.bidnum \n");
 			sql.append("                        from auction a,( \n");
