@@ -499,15 +499,17 @@ public class AdminDaoImpl implements AdminDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("select a.tname home, a.emblem hemblem,t1.tname away,t1.emblem aemblem,\n");
-			sql.append("to_char(a.playdate,'yyyymmdd') playdate,to_char(a.playdate,'hh:mi') playtime\n");
+			sql.append("select b.*,s.sname\n");
 			sql.append("from\n");
-			sql.append("	(select t.tno,t.tname,t.emblem,p.playdate,p.tno2\n");
-			sql.append("	from team t ,plan p\n");
-			sql.append("	where p.tno1=t.tno) a, team t1\n");
-			sql.append("where t1.tno=a.tno2\n");
-			sql.append("and to_char(playdate,'yyyymmdd')=to_char(sysdate,'yyyymmdd')");
-			
+			sql.append("	(select a.tname home, a.emblem hemblem,t1.tname away,t1.emblem aemblem,\n");
+			sql.append("	to_char(a.playdate,'yyyymmdd') playdate,to_char(a.playdate,'hh:mi') playtime,a.sno1\n");
+			sql.append("	from\n");
+			sql.append("		(select t.tno,t.tname,t.emblem,p.playdate,p.tno2,t.sno1\n");
+			sql.append("		from team t ,plan p\n");
+			sql.append("		where p.tno1=t.tno) a, team t1\n");
+			sql.append("	where t1.tno=a.tno2\n");
+			sql.append("	and to_char(playdate,'yyyymmdd')=to_char(sysdate,'yyyymmdd')) b, stadium s\n");
+			sql.append("where b.sno1=s.sno");
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -518,7 +520,7 @@ public class AdminDaoImpl implements AdminDao {
 				scheduleDto.setAwayemblem(rs.getString("aemblem"));
 				scheduleDto.setPlaydate(rs.getString("playdate"));
 				scheduleDto.setPlaytime(rs.getString("playtime"));
-				
+				scheduleDto.setSname(rs.getString("sname"));
 				todaylist.add(scheduleDto);
 				
 			}

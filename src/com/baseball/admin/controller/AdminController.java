@@ -32,7 +32,7 @@ public class AdminController extends HttpServlet {
 		String key = StringEncoder.isoToMain(request.getParameter("key"));
 		String word = StringEncoder.isoToMain(request.getParameter("word"));
 		String queryString ="?ntype=" + ntype + "&pg=" + pg+ "&key=" + key+ "&word=" + StringEncoder.urlFormat(word);
-		
+
 		if("usermanage".equals(act)) {
 			path = "/admin/user/adminuser.jsp";
 			PageMove.forward(request, response, path);

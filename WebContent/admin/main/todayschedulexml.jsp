@@ -16,6 +16,7 @@ for(ScheduleDto scheduleDto : list){
 	<aemblem><%=scheduleDto.getAwayemblem()%></aemblem>
 	<playdate><%=scheduleDto.getPlaydate()%></playdate>
 	<playtime><%=scheduleDto.getPlaytime()%></playtime>
+	<sname><%=scheduleDto.getSname()%></sname>
 	</schedule>
 <%
 }
