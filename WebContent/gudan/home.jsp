@@ -11,6 +11,7 @@ System.out.println("home.jsp >>> " + hotboard.size() + " >>> " + hotauction.size
 System.out.println("home.jsp gudandto >>> " + gudanDto);
 System.out.println("home.jsp tno >>> "+NullCheck.nullToZero(request.getParameter("tno")));
 %>
+<script type="text/javascript" src="<%=root%>/js/httpRequest.js"></script>
 <script type="text/javascript">
 control = "/gudan";
 
@@ -21,6 +22,292 @@ function listArticle(tno) {
 	
 	document.getElementById("commonForm").action = root + "/board";
 	document.getElementById("commonForm").submit();
+}
+
+function startTime() {
+//  httpRequest = getXMLHttpRequest();
+//  httpRequest.onreadystatechange = getTime;
+//  httpRequest.send(null);
+  var params = "act=timelist";
+  sendRequest("<%=root%>/auctioncontroller", params, getTime, "POST");   
+}
+function getTime() {
+  if(httpRequest.readyState == 4) {
+     if(httpRequest.status == 200) {
+        var ctime = httpRequest.responseText;	//현재시간(2017.12.07.11.42.30) 포멧
+        var ctimearr = ctime.split("."); 	// .빼고 배열로 만들고
+        var cdate;		//현재시간으로 Date 객체 만들 변수
+        var csec;		//현재시간을초로 변환할 변수
+        
+        var dtime;	//db에서 얻어온 시간 담을 변수
+        var dtimearr;	
+        var ddate; //DB에서 얻어온시간을로 만든 Date 객체
+        var dsec;	//DB에서 얻어온시간을초로 변환
+        
+        var sresult;	//두 시간 차 초
+        var day = 0;
+        var time = 0;
+        var min = 0;
+        var sec = 0;
+        // 서버에서 가져온 현재시간으로 Date객체 생성
+			cdate = new Date(ctimearr[0]+"-"+ctimearr[1] +"-"+ctimearr[2]+"T"+ctimearr[3]+":"+ctimearr[4]+":"+ctimearr[5]+".323");
+			csec = cdate.getTime();	//밀리커리 세컨드 단위로 변환
+<%
+		for(int i=0; i<bestListLen; i++)
+		{
+%>			
+			dtime = "<%=bestListTimeArr.get(i)%>";	
+			dtimearr = dtime.split(".");
+			ddate = new Date(dtimearr[0]+"-"+dtimearr[1] +"-"+dtimearr[2]+"T"+dtimearr[3]+":"+dtimearr[4]+":"+dtimearr[5]+".323");
+			dsec = ddate.getTime();
+			
+//			cdate = new Date(ctimearr[0],ctimearr[1],ctimearr[2],ctimearr[3],ctimearr[4],ctimearr[5]);
+			result = dsec - csec;
+//					alert(dsec + "        " + csec + "         " + result);
+			if(result >0)	//남은시간이 있다면
+				{
+					day = Math.floor(result/86400000);
+					result -= day*86400000;
+					
+					time =Math.floor(result/3600000);
+					result -= time*3600000;
+					
+					min = Math.floor(result/60000);
+					result -= min*60000;
+					
+					sec = Math.floor(result/1000);					
+					
+					if(day>0)	
+						{
+						document.getElementById("besttime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+day+"일 "+time+"시간 "+min+"분 "+sec+"초</b></font>";
+						}
+					else if(time >0)
+						{
+						document.getElementById("besttime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+time+"시간 "+min+"분 "+sec+"초</b></font>";						
+						}
+					else if(min > 0)
+						{
+						document.getElementById("besttime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+min+"분 "+sec+"초</b></font>";
+						}
+					else{
+						document.getElementById("besttime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+sec+"초</b></font>";
+					}
+				}
+			
+			else{	//남은시간이 없다면
+           document.getElementById("besttime" + <%=i%>).innerHTML 
+= "<font color=\"red\"size=\"4\"><b>마감</b></font>";
+				if(<%=bestList.get(i).getAstatus()%> == 1)
+					{
+						document.getElementById("aano").value = "<%=bestList.get(i).getAno()%>";
+						document.getElementById("aact").value = "statuschange";
+						document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+						document.getElementById("auctionForm").submit();
+						
+					}
+				}
+<%            
+}
+%>
+
+<%
+for(int i=0; i<endListLen; i++)
+{
+%>			
+	dtime = "<%=endListTimeArr.get(i)%>";	
+	dtimearr = dtime.split(".");
+	ddate = new Date(dtimearr[0]+"-"+dtimearr[1] +"-"+dtimearr[2]+"T"+dtimearr[3]+":"+dtimearr[4]+":"+dtimearr[5]+".323");
+	dsec = ddate.getTime();
+	
+//	cdate = new Date(ctimearr[0],ctimearr[1],ctimearr[2],ctimearr[3],ctimearr[4],ctimearr[5]);
+	result = dsec - csec;
+//			alert(dsec + "        " + csec + "         " + result);
+	if(result >0)	//남은시간이 있다면
+		{
+			day = Math.floor(result/86400000);
+			result -= day*86400000;
+			
+			time =Math.floor(result/3600000);
+			result -= time*3600000;
+			
+			min = Math.floor(result/60000);
+			result -= min*60000;
+			
+			sec = Math.floor(result/1000);					
+			
+			if(day>0)	
+				{
+				document.getElementById("endtime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+day+"일 "+time+"시간 "+min+"분 "+sec+"초</b></font>";
+				}
+			else if(time >0)
+				{
+				document.getElementById("endtime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+time+"시간 "+min+"분 "+sec+"초</b></font>";						
+				}
+			else if(min > 0)
+				{
+				document.getElementById("endtime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+min+"분 "+sec+"초</b></font>";
+				}
+			else{
+				document.getElementById("endtime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+sec+"초</b></font>";
+			}
+		}
+	
+	else{	//남은시간이 없다면
+   document.getElementById("endtime" + <%=i%>).innerHTML 
+= "<font color=\"red\"size=\"4\"><b>마감</b></font>";
+			if(<%=endList.get(i).getAstatus()%> == 1)
+			{
+				document.getElementById("aano").value = "<%=endList.get(i).getAno()%>";
+				document.getElementById("aact").value = "statuschange";
+				document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+				document.getElementById("auctionForm").submit();
+			
+			}
+		}
+	<%            
+}
+%>
+
+<%
+for(int i=0; i<hitListLen; i++)
+{
+%>			
+	dtime = "<%=hitListTimeArr.get(i)%>";	
+	dtimearr = dtime.split(".");
+	ddate = new Date(dtimearr[0]+"-"+dtimearr[1] +"-"+dtimearr[2]+"T"+dtimearr[3]+":"+dtimearr[4]+":"+dtimearr[5]+".323");
+	dsec = ddate.getTime();
+	
+//	cdate = new Date(ctimearr[0],ctimearr[1],ctimearr[2],ctimearr[3],ctimearr[4],ctimearr[5]);
+	result = dsec - csec;
+//			alert(dsec + "        " + csec + "         " + result);
+	if(result >0)	//남은시간이 있다면
+		{
+			day = Math.floor(result/86400000);
+			result -= day*86400000;
+			
+			time =Math.floor(result/3600000);
+			result -= time*3600000;
+			
+			min = Math.floor(result/60000);
+			result -= min*60000;
+			
+			sec = Math.floor(result/1000);					
+			
+			if(day>0)	
+				{
+				document.getElementById("hittime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+day+"일 "+time+"시간 "+min+"분 "+sec+"초</b></font>";
+				}
+			else if(time >0)
+				{
+				document.getElementById("hittime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+time+"시간 "+min+"분 "+sec+"초</b></font>";						
+				}
+			else if(min > 0)
+				{
+				document.getElementById("hittime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+min+"분 "+sec+"초</b></font>";
+				}
+			else{
+				document.getElementById("hittime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+sec+"초</b></font>";
+			}
+		}
+	
+	else{	//남은시간이 없다면
+   document.getElementById("hittime" + <%=i%>).innerHTML 
+= "<font color=\"red\"size=\"4\"><b>마감</b></font>";	
+		if(<%=hitList.get(i).getAstatus()%> == 1)
+			{
+			document.getElementById("aano").value = "<%=hitList.get(i).getAno()%>";
+			document.getElementById("aact").value = "statuschange";
+			document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+			document.getElementById("auctionForm").submit();
+			
+		//		document.location.href = "<%=root%>/auctionlist?act=statuschange";
+			}
+		}
+	
+<%            
+}
+%>
+
+<%
+for(int i=0; i<newListLen; i++)
+{
+%>			
+	dtime = "<%=newListTimeArr.get(i)%>";	
+	dtimearr = dtime.split(".");
+	ddate = new Date(dtimearr[0]+"-"+dtimearr[1] +"-"+dtimearr[2]+"T"+dtimearr[3]+":"+dtimearr[4]+":"+dtimearr[5]+".323");
+	dsec = ddate.getTime();
+	
+//	cdate = new Date(ctimearr[0],ctimearr[1],ctimearr[2],ctimearr[3],ctimearr[4],ctimearr[5]);
+	result = dsec - csec;
+//			alert(dsec + "        " + csec + "         " + result);
+	if(result >0)	//남은시간이 있다면
+		{
+			day = Math.floor(result/86400000);
+			result -= day*86400000;
+			
+			time =Math.floor(result/3600000);
+			result -= time*3600000;
+			
+			min = Math.floor(result/60000);
+			result -= min*60000;
+			
+			sec = Math.floor(result/1000);					
+			
+			if(day>0)	
+				{
+				document.getElementById("newtime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+day+"일 "+time+"시간 "+min+"분 "+sec+"초</b></font>";
+				}
+			else if(time >0)
+				{
+				document.getElementById("newtime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+time+"시간 "+min+"분 "+sec+"초</b></font>";						
+				}
+			else if(min > 0)
+				{
+				document.getElementById("newtime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+min+"분 "+sec+"초</b></font>";
+				}
+			else{
+				document.getElementById("newtime" + <%=i%>).innerHTML 
+= "<font color=\"blue\"size=\"4\"><b>남은시간 : "+sec+"초</b></font>";
+			}
+		}
+	
+	else{	//남은시간이 없다면
+   document.getElementById("newtime" + <%=i%>).innerHTML 
+= "<font color=\"red\"size=\"4\"><b>마감</b></font>";	
+			if(<%=newList.get(i).getAstatus()%> == 1)
+			{
+				document.getElementById("aano").value = "<%=newList.get(i).getAno()%>";
+				document.getElementById("aact").value = "statuschange";
+				document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+				document.getElementById("auctionForm").submit();		
+			}
+		}
+<%            
+}
+%>
+        window.setTimeout("startTime();", 1000);
+  //      alert(ctime);
+     }
+  }
+}
+
+window.onload=function() {
+  startTime();
 }
 </script>
 
@@ -76,48 +363,27 @@ function listArticle(tno) {
 				<div class="border-b-strong mb-3"></div>
 				
 				<ul class="list-group">
+<%
+	for(AuctionDetailDto adto : hotauction) {
+%>				
+				
 					<li class="list-group-item">
 						<div class="row px-2">
 							<div class="img-wrapper align-self-center text-center col-4">
-								<img src="<%=root%>/img/news/news1.jpg" class="img-fluid">
+								<img src="<%=root%><%=adto.getAimage() %>" class="img-fluid">
 							</div>
 							<div class="col-8 align-self-center pr-0">
 								<h5 class="mb-3 text-dark">
-									<b>kt, 외국인 타자 로하스와 100만달러 재계약</b>
+									<b><%=adto.getAname() %></b>
 								</h5>
-								<p class="my-1">kt 위즈가 외국인 타자 멜 로하스 주니어와 재계약을 체결햇다. 로하스도
-									100만달러의 사나이가 됐다.</p>
+								<p class="my-1">현재입찰가 : <strong><%=adto.getBidPrice() %></strong>&nbsp;원</p>
+								<h6>남은시간 : <%=adto.getEndTime() %></h6>
 							</div>
 						</div>
 					</li>
-					<li class="list-group-item">
-						<div class="row px-2">
-							<div class="img-wrapper align-self-center text-center col-4">
-								<img src="<%=root%>/img/news/news2.jpg" class="img-fluid">
-							</div>
-							<div class="col-8 align-self-center pr-0">
-								<h5 class="mb-3 text-dark">
-									<b>최고 극찬 최승준, 시련의 2017년 저문다</b>
-								</h5>
-								<p class="my-1">SK의 거포 자원 최승준(29)은 2017년을 정리해 달라는 질문에 깊은 한숨,
-									그리고 멋쩍은 웃음으로 대신했다..</p>
-							</div>
-						</div>
-					</li>
-					<li class="list-group-item">
-						<div class="row px-2">
-							<div class="img-wrapper align-self-center text-center col-4">
-								<img src="<%=root%>/img/news/news3.jpg" class="img-fluid">
-							</div>
-							<div class="col-8 align-self-center pr-0">
-								<h5 class="mb-3 text-dark">
-									<b>두산 외국인 선수 계약 방침 '우선 니퍼트 집중'</b>
-								</h5>
-								<p class="my-1">두산 베어스는 2018년 시즌을 준비하면서 외국인 선수 보강에 신경을 쏟고
-									잇다. 먼저 에이스로 7시즌 동안 함께...</p>
-							</div>
-						</div>
-					</li>
+<%
+	}
+%>		
 				</ul>
 				
 				<p class="text-dark text-right py-1" style="font-size: 14px;"><a href="#">+ 전체보기</a></p>
@@ -130,54 +396,27 @@ function listArticle(tno) {
 				<div class="border-b-strong mb-3"></div>
 				
 				<ul class="list-group">
+<%
+//여기서 이제 보드디티오도렬야함!!!!
+	for(BoardDto boardDto : hotboard) {
+%>				
 					<li class="list-group-item">
-
 						<div class="row px-2">
 							<div class="img-wrapper-c text-center col-4">
-								<img src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
+								<img src="<%=root%><%=gudanDto.getEmblem() %>"
 									class="img-fluid">
 							</div>
 							<div class="col-8 align-self-center pr-0">
 								<h5 class="mb-3 text-dark">
-									<b>유심하게 관찰할 필요가 있을듯.</b>
+									<b><%=boardDto.getBname() %></b>
 								</h5>
-								<p class="my-1">플옵 1차전에서 스크럭스한테 만루홈런 맞은공, 코시 5차전에서 이범호한테
-									만루홈런 맞은공이 모두 다 슬라이더였죠.</p>
+								<p class="my-1"><%=boardDto.getBdetail() %></p>
 							</div>
 						</div>
 					</li>
-					<li class="list-group-item">
-						<div class="row px-2">
-							<div class="img-wrapper-c text-center col-4">
-								<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
-									class="img-fluid">
-							</div>
-							<div class="col-8 align-self-center pr-0">
-								<h5 class="mb-3 text-dark">
-									<b>잘하자</b>
-								</h5>
-								<p class="my-1">잘하자 승준이까지 살아나면 최정 로맥 한동민 김동엽 정의윤 최승준 거포라인
-									무지막지하다</p>
-							</div>
-						</div>
-					</li>
-					<li class="list-group-item">
-
-						<div class="row px-2">
-							<div class="img-wrapper-c text-center col-4">
-
-								<img src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
-									class="img-fluid">
-							</div>
-							<div class="col-8 align-self-center pr-0">
-								<h5 class="mb-3 text-dark">
-									<b>충분히 10승은 할수 있는 투수이다</b>
-								</h5>
-								<p class="my-1">내가보기에는 니퍼트는 더이상 에이스급이 아니라 제2용병급으로 보내고 연봉도 그에
-									맞게 책정해줘야 한다...</p>
-							</div>
-						</div>
-					</li>
+<%
+	}
+%>					
 				</ul>
 				<p class="text-dark text-right py-1" style="font-size: 14px;"><a href="javascript:listArticle('<%=tno%>');">+ 전체보기</a></p>
 			</div>
