@@ -23,9 +23,7 @@ public class AuctionController extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String act = request.getParameter("act");
-		String pg = request.getParameter("pg");
 		System.out.println(act);
-		System.out.println(pg);
 		String path = "/auction.jsp";
 		if("mainlist".equals(act)) 
 		{
@@ -48,6 +46,11 @@ public class AuctionController extends HttpServlet {
 		else if("categorylist".equals(act))
 		{
 			path = AuctionActionFactory.getAuctionCategoryListAction().execute(request, response);
+			PageMove.forward(request, response, path);
+		}
+		else if("biddetail".equals(act))
+		{
+			path = AuctionActionFactory.getAuctionBidDetailAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		}
 		else 
