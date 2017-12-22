@@ -47,6 +47,7 @@ public class AuctionBidDetailAction implements Action {
 		auctionDetailDto.setAcount(acount);
 		auctionDetailDto.setInitPrice(initprice);
 		auctionDetailDto.setTno(tno);
+		
 		System.out.println("이미지 경로 :" + aimage);
 		List<AuctionDetailDto> list = AuctionBidDetailServiceImpl.getAuctionBidDetailService().auctionBidDetailList(ano);
 		
