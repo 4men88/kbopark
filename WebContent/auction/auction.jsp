@@ -373,8 +373,8 @@ function mainDetail(ano,category1,category2,aname,starttime,endtime,bidprice,bid
 	document.getElementById("aendtime").value = endtime;
 	document.getElementById("abidprice").value = bidprice;
 	document.getElementById("abidnum").value = bidnum;
-	document.getElementById("aaimage").value = astatus;
-	document.getElementById("aastatus").value = aimage;
+	document.getElementById("aaimage").value = aimage;
+	document.getElementById("aastatus").value = astatus;
 	document.getElementById("aacount").value = acount;
 	document.getElementById("ainitprice").value = initprice;
 	document.getElementById("atno").value = tno;

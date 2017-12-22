@@ -60,9 +60,7 @@ public class AuctionBidDetailDaoImpl implements AuctionBidDetailDao {
 				auctionDetailDto.setBidDate(rs.getString("biddate"));
 		
 				list.add(auctionDetailDto);
-				cnt++;
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

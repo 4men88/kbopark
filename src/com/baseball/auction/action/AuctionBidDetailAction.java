@@ -1,6 +1,7 @@
 package com.baseball.auction.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.baseball.action.Action;
 import com.baseball.auction.model.AuctionDetailDto;
+import com.baseball.auction.service.AuctionBidDetailServiceImpl;
 import com.baseball.util.NullCheck;
 import com.baseball.util.StringEncoder;
 
@@ -45,8 +47,12 @@ public class AuctionBidDetailAction implements Action {
 		auctionDetailDto.setAcount(acount);
 		auctionDetailDto.setInitPrice(initprice);
 		auctionDetailDto.setTno(tno);
+		System.out.println("이미지 경로 :" + aimage);
+		List<AuctionDetailDto> list = AuctionBidDetailServiceImpl.getAuctionBidDetailService().auctionBidDetailList(ano);
 		
-		return null;
+		request.setAttribute("list", list);
+		request.setAttribute("auctionDetailDto", auctionDetailDto);
+		return "/auction/auction-detail.jsp";
 	}
 
 }
