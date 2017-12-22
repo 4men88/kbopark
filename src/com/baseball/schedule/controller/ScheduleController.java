@@ -23,8 +23,11 @@ public class ScheduleController extends HttpServlet {
 		
 		String path = "/index.jsp";
 		
-		if("viewschedule".equals(act)) {
+		if("daliyview".equals(act)) {
 			path = ScheduleActionFactory.getScheduleAction().execute(request, response);
+			PageMove.forward(request, response, path);
+		} else if("monthlyview".equals(act)) {
+			path = ScheduleActionFactory.getMonthlyAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		} else if("".equals(act)) {
 			
