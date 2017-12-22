@@ -29,9 +29,9 @@ public class ScheduleServiceImpl implements ScheduleService {
 	}
 
 	@Override
-	public List<ScheduleDto> viewSchedule(){
+	public List<ScheduleDto> viewSchedule(String date){
 		System.out.println("ScheduleServiceImpl ¿Ô´Ù°¨ ?");
-		return ScheduleDaoImpl.getScheduleDao().getSchedule();
+		return ScheduleDaoImpl.getScheduleDao().getSchedule(date);
 	}
 
 }

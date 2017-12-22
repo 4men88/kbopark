@@ -8,6 +8,7 @@ import com.baseball.admin.util.PageNavi;
 import com.baseball.board.model.BoardDto;
 import com.baseball.member.model.MemberDetailDto;
 import com.baseball.member.model.MemberDto;
+import com.baseball.schedule.scheduleDto.ScheduleDto;
 import com.baseball.util.PageNavigation;
 
 public interface AdminService {
@@ -19,4 +20,5 @@ public interface AdminService {
 	PageNavi makePageNavigation(int ntype,int pg,String key, String word,int listsize);
 	List<BoardDto> boardlist();
 	List<NoticeDto> noticeList();
+	List<ScheduleDto> getPlayToday();
 }

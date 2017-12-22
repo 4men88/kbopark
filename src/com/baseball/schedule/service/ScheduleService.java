@@ -8,7 +8,7 @@ import com.baseball.schedule.scheduleDto.ScheduleDto;
 public interface ScheduleService {
 	
 
-	List<ScheduleDto> viewSchedule();
+	List<ScheduleDto> viewSchedule(String date);
 	
 	
 	

@@ -1,3 +1,4 @@
+<%@page import="com.baseball.factory.ScheduleActionFactory"%>
 <%@page import="java.util.List"%>
 <%@page import="com.baseball.schedule.scheduledao.ScheduleDaoImpl"%>
 <%@page import="com.baseball.schedule.scheduleDto.ScheduleDto"%>
@@ -7,8 +8,7 @@
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
 <%
-List<ScheduleDto> list = (List<ScheduleDto>)request.getAttribute("sch");
-ScheduleDto scheduleDto = new ScheduleDto();
+	List<ScheduleDto> list = (List<ScheduleDto>) request.getAttribute("sch");
 %>
 
 <%
@@ -35,7 +35,7 @@ ScheduleDto scheduleDto = new ScheduleDto();
 	System.out.println(lastDay);
 	int startDay = cal.getActualMinimum(Calendar.DATE);
 	System.out.println(startDay);
-	
+
 	if (preDay < 1) {
 		preMonth--;
 		preDay = lastDay;
@@ -45,7 +45,7 @@ ScheduleDto scheduleDto = new ScheduleDto();
 		nextMonth++;
 		nextDay = 1;
 	}
-	
+
 	if (preMonth < 1) {
 		preYear--;
 		preMonth = 12;
@@ -55,10 +55,6 @@ ScheduleDto scheduleDto = new ScheduleDto();
 		nextYear++;
 		nextMonth = 1;
 	}
-	if (preMonth == 2){
-		
-	}
-	
 %>
 
 <div id="schedule" class="pb-5">
@@ -76,53 +72,54 @@ ScheduleDto scheduleDto = new ScheduleDto();
 
 		<div class="row justify-content-between">
 			<div class="col-6 text-left">
-				<i class="fa fa-angle-left" aria-hidden="true"></i> 
-				<a href="<%=root %>/schedule/monthly.jsp"> 월별일정/결과 </a>
+				<i class="fa fa-angle-left" aria-hidden="true"></i> <a
+					href="<%=root%>/ScheduleController?act=monthlyview"> 월별일정/결과 </a>
 			</div>
 			<div class="col-6 text-right">
-				<a href="<%=root %>/schedule/daily.jsp">일별일정/결과 </a>
-				<i class="fa fa-angle-right" aria-hidden="true"></i>
+				<a href="<%=root%>/ScheduleController?act=daliyview">일별일정/결과 </a> <i
+					class="fa fa-angle-right" aria-hidden="true"></i>
 			</div>
 		</div>
 
 
-<div id="daily" class="carousel slide" data-ride="carousel">
+		<div id="daily" class="carousel slide" data-ride="carousel">
 			<div class="calendar">
 				<p class="text-center">
-					<a href="<%=root %>/schedule/daily.jsp?y=<%=preYear%>&m=<%=preMonth%>&d=<%=preDay%>">&lt;</a> 
-					<span class="Ym"><%=year%>. <%=month +1%>. <%=day %></span>
-					<a href= "<%=root %>/schedule/daily.jsp?y=<%=nextYear%>&m=<%=nextMonth%>&d=<%=nextDay%>">&gt;</a>
+					<a
+						href="<%=root%>/ScheduleController?act=daliyview&y=<%=preYear%>&m=<%=preMonth%>&d=<%=preDay%>">&lt;</a>
+					<span class="Ym"><%=year%>. <%=month + 1%>. <%=day%></span> <a
+						href="<%=root%>/ScheduleController?act=daliyview&y=<%=nextYear%>&m=<%=nextMonth%>&d=<%=nextDay%>">&gt;</a>
 				</p>
 			</div>
-<% 
-int i = 0;
-for(i= 0; i<5; i++){
-		 %>
-				<div class="row text-white text-center mb-3">
+			<%
+				System.out.println(list);
+				int schlist = list.size();
+				if (schlist != 0)
+					for (int i = 0; i < schlist; i++) {
+						ScheduleDto scheduleDto = list.get(i);
+			%>
+			<div class="row text-white text-center mb-3">
 				<div class="mx-auto rounded daily-size-wrapper"
 					style="background-image: url(<%=root%>/img/etc/grass.jpg);">
 					<div class="col-md-12 text-white p-2"
 						style="background-color: rgba(50, 50, 50, 0.75)">
-						<span class="px-3 border-r"></span>
-						<span class="px-3"></span>
+						<span class="px-3 border-r"><%=scheduleDto.getSname()%></span>
+						<span class="px-3"><%=scheduleDto.getPstatus()%></span>
 					</div>
 					<div class="col-md-12 opaque-overlay py-2 px-3">
 						<div class="row">
 							<div class="col-md-5 p-0 col-12" style="text-align: left;">
 								<img src="<%=root%><%=scheduleDto.getAwayemblem()%>"
-									class="img-thumbnail">
-									
-									<label><%=scheduleDto.getHometeam()%></label>
+									class="img-thumbnail"> <label><%=scheduleDto.getHometeam()%></label>
 							</div>
 							<div class="col-md-2 p-0 col-12 align-self-center">
 								<h2 class="m-0">
-									<strong><%=scheduleDto.getScore1()%> VS <%=scheduleDto.getScore2() %></strong>
+									<strong><%=scheduleDto.getScore1()%> VS <%=scheduleDto.getScore2()%></strong>
 								</h2>
 							</div>
 							<div class="col-md-5 p-0 col-12" style="text-align: right;">
-								
-								<label><%=scheduleDto.getHometeam()%></label>
-								<img src="<%=root%><%=scheduleDto.getHomeemblem() %>"
+								<label><%=scheduleDto.getHometeam()%></label> <img
+									src="<%=root%><%=scheduleDto.getHomeemblem()%>"
 									class="img-thumbnail">
 							</div>
 						</div>
@@ -130,16 +127,18 @@ for(i= 0; i<5; i++){
 				</div>
 			</div>
 			<%
-}
+				} else {
 			%>
-			
-						</div>
-					</div>
-				</div>
-			</div>
+					<p class="text-center py-3">예정 경기가 없습니다.</p>
+			<%		
+				}
+			%>
 		</div>
-		<!-- daily -->
 	</div>
+</div>
+</div>
+<!-- daily -->
+</div>
 </div>
 
 <!-- 구단응원바로가기 : 구단커뮤니티로 바로 연결될 예정, 구단커뮤니티미완성으로 일단 자리만 차지하고있을께요~! -->

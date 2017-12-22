@@ -1,28 +1,35 @@
 <%@page import="com.sun.java.swing.plaf.windows.resources.windows"%>
+<%@ page import="java.net.URL" %>
+<%@ page import="java.util.List" %>
+<%@ page import="org.xml.sax.InputSource" %>
+<%@ page import="org.jdom2.Document" %>
+<%@ page import="org.jdom2.Element" %>
+<%@ page import="org.jdom2.input.SAXBuilder" %>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-	
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
 <script type="text/javascript" src="<%=root %>/js/httpRequest.js"></script>
-<script>
-window.onload=function(){
-	todaypl();
-}
-function todaypl(){
-	var params="act=todaypl";
-	sendRequest("<%=root%>/admin", params, viewlist, "GET");
-}
-function viewlist(){
-	if(httpRequest.readyState == 4) {
-		if(httpRequest.status == 200) {
-			var listxml = httpRequest.responseXML;
-			makelist(listxml);
-		}	
-	}
-}
-
-</script>
+<script type="text/javascript" src="<%=root %>/js/mainschedule.js"></script>
+<%
+    List list = null;
+ 
+    try{
+        SAXBuilder parser = new SAXBuilder();
+        parser.setValidation(false);
+        parser.setIgnoringElementContentWhitespace(true);
+        //URL url = new URL("http://jsp.hooni.net/rss/sample.xml");
+        URL url = new URL("http://rss.hankooki.com/sports/sp_baseball.xml");
+        InputSource is = new InputSource(url.openStream());
+        Document doc = parser.build(is);
+ 
+        Element basic = doc.getRootElement();
+        Element channel = basic.getChild("channel");
+        list = channel.getChildren("item");
+    }catch(Exception e){
+        e.getStackTrace();
+    }
+%>
 <!-- 메인이미지>> 관리자가 선택할수있었으면.. -->
 <div id="main-section">
 	<div class="container-fluid">
@@ -50,169 +57,7 @@ function viewlist(){
 
 		<div id="main-carousel" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<div class="row text-white text-center">
-						<div class="mx-auto rounded carousel-size-wrapper"
-							style="background-image: url(<%=root%>/img/etc/grass.jpg);">
-
-							<div class="col-md-12 text-white p-2"
-								style="background-color: rgba(50, 50, 50, 0.75);">
-								<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
-							</div>
-
-							<div class="col-md-12 opaque-overlay py-2 px-3">
-								<div class="row">
-									<div class="col-md-5 p-0 col-12" style="text-align: left;">
-										<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
-											class="img-thumbnail"><label>SK 와이번즈</label>
-									</div>
-									<div class="col-md-2 p-0 col-12 align-self-center">
-										<h2 class="m-0">
-											<strong>VS</strong>
-										</h2>
-									</div>
-									<div class="col-md-5 p-0 col-12" style="text-align: right;">
-										<label>KT 위즈</label><img
-											src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
-											class="img-thumbnail">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<div class="row text-white text-center">
-						<div class="mx-auto rounded carousel-size-wrapper"
-							style="background-image: url(<%=root%>/img/etc/grass.jpg);">
-
-							<div class="col-md-12 text-white p-2"
-								style="background-color: rgba(50, 50, 50, 0.75);">
-								<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
-							</div>
-
-							<div class="col-md-12 opaque-overlay py-2 px-3">
-								<div class="row">
-									<div class="col-md-5 p-0 col-12" style="text-align: left;">
-										<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
-											class="img-thumbnail"><label>한화 이글스</label>
-									</div>
-									<div class="col-md-2 p-0 col-12 align-self-center">
-										<h2 class="m-0">
-											<strong>VS</strong>
-										</h2>
-									</div>
-									<div class="col-md-5 p-0 col-12" style="text-align: right;">
-										<label>삼성 라이온즈</label><img
-											src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
-											class="img-thumbnail">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<div class="row text-white text-center">
-						<div class="mx-auto rounded carousel-size-wrapper"
-							style="background-image: url(<%=root%>/img/etc/grass.jpg);">
-
-							<div class="col-md-12 text-white p-2"
-								style="background-color: rgba(50, 50, 50, 0.75);">
-								<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
-							</div>
-
-							<div class="col-md-12 opaque-overlay py-2 px-3">
-								<div class="row">
-									<div class="col-md-5 p-0 col-12" style="text-align: left;">
-										<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
-											class="img-thumbnail"><label>삼성 라이온즈</label>
-									</div>
-									<div class="col-md-2 p-0 col-12 align-self-center">
-										<h2 class="m-0">
-											<strong>VS</strong>
-										</h2>
-									</div>
-									<div class="col-md-5 p-0 col-12" style="text-align: right;">
-										<label>SK 와이번즈</label><img
-											src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
-											class="img-thumbnail">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<div class="row text-white text-center">
-						<div class="mx-auto rounded carousel-size-wrapper"
-							style="background-image: url(<%=root%>/img/etc/grass.jpg);">
-
-							<div class="col-md-12 text-white p-2"
-								style="background-color: rgba(50, 50, 50, 0.75);">
-								<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
-							</div>
-
-							<div class="col-md-12 opaque-overlay py-2 px-3">
-								<div class="row">
-									<div class="col-md-5 p-0 col-12" style="text-align: left;">
-										<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
-											class="img-thumbnail"><label>기아 타이거즈</label>
-									</div>
-									<div class="col-md-2 p-0 col-12 align-self-center">
-										<h2 class="m-0">
-											<strong>VS</strong>
-										</h2>
-									</div>
-									<div class="col-md-5 p-0 col-12" style="text-align: right;">
-										<label>SK 와이번즈</label><img
-											src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
-											class="img-thumbnail">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<div class="row text-white text-center">
-						<div class="mx-auto rounded carousel-size-wrapper"
-							style="background-image: url(<%=root%>/img/etc/grass.jpg);">
-
-							<div class="col-md-12 text-white p-2"
-								style="background-color: rgba(50, 50, 50, 0.75);">
-								<span class="px-3 border-r">인천</span><span class="px-3">17:00</span>
-							</div>
-
-							<div class="col-md-12 opaque-overlay py-2 px-3">
-								<div class="row">
-									<div class="col-md-5 p-0 col-12" style="text-align: left;">
-										<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
-											class="img-thumbnail"><label>SK 와이번즈</label>
-									</div>
-									<div class="col-md-2 p-0 col-12 align-self-center">
-										<h2 class="m-0">
-											<strong>VS</strong>
-										</h2>
-									</div>
-									<div class="col-md-5 p-0 col-12" style="text-align: right;">
-										<label>SK 와이번즈</label><img
-											src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
-											class="img-thumbnail">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<a class="carousel-control-prev" href="#main-carousel" role="button"
-					data-slide="prev"> <span class="carousel-control-prev-icon"
-					aria-hidden="true"></span> <span class="sr-only">Previous</span>
-				</a> <a class="carousel-control-next" href="#main-carousel"
-					role="button" data-slide="next"> <span
-					class="carousel-control-next-icon" aria-hidden="true"></span> <span
-					class="sr-only">Next</span>
-				</a>
+				<div id="start" width="800px"></div>
 			</div>
 		</div>
 	</div>
@@ -326,34 +171,6 @@ function viewlist(){
 					</div>
 				</div>
 				<ul class="list-group">
-					<li class="list-group-item">
-						<div class="row px-2">
-							<div class="img-wrapper align-self-center text-center col-4">
-								<img src="<%=root%>/img/news/news1.jpg" class="img-fluid">
-							</div>
-							<div class="col-8 align-self-center pr-0">
-								<h5 class="mb-3 text-dark">
-									<b>kt, 외국인 타자 로하스와 100만달러 재계약</b>
-								</h5>
-								<p class="my-1">kt 위즈가 외국인 타자 멜 로하스 주니어와 재계약을 체결햇다. 로하스도
-									100만달러의 사나이가 됐다.</p>
-							</div>
-						</div>
-					</li>
-					<li class="list-group-item">
-						<div class="row px-2">
-							<div class="img-wrapper align-self-center text-center col-4">
-								<img src="<%=root%>/img/news/news2.jpg" class="img-fluid">
-							</div>
-							<div class="col-8 align-self-center pr-0">
-								<h5 class="mb-3 text-dark">
-									<b>최고 극찬 최승준, 시련의 2017년 저문다</b>
-								</h5>
-								<p class="my-1">SK의 거포 자원 최승준(29)은 2017년을 정리해 달라는 질문에 깊은 한숨,
-									그리고 멋쩍은 웃음으로 대신했다..</p>
-							</div>
-						</div>
-					</li>
 					<li class="list-group-item">
 						<div class="row px-2">
 							<div class="img-wrapper align-self-center text-center col-4">

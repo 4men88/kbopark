@@ -3,6 +3,7 @@ package com.baseball.factory;
 import com.baseball.admin.action.DeleteBoardAction;
 import com.baseball.admin.action.ListBoardAction;
 import com.baseball.admin.action.ListNoticeAction;
+import com.baseball.admin.action.MainScheduleAction;
 import com.baseball.admin.action.UserListAction;
 import com.baseball.admin.action.ViewNoticeAction;
 import com.baseball.admin.action.WrtieNoticeAction;
@@ -14,6 +15,7 @@ public class AdminActionFactory {
 	private static ListBoardAction listBoardAction;
 	private static ViewNoticeAction viewNoticeAction;
 	private static DeleteBoardAction deleteBoardAction;
+	private static MainScheduleAction mainScheduleAction;
 	static {
 		
 		userListAction = new UserListAction();
@@ -22,6 +24,7 @@ public class AdminActionFactory {
 		listBoardAction = new ListBoardAction();
 		viewNoticeAction = new ViewNoticeAction();
 		deleteBoardAction = new DeleteBoardAction();
+		mainScheduleAction = new MainScheduleAction();
 	}
 
 	public static ViewNoticeAction getViewNoticeAction() {
@@ -46,6 +49,10 @@ public class AdminActionFactory {
 
 	public static DeleteBoardAction getDeleteBoardAction() {
 		return deleteBoardAction;
+	}
+
+	public static MainScheduleAction getMainScheduleAction() {
+		return mainScheduleAction;
 	}
 
 

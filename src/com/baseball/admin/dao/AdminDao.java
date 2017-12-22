@@ -6,6 +6,7 @@ import java.util.Map;
 import com.baseball.admin.model.NoticeDto;
 import com.baseball.board.model.BoardDto;
 import com.baseball.member.model.MemberDetailDto;
+import com.baseball.schedule.scheduleDto.ScheduleDto;
 
 public interface AdminDao {
 
@@ -21,4 +22,5 @@ public interface AdminDao {
 	int getTotalArticleCount(Map<String,String> map);
 	List<BoardDto> boardlist();
 	List<NoticeDto> noticeList();
+	List<ScheduleDto> getPlayToday();
 }
