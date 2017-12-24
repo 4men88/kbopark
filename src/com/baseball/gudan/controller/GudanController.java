@@ -1,6 +1,10 @@
 package com.baseball.gudan.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,10 +41,8 @@ public class GudanController extends HttpServlet {
 			path = GudanActionFactory.getStadiumAction().execute(request, response);
 			PageMove.forward(request, response, path);			
 		} else if ("mvweekly".equals(act)) {
-
 			path = GudanActionFactory.getWeeklyAction().execute(request, response);
 			PageMove.forward(request, response, path);			
-			
 		} else if ("mvcommunity".equals(act)) {
 			path = "/community/list.jsp";
 			PageMove.forward(request, response, path);			
@@ -54,14 +56,12 @@ public class GudanController extends HttpServlet {
 			path = GudanServiceImpl.getGudanService().getReservationWeb(tno);
 			System.out.println("GudanController path >>> " + path);
 			response.sendRedirect(path);		
+		} else if("timer".equals(act)) {
+			String time = GudanActionFactory.getTimeAction().execute(request, response);
+			response.setContentType("text/plain;charset=EUC-KR");
+			PrintWriter out = response.getWriter();
+			out.print(time);
 		}
-//		} else if("deletearticle".equals(act)) {
-//			System.out.println("controller deletearticle ÁøÀÔ !");
-//			path = BoardActionFactory.getReboardDeleteAction().execute(request, response);
-//			path += queryString;
-//			System.out.println("controller deletearticle path >>>   " + path);
-//			PageMove.forward(request, response, path);
-		
 		else if("".equals(act)) {
 			PageMove.redirect(request, response, path);
 		}

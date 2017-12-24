@@ -854,3 +854,14 @@ html, body {
 #listnav td>a, #listnav td>font>b {
 	margin: 3px;	
 }
+
+.over-detail {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3; /* ¶óÀÎ¼ö */
+	-webkit-box-orient: vertical;
+	word-wrap:break-word; 
+	line-height: 1.2em;
+	height: 3.6em;
+}

@@ -7,7 +7,7 @@
 			<div class="col-md-12 text-center align-self-center">
 				<div class="row pb-5">
 					<div class="col-12">
-						<p class="mb-5"><a href="#"><span class="border-b">공지사항</span></a></p>
+						<p class="mb-5"><a href="<%=request.getContextPath() %>/admin?act=notice"><span class="border-b">공지사항</span></a></p>
 					</div>
 				</div>
 				<div class="row">
