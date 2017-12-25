@@ -7,7 +7,9 @@
 GudanDto gudanDto = (GudanDto) session.getAttribute("gudandto");
 List<BoardDto> hotboard = (List<BoardDto>) request.getAttribute("hotboard");
 List<AuctionDetailDto> hotauction = (List<AuctionDetailDto>)request.getAttribute("hotauction");
+
 DecimalFormat df = new DecimalFormat("#,##0");
+int auctionLen = hotauction.size();
 %>
 <script type="text/javascript" src="<%=root%>/js/httpRequest.js"></script>
 <script type="text/javascript">
@@ -28,14 +30,28 @@ function goBoardView(tno, pg, key, word, seq) {
 }
 
 function startTime() {
-	var params = "act=timer&curtime=2018-01-10 00:00:00";
-	sendRequest("<%=root%>/gudan", params, getTime, "GET");   
+ 	var alen = <%=auctionLen%>;
+	var params = "act=timer&alen="+alen;
+<%
+	String param = "";
+	for (int i=0;i<auctionLen;i++) {
+		param += "&curtime" + i + "=" + hotauction.get(i).getEndTime();
+		System.out.println(param);
+	}
+%>
+	params += "<%=param%>";
+	sendRequest("<%=root%>/gudan", params, getTime, "GET");    
 }
 
 function getTime() {
 	   if(httpRequest.readyState == 4) {
 	      if(httpRequest.status == 200) {
 	    	  var txt = httpRequest.responseText;
+	    	  var result = txt.split(",");
+	    	  for (i=0;i<result.length;i++) {
+	    		  var idname = 'auctime' + i;
+	  		  	  document.getElementById(idname).innerHTML = result[i];
+	    	  }
 	    	  window.setTimeout("startTime();", 1000);
 	      }
 	   }   
@@ -62,7 +78,8 @@ $(document).ready(function(){
 				<ul class="list-group">
 <%
 int alen = hotauction.size();
-for(AuctionDetailDto adto : hotauction) {
+for(int i=0;i<alen;i++) {
+	AuctionDetailDto adto = hotauction.get(i);
 %>					
 					<li class="list-group-item">
 						<div class="row px-2" style="height: 120px;">
@@ -74,7 +91,9 @@ for(AuctionDetailDto adto : hotauction) {
 									<a href="javascript:alert('연결필요');"><b><%=adto.getAname() %></b></a>
 								</h5>
 								<p class="my-1">현재입찰가 : <strong><%=df.format(adto.getBidPrice()) %> 원</strong></p>
-								<h6 style="color: #2e8de5;">남은시간 : <strong id="auctime"><%=adto.getEndTime() %></strong></h6>
+								<h6 style="color: #2e8de5;">남은시간 : 
+								<strong id="auctime<%=i%>"></strong>
+								</h6>
 							</div>
 						</div>
 					</li>

@@ -2,9 +2,6 @@ package com.baseball.gudan.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +13,6 @@ import com.baseball.factory.GudanActionFactory;
 import com.baseball.gudan.service.GudanServiceImpl;
 import com.baseball.util.NullCheck;
 import com.baseball.util.PageMove;
-import com.baseball.util.StringEncoder;
 
 @WebServlet("/gudan")
 public class GudanController extends HttpServlet {
@@ -57,10 +53,11 @@ public class GudanController extends HttpServlet {
 			System.out.println("GudanController path >>> " + path);
 			response.sendRedirect(path);		
 		} else if("timer".equals(act)) {
-			String time = GudanActionFactory.getTimeAction().execute(request, response);
+			String restxt = GudanActionFactory.getTimeAction().execute(request, response);
 			response.setContentType("text/plain;charset=EUC-KR");
 			PrintWriter out = response.getWriter();
-			out.print(time);
+			out.print(restxt);
+			System.out.println(restxt);
 		}
 		else if("".equals(act)) {
 			PageMove.redirect(request, response, path);
