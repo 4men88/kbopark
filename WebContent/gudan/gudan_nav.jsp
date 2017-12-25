@@ -10,13 +10,22 @@ function goListArticle(tno, pg, key, word, seq) {
 
 function getCategory(name) {
 	var output = "";
+	document.getElementById("gudan-tab1").classList.remove("active");
+	document.getElementById("gudan-tab2").classList.remove("active");
+	document.getElementById("gudan-tab3").classList.remove("active");
+	document.getElementById("gudan-tab4").classList.remove("active");
+
 	if(name == "home_jsp") {
+		document.getElementById("gudan-tab1").classList.add("active");
 		output = "메인";
 	} else if(name == "gujang_jsp") {
+		document.getElementById("gudan-tab2").classList.add("active");
 		output = "구장안내";
 	} else if(name == "weekly_jsp") {
+		document.getElementById("gudan-tab3").classList.add("active");
 		output = "스케줄";
 	} else {
+		document.getElementById("gudan-tab4").classList.add("active");
 		output = "커뮤니티";
 	}
 	document.getElementById("current-name").innerHTML = output;
@@ -60,10 +69,10 @@ window.onload = function() {
 <div id="gudan-nav">
 	<div class="container">
 		<div class="d-flex justify-content-center">
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvhome&tno=<%=gudanDto.getTno() %>">메인</a></div>
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvstadium&sno=<%=gudanDto.getSno1() %>">구장안내</a></div>
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvweekly&tno=<%=gudanDto.getTno() %>">스케줄</a></div>
-			<div class="gudan-nav-inner p-3"><a href="javascript:goListArticle('<%=gudanDto.getTno()%>','1','','','');">커뮤니티</a></div>
+			<div id="gudan-tab1" class="p-3 gudan-nav-inner"><a href="<%=root%>/gudan?act=mvhome&tno=<%=gudanDto.getTno() %>">메인</a></div>
+			<div id="gudan-tab2" class="p-3 gudan-nav-inner"><a href="<%=root%>/gudan?act=mvstadium&sno=<%=gudanDto.getSno1() %>">구장안내</a></div>
+			<div id="gudan-tab3" class="p-3 gudan-nav-inner"><a href="<%=root%>/gudan?act=mvweekly&tno=<%=gudanDto.getTno() %>">스케줄</a></div>
+			<div id="gudan-tab4" class="p-3 gudan-nav-inner"><a href="javascript:goListArticle('<%=gudanDto.getTno()%>','1','','','');">커뮤니티</a></div>
 		</div>
 		<div class="border-b p-0"></div>
 	</div>

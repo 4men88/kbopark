@@ -6,8 +6,59 @@
 String seq = (String) request.getAttribute("seq");
 GudanDto gudanDto = (GudanDto) session.getAttribute("gudandto");
 %>
+<script type="text/javascript" src="<%=root%>/js/httpRequest.js"></script>
 <script type="text/javascript">
 control = "/board";
+
+function startTime() {
+	var params = "act=bestarticle&tno=<%=gudanDto.getTno()%>";
+	sendRequest("<%=root%>/board", params, bestList, "GET");
+}
+
+function bestList() {
+	if(httpRequest.readyState == 4) {
+		if(httpRequest.status == 200) {
+			var listxml = httpRequest.responseXML;
+		 	makelist(listxml);
+			window.setTimeout("startTime();", 5000);
+		} 
+	}
+}
+
+function makelist(data) {
+	var output = "";
+	var len = data.getElementsByTagName("board").length;
+	
+	if(len == 0) {
+		output = "<div class=\"col-md-12 text-center py-3\"><h6>베스트글이 존재하지 않습니다.</h6></div>";
+	} else {	
+		output += "<ul class=\"list-group\">";
+		for(var i=0;i<len;i++) {
+			var bno = data.getElementsByTagName("bno")[i].firstChild.data;
+			var bname = data.getElementsByTagName("bname")[i].firstChild.data;
+			var replycnt = data.getElementsByTagName("replycnt")[i].firstChild.data;
+			
+			output += "<li class=\"list-group-item over-subject\" style=\"border: none;\">";
+			output += "<span class=\"bestnum\" ";
+			if(i==0||i==1||i==2) {
+				output += "style=\"color: red;\"";
+			}
+			output += ">";
+			output += (i+1) + "</span>";
+			output += "<span id=\"bestsubject\">";
+			output += "<a href=\"javascript:viewArticle('<%=tno%>','1','','','" + bno + "');\">";
+			output += bname + "...(" + replycnt + ")</a>";
+			output += "</span>";
+			output += "</li>";
+		}
+		output += "</ul>";
+	}
+	document.getElementById("bestboard").innerHTML = output;
+}
+
+$(document).ready(function(){
+	startTime();
+});
 </script>
 
 <!-- 구단네비게이터 -->
@@ -35,29 +86,7 @@ control = "/board";
 					<strong>실시간베스트</strong>
 				</h5>
 				<div class="border-b-strong"></div>
-				<ul class="list-group">
-					<li class="list-group-item" style="border: none;"><span
-						class="bestnum" style="color: red;">1</span> ㅇㅅㅇ들 일이 이렇게 커진...
-						(157)</li>
-					<li class="list-group-item"><span class="bestnum"
-						style="color: red;">2</span> 하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum"
-						style="color: red;">3</span> 하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum">4</span>
-						하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum">5</span>
-						하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item" style="border: none;"><span
-						class="bestnum">6</span> ㅇㅅㅇ들 일이 이렇게 커진... (157)</li>
-					<li class="list-group-item"><span class="bestnum">7</span>
-						하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum">8</span>
-						하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum">9</span>
-						하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum">10</span>
-						하하하하하 그러고보니 방... (65)</li>
-				</ul>
+				<div id="bestboard"></div>
 			</div>
 
 		</div>

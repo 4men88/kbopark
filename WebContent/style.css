@@ -686,7 +686,7 @@ html, body {
 	border-bottom: 3px solid white;
 }
 
-#gudan-nav .gudan-nav-inner:hover, .gudan-nav-inner:active {
+#gudan-nav .active {
 	border-bottom: 3px solid #066ED2;
 }
 
@@ -864,4 +864,14 @@ html, body {
 	word-wrap:break-word; 
 	line-height: 1.2em;
 	height: 3.6em;
+}
+.over-subject {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1; /* ¶óÀÎ¼ö */
+	-webkit-box-orient: vertical;
+	word-wrap:break-word; 
+	line-height: 49px;
+	height: 49px;
 }

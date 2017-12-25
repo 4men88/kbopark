@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.baseball.action.Action;
 import com.baseball.board.model.BoardDto;
+import com.baseball.board.model.ReplyDto;
 import com.baseball.board.service.BoardServiceImpl;
+import com.baseball.board.service.ReplyServiceImpl;
 
 public class BoardBestListAction implements Action {
 
@@ -18,11 +20,10 @@ public class BoardBestListAction implements Action {
 			throws ServletException, IOException {
 		
 		int tno = Integer.parseInt(request.getParameter("tno"));
-		System.out.println("BoardBestListAction tno >> " + tno);
 		List<BoardDto> bestlist = BoardServiceImpl.getBoardService().bestArticle(tno);
-		System.out.println("BoardBestListAction listsize >> " + bestlist.size());
+		System.out.println("BBestListAction listsize >> " + bestlist.size());
 
 		request.setAttribute("bestlist", bestlist);
-		return "/community/list.jsp";
+		return "/community/bestlist.jsp";
 	}
 }
