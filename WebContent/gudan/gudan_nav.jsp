@@ -3,6 +3,11 @@
 <!-- include 안해서 root, gudanDto에 error나는거 맞아요^^ 에러 표시나도 정상실행됩니다 -->
 
 <script type="text/javascript">
+function goListArticle(tno, pg, key, word, seq) {
+	control = "/board";
+	listArticle(tno, pg, key, word, seq);
+}
+
 function getCategory(name) {
 	var output = "";
 	if(name == "home_jsp") {
@@ -58,7 +63,7 @@ window.onload = function() {
 			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvhome&tno=<%=gudanDto.getTno() %>">메인</a></div>
 			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvstadium&sno=<%=gudanDto.getSno1() %>">구장안내</a></div>
 			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvweekly&tno=<%=gudanDto.getTno() %>">스케줄</a></div>
-			<div class="gudan-nav-inner p-3"><a href="javascript:listArticle('<%=gudanDto.getTno()%>');">커뮤니티</a></div>
+			<div class="gudan-nav-inner p-3"><a href="javascript:goListArticle('<%=gudanDto.getTno()%>','1','','','');">커뮤니티</a></div>
 		</div>
 		<div class="border-b p-0"></div>
 	</div>

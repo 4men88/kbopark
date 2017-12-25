@@ -135,18 +135,18 @@ public class BoardDaoImpl implements BoardDao {
 		int cnt = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		System.out.println("BoardDI modifyArticle ¡¯¿‘");
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
 
 			sql.append("UPDATE board \n");
-			sql.append("SET bname = ?, bdetail = ?, tno = ? \n");
-			sql.append("WHERE bno = ? LIMIT 1");
+			sql.append("SET bname = ?, bdetail = ? \n");
+			sql.append("WHERE bno = ?");
 			pstmt = conn.prepareStatement(sql.toString());
 			int idx = 0;
 			pstmt.setString(++idx, boardDto.getBname());
 			pstmt.setString(++idx, boardDto.getBdetail());
-			pstmt.setInt(++idx, boardDto.getTno());
 			pstmt.setInt(++idx, boardDto.getBno());
 			cnt = pstmt.executeUpdate();
 		} catch (SQLException e) {

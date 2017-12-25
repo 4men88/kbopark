@@ -36,6 +36,9 @@ function moveReply() {
 }
 
 function replyWrite(seq) {
+<%	
+	if(memberDto != null) {
+%>
 	var recontent = document.getElementById("recontent").value;
 	document.getElementById("recontent").value = "";
 	if(recontent != "") {
@@ -43,6 +46,14 @@ function replyWrite(seq) {
 		var params = "act=writeReply&seq=" + seq + "&recontent=" + recontent;
 		sendRequest(url, params, replyList, "POST");
 	}
+<%
+	} else {
+%>
+		alert("로그인이 필요합니다");
+		document.location.href = "<%=root%>/login/login.jsp";
+<%
+	}
+%>
 }
 
 function replyDelete(reno, seq) {
@@ -91,11 +102,11 @@ function makelist(data) {
 	document.getElementById("replylist").innerHTML = output;
 }
 
-window.onload = function() {
+$(document).ready(function(){
 	var url = "<%=root%>/reply";
 	var params = "act=listReply&seq=<%=boardDto.getBno()%>";
 	sendRequest(url, params, replyList, "GET");
-}
+});
 </script>
 
 <!-- 구단네비게이터 -->

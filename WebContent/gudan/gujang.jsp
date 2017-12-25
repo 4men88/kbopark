@@ -9,17 +9,6 @@ System.out.println("gujang.jsp gudandto >>> " + gudanDto);
 System.out.println("gujang.jsp tno >>> "+NullCheck.nullToZero(request.getParameter("tno")));
 System.out.println(stadiumDto.getLat() + " " +stadiumDto.getLng() + " " + stadiumDto.getLocid());
 %>
-<script type="text/javascript">
-function listArticle(tno) {
-	document.getElementById("cact").value = "listarticle";
-	document.getElementById("ctno").value = tno;
-	document.getElementById("cpg").value = 1;
-	
-	document.getElementById("commonForm").action = root + "/board";
-	document.getElementById("commonForm").submit();
-}
-
-</script>
 
 <!-- 구단네비게이터 -->
 <%@ include file="/gudan/gudan_nav.jsp"%>

@@ -15,15 +15,6 @@ int auctionLen = hotauction.size();
 <script type="text/javascript">
 control = "/gudan";
 
-function listArticle(tno) {
-	document.getElementById("cact").value = "listarticle";
-	document.getElementById("ctno").value = tno;
-	document.getElementById("cpg").value = 1;
-	
-	document.getElementById("commonForm").action = root + "/board";
-	document.getElementById("commonForm").submit();
-}
-
 function goBoardView(tno, pg, key, word, seq) {
 	control = "/board";
 	viewArticle(tno, pg, key, word, seq);

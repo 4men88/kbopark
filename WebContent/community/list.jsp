@@ -68,7 +68,7 @@ for(int i=0;i<len;i++) {
 		<div class="p-2">
 				<form id="searchForm" name="searchForm" method="get">
 <input type="hidden" id="act" name="act" value="listarticle">
-<input type="hidden" id="tno" name="tno" value="<%=tno%>">
+<input type="hidden" id="tno" name="tno" value="<%=gudanDto.getTno()%>">
 <input type="hidden" id="pg" name="pg" value="1">
 					<div class="form-row">
 						<div class="form-group col-md-4">
@@ -103,15 +103,14 @@ if(size != 0) {
 %>	
 			<a href="javascript:viewArticle('<%=tno%>','<%=pg%>','<%=key%>','<%=word%>','<%=boardDto.getBno()%>');"
 				class="list-group-item list-group-item-action flex-column align-items-start">
-				<div class="row">
-					<div class="col-md-2 text-center align-self-center">
-						<img src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
-							width="100%" style="min-height: 100px; max-height: 100px;">
+				<div class="row" style="height: 140px;">
+					<div class="col-md-2 col-4 text-center align-self-center">
+						<img src="<%=root%>/img/gudan/emblem/emblem-doosan.png" class="img-fluid">
 					</div>
-					<div class="col-md-10">
+					<div class="col-md-10 col-8 align-self-center">
 						<h5 class="mb-1"><%=boardDto.getBname() %>...(<%=boardDto.getTotalreply() %>)</h5>
 						<small><%=boardDto.getMname() %> | <%=boardDto.getBdate() %> | Á¶È¸¼ö: <%=boardDto.getBcount() %></small>
-						<p class="mt-2 mb-0"><%=boardDto.getBdetail() %></p>
+						<p class="mt-2 mb-0 over-detail"><%=boardDto.getBdetail() %></p>
 					</div>
 				</div>
 			</a>			

@@ -31,15 +31,12 @@ function writeArticle(){
 		return;
 	}else{
 		document.getElementById("content").value = alice.getContent();
-		document.getElementById("boardtno").value = document.getElementById("selectgudan").value;
+		document.getElementById("boardtno").value = "<%=gudanDto.getTno()%>";
 		document.getElementById("writeForm").action = "<%=root%>/board";
 		document.getElementById("writeForm").submit();
 	}
 }
 
-window.onload=function(){
-	
-}
 </script>
 
 <!-- 구단네비게이터 -->
@@ -71,18 +68,8 @@ window.onload=function(){
 					<div class="form-group row px-3">
 						<label for="selectgudan" class="col-sm-2 col-4 col-form-label">구단</label>
 						<div class="col-sm-4 col-8">
-							<select id="selectgudan" name="selectgudan" class="form-control">
-								<option value="2" selected>두산 베어스</option>
-								<option value="3">롯데 자이언츠</option>
-								<option value="1">KIA 타이거즈</option>
-								<option value="4">NC 다이노스</option>
-								<option value="5">SK 와이번스</option>
-								<option value="6">LG 트윈스</option>
-								<option value="7">넥센 히어로즈</option>
-								<option value="8">한화 이글스</option>
-								<option value="9">삼성 라이온즈</option>
-								<option value="10">KT 위즈</option>
-							</select>
+							<input type="text" class="form-control" id="gudanName" name="gudanName"
+								placeholder="<%=gudanDto.getTname()%>" readonly>
 						</div>
 					</div>
 
@@ -109,19 +96,19 @@ window.onload=function(){
 					</div>
 
 					<!-- 첨부파일 -->
-					<div class="form-group row px-3">
+<!-- 					<div class="form-group row px-3">
 						<label for="inputfile" class="col-sm-2 col-form-label">첨부파일</label>
 						<div class="col-sm-10">
 							<input type="file" class="form-control-file mb-2"
 								id="exampleFormControlFile1"> <label
 								style="font-size: 14px;">이미지 크기는 3MB이하로 제한됩니다.(수정)</label>
-							<!-- 왜안먹히지..ㅠㅠ
+							왜안먹히지..ㅠㅠ
 								<label class="custom-file">
 								<input type="file" id="file2" class="custom-file-input mb-2"> <span
 									class="custom-file-control"></span>
-								</label> -->
+								</label>
 						</div>
-					</div>
+					</div> -->
 
 					<!-- 캡챠 -->
 				</form>

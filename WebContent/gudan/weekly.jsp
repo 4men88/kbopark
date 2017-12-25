@@ -8,16 +8,6 @@ GudanDto gudanDto = (GudanDto) session.getAttribute("gudandto");
 List<ScheduleDto> playlist = (List<ScheduleDto>) request.getAttribute("playlist");
 List<StadiumDto> playstadium = (List<StadiumDto>) request.getAttribute("playstadium");
 %>
-<script type="text/javascript">
-function listArticle(tno) {
-	document.getElementById("cact").value = "listarticle";
-	document.getElementById("ctno").value = tno;
-	document.getElementById("cpg").value = 1;
-	
-	document.getElementById("commonForm").action = root + "/board";
-	document.getElementById("commonForm").submit();
-}
-</script>
 
 <!-- 구단네비게이터 -->
 <%@ include file="/gudan/gudan_nav.jsp"%>
