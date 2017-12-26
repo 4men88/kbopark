@@ -1,8 +1,8 @@
 package com.baseball.schedule.action;
 
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,48 +11,35 @@ import javax.servlet.http.HttpServletResponse;
 import com.baseball.action.Action;
 import com.baseball.schedule.scheduleDto.ScheduleDto;
 import com.baseball.schedule.scheduledao.ScheduleDaoImpl;
+import com.baseball.util.NullCheck;
 
 public class MonthlyAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		String year = request.getParameter("y");
-//		String mon = request.getParameter("m");
-//		String date = year+mon;
-//		System.out.println(mon);
-//		String date = ""+year;
-		Calendar cal = Calendar.getInstance();
 		
-		int year = request.getParameter("y") == null ? cal.get(Calendar.YEAR)
-				: Integer.parseInt(request.getParameter("y"));
-		int month = request.getParameter("m") == null ? cal.get(Calendar.MONTH)
-				: (Integer.parseInt(request.getParameter("m")) );
-		int day = request.getParameter("d") == null ? cal.get(Calendar.DAY_OF_MONTH)
-				: (Integer.parseInt(request.getParameter("d")));
-		String date = ""+year;
+		Map<String, List<ScheduleDto>> map = new HashMap<String, List<ScheduleDto>>();
+		int year = NullCheck.nullToZero(request.getParameter("y"));
+		int month = NullCheck.nullToZero(request.getParameter("m"));
 		
-		if(month>0&& month<10) {
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+		Calendar cal = new GregorianCalendar(year, month-1, 1);
+		
+		int maxday = cal.getActualMaximum(cal.DAY_OF_MONTH);
+		
+		String date = "";
+		for(int i=0;i<maxday;i++) {
+			date = formatter.format(cal.getTime());
+			List<ScheduleDto> list = ScheduleDaoImpl.getScheduleDao().getSchedule(date);
+			map.put(date, list);
 			
-			date += "0"+month;
-		}else {
-			date += ""+month;
-		}
-		if(day>0&& day<10) {
-			
-			date += "0"+day;
-		}else {
-			date += ""+day;
+			cal.add(Calendar.DATE, 1);
 		}
 		
-		List<ScheduleDto> list = ScheduleDaoImpl.getScheduleDao().getSchedule(date);
+		System.out.println("MonthlyAction mapsize >> " + map.size());
 		
-//		System.out.println(year+mon);
-		request.setAttribute("sch", list);
-		System.out.println("ScheduleAction" + list);
-		
+		request.setAttribute("monthlymap", map);
 		return "/schedule/monthly.jsp";
-		
 	}
-
 }
