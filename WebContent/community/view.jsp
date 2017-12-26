@@ -10,6 +10,25 @@ BoardDto boardDto = (BoardDto) request.getAttribute("article");
 <script type="text/javascript">
 control = "/board";
 
+var bestHttpRequest = null;
+
+function sendBestRequest(url, params, callback, method){
+	bestHttpRequest = getXMLHttpRequest();
+	var httpMethod = method ? method : 'GET';
+	if(httpMethod != 'GET' && httpMethod != 'POST'){
+		httpMethod = 'GET';
+	}
+	var httpParams = (params == null || params == '') ? null : params;
+	var httpUrl = url;
+	if(httpMethod == 'GET' && httpParams != null){
+		httpUrl = httpUrl + "?" + httpParams;
+	}
+	bestHttpRequest.open(httpMethod, httpUrl, true);
+	bestHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	bestHttpRequest.onreadystatechange = callback;
+	bestHttpRequest.send(httpMethod == 'POST' ? httpParams : null);
+}
+
 function notifyArticle() {
 	document.getElementById("cact").value = "notifyarticle";
 	document.getElementById("ctno").value = "<%=tno%>";
@@ -44,7 +63,7 @@ function replyWrite(seq) {
 	if(recontent != "") {
 		var url = "<%=root%>/reply";
 		var params = "act=writeReply&seq=" + seq + "&recontent=" + recontent;
-		sendRequest(url, params, replyList, "POST");
+		sendRequest(url, params, replyList, "GET");
 	}
 <%
 	} else {
@@ -84,7 +103,7 @@ function makelist(data) {
 		
 		output += "<tr>";
 		output += "<td>" + data.getElementsByTagName("name")[i].firstChild.data + "</td>";
-		output += "<td nowrap colspan=\"3\">" + data.getElementsByTagName("recontent")[i].firstChild.data;
+		output += "<td colspan=\"3\" style=\"word-break: break-all\">" + data.getElementsByTagName("recontent")[i].firstChild.data;
 <%
 	if(memberDto != null) {
 %>		
@@ -102,31 +121,36 @@ function makelist(data) {
 	document.getElementById("replylist").innerHTML = output;
 }
 
-$(document).ready(function(){
+function startReply() {
 	var params = "act=listReply&seq=<%=boardDto.getBno()%>";
 	sendRequest("<%=root%>/reply", params, replyList, "GET");
+}
+
+$(document).ready(function(){
+	startReply();
+	startTime();
 });
 
-<%-- 
 function startTime() {
 	var params = "act=bestarticle&tno=<%=gudanDto.getTno()%>";
-	sendRequest("<%=root%>/board", params, bestList, "GET");
+	sendBestRequest("<%=root%>/board", params, bestList, "GET");
 }
 
 function bestList() {
-	if(httpRequest.readyState == 4) {
-		if(httpRequest.status == 200) {
-			var listxml = httpRequest.responseXML;
-		 	makelist(listxml);
+	if(bestHttpRequest.readyState == 4) {
+		if(bestHttpRequest.status == 200) {
+			var listxml = bestHttpRequest.responseXML;
+			makebestlist(listxml);
 			window.setTimeout("startTime();", 5000);
-		} 
+		} else {
+			alert("error: " + bestHttpRequest.status);
+		}
 	}
 }
 
-function makelist(data) {
+function makebestlist(data) {
 	var output = "";
 	var len = data.getElementsByTagName("board").length;
-	
 	if(len == 0) {
 		output = "<div class=\"col-md-12 text-center py-3\"><h6>베스트글이 존재하지 않습니다.</h6></div>";
 	} else {	
@@ -152,7 +176,7 @@ function makelist(data) {
 		output += "</ul>";
 	}
 	document.getElementById("bestboard").innerHTML = output;
-} --%>
+}
 
 </script>
 

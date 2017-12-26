@@ -63,7 +63,7 @@ public class ReplyDaoImpl implements ReplyDao {
 			sql.append("				to_char(retime, 'yy.mm.dd')) retime \n");
 			sql.append("from board_reply \n");
 			sql.append("where bno = ? \n");
-			sql.append("order by retime desc \n");
+			sql.append("order by reno desc \n");
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setInt(1, seq);
 			rs = pstmt.executeQuery();
