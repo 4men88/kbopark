@@ -49,6 +49,7 @@ public class AuctionBidDetailAction implements Action {
 		auctionDetailDto.setTno(tno);
 		
 		System.out.println("이미지 경로 :" + aimage);
+		System.out.println("종료시간 :" + endtime);
 		List<AuctionDetailDto> list = AuctionBidDetailServiceImpl.getAuctionBidDetailService().auctionBidDetailList(ano);
 		
 		request.setAttribute("list", list);

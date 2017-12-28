@@ -10,7 +10,8 @@ List<AuctionDetailDto> list = (List<AuctionDetailDto>)request.getAttribute("list
 AuctionDetailDto auctionDetailDto = (AuctionDetailDto)request.getAttribute("auctionDetailDto");
 int gudan = auctionDetailDto.getTno();
 String endTime = auctionDetailDto.getEndTime();
-String endTimeArr[] = auctionDetailDto.getStartTime().split("\\.");
+String startTimeArr[] = auctionDetailDto.getStartTime().split("\\.");
+String endTimeArr[] = auctionDetailDto.getEndTime().split("\\.");
 String gudanname ="";
 
 if(gudan == 1)
@@ -215,7 +216,7 @@ else
 							</tr>
 							<tr>
 								<th scope="row">경매기간</th>
-								<td><%=auctionDetailDto.getStartTime()%> - <%=endTimeArr[0]%>/<%=endTimeArr[1]%>/<%=endTimeArr[2]%> <%=endTimeArr[3]%>:<%=endTimeArr[4]%>:<%=endTimeArr[5]%></td>
+								<td><%=startTimeArr[0]%>/<%=startTimeArr[1]%>/<%=startTimeArr[2]%> <%=startTimeArr[3]%>:<%=startTimeArr[4]%>:<%=startTimeArr[5]%> 	- 	<%=endTimeArr[0]%>/<%=endTimeArr[1]%>/<%=endTimeArr[2]%> <%=endTimeArr[3]%>:<%=endTimeArr[4]%>:<%=endTimeArr[5]%></td>
 							</tr>
 							<tr>
 								<th scope="row">입찰자수</th>
