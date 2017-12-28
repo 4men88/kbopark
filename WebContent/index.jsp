@@ -1,3 +1,9 @@
+<%@page import="org.jdom2.Element"%>
+<%@page import="org.jdom2.Document"%>
+<%@ page import="java.net.URL" %>
+<%@ page import="java.util.List" %>
+<%@ page import="org.xml.sax.InputSource" %>
+<%@page import="org.jdom2.input.SAXBuilder"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <!--header 영역-->
@@ -7,6 +13,7 @@
 <script type="text/javascript">
 window.onload=function(){
 	todaypl();
+	community();
 }
 function todaypl(){
 	//alert("todaypl");
@@ -147,6 +154,24 @@ function maketeam(schedule){
 	return div1;
 }  
 </script>
+<%
+List list = null;
+
+try{
+    SAXBuilder parser = new SAXBuilder();
+    parser.setValidation(false);
+    parser.setIgnoringElementContentWhitespace(true);
+    URL url = new URL("http://rss.hankooki.com/sports/sp_baseball.xml");
+    InputSource is = new InputSource(url.openStream());
+    Document doc = parser.build(is);
+
+    Element roots = doc.getRootElement();
+    Element channel = roots.getChild("channel");
+    list = channel.getChildren("item");
+}catch(Exception e){
+    e.getStackTrace();
+}
+%>
 <!-- 메인이미지>> 관리자가 선택할수있었으면.. -->
 <div id="main-section">
 	<div class="container-fluid">
@@ -288,20 +313,29 @@ function maketeam(schedule){
 					</div>
 				</div>
 				<ul class="list-group">
+<%
+if(list!=null){
+    for(int i=0; i<4; i++){
+        Element el = (Element) list.get(i);
+        if(!el.getChildText("description").contains("img")){
+%>
 					<li class="list-group-item">
 						<div class="row px-2">
-							<div class="img-wrapper align-self-center text-center col-4">
-								<img src="<%=root%>/img/news/news3.jpg" class="img-fluid">
-							</div>
-							<div class="col-8 align-self-center pr-0">
-								<h5 class="mb-3 text-dark">
-									<b>두산 외국인 선수 계약 방침 '우선 니퍼트 집중'</b>
+							
+							<div class="col-12 align-self-center pr-0">
+								<h5 class="mb-4 text-dark" align="center">
+									<b><a href='<%=el.getChildText("link")%>' target=_news>
+       									<%=el.getChildText("title")%></a></b>
 								</h5>
-								<p class="my-1">두산 베어스는 2018년 시즌을 준비하면서 외국인 선수 보강에 신경을 쏟고
-									잇다. 먼저 에이스로 7시즌 동안 함께...</p>
+								<p class="my-1 over-detail"><%= el.getChildText("description").substring(16)%></p>
 							</div>
 						</div>
 					</li>
+<%
+        }
+    }
+}
+%>
 				</ul>
 			</div>
 
@@ -319,15 +353,12 @@ function maketeam(schedule){
 					<li class="list-group-item">
 
 						<div class="row px-2">
-							<div class="img-wrapper-c text-center col-4">
-								<img src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
-									class="img-fluid">
-							</div>
-							<div class="col-8 align-self-center pr-0">
+							
+							<div class="col-12 align-self-center pr-0">
 								<h5 class="mb-3 text-dark">
 									<b>유심하게 관찰할 필요가 있을듯.</b>
 								</h5>
-								<p class="my-1">플옵 1차전에서 스크럭스한테 만루홈런 맞은공, 코시 5차전에서 이범호한테
+								<p class="my-1 over-detail">플옵 1차전에서 스크럭스한테 만루홈런 맞은공, 코시 5차전에서 이범호한테
 									만루홈런 맞은공이 모두 다 슬라이더였죠.</p>
 							</div>
 						</div>
@@ -376,60 +407,62 @@ function maketeam(schedule){
 		<div class="row">
 			<div class="p-0 col-md-1 col-12"></div>
 			<div class="p-0 col-md-1 col-12 text-center main-doosan-mobile">
-				<a href="#"> <img
-					src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
-					class="img-fluid">
+				<a href="">
+				<img src="<%=root%>/img/gudan/emblem/emblem-doosan.png" class="img-fluid">
 				</a>
 			</div>
 			<div class="p-0 col-md-1 col-12 text-center">
-				<a href="#"> <img
-					src="<%=root%>/img/gudan/emblem/emblem-lotte.png" class="img-fluid">
+				<a href="<%=root%>/gudan?act=mvhome&tno=3">
+				<img src="<%=root%>/img/gudan/emblem/emblem-lotte.png" class="img-fluid">
 				</a>
 			</div>
 			<div class="p-0 col-md-1 col-12 text-center">
-				<a href="#"> <img src="<%=root%>/img/gudan/emblem/emblem-kt.png"
-					class="img-fluid">
+				<a href="<%=root%>/gudan?act=mvhome&tno=10">
+				<img src="<%=root%>/img/gudan/emblem/emblem-kt.png" class="img-fluid">
 				</a>
 			</div>
 			<div class="p-0 col-md-1 col-12 text-center">
-				<a href="#"> <img
+				<a href="<%=root%>/gudan?act=mvhome&tno=7"> <img
 					src="<%=root%>/img/gudan/emblem/emblem-nexen.png" class="img-fluid">
 				</a>
 			</div>
 			<div class="p-0 col-md-1 col-12 text-center">
-				<a href="#"> <img
+				<a href="<%=root%>/gudan?act=mvhome&tno=1"> <img
 					src="<%=root%>/img/gudan/emblem/emblem-kia.png" class="img-fluid">
 				</a>
 			</div>
 			<div class="p-0 col-md-1 col-12 text-center main-doosan-pc">
-				<a href="#"> <img
+				<a href="<%=root%>/gudan?act=mvhome&tno=2"> <img
 					src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
 					class="img-fluid">
 				</a>
 			</div>
 			<div class="p-0 col-md-1 col-12 text-center">
-				<a href="#"> <img src="<%=root%>/img/gudan/emblem/emblem-lg.png"
+				<a href="<%=root%>/gudan?act=mvhome&tno=6">
+				<img src="<%=root%>/img/gudan/emblem/emblem-lg.png"
 					class="img-fluid">
 				</a>
 			</div>
 			<div class="p-0 col-md-1 col-12 text-center">
-				<a href="#"> <img
+				<a href="<%=root%>/gudan?act=mvhome&tno=8"> <img
 					src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
 					class="img-fluid">
 				</a>
 			</div>
 			<div class="p-0 col-md-1 col-12 text-center">
-				<a href="#"> <img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
+				<a href="<%=root%>/gudan?act=mvhome&tno=5">
+				<img src="<%=root%>/img/gudan/emblem/emblem-sk.png"
 					class="img-fluid">
 				</a>
 			</div>
 			<div class="p-0 col-md-1 col-12 text-center">
-				<a href="#"> <img src="<%=root%>/img/gudan/emblem/emblem-nc.png"
+				<a href="<%=root%>/gudan?act=mvhome&tno=4">
+				<img src="<%=root%>/img/gudan/emblem/emblem-nc.png"
 					class="img-fluid">
 				</a>
 			</div>
 			<div class="p-0 col-md-1 col-12 text-center">
-				<a href="#"> <img
+				<a href="<%=root%>/gudan?act=mvhome&tno=9"> <img
 					src="<%=root%>/img/gudan/emblem/emblem-samsung.png"
 					class="img-fluid">
 				</a>

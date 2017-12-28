@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ include file="/common/header.jsp" %>
+
 <script type="text/javascript">
+
+
 function writenotice(){
 	if(document.getElementById("subject").value==""){
 		alert("제목을 입력하세요");
@@ -10,6 +13,7 @@ function writenotice(){
 		alert("내용을 입력하세요");
 		return;
 	}else{
+	
 		document.noticeForm.action ="<%=root%>/admin";
 		document.noticeForm.submit();	
 	}
@@ -33,6 +37,7 @@ if("gksdjf".equals(memberDto.getId())){
 
 	<form id="noticeForm" name="noticeForm" method="post" action="">
 	<input type="hidden" name="act" id="act" value="writeno" >
+
 		<div class="form-group row px-3">
 			<label for="selectgudan" class="col-sm-2 col-4 col-form-label">구단</label>
 			<div class="col-sm-4 col-8">
@@ -61,8 +66,7 @@ if("gksdjf".equals(memberDto.getId())){
 
 		<div class="form-group row px-3">
 			<div class="col-md-12">
-				<textarea class="form-control" id="context" name="context"
-					rows="20"></textarea>
+				<textarea class="form-control" id="context" name="context" rows="20"></textarea>
 			</div>
 		</div>
 
@@ -110,4 +114,4 @@ document.location.href="<%=root%>/index.jsp";
 <%
 }
 %>
-<%@ include file="/common/footer.jsp" %>
+<%@ include file="/common/footer.jsp"%>

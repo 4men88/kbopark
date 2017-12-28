@@ -89,7 +89,7 @@
  
    <div class="row py-5">
       <div class="col-md-2"></div>
-      <div class="col-md-7">
+      <div class="col-md-9">
          <h2 class="text-dark mb-5 px-3">회원정보수정</h2>
          <form id="modifyForm" name="modifyForm" method="post">
          <input type="hidden" name="act" id="act" value="modifyInfo">
@@ -113,14 +113,14 @@
                <label for="inputPassword1" class="col-sm-2 col-form-label">비밀번호</label>
                <div class="col-sm-10">
                   <input type="password" class="form-control" id="pass" name="pass"
-                     placeholder="비밀번호를 입력해주세요">
+                     placeholder="바꾸실 비밀번호를 입력해주세요">
                </div>
             </div>
             <div class="form-group row px-3">
-               <div class="col-sm-2"></div>
+               <label for="inputPassword1" class="col-sm-2 col-form-label">비밀번호<br>확인</label>
                <div class="col-sm-10">
                   <input type="password" class="form-control" id="passok" name="passok"
-                     placeholder="비밀번호를 다시한번입력해주세요">
+                     placeholder="비밀번호를 한번더 입력해주세요">
                </div>
             </div>
 
@@ -191,12 +191,12 @@
                <div class="col-sm-4">
                   <div class="input-group mb-2 mb-sm-0">
                      <input type="text" class="form-control" id="addr1" name="addr1"
-                        value="<%=StringEncoder.isoToMain(NullCheck.isNotNull(memberDto.getAddr1()))%>" readonly>
+                        value="<%=NullCheck.isNotNull(memberDto.getAddr1())%>" readonly>
                   </div>
                </div>
                <div class="col-sm-6">
                   <input type="text" class="form-control" id="addr2" name="addr2"
-                     value="<%=StringEncoder.isoToMain(NullCheck.isNotNull(memberDto.getAddr2()))%>">
+                     value="<%=NullCheck.isNotNull(memberDto.getAddr2())%>">
                </div>
             </div>
 
@@ -205,7 +205,7 @@
                <label for="inputTeam" class="col-sm-2 col-form-label">선호구단</label>
                <div class="col-sm-4">
                   <select id="tno" name="tno" class="form-control" onchange="javascript:tnochange(this);" style=min-height:36px;>
-                     <option selected="<%=memberDto.getTno()%>" value="<%=memberDto.getTno()%>">--선택하세요--</option>
+                     <option selected="<%=memberDto.getTno()%>" value="0">--선택하세요--</option>
                      <option value="2">두산 베어스</option>
                      <option value="3">롯데 자이언츠</option>
                      <option value="1">KIA 타이거즈</option>
@@ -217,7 +217,7 @@
                      <option value="9">삼성 라이온즈</option>
                      <option value="10">KT 위즈</option>
                   </select>
-                  <input type="text" name="tnowiew" id="tnowiew">
+                  <input type="text" name="tnowiew" id="tnowiew" value="<%=memberDto.getTno()%>">
                </div>
             </div>
 

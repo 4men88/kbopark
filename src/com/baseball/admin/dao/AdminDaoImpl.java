@@ -420,9 +420,10 @@ public class AdminDaoImpl implements AdminDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("select bno,mid,bname,bdetail,bcount,bstatus,\n");
+			sql.append("select bno,mid,bname,bdetail,bcount,bstatus,tno,\n");
 			sql.append("to_char(bdate,'yyyy-mm-dd') bdate\n");
-			sql.append("from board");
+			sql.append("from board\n");
+			sql.append("order by bstatus desc");
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -434,6 +435,7 @@ public class AdminDaoImpl implements AdminDao {
 				boardDto.setBcount(rs.getInt("bcount"));
 				boardDto.setBdate(rs.getString("bdate"));
 				boardDto.setBstatus(rs.getInt("bstatus"));
+				boardDto.setTno(rs.getInt("tno"));
 				
 				list.add(boardDto);
 			}
@@ -532,5 +534,26 @@ public class AdminDaoImpl implements AdminDao {
 			DBClose.close(conn, pstmt, rs);
 		}
 		return todaylist;
+	}
+
+	@Override
+	public int deleteNotice(int nno) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int cnt=0;
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("delete notice \n");
+			sql.append("where no = ?");
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, nno);
+			cnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt);
+		}	
+	return cnt;
 	}
 }

@@ -7,7 +7,6 @@
 List<NoticeDto> list = (List<NoticeDto>)request.getAttribute("notilist");
 PageNavi pageNavigation = (PageNavi)request.getAttribute("navigator");
 %>
-
 <script>
 
 function noticelist(ntype,pg,key,word){

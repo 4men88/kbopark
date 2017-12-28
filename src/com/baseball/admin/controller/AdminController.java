@@ -81,8 +81,10 @@ public class AdminController extends HttpServlet {
 			path = AdminActionFactory.getDeleteBoardAction().execute(request, response);
 			PageMove.redirect(request, response, path);
 		
-		}else if("".equals(act)){
-			
+		}else if("deleteNotice".equals(act)){
+			System.out.println("deleteno");
+			path=AdminActionFactory.getDeleteNoticeAction().execute(request, response);
+			PageMove.redirect(request, response, path);
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){

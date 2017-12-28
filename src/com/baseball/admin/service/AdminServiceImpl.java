@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.baseball.admin.dao.AdminDao;
 import com.baseball.admin.dao.AdminDaoImpl;
 import com.baseball.admin.model.NoticeDto;
 import com.baseball.admin.util.PageNavi;
@@ -117,6 +118,13 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<ScheduleDto> getPlayToday() {
 		return AdminDaoImpl.getAdminDao().getPlayToday();
+	}
+
+
+
+	@Override
+	public int deleteNotice(int nno) {
+		return AdminDaoImpl.getAdminDao().deleteNotice(nno);
 	}
 
 

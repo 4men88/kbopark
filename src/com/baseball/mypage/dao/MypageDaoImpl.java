@@ -22,7 +22,7 @@ import com.baseball.util.db.DBConnection;
 public class MypageDaoImpl implements MypageDao {
 
    private static MypageDao mypageDao;
-   private PreparedStatement pstmt2;
+
    
    static {
       
@@ -50,67 +50,61 @@ public class MypageDaoImpl implements MypageDao {
    @Override
    public int modifyInfo(MemberDetailDto memberDto) {
       Connection conn = null;
-      PreparedStatement pstmt1 = null;
+      PreparedStatement pstmt = null;
       
-      int cnt1 = 0;
+      int cnt = 0;
       
       try {
          System.out.println("MypageDaoImpl>>>>>>>>modifyinfo1 실행 ");
          conn=DBConnection.makeConnection();
+         conn.setAutoCommit(false);
+         
          StringBuffer sql = new StringBuffer();
-      
          sql.append("update member\n");
-         sql.append("set pass=?,name=?,email1=?,email2=? \n");
+         sql.append("set pass=?,name=?,email1=?,email2=?\n");
          sql.append("where mid=?");
-         pstmt1 = conn.prepareStatement(sql.toString());
+         pstmt = conn.prepareStatement(sql.toString());
          int idx=0;
-         pstmt1.setString(++idx, memberDto.getPass());
-         pstmt1.setString(++idx, memberDto.getName());
-         pstmt1.setString(++idx, memberDto.getEmail1());
-         pstmt1.setString(++idx, memberDto.getEmail2());
-         pstmt1.setString(++idx, memberDto.getId());
-         cnt1=pstmt1.executeUpdate();
-         System.out.println("memberDetaildto>>>modifyinfo>>>member 테이블 완료==="+cnt1);
+         pstmt.setString(++idx, memberDto.getPass());
+         pstmt.setString(++idx, memberDto.getName());
+         pstmt.setString(++idx, memberDto.getEmail1());
+         pstmt.setString(++idx, memberDto.getEmail2());
+         pstmt.setString(++idx, memberDto.getId());
+         pstmt.executeUpdate();
+         pstmt.close();
+         
+         
+         StringBuffer sql2 = new StringBuffer();
+         sql2.append("update member_detail \n");
+         sql2.append("set tel1 = ?, tel2 = ?, tel3 = ?, zip1 = ?, addr1 = ?, addr2 = ?, tno= ? \n");
+         sql2.append("where mid = ?");
+         idx=0;
+         pstmt= conn.prepareStatement(sql2.toString());
+         pstmt.setString(++idx, memberDto.getTel1());
+         pstmt.setString(++idx, memberDto.getTel2());
+         pstmt.setString(++idx, memberDto.getTel3());
+         pstmt.setString(++idx, memberDto.getZip1());
+         pstmt.setString(++idx, memberDto.getAddr1());
+         pstmt.setString(++idx, memberDto.getAddr2());
+         pstmt.setInt(++idx, memberDto.getTno());
+         pstmt.setString(++idx, memberDto.getId());
+         pstmt.executeUpdate();
+         
+         conn.commit();
+         cnt=1;
+        		 
+         System.out.println("수정완료==="+cnt);
          } catch (SQLException e) {
-         e.printStackTrace();
+        	 try {
+				conn.rollback();
+				cnt=0;
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
          }finally {
-         DBClose.close(conn, pstmt1);   
+         DBClose.close(conn, pstmt);   
          }
-      
-         conn = null;
-         PreparedStatement pstmt2 = null;
-         int cnt2 =0;
-         try {
-            System.out.println("MypageDaoImpl>>>>>>>>modifyinfo2 실행");
-            conn=DBConnection.makeConnection();
-            
-            StringBuffer sql2 = new StringBuffer();
-                     
-            int idx2=0;
-            sql2.append("update member_detail \n");
-            sql2.append("set tel1 = ?, tel2 = ?, tel3 = ?, zip1 = ?, addr1 = ?, addr2 = ?, tno= ? \n");
-            sql2.append("where mid = ?");
-            
-            pstmt2= conn.prepareStatement(sql2.toString());
-            pstmt2.setString(++idx2, memberDto.getTel1());
-            pstmt2.setString(++idx2, memberDto.getTel2());
-            pstmt2.setString(++idx2, memberDto.getTel3());
-            pstmt2.setString(++idx2, memberDto.getZip1());
-            pstmt2.setString(++idx2, memberDto.getAddr1());
-            pstmt2.setString(++idx2, memberDto.getAddr2());
-            pstmt2.setInt(++idx2, memberDto.getTno());
-            pstmt2.setString(++idx2, memberDto.getId());
-            cnt2=pstmt2.executeUpdate();
-            System.out.println("memberDetaildto>>>modifyinfo>>>member_detail 테이블 완료==="+cnt2);
-            
-         } catch (SQLException e) {
-            
-            e.printStackTrace();
-         }finally {
-            DBClose.close(conn, pstmt2);   
-         }
-            
-      return cnt1*cnt2;
+      return cnt;
          
    }
    
@@ -186,9 +180,9 @@ public class MypageDaoImpl implements MypageDao {
          rs = pstmt.executeQuery();
          while (rs.next()) {
             ReplyDto replyDto = new ReplyDto();
-            replyDto.setReno(rs.getInt("bdetail"));
+            replyDto.setReno(rs.getInt("reno"));
             replyDto.setBno(rs.getInt("bno"));
-            replyDto.setRecontent(rs.getString("bname"));
+            replyDto.setRecontent(rs.getString("recontent"));
             replylist.add(replyDto);
          }
       } catch (SQLException e) {

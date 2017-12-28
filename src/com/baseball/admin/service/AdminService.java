@@ -16,6 +16,7 @@ public interface AdminService {
 	int writeNotice(Map<String,String> map);
 	List<NoticeDto> noticeList(int ntype,int pg, String key, String word);
 	NoticeDto viewNotice(int nno);
+	int deleteNotice(int nno);
 	int getNextSeq();
 	PageNavi makePageNavigation(int ntype,int pg,String key, String word,int listsize);
 	List<BoardDto> boardlist();
