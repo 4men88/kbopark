@@ -13,20 +13,14 @@
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
 <%
-	List<ScheduleDto> list = (List<ScheduleDto>) request.getAttribute("sch");
+	Map<String, List<ScheduleDto>> map = (Map<String, List<ScheduleDto>>) request.getAttribute("monthlymap");
 %>
-
-<!--리스트가아니라 map을 받아와요
-	map<String, list> 이 맵 안에는 지금 30개가 있어요.-->
 <%
 	Calendar cal = Calendar.getInstance();
-	//int year = cal.get(Calendar.YEAR);
-	//int month = cal.get(Calendar.MONTH)+1;
-	//int day = cal.get(Calendar.DAY_OF_WEEK);
-
-	int year = request.getParameter("y") == null ? cal.get(Calendar.YEAR)
+	System.out.println(request.getParameter("y") + " " + request.getParameter("m"));
+	int year = request.getParameter("y") == null || request.getParameter("y").isEmpty() ? cal.get(Calendar.YEAR)
 			: Integer.parseInt(request.getParameter("y"));
-	int month = request.getParameter("m") == null ? cal.get(Calendar.MONTH)
+	int month = request.getParameter("m") == null || request.getParameter("m").isEmpty() ? cal.get(Calendar.MONTH)
 			: (Integer.parseInt(request.getParameter("m")) - 1);
 	int day = request.getParameter("d") == null ? cal.get(Calendar.DAY_OF_MONTH)
 			: (Integer.parseInt(request.getParameter("d")));
@@ -115,18 +109,18 @@
 										String cday = ymd + d;
 								%>
 								<div>
-									<%=d%>
+									<%=d%> <%--01, 02 03 04  --%>
 									<%
-										int schlist = list.size();
-											if (schlist != 0)
-												for (int i = 0; i < schlist; i++) {
-													ScheduleDto scheduleDto = list.get(i);
+										List<ScheduleDto> daylist = map.get(d);
+										if(daylist != null) {
+											for(ScheduleDto sdto : daylist) {
 									%>
-									<div>
-										<%=scheduleDto.getPlaydate()%>
+									<div class="text-center">
+												<%=sdto.getHometeam().substring(0,sdto.getHometeam().indexOf(' '))%>&nbsp;<%=sdto.getScore1()%>&nbsp;:&nbsp;<%=sdto.getScore2()%>&nbsp;<%=sdto.getAwayteam().substring(0,sdto.getAwayteam().indexOf(' '))%>&nbsp;(<%=sdto.getSname().substring(0,2)%>)<br>
 									</div>
 									<%
-										}else {
+											}
+										} else {
 									%>
 									<p class="text-center py-3">예정 경기가 없습니다.</p>
 									<%

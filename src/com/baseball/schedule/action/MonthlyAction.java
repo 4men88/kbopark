@@ -24,7 +24,14 @@ public class MonthlyAction implements Action {
 		int month = NullCheck.nullToZero(request.getParameter("m"));
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
-		Calendar cal = new GregorianCalendar(year, month-1, 1);
+
+		Calendar cal = null;
+		if(year == 0) {
+			cal = Calendar.getInstance();
+			cal.add(Calendar.MONTH, 1);
+		} else {
+			cal = new GregorianCalendar(year, month-1, 1);
+		}
 		
 		int maxday = cal.getActualMaximum(cal.DAY_OF_MONTH);
 		
@@ -32,7 +39,7 @@ public class MonthlyAction implements Action {
 		for(int i=0;i<maxday;i++) {
 			date = formatter.format(cal.getTime());
 			List<ScheduleDto> list = ScheduleDaoImpl.getScheduleDao().getSchedule(date);
-			map.put(date, list);
+			map.put(date.substring(date.length()-2, date.length()), list);	//30, ¸®½ºÆ®
 			
 			cal.add(Calendar.DATE, 1);
 		}

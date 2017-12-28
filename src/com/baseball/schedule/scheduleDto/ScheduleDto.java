@@ -1,9 +1,5 @@
 package com.baseball.schedule.scheduleDto;
 
-import java.sql.Date;
-
-import com.baseball.gudan.model.GudanDto;
-
 public class ScheduleDto {
 	
 	private String playdate;//경기일자

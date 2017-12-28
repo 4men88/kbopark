@@ -59,7 +59,6 @@ public class ScheduleDaoImpl implements ScheduleDao {
 		} finally {
 			DBClose.close(conn, pstmt, rs);
 		}
-		System.out.println("ScheduleDaoImpl day-size >>> " + list.size());
 		return list;
 	}
 
