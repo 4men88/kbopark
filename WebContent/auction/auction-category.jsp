@@ -303,6 +303,24 @@ function auctionsort(sort)
 	categoryList('','','<%=category1%>','<%=category2%>','','1','1','1');	
 }
 
+function mainDetail(ano,category1,category2,aname,starttime,endtime,bidprice,bidnum,aimage,astatus, acount,initprice,tno){
+	document.getElementById("aact").value = "biddetail";
+	document.getElementById("aano").value = ano;
+	document.getElementById("acategory1").value = category1;
+	document.getElementById("acategory2").value = category2;
+	document.getElementById("aaname").value = aname;
+	document.getElementById("astarttime").value = starttime;
+	document.getElementById("aendtime").value = endtime;
+	document.getElementById("abidprice").value = bidprice;
+	document.getElementById("abidnum").value = bidnum;
+	document.getElementById("aaimage").value = aimage;
+	document.getElementById("aastatus").value = astatus;
+	document.getElementById("aacount").value = acount;
+	document.getElementById("ainitprice").value = initprice;
+	document.getElementById("atno").value = tno;
+	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+	document.getElementById("auctionForm").submit();	
+}
 </script>
 <div class="container-fluid auction-category">
 	<div class="row row-offcanvas row-offcanvas-left">
@@ -415,8 +433,13 @@ if(categoryConList != null)
 										<div class="col-md-3">
 											<div class="row p-2">
 												<div class="col-md-12 col-4 align-self-center">
+												 <a href="javascript:mainDetail('<%=auctionDetailDto.getAno()%>','<%=auctionDetailDto.getCategory1()%>','<%=auctionDetailDto.getCategory2()%>',
+							                  '<%=auctionDetailDto.getAname()%>','<%=auctionDetailDto.getStartTime()%>','<%=auctionDetailDto.getEndTime()%>',
+							                  '<%=auctionDetailDto.getBidPrice()%>','<%=auctionDetailDto.getBidNum()%>','<%=auctionDetailDto.getAimage()%>','<%=auctionDetailDto.getAstatus()%>',
+							                  '<%=auctionDetailDto.getAcount()%>','<%=auctionDetailDto.getInitPrice()%>','<%=auctionDetailDto.getTno()%>');">
 													<img style="max-height:200px;"
 													src="<%=root%>/<%=auctionDetailDto.getAimage()%>" class="img-fluid">
+												 </a>	
 												</div>
 												<div class="col-md-12 col-8 align-self-center">
 													<p class="mb-2">
