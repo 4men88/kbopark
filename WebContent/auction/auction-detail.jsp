@@ -8,10 +8,14 @@
 <%
 List<AuctionDetailDto> list = (List<AuctionDetailDto>)request.getAttribute("list");
 AuctionDetailDto auctionDetailDto = (AuctionDetailDto)request.getAttribute("auctionDetailDto");
+
 int gudan = auctionDetailDto.getTno();
+
 String endTime = auctionDetailDto.getEndTime();
 String startTimeArr[] = auctionDetailDto.getStartTime().split("\\.");
 String endTimeArr[] = auctionDetailDto.getEndTime().split("\\.");
+
+
 String gudanname ="";
 
 if(gudan == 1)
@@ -260,7 +264,7 @@ else
 
 			<div class="row">
 				<div class="col-12">
-					<table class="table table-sm table-responsive-md">
+					<table class="table table-sm table-responsive-md">			
 						<thead>
 							<tr>
 								<th scope="col">입찰번호</th>
@@ -269,40 +273,32 @@ else
 								<th scope="col">입찰시각</th>
 							</tr>
 						</thead>
+<%
+int len = list.size();
+if( len != 0){
+	for(int i=0; i<len; i++)
+	{
+		String bidTime[] = list.get(i).getBidDate().split("\\.");
+%>								
 						<tbody>
 							<tr style="font-weight: 700px;">
-								<th scope="row">5</th>
-								<td>boss**</td>
-								<td>40,000</td>
-								<td>2017.11.29</td>
+								<th scope="row"><%=list.get(i).getBno()%></th>
+								<td><%=list.get(i).getMid()%></td>
+								<td><%=list.get(i).getBidPrice()%></td>
+								<td><%=bidTime[0]%>/<%=bidTime[1]%>/<%=bidTime[2]%> <%=bidTime[3]%>:<%=bidTime[4]%>:<%=bidTime[5]%> </td>
 							</tr>
-							<tr>
-								<th scope="row">4</th>
-								<td>boss**</td>
-								<td>38,000</td>
-								<td>2017.11.29</td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>boss**</td>
-								<td>22,000</td>
-								<td>2017.11.29</td>
-							</tr>
-							<tr class="table-active">
-								<th scope="row">2</th>
-								<td>kore**</td>
-								<td>20,000</td>
-								<td>2017.11.28</td>
-							</tr>
-							<tr>
-								<th scope="row">1</th>
-								<td>boss**</td>
-								<td>5,000</td>
-								<td>2017.11.29</td>
-							</tr>
+<% 
+	}
+}
+else
+{
+%>							
 							<tr>
 								<td colspan="4" style="text-align: center;">입찰내역이 없습니다</td>
 							</tr>
+<% 
+}
+%>							
 						</tbody>
 					</table>
 				</div>
@@ -317,6 +313,7 @@ else
 					</ul>
 				</div>
 			</div>
+			
 		</div>
 		<!--right section-->
 	</div>
