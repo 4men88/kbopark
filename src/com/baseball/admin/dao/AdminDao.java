@@ -16,6 +16,7 @@ public interface AdminDao {
 	int writeNotice(Map<String,String> map);
 	List<NoticeDto> noticeList(Map<String,String> map);
 	NoticeDto viewNotice(int nno);
+	int deleteNotice(int nno);
 	int getNextSeq();
 	void updateHit(int nno);
 	int getNewArticleCount();

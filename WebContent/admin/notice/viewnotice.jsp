@@ -17,7 +17,12 @@ function noticelist(ntype,pg,key,word){
 	document.getElementById("notiform").action="<%=root%>/admin";
 	document.getElementById("notiform").submit();
 }
+function deletNotice(nno){
+	document.location.href="<%=root%>/admin?act=deleteNotice&nno="+nno;	
+}
+
 </script>
+<div style="align:center">
 	<div class="container py-5">
 		<div class="row">
 			<div class="col-md-8 py-5">
@@ -31,6 +36,7 @@ function noticelist(ntype,pg,key,word){
 					
 					<div class="px-2">
 						<a href="javascript:noticelist('<%=ntype%>','<%=pg%>','<%=key%>','<%=word%>');">목록</a>
+						<a href="javascript:deletNotice('<%=noticeDto.getNo()%>');">삭제</a>
 					</div>
 					
 				</div>
@@ -49,6 +55,7 @@ function noticelist(ntype,pg,key,word){
 			</div>
 		</div>
 	</div>
+</div>
 <%
 }else{
 %>
