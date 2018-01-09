@@ -7,4 +7,5 @@ import com.baseball.auction.model.AuctionDetailDto;
 
 public interface AuctionBidDetailDao {
 	List<AuctionDetailDto> auctionBidDetailList(Map<String, String> map);
+	int totalBidCount(Map<String, String> map);
 }

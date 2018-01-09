@@ -88,4 +88,40 @@ public class AuctionBidDetailDaoImpl implements AuctionBidDetailDao {
 		System.out.println("입찰정보 숫자 : " + list.size());
 		return list;
 	}
+
+	@Override
+	public int totalBidCount(Map<String, String> map) {
+		int count = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("select count(*) as count\n");
+			sql.append("from auction_detail \n");
+			sql.append("where ano = ? \n");
+//			String word = map.get("word");
+//			if(!word.isEmpty()) {
+//				String key = map.get("key");
+//				if("subject".equals(key)) {
+//					sql.append("and subject like '%'||?||'%'");
+//				} else {
+//					sql.append("and " + key + " = ? \n");
+//				}
+//			}
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, map.get("ano"));
+//			if(!word.isEmpty())
+//				pstmt.setString(2, word);
+			rs = pstmt.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		return count;
+	}
 }
