@@ -37,18 +37,27 @@ public class AuctionBidDetailDaoImpl implements AuctionBidDetailDao {
 		ResultSet rs = null;
 		try {
 			conn = DBConnection.makeConnection();
-			StringBuffer sql = new StringBuffer();
+			StringBuffer sql1 = new StringBuffer();
+			StringBuffer sql2 = new StringBuffer();
+			
+			sql1.append("update auction \n");
+			sql1.append("set acount = acount + 1 \n");
+			sql1.append("where ano = ?");
+			pstmt = conn.prepareStatement(sql1.toString());
+			pstmt.setInt(1,ano);
+			pstmt.executeUpdate();
 			//  ÀÔÂûÀÚ ¸¹Àº¼ø
-			sql.append("select ad.rn, ad.ano, ad.mid, ad.bidprice, to_char(ad.biddate, 'yyyy.mm.dd.hh24.mi.ss') as biddate\n");
-			sql.append("	from(\n");
-			sql.append("		select rownum rn, auction_detail.*\n");
-			sql.append("        from auction_detail\n");
-			sql.append("        where ano = ?\n");
-			sql.append("        order by biddate \n");
-			sql.append("        )ad \n");
-			pstmt = conn.prepareStatement(sql.toString());
+			sql2.append("select rownum rn, ad.ano, ad.mid, ad.bidprice, to_char(ad.biddate, 'yyyy.mm.dd.hh24.mi.ss') as biddate\n");
+			sql2.append("	from(\n");
+			sql2.append("		select auction_detail.*\n");
+			sql2.append("        from auction_detail\n");
+			sql2.append("        where ano = ?\n");
+			sql2.append("        order by biddate \n");
+			sql2.append("        )ad \n");
+			pstmt = conn.prepareStatement(sql2.toString());
 			pstmt.setInt(1,ano);
 			rs = pstmt.executeQuery();
+
 			int cnt = 0;
 			while(rs.next()) {
 				System.out.println("³Ø½ºÆ® µé¾î¿È");
@@ -58,7 +67,6 @@ public class AuctionBidDetailDaoImpl implements AuctionBidDetailDao {
 				auctionDetailDto.setMid(rs.getString("mid"));
 				auctionDetailDto.setBidPrice(rs.getInt("bidprice"));
 				auctionDetailDto.setBidDate(rs.getString("biddate"));
-		
 				list.add(auctionDetailDto);
 			}
 		} catch (SQLException e) {

@@ -120,6 +120,7 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 				auctionDetailDto.setAimage(rs.getString("aimage"));
 				auctionDetailDto.setAstatus(rs.getInt("astatus"));
 				auctionDetailDto.setAno(rs.getInt("ano"));
+				auctionDetailDto.setAcount(rs.getInt("acount"));
 				list.add(auctionDetailDto);				
 			}
 		} catch (SQLException e) {

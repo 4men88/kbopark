@@ -28,6 +28,7 @@ public class AuctionBidDetailAction implements Action {
 		int bidprice = NullCheck.nullToOne(request.getParameter("bidprice"));
 		int bidnum = NullCheck.nullToOne(request.getParameter("bidnum"));
 		String aimage = StringEncoder.isoToMain(request.getParameter("aimage"));
+		
 		int astatus = NullCheck.nullToOne(request.getParameter("astatus"));		
 		int acount = NullCheck.nullToOne(request.getParameter("acount"));
 		int initprice= NullCheck.nullToOne(request.getParameter("initprice"));
@@ -44,12 +45,12 @@ public class AuctionBidDetailAction implements Action {
 		auctionDetailDto.setBidNum(bidnum);
 		auctionDetailDto.setAimage(aimage);
 		auctionDetailDto.setAstatus(astatus);
+		acount += 1;
 		auctionDetailDto.setAcount(acount);
 		auctionDetailDto.setInitPrice(initprice);
 		auctionDetailDto.setTno(tno);
 		
-		System.out.println("이미지 경로 :" + aimage);
-		System.out.println("종료시간 :" + endtime);
+		System.out.println("조회수 :" + acount);
 		List<AuctionDetailDto> list = AuctionBidDetailServiceImpl.getAuctionBidDetailService().auctionBidDetailList(ano);
 		
 		request.setAttribute("list", list);

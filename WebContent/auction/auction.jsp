@@ -526,6 +526,7 @@ if(bestList != null)
                      <p style="color: red;">
                         <strong>현재입찰가 : <%=bestList.get(i).getBidPrice()%>원</strong>
                      </p>
+                     <p>조회수 : <%=bestList.get(i).getAcount()%></p>
                   </div>
                </div>
             </div>
@@ -564,6 +565,7 @@ if(endList != null)
                      <p style="color: red;">
                         <strong>현재입찰가 : <%=endList.get(i).getBidPrice()%>원</strong>
                      </p>
+                     <p>조회수 : <%=endList.get(i).getAcount()%></p>
                   </div>
                </div>
             </div>
@@ -600,6 +602,7 @@ if(hitList != null)
                      <p style="color: red;">
                         <strong>현재입찰가 : <%=hitList.get(i).getBidPrice()%>원</strong>
                      </p>
+                      <p>조회수 : <%=hitList.get(i).getAcount()%></p>
                   </div>
                </div>
             </div>
@@ -636,6 +639,7 @@ if(newList != null)
                      <p style="color: red;">
                         <strong>현재입찰가 : <%=newList.get(i).getBidPrice()%>원</strong>
                      </p>
+                      <p>조회수 : <%=newList.get(i).getAcount()%></p>
                   </div>
                </div>
             </div>

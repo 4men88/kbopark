@@ -450,6 +450,7 @@ if(categoryConList != null)
 													<p style="color: red;">
 														<strong>현재입찰가 : <%=auctionDetailDto.getBidPrice()%></strong>
 													</p>
+													 <p>조회수 : <%=auctionDetailDto.getAcount()%></p>
 												</div>
 											</div>
 										</div>
