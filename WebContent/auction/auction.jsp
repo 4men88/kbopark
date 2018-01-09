@@ -363,7 +363,7 @@ function categoryList(key, word, category1, category2, conpg, endpg, choice)
 	document.getElementById("auctionForm").submit();		
 }	
 
-function mainDetail(ano,category1,category2,aname,starttime,endtime,bidprice,bidnum,aimage,astatus, acount,initprice,tno){
+function mainDetail(ano,category1,category2,aname,starttime,endtime,bidprice,bidnum,aimage,astatus, acount,initprice,tno,pg){
 	document.getElementById("aact").value = "biddetail";
 	document.getElementById("aano").value = ano;
 	document.getElementById("acategory1").value = category1;
@@ -378,6 +378,7 @@ function mainDetail(ano,category1,category2,aname,starttime,endtime,bidprice,bid
 	document.getElementById("aacount").value = acount;
 	document.getElementById("ainitprice").value = initprice;
 	document.getElementById("atno").value = tno;
+	document.getElementById("dpg").value = pg;
 	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 	document.getElementById("auctionForm").submit();	
 }
@@ -552,7 +553,7 @@ if(endList != null)
                   <a href="javascript:mainDetail('<%=endList.get(i).getAno()%>','<%=endList.get(i).getCategory1()%>','<%=endList.get(i).getCategory2()%>',
                   '<%=endList.get(i).getAname()%>','<%=endList.get(i).getStartTime()%>','<%=endList.get(i).getEndTime()%>',
                   '<%=endList.get(i).getBidPrice()%>','<%=endList.get(i).getBidNum()%>','<%=endList.get(i).getAimage()%>','<%=endList.get(i).getAstatus()%>',
-                  '<%=endList.get(i).getAcount()%>','<%=endList.get(i).getInitPrice()%>','<%=endList.get(i).getTno()%>');">       
+                  '<%=endList.get(i).getAcount()%>','<%=endList.get(i).getInitPrice()%>','<%=endList.get(i).getTno()%>','1');">       
                      <img style="max-height:200px;" src="<%=root%>/<%=endList.get(i).getAimage()%>" class="img-fluid">   
                      </a>                                 
                   </div>

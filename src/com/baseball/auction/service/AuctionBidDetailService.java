@@ -5,5 +5,5 @@ import java.util.List;
 import com.baseball.auction.model.AuctionDetailDto;
 
 public interface AuctionBidDetailService {
-	List<AuctionDetailDto> auctionBidDetailList(int ano);
+	List<AuctionDetailDto> auctionBidDetailList(int ano, int pg);
 }

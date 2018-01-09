@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.baseball.action.Action;
 import com.baseball.auction.model.AuctionDetailDto;
 import com.baseball.auction.service.AuctionBidDetailServiceImpl;
+import com.baseball.auction.util.DetailPageNavigation;
 import com.baseball.util.NullCheck;
 import com.baseball.util.StringEncoder;
 
@@ -33,6 +34,7 @@ public class AuctionBidDetailAction implements Action {
 		int acount = NullCheck.nullToOne(request.getParameter("acount"));
 		int initprice= NullCheck.nullToOne(request.getParameter("initprice"));
 		int tno = NullCheck.nullToOne(request.getParameter("tno"));
+		int pg = NullCheck.nullToOne(request.getParameter("pg"));
 		
 		AuctionDetailDto auctionDetailDto = new AuctionDetailDto();
 		auctionDetailDto.setAno(ano);
@@ -51,7 +53,9 @@ public class AuctionBidDetailAction implements Action {
 		auctionDetailDto.setTno(tno);
 		
 		System.out.println("조회수 :" + acount);
-		List<AuctionDetailDto> list = AuctionBidDetailServiceImpl.getAuctionBidDetailService().auctionBidDetailList(ano);
+		System.out.println("입찰시작가:" + initprice);
+		List<AuctionDetailDto> list = AuctionBidDetailServiceImpl.getAuctionBidDetailService().auctionBidDetailList(ano, pg);
+//		DetailPageNavigation detailPageNavigation = AuctionBidDetailServiceImpl.getAuctionBidDetailService(). 
 		
 		request.setAttribute("list", list);
 		request.setAttribute("auctionDetailDto", auctionDetailDto);

@@ -40,7 +40,7 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 			category_all.append("    select rownum rn, r.*        \n");
 			category_all.append("    from( \n");
 			category_all.append("        select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, to_char(a_ad.starttime, 'yyyy.mm.dd.hh24.mi.ss') as starttime,\n"); 
-			category_all.append("				a_ad.bidprice,a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano, a_ad.acount \n");
+			category_all.append("				a_ad.bidprice,a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano, a_ad.acount, a_ad.initprice, a_ad.tno \n");
 			category_all.append("        from auction_image ai,( \n");
 			category_all.append("                                select a.*, NVL(ad.bidprice,0)as bidprice, NVL(ad.bidnum,0) as bidnum \n");
 			category_all.append("                                from auction a,( \n");
@@ -121,6 +121,8 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 				auctionDetailDto.setAstatus(rs.getInt("astatus"));
 				auctionDetailDto.setAno(rs.getInt("ano"));
 				auctionDetailDto.setAcount(rs.getInt("acount"));
+				auctionDetailDto.setInitPrice(rs.getInt("initprice"));
+				auctionDetailDto.setTno(rs.getInt("tno"));
 				list.add(auctionDetailDto);				
 			}
 		} catch (SQLException e) {

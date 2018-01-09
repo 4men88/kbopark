@@ -1,4 +1,6 @@
-package com.baseball.util;
+package com.baseball.auction.util;
+
+import com.baseball.util.Constance;
 
 public class AuctionPageNavigation {
 

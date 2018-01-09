@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.baseball.auction.model.AuctionDetailDto;
 import com.baseball.auction.service.AuctionCategoryService;
@@ -26,7 +27,7 @@ public class AuctionBidDetailDaoImpl implements AuctionBidDetailDao {
 	}
 	
 	@Override
-	public List<AuctionDetailDto> auctionBidDetailList(int ano) {
+	public List<AuctionDetailDto> auctionBidDetailList(Map<String, String> map) {
 		
 		List<AuctionDetailDto> list = new ArrayList<AuctionDetailDto>();
 		
@@ -44,18 +45,28 @@ public class AuctionBidDetailDaoImpl implements AuctionBidDetailDao {
 			sql1.append("set acount = acount + 1 \n");
 			sql1.append("where ano = ?");
 			pstmt = conn.prepareStatement(sql1.toString());
-			pstmt.setInt(1,ano);
+			String ano = map.get("ano");
+			pstmt.setString(1,ano);
 			pstmt.executeUpdate();
 			//  입찰자 많은순
-			sql2.append("select rownum rn, ad.ano, ad.mid, ad.bidprice, to_char(ad.biddate, 'yyyy.mm.dd.hh24.mi.ss') as biddate\n");
+			sql2.append("select a.*\n");
 			sql2.append("	from(\n");
-			sql2.append("		select auction_detail.*\n");
-			sql2.append("        from auction_detail\n");
-			sql2.append("        where ano = ?\n");
-			sql2.append("        order by biddate \n");
-			sql2.append("        )ad \n");
+			sql2.append("		select rownum rn, ad.ano, ad.mid, ad.bidprice, to_char(ad.biddate, 'yyyy.mm.dd.hh24.mi.ss') as biddate\n");
+			sql2.append("		from(\n");
+			sql2.append("			select auction_detail.*\n");
+			sql2.append("        	from auction_detail\n");
+			sql2.append("        	where ano = ?\n");
+			sql2.append("        	order by biddate \n");
+			sql2.append("        	)ad \n");
+			sql2.append("        where rownum < ? \n");
+			sql2.append("        )a \n");
+			sql2.append("    where a.rn > ? \n");
 			pstmt = conn.prepareStatement(sql2.toString());
-			pstmt.setInt(1,ano);
+			pstmt.setString(1,ano);
+			String end = map.get("end");
+			String start = map.get("start");
+			pstmt.setString(2,ano);
+			pstmt.setString(3,start);
 			rs = pstmt.executeQuery();
 
 			int cnt = 0;
@@ -77,5 +88,4 @@ public class AuctionBidDetailDaoImpl implements AuctionBidDetailDao {
 		System.out.println("입찰정보 숫자 : " + list.size());
 		return list;
 	}
-
 }
