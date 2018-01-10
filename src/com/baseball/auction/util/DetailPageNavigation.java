@@ -11,6 +11,7 @@ public class DetailPageNavigation {
 	private int newArticleCount;
 	private int totalPageCount;
 	private int pageNo;
+	private int ano;
 	private String navigator;
 	private String category1 = "";
 	private String category2 = "";
@@ -20,6 +21,13 @@ public class DetailPageNavigation {
 	
 	
 
+	public int getAno() {
+		return ano;
+	}
+	
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
 	public String getGudan() {
 		return gudan;
 	}
@@ -128,15 +136,15 @@ public class DetailPageNavigation {
 		tmpNavigator.append("<table cellpadding='0' cellspacing='0' border='0'>\n");
 		tmpNavigator.append(" <tr>\n");
 		if (this.isNowFirst()) {
-			tmpNavigator.append("  <td><font color='#999999'>\n<a href=\"javascript:bidInfoList('','','" + category1 + "','" + category2 + "','" + gudan + "','1','1','1');\">");
+			tmpNavigator.append("  <td><font color='#999999'>\n<a href=\"javascript:bidInfoList('"+ ano + "','1','','');\">");
 			tmpNavigator.append("   <img src='" + root + "/img/community/icon_prev02.gif' width='7' height='11' border='0' align='absmiddle' hspace='3'>최신목록</a>\n");
 			tmpNavigator.append("   <img src='" + root + "/img/community/icon_prev01.gif' width='3' height='11' border='0' align='absmiddle' hspace='3'>\n");
 			tmpNavigator.append("   이전</font>\n");
 		} else {
 			int prePage = (pageNo - 1) / pageSize * pageSize;
-			tmpNavigator.append("  <td>\n<a href=\"javascript:bidInfoList('','','" + category1 + "','" + category2 + "','" + gudan + "','1','1','1');\">");
+			tmpNavigator.append("  <td>\n<a href=\"javascript:bidInfoList('"+ ano + "','1','','');\">");
 			tmpNavigator.append("   <img src='" + root + "/img/community/icon_prev02.gif' width='7' height='11' border='0' align='absmiddle' hspace='3'>최신목록 </a>\n");
-			tmpNavigator.append("   <a href=\"javascript:bidInfoList('','','" + category1 + "','" + category2 + "','" + gudan + "','" + prePage + "','1','1');\">");
+			tmpNavigator.append("   <a href=\"javascript:bidInfoList('"+ ano + "','" + prePage + "','','');\">");
 			tmpNavigator.append("   <img src='" + root + "/img/community/icon_prev01.gif' width='3' height='11' border='0' align='absmiddle' hspace='3'>\n");
 			tmpNavigator.append("   이전</a>");
 		}
@@ -159,7 +167,7 @@ public class DetailPageNavigation {
 				tmpNavigator.append("     <td width='1' nowrap><img src='" + root + "/img/board/n_tab.gif' width='1'");
 				tmpNavigator.append(" height='11' border='0' align='absmiddle'><br>\n");
 			} else {
-				tmpNavigator.append("     <td style='padding:0 7 0 7;' nowrap><a href=\"javascript:bidInfoList('','','" + category1 + "','" + category2 + "','" + gudan + "','" + i + "','1','1');\">" + i + "</td>\n");
+				tmpNavigator.append("     <td style='padding:0 7 0 7;' nowrap><a href=\"javascript:bidInfoList('"+ ano + "','" + i + "','','');\">" + i + "</td>\n");
 				tmpNavigator.append("     <td width='1' nowrap><img src='" + root + "/img/board/n_tab.gif' width='1'");
 				tmpNavigator.append(" height='11' border='0' align='absmiddle'><br>\n");
 			}
@@ -178,10 +186,10 @@ public class DetailPageNavigation {
 			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'></font>\n");
 		} else {
 			int nextPage = (pageNo - 1) / pageSize * pageSize + pageSize + 1;//(pageNo + pageSize - 1) / pageSize * pageSize + 1
-			tmpNavigator.append("   <a href=\"javascript:bidInfoList('','','" + category1 + "','" + category2 + "','" + gudan + "','" + nextPage + "','1','1');\">다음<img");
+			tmpNavigator.append("   <a href=\"javascript:bidInfoList('"+ ano + "','" + nextPage +"','','');\">다음<img");
 			tmpNavigator.append(" src='" + root + "/img/community/icon_next01.gif' width='3' height='11'");
 			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'></a>\n");
-			tmpNavigator.append("   <a href=\"javascript:bidInfoList('','','" + category1 + "','" + category2 + "','" + gudan + "','" + totalPageCount + "','1','1');\">끝목록<img src='" + root + "/img/board/icon_next02_dim.gif' width='7' height='11'");
+			tmpNavigator.append("   <a href=\"javascript:bidInfoList('"+ ano + "','" + totalPageCount +"','','');\">끝목록<img src='" + root + "/img/board/icon_next02_dim.gif' width='7' height='11'");
 			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'>\n");
 		}
 

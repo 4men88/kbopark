@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR" import="com.baseball.auction.model.AuctionDetailDto,
-    java.text.*,java.io.*,java.util.*"%>
+    java.text.*,java.io.*,java.util.*, com.baseball.auction.util.DetailPageNavigation"%>
 <!-- 상품눌렀을때 뜨는 상세 페이지. -->
 <!-- header영역 -->
 <%@ include file="/common/header.jsp"%>
@@ -8,6 +8,7 @@
 <%
 List<AuctionDetailDto> list = (List<AuctionDetailDto>)request.getAttribute("list");
 AuctionDetailDto auctionDetailDto = (AuctionDetailDto)request.getAttribute("auctionDetailDto");
+DetailPageNavigation detailPageNavigation = (DetailPageNavigation) request.getAttribute("detailPageNavigation");
 
 int gudan = auctionDetailDto.getTno();
 
@@ -138,16 +139,18 @@ else
 		}
 }
 	
-function bidInfoList(){
-	document.getElementById("aact").value = "categorylist";
-	document.getElementById("achoice").value = choice;
-	document.getElementById("aconpg").value = conpg;
-	document.getElementById("aendpg").value = endpg;
+function bidInfoList(ano, pg, key, word){
+	document.getElementById("aact").value = "biddetail";
+	document.getElementById("aano").value = ano;
+//	document.getElementById("achoice").value = choice;
+//	document.getElementById("aconpg").value = conpg;
+//	document.getElementById("aendpg").value = endpg;
+	document.getElementById("dpg").value = pg;
 	document.getElementById("akey").value = "";
 	document.getElementById("aword").value = "";
-	document.getElementById("acategory1").value = category1; 
-	document.getElementById("acategory2").value = category2; 
-	document.getElementById("agudan").value = gudan; 
+//	document.getElementById("acategory1").value = category1; 
+//	document.getElementById("acategory2").value = category2; 
+//	document.getElementById("agudan").value = gudan; 
 	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 	document.getElementById("auctionForm").submit();
 }

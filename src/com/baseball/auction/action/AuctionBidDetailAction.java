@@ -55,10 +55,19 @@ public class AuctionBidDetailAction implements Action {
 		System.out.println("조회수 :" + acount);
 		System.out.println("입찰시작가:" + initprice);
 		List<AuctionDetailDto> list = AuctionBidDetailServiceImpl.getAuctionBidDetailService().auctionBidDetailList(ano, pg);
-		DetailPageNavigation detailPageNavigation = AuctionBidDetailServiceImpl.getAuctionBidDetailService().makePageNavigation(); 
+		DetailPageNavigation detailPageNavigation = AuctionBidDetailServiceImpl.getAuctionBidDetailService().makePageNavigation(ano, pg); 
+		detailPageNavigation.setRoot(request.getContextPath());
+//		detailPageNavigation.setCategoty1(category1);
+//		detailPageNavigation.setCategoty1(category2);
+//		detailPageNavigation.setKey(key);
+//		detailPageNavigation.setWord(word);
+//		detailPageNavigation.setGudan(gudan);
+		detailPageNavigation.setConNavigator();
+		
 		
 		request.setAttribute("list", list);
 		request.setAttribute("auctionDetailDto", auctionDetailDto);
+		request.setAttribute("detailPageNavigation", detailPageNavigation);
 		return "/auction/auction-detail.jsp";
 	}
 

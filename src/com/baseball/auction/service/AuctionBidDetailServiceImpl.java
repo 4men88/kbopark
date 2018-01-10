@@ -8,7 +8,6 @@ import com.baseball.auction.dao.AuctionBidDetailDaoImpl;
 import com.baseball.auction.model.AuctionDetailDto;
 import com.baseball.auction.util.DetailPageNavigation;
 import com.baseball.util.Constance;
-import com.kitri.common.dao.CommonDaoImpl;
 
 public class AuctionBidDetailServiceImpl implements AuctionBidDetailService {
 
@@ -43,10 +42,14 @@ public class AuctionBidDetailServiceImpl implements AuctionBidDetailService {
 		DetailPageNavigation detailPageNavigation = new DetailPageNavigation();
 		int pgSize = Constance.CATEGORY_PAGE_SIZE;
 		detailPageNavigation.setPageNo(pg);
-		int totalArticleCount = AuctionBidDetailDaoImpl.getAuctionBidDetailDao().totalBidCount(map);
-		detailPageNavigation.setTotalArticleCount(totalArticleCount);
+		int totalBidCount = AuctionBidDetailDaoImpl.getAuctionBidDetailDao().totalBidCount(map);
+		detailPageNavigation.setTotalArticleCount(totalBidCount);
 		
-		return null;
+		int totalPageCount = (totalBidCount - 1) / Constance.CATEGORY_LIST_SIZE + 1;
+		detailPageNavigation.setTotalPageCount(totalPageCount);
+		detailPageNavigation.setNowFirst(pg <= pgSize);
+		detailPageNavigation.setNowEnd(pg > (totalPageCount - 1) / pgSize * pgSize);
+		return detailPageNavigation;
 	}
 
 }
