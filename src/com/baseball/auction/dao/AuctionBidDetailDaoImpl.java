@@ -30,8 +30,6 @@ public class AuctionBidDetailDaoImpl implements AuctionBidDetailDao {
 	public List<AuctionDetailDto> auctionBidDetailList(Map<String, String> map) {
 		
 		List<AuctionDetailDto> list = new ArrayList<AuctionDetailDto>();
-		
-		
 	
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -58,14 +56,14 @@ public class AuctionBidDetailDaoImpl implements AuctionBidDetailDao {
 			sql2.append("        	where ano = ?\n");
 			sql2.append("        	order by biddate \n");
 			sql2.append("        	)ad \n");
-			sql2.append("        where rownum < ? \n");
+			sql2.append("        where rownum <= ? \n");
 			sql2.append("        )a \n");
 			sql2.append("    where a.rn > ? \n");
 			pstmt = conn.prepareStatement(sql2.toString());
 			pstmt.setString(1,ano);
 			String end = map.get("end");
 			String start = map.get("start");
-			pstmt.setString(2,ano);
+			pstmt.setString(2,end);
 			pstmt.setString(3,start);
 			rs = pstmt.executeQuery();
 

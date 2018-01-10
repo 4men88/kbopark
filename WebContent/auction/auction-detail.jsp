@@ -139,7 +139,24 @@ else
 		}
 }
 	
+	function mainDetail(category1,category2,aname,starttime,endtime,bidprice,bidnum,aimage,astatus, acount,initprice,tno){
+		document.getElementById("acategory1").value = category1;
+		document.getElementById("acategory2").value = category2;
+		document.getElementById("aaname").value = aname;
+		document.getElementById("astarttime").value = starttime;
+		document.getElementById("aendtime").value = endtime;
+		document.getElementById("abidprice").value = bidprice;
+		document.getElementById("abidnum").value = bidnum;
+		document.getElementById("aaimage").value = aimage;
+		document.getElementById("aastatus").value = astatus;
+		document.getElementById("aacount").value = acount;
+		document.getElementById("ainitprice").value = initprice;
+		document.getElementById("atno").value = tno;
+	}
 function bidInfoList(ano, pg, key, word){
+	mainDetail('<%=auctionDetailDto.getCategory1()%>','<%=auctionDetailDto.getCategory2()%>','<%=auctionDetailDto.getAname()%>','<%=auctionDetailDto.getStartTime()%>',
+			'<%=auctionDetailDto.getEndTime()%>','<%=auctionDetailDto.getBidPrice()%>', '<%=auctionDetailDto.getBidNum()%>', '<%=auctionDetailDto.getAimage()%>', 
+			'<%=auctionDetailDto.getAstatus()%>','<%=auctionDetailDto.getAcount()%>','<%=auctionDetailDto.getInitPrice()%>','<%=auctionDetailDto.getTno()%>');
 	document.getElementById("aact").value = "biddetail";
 	document.getElementById("aano").value = ano;
 //	document.getElementById("achoice").value = choice;
@@ -317,16 +334,16 @@ else
 						</tbody>
 					</table>
 				</div>
-				<!-- 개수가 정해져서 길이가 정해져야 대략적인 가운데 정렬을할수가 있음ㅠㅠ 가운데정렬안되면 수업시간에 했던걸로그냥쓰기..-->
-				<div class="col-12 py-3">
-					<ul class="pagination pagination-sm">
-						<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-						<li class="page-item active"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">Next</a></li>
-					</ul>
-				</div>
+<%
+	if(detailPageNavigation != null)
+	{
+%>
+									<div class="col-12 py-3" width="100%" align="center">
+									<%=detailPageNavigation.getNavigator() %>
+									</div>
+<% 	
+}
+%>						
 			</div>
 			
 		</div>

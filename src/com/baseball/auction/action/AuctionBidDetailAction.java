@@ -36,6 +36,11 @@ public class AuctionBidDetailAction implements Action {
 		int tno = NullCheck.nullToOne(request.getParameter("tno"));
 		int pg = NullCheck.nullToOne(request.getParameter("pg"));
 		
+		System.out.println("ano : " + ano);
+		System.out.println("pg : " + pg);
+		System.out.println("starttime" + starttime);
+		System.out.println("endtime" + endtime);
+		
 		AuctionDetailDto auctionDetailDto = new AuctionDetailDto();
 		auctionDetailDto.setAno(ano);
 		auctionDetailDto.setCategory1(category1);
@@ -52,8 +57,6 @@ public class AuctionBidDetailAction implements Action {
 		auctionDetailDto.setInitPrice(initprice);
 		auctionDetailDto.setTno(tno);
 		
-		System.out.println("조회수 :" + acount);
-		System.out.println("입찰시작가:" + initprice);
 		List<AuctionDetailDto> list = AuctionBidDetailServiceImpl.getAuctionBidDetailService().auctionBidDetailList(ano, pg);
 		DetailPageNavigation detailPageNavigation = AuctionBidDetailServiceImpl.getAuctionBidDetailService().makePageNavigation(ano, pg); 
 		detailPageNavigation.setRoot(request.getContextPath());
@@ -62,9 +65,10 @@ public class AuctionBidDetailAction implements Action {
 //		detailPageNavigation.setKey(key);
 //		detailPageNavigation.setWord(word);
 //		detailPageNavigation.setGudan(gudan);
+		detailPageNavigation.setAno(ano);
 		detailPageNavigation.setConNavigator();
 		
-		
+		System.out.println("list size : " + list.size());
 		request.setAttribute("list", list);
 		request.setAttribute("auctionDetailDto", auctionDetailDto);
 		request.setAttribute("detailPageNavigation", detailPageNavigation);

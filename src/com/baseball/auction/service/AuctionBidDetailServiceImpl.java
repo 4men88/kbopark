@@ -24,8 +24,8 @@ public class AuctionBidDetailServiceImpl implements AuctionBidDetailService {
 	@Override
 	public List<AuctionDetailDto> auctionBidDetailList(int ano, int pg) {
 		
-		int end = pg * Constance.CATEGORY_LIST_SIZE;
-		int start = end - Constance.CATEGORY_LIST_SIZE;
+		int end = pg * Constance.BID_LIST_SIZE;
+		int start = end - Constance.BID_LIST_SIZE;
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("ano", ano + "");
 		map.put("start", start + "");
@@ -45,7 +45,7 @@ public class AuctionBidDetailServiceImpl implements AuctionBidDetailService {
 		int totalBidCount = AuctionBidDetailDaoImpl.getAuctionBidDetailDao().totalBidCount(map);
 		detailPageNavigation.setTotalArticleCount(totalBidCount);
 		
-		int totalPageCount = (totalBidCount - 1) / Constance.CATEGORY_LIST_SIZE + 1;
+		int totalPageCount = (totalBidCount - 1) / Constance.BID_LIST_SIZE + 1;
 		detailPageNavigation.setTotalPageCount(totalPageCount);
 		detailPageNavigation.setNowFirst(pg <= pgSize);
 		detailPageNavigation.setNowEnd(pg > (totalPageCount - 1) / pgSize * pgSize);
