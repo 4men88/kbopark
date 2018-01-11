@@ -171,6 +171,10 @@ function bidInfoList(ano, pg, key, word){
 	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 	document.getElementById("auctionForm").submit();
 }
+
+function doBid() {
+	
+}
 </script>
 <div class="container-fluid auction-category">
 	<div class="row row-offcanvas row-offcanvas-left">
@@ -281,10 +285,17 @@ function bidInfoList(ano, pg, key, word){
 
 			<div class="row">
 				<div class="col-md-8"></div>
+<%--<%
+if(memberDto != null)
+{	
+--%>				
 				<div class="col-md-4">
 					<button type="button" class="btn btn-block btn-primary btn-lg"
 						data-toggle="modal" data-target="#enterbidModal">입찰하기</button>
 				</div>
+<%--
+}
+--%>				
 			</div>
 			<div class="border-b py-3"></div>
 
@@ -373,12 +384,12 @@ else
 					<table class="table table-sm table-responsive-md py-3">
 						<tbody>
 							<tr style="font-weight: 700px;">
-								<th scope="row">사용가능루키</th>
-								<td>80,000(루키)</td>
+								<th scope="row">보유금액(루키)</th>
+								<td><%=memberDto.getRookie()%></td>
 							</tr>
 							<tr style="font-weight: 700px;">
-								<th scope="row">최소입찰루키</th>
-								<td>40,000(루키)</td>
+								<th scope="row">현재입찰가(루키)</th>
+								<td><%=auctionDetailDto.getBidPrice()%></td>
 							</tr>
 							<tr style="font-weight: 700px;">
 								<th scope="row">입찰루키</th>
@@ -390,7 +401,10 @@ else
 					</table>
 				</div>
 				<div class="modal-footer p-4" style="display: block;">
-					<button type="button" class="btn btn-primary btn-lg">입찰하기</button>
+				<a href="javascript:doBid();">
+					<button type="button" class="btn btn-primary btn-lg">
+					입찰하기</button>
+				</a>
 					<button type="button" class="btn btn-secondary btn-lg"
 						data-dismiss="modal">닫기</button>
 				</div>
