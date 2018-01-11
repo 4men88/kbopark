@@ -61,10 +61,10 @@ public class AuctionBidDetailAction implements Action {
 		
 		//조회수 증가
 		if(!request.getHeader("referer").contains("biddetail")) {
-		AuctionCommonDaoImpl.getAuctionCommonDao().auctionHitUpdate(ano);
-		auctionDetailDto.setAcount(++acount);
+			AuctionCommonDaoImpl.getAuctionCommonDao().auctionHitUpdate(ano);
+			auctionDetailDto.setAcount(++acount);
 		}else {
-		auctionDetailDto.setAcount(acount);			
+			auctionDetailDto.setAcount(acount);			
 		}
 		//입찰목록 리스트
 		List<AuctionDetailDto> list = AuctionBidDetailServiceImpl.getAuctionBidDetailService().auctionBidDetailList(ano, pg);

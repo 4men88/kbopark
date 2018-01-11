@@ -94,7 +94,13 @@ if(category1 != null)
 		   smallSubject = "기타";
 	   }
    }
-}  
+}
+int bidPrice = 0;
+if(auctionDetailDto.getBidPrice() == 0){
+	bidPrice = auctionDetailDto.getInitPrice();
+}else{
+	bidPrice = auctionDetailDto.getBidPrice();
+}
 %>
 <script type="text/javascript" src="/kbopark/js/httpRequest.js"></script>
 <script type="text/javascript">
@@ -334,11 +340,11 @@ function doBid() {
 							</tr>
 							<tr>
 								<th scope="row">입찰가</th>
-								<td style="font-weight: 700;"><%=auctionDetailDto.getBidPrice()%> 원</td>
+								<td style="font-weight: 700;"><%=bidPrice%> 원(루키)</td>
 							</tr>
 							<tr>
 								<th scope="row">시작가</th>
-								<td><%=auctionDetailDto.getInitPrice()%> 원</td>
+								<td><%=auctionDetailDto.getInitPrice()%> 원(루키)</td>
 							</tr>
 							<tr>
 								<th scope="row">구단분류</th>
@@ -351,17 +357,17 @@ function doBid() {
 
 			<div class="row">
 				<div class="col-md-8"></div>
-<%--<%
+<%
 if(memberDto != null)
 {	
---%>				
+%>				
 				<div class="col-md-4">
 					<button type="button" class="btn btn-block btn-primary btn-lg"
 						data-toggle="modal" data-target="#enterbidModal">입찰하기</button>
 				</div>
-<%--
+<%
 }
---%>				
+%>				
 			</div>
 			<div class="border-b py-3"></div>
 
@@ -376,10 +382,10 @@ if(memberDto != null)
 					<table class="table table-sm table-responsive-md">			
 						<thead>
 							<tr>
-								<th scope="col">입찰번호</th>
-								<th scope="col">입찰자</th>
-								<th scope="col">입찰루키</th>
-								<th scope="col">입찰시각</th>
+								<th scope="col">입찰 번호</th>
+								<th scope="col">입찰 아이디</th>
+								<th scope="col">입찰액(루키)</th>
+								<th scope="col">입찰 시각</th>
 							</tr>
 						</thead>
 <%
@@ -452,10 +458,10 @@ else
 							<tr style="font-weight: 700px;">
 								<th scope="row">보유금액(루키)</th>
 								<td><%=memberDto.getRookie()%></td>
-							</tr>
+							</tr>							
 							<tr style="font-weight: 700px;">
 								<th scope="row">현재입찰가(루키)</th>
-								<td><%=auctionDetailDto.getBidPrice()%></td>
+								<td><%=bidPrice%></td>
 							</tr>
 							<tr style="font-weight: 700px;">
 								<th scope="row">입찰루키</th>
