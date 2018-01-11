@@ -232,6 +232,7 @@ function bidInfoList(ano, pg, key, word){
 	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 	document.getElementById("auctionForm").submit();
 }
+//경매물품 카테고리별 
 function categoryList(key, word, category1, category2, gudan, conpg, endpg, choice)
 {
 	document.getElementById("aact").value = "categorylist";
@@ -245,9 +246,24 @@ function categoryList(key, word, category1, category2, gudan, conpg, endpg, choi
 	document.getElementById("agudan").value = gudan; 
 	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 	document.getElementById("auctionForm").submit();		
-}	
+}
+//입찰하기 버튼
 function doBid() {
-	
+	var bid = document.getElementById("inputbidprice").value;
+	var len = bid.length;
+	if(bid == ""){
+		alert("입찰금액을 입력하세요.");
+		return;
+	}else if(parseInt(bid) <= <%=bidPrice%>){
+		alert("<%=bidPrice%>원 이상부터 입찰 가능합니다.");
+		return;
+	}
+	for(var i=0; i<len; i++){
+		if(parseInt(bid.charAt(i))<48 || parseInt(bid.charAt(i))> 57){
+			alert("숫자만 입력 가능합니다.");
+			return;
+		}
+	}
 }
 </script>
 <div class="container-fluid auction-category">
@@ -428,7 +444,6 @@ else
 }
 %>						
 			</div>
-			
 		</div>
 		<!--right section-->
 	</div>
@@ -453,6 +468,7 @@ else
 						불가능합니다.<br>신중하게 입찰에 참여해주시기 바랍니다.
 					</label>
 					
+				<!--<form id="bidrookie" name="bidrookie" method="post" onsubmit="return false";>-->
 					<table class="table table-sm table-responsive-md py-3">
 						<tbody>
 							<tr style="font-weight: 700px;">
@@ -465,18 +481,18 @@ else
 							</tr>
 							<tr style="font-weight: 700px;">
 								<th scope="row">입찰루키</th>
-								<td><input type="text" class="form-control"
-								id="enterbidFormControlInput1" placeholder=""></td>
-							</tr>
-							
+								<td><input type="text" class="form-control" id="inputbidprice" 
+								placeholder="입찰금액 입력" onkeydown="if(event.keyCode==13) return false;">
+								</td>
+							</tr>		
 						</tbody>
 					</table>
+				<!--</form>-->			
+					
 				</div>
 				<div class="modal-footer p-4" style="display: block;">
-				<a href="javascript:doBid();">
-					<button type="button" class="btn btn-primary btn-lg">
+					<button type="button" class="btn btn-primary btn-lg" onclick="javascript:doBid();"  onsubmit="return false";>
 					입찰하기</button>
-				</a>
 					<button type="button" class="btn btn-secondary btn-lg"
 						data-dismiss="modal">닫기</button>
 				</div>
