@@ -36,16 +36,9 @@ public class AuctionBidDetailDaoImpl implements AuctionBidDetailDao {
 		ResultSet rs = null;
 		try {
 			conn = DBConnection.makeConnection();
-			StringBuffer sql1 = new StringBuffer();
 			StringBuffer sql2 = new StringBuffer();
 			
-			sql1.append("update auction \n");
-			sql1.append("set acount = acount + 1 \n");
-			sql1.append("where ano = ?");
-			pstmt = conn.prepareStatement(sql1.toString());
 			String ano = map.get("ano");
-			pstmt.setString(1,ano);
-			pstmt.executeUpdate();
 			//  입찰자 많은순
 			sql2.append("select a.*\n");
 			sql2.append("	from(\n");

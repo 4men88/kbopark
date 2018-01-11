@@ -41,6 +41,60 @@ else if(gudan == 10)
 	gudanname = "KT 위즈";
 else
 	gudanname = "공통구단";
+
+String bigSubject ="";  //대분류 이름
+String smallSubject ="";//중분류 이름
+String category1 = auctionDetailDto.getCategory1();
+String category2 = auctionDetailDto.getCategory2();
+if(category1 != null)
+{
+   if(category1.equals("1")){
+	   bigSubject = "유니폼";
+	   if(category2.equals("1")){
+		   smallSubject = "상의";
+	   }else if(category2.equals("2")){
+		   smallSubject = "하의";
+	   }else if(category2.equals("3")){
+		   smallSubject = "모자";
+	   }else if(category2.equals("4")){
+		   smallSubject = "기타";
+	   }
+	}
+   else if(category1.equals("2")){
+	   bigSubject = "경기용품";
+	   if(category2.equals("1")){
+		   smallSubject = "야구공";
+	   }else if(category2.equals("2")){
+		   smallSubject = "배트";
+	   }else if(category2.equals("3")){
+		   smallSubject = "보호장비";
+	   }else if(category2.equals("4")){
+		   smallSubject = "기타";
+	   }
+   	}
+   else if(category1.equals("3")){
+	   bigSubject = "응원용품";
+	   if(category2.equals("1")){
+		   smallSubject = "피켓";
+	   }else if(category2.equals("2")){
+		   smallSubject = "LED피켓";
+	   }else if(category2.equals("3")){
+		   smallSubject = "기타";
+	   }
+   }
+   else if(category1.equals("4")){
+	   bigSubject = "기타잡화";
+	   if(category2.equals("1")){
+		   smallSubject = "사진";
+	   }else if(category2.equals("2")){
+		   smallSubject = "티켓";
+	   }else if(category2.equals("3")){
+		   smallSubject = "카드";
+	   }else if(category2.equals("4")){
+		   smallSubject = "기타";
+	   }
+   }
+}  
 %>
 <script type="text/javascript" src="/kbopark/js/httpRequest.js"></script>
 <script type="text/javascript">
@@ -139,20 +193,21 @@ else
 		}
 }
 	
-	function mainDetail(category1,category2,aname,starttime,endtime,bidprice,bidnum,aimage,astatus, acount,initprice,tno){
-		document.getElementById("acategory1").value = category1;
-		document.getElementById("acategory2").value = category2;
-		document.getElementById("aaname").value = aname;
-		document.getElementById("astarttime").value = starttime;
-		document.getElementById("aendtime").value = endtime;
-		document.getElementById("abidprice").value = bidprice;
-		document.getElementById("abidnum").value = bidnum;
-		document.getElementById("aaimage").value = aimage;
-		document.getElementById("aastatus").value = astatus;
-		document.getElementById("aacount").value = acount;
-		document.getElementById("ainitprice").value = initprice;
-		document.getElementById("atno").value = tno;
+function mainDetail(category1,category2,aname,starttime,endtime,bidprice,bidnum,aimage,astatus, acount,initprice,tno){
+	document.getElementById("acategory1").value = category1;
+	document.getElementById("acategory2").value = category2;
+	document.getElementById("aaname").value = aname;
+	document.getElementById("astarttime").value = starttime;
+	document.getElementById("aendtime").value = endtime;
+	document.getElementById("abidprice").value = bidprice;
+	document.getElementById("abidnum").value = bidnum;
+	document.getElementById("aaimage").value = aimage;
+	document.getElementById("aastatus").value = astatus;
+	document.getElementById("aacount").value = acount;
+	document.getElementById("ainitprice").value = initprice;
+	document.getElementById("atno").value = tno;
 	}
+// 입찰 정보 리스트
 function bidInfoList(ano, pg, key, word){
 	mainDetail('<%=auctionDetailDto.getCategory1()%>','<%=auctionDetailDto.getCategory2()%>','<%=auctionDetailDto.getAname()%>','<%=auctionDetailDto.getStartTime()%>',
 			'<%=auctionDetailDto.getEndTime()%>','<%=auctionDetailDto.getBidPrice()%>', '<%=auctionDetailDto.getBidNum()%>', '<%=auctionDetailDto.getAimage()%>', 
@@ -171,49 +226,60 @@ function bidInfoList(ano, pg, key, word){
 	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 	document.getElementById("auctionForm").submit();
 }
-
+function categoryList(key, word, category1, category2, gudan, conpg, endpg, choice)
+{
+	document.getElementById("aact").value = "categorylist";
+	document.getElementById("achoice").value = choice;
+	document.getElementById("aconpg").value = conpg;
+	document.getElementById("aendpg").value = endpg;
+	document.getElementById("akey").value = "";
+	document.getElementById("aword").value = "";
+	document.getElementById("acategory1").value = category1; 
+	document.getElementById("acategory2").value = category2; 
+	document.getElementById("agudan").value = gudan; 
+	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+	document.getElementById("auctionForm").submit();		
+}	
 function doBid() {
 	
 }
 </script>
 <div class="container-fluid auction-category">
 	<div class="row row-offcanvas row-offcanvas-left">
-		<nav class="col-6 col-md-2 bg-light sidebar-offcanvas pt-3 pb-5"
+	<nav class="col-6 col-md-2 bg-light sidebar-offcanvas pt-3 pb-5"
 			id="sidebar">
 			<div class="pb-5">
-				<a class="nav-link" href="#item-total">전체보기</a>
-				<a class="nav-link" href="#item-gudan">구단별보기</a> <a class="nav-link"
-					href="#item-1">유니폼</a>
+				<a class="nav-link" href="javascript:categoryList('','','','','','1','1','1');">전체보기</a>
+				<a class="nav-link" href="javascript:categoryList('','','1','','','1','1','1');">유니폼</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-1-1">상의</a> <a
-						class="nav-link ml-3" href="#item-1-2">하의</a> <a
-						class="nav-link ml-3" href="#item-1-3">모자</a> <a
-						class="nav-link ml-3" href="#item-1-4">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1','','1','1','1');">상의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','2','','1','1','1');">하의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','3','','1','1','1');">모자</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','4','','1','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="#item-2">경기용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','2','','','1','1','1');">경기용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-2-1">야구공</a> <a
-						class="nav-link ml-3" href="#item-2-2">배트</a> <a
-						class="nav-link ml-3" href="#item-2-3">글러브</a> <a
-						class="nav-link ml-3" href="#item-2-4">보호장구</a> <a
-						class="nav-link ml-3" href="#item-2-4">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','2','1','','1','1','1');">야구공</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','2','','1','1','1');">배트</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','3','','1','1','1');">글러브</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','4','','1','1','1');">보호장구</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','5','','1','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="#item-3">응원용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','3','1','','1','1','1');">응원용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-3-1">피켓</a> <a
-						class="nav-link ml-3" href="#item-3-2">LED피켓</a> <a
-						class="nav-link ml-3" href="#item-3-3">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1','','1','1','1');">피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','2','','1','1','1');">LED피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','3','','1','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="#item-3">기타잡화</a>
+				<a class="nav-link" href="javascript:categoryList('','','4','','','1','1','1');">기타잡화</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-4-1">사진</a> <a
-						class="nav-link ml-3" href="#item-4-2">티켓</a> <a
-						class="nav-link ml-3" href="#item-4-3">카드</a> <a
-						class="nav-link ml-3" href="#item-4-4">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1','','1','1','1');">사진</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','2','','1','1','1');">티켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','3','','1','1','1');">카드</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','4','','1','1','1');">기타</a>
 				</nav>
 			</div>
 		</nav>
-
 		<div>
 			<p class="float-left d-md-none">
 				<button type="button"
@@ -228,11 +294,11 @@ function doBid() {
 
 			<div id="current-category">
 				<nav aria-label="breadcrumb" role="navigation">
-					<ol class="breadcrumb justify-content-end"
+					<ol class="breadcrumb justify-content-end mb-0"
 						style="background-color: white;">
 						<li class="breadcrumb-item"><a href="#">전체</a></li>
-						<li class="breadcrumb-item"><a href="#">경기용품</a></li>
-						<li class="breadcrumb-item active" aria-current="page">글러브</li>
+						<li class="breadcrumb-item"><a href="#"><%=bigSubject%></a></li>
+						<li class="breadcrumb-item active" aria-current="page"><%=smallSubject%></li>
 					</ol>
 				</nav>
 			</div>
@@ -267,7 +333,7 @@ function doBid() {
 								<td><%=auctionDetailDto.getAcount() %> 회</td>
 							</tr>
 							<tr>
-								<th scope="row">최고가</th>
+								<th scope="row">입찰가</th>
 								<td style="font-weight: 700;"><%=auctionDetailDto.getBidPrice()%> 원</td>
 							</tr>
 							<tr>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.baseball.action.Action;
+import com.baseball.auction.dao.AuctionCommonDaoImpl;
 import com.baseball.auction.model.AuctionDetailDto;
 import com.baseball.auction.service.AuctionBidDetailServiceImpl;
 import com.baseball.auction.util.DetailPageNavigation;
@@ -38,9 +39,12 @@ public class AuctionBidDetailAction implements Action {
 		
 		System.out.println("ano : " + ano);
 		System.out.println("pg : " + pg);
-		System.out.println("starttime" + starttime);
-		System.out.println("endtime" + endtime);
-		
+		System.out.println("starttime : " + starttime);
+		System.out.println("endtime: " + endtime);
+		System.out.println("category1 : " + category1);
+		System.out.println("category2 : " + category2);
+		System.out.println("request 경로 : " + request.getHeader("referer"));
+				
 		AuctionDetailDto auctionDetailDto = new AuctionDetailDto();
 		auctionDetailDto.setAno(ano);
 		auctionDetailDto.setCategory1(category1);
@@ -52,11 +56,17 @@ public class AuctionBidDetailAction implements Action {
 		auctionDetailDto.setBidNum(bidnum);
 		auctionDetailDto.setAimage(aimage);
 		auctionDetailDto.setAstatus(astatus);
-		acount += 1;
-		auctionDetailDto.setAcount(acount);
 		auctionDetailDto.setInitPrice(initprice);
 		auctionDetailDto.setTno(tno);
 		
+		//조회수 증가
+		if(!request.getHeader("referer").contains("biddetail")) {
+		AuctionCommonDaoImpl.getAuctionCommonDao().auctionHitUpdate(ano);
+		auctionDetailDto.setAcount(++acount);
+		}else {
+		auctionDetailDto.setAcount(acount);			
+		}
+		//입찰목록 리스트
 		List<AuctionDetailDto> list = AuctionBidDetailServiceImpl.getAuctionBidDetailService().auctionBidDetailList(ano, pg);
 		DetailPageNavigation detailPageNavigation = AuctionBidDetailServiceImpl.getAuctionBidDetailService().makePageNavigation(ano, pg); 
 		detailPageNavigation.setRoot(request.getContextPath());

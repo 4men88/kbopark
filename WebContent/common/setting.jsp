@@ -61,6 +61,7 @@ root = "<%=root%>";
 	<input type="hidden" id="aconpg" name="conpg" value="">
 	<input type="hidden" id="aendpg" name="endpg" value="">
 	<input type="hidden" id="dpg" name="pg" value="">
+	<input type="hidden" id="ahit" name="hit" value="">
 	<input type="hidden" id="achoice" name="choice" value="">
 </form>
 <form id="commonForm" name="commonForm" method="get" action="">

@@ -23,7 +23,6 @@ public class AuctionController extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String act = request.getParameter("act");
-		System.out.println(act);
 		String path = "/auction.jsp";
 		if("mainlist".equals(act)) 
 		{
