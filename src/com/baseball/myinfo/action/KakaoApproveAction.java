@@ -12,6 +12,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import com.baseball.action.Action;
+import com.baseball.member.model.MemberDetailDto;
 import com.baseball.myinfo.service.KakaoApproveServiceImpl;
 
 public class KakaoApproveAction implements Action {
@@ -24,10 +25,11 @@ public class KakaoApproveAction implements Action {
 
 		String adminid = "ef14ab1d8a7c90d7c1554c92b377b6e9";
 		String pg_token = request.getParameter("pg_token");
-		HttpSession paysession = request.getSession();
-		String tid = (String) paysession.getAttribute("kakaotid");	//session에있어서 받아오기어려움!!!!ㅠㅠ 어찌해야하나..
-		
-		System.out.println("KakaoApproveAction >>>>>>> " + pg_token + " " + tid); 
+		HttpSession session = request.getSession();
+		String tid = (String) session.getAttribute("kakaotid");	
+		MemberDetailDto mdd = (MemberDetailDto) session.getAttribute("userInfo");
+		String mid = mdd.getId();	
+		System.out.println("KakaoApproveAction >>>>>>> " + pg_token + " " + tid + "mid: " + mid); 
 
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("adminid", adminid);
@@ -42,9 +44,11 @@ public class KakaoApproveAction implements Action {
 			jsonObj = (JSONObject) parser.parse(approve);
 			String code = (String) jsonObj.get("code");
 			if(code == null) {
-				int price = (int) jsonObj.get("");	//배열에서꺼내,수정하기
-				KakaoApproveServiceImpl.getKas().updateRookie(price); //디비에루키인서트시키기!
-				path = "/myinfo/chargeok.jsp";
+				JSONObject jsonAmount = (JSONObject) jsonObj.get("amount");
+				long price = (long) jsonAmount.get("total");
+				int cnt = KakaoApproveServiceImpl.getKas().updateRookie(mid, (int)price); //디비에루키인서트시키기!
+				if(cnt != 0) 
+					path = "/myinfo/chargeok.jsp";
 			}
 		} catch (ParseException e1) {
 			e1.printStackTrace();

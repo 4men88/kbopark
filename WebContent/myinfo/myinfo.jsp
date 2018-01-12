@@ -11,13 +11,18 @@ GudanDto gudanDto = (GudanDto) session.getAttribute("gudandto");
 <script type="text/javascript">
 control = "/myinfo";
 
+function openpay() {		
+	window.open("<%=root%>/myinfo?act=mvpay", "pay", "width=360,height=545,top=100,left=100,location=no,status=no,titlebar=no,toolbar=no,resizable=no,scrollbars=yes");
+}
 </script>
 
+<center>
 
-<a href="<%=root%>/myinfo?act=chargerookie&value=3000">충전하기</a>
+<div class="py-5">
+<a href="javascript: openpay();">충전하기</a>
+</div>
 
-
-
+</center>
 
 
 <!-- footer영역 -->

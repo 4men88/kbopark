@@ -72,8 +72,8 @@ public class KakaoApproveServiceImpl implements KakaoApproveService {
 	}
 
 	@Override
-	public int updateRookie(int price) {
-		return MyinfoDaoImpl.getMyinfoDao().updateRookie(price);
+	public int updateRookie(String mid, int price) {
+		return MyinfoDaoImpl.getMyinfoDao().updateRookie(mid, price);
 	}
 
 }

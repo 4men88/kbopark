@@ -17,11 +17,13 @@ public class MyinfoController extends HttpServlet {
 
 		String root = request.getContextPath();
 		String act = request.getParameter("act");
-		System.out.println("GudanController act >>> " + act);
-//		int tno = NullCheck.nullToZero(request.getParameter("tno"));
 		String path = "/index.jsp";
 		
 		if("mvmyinfo".equals(act)) {
+			PageMove.redirect(request, response, "/myinfo/myinfo.jsp");
+			
+		} else if("mvpay".equals(act)) {
+			PageMove.redirect(request, response, "/myinfo/paycharge.jsp");
 			
 		} else if("chargerookie".equals(act)) {
 			path = MyinfoActionFactory.getKakaoReadyAction().execute(request, response);
@@ -32,11 +34,14 @@ public class MyinfoController extends HttpServlet {
 			path = MyinfoActionFactory.getKakaoApproveAction().execute(request, response);
 			PageMove.forward(request, response, path);
 
-		}
-		else if("".equals(act)) {
+		} else if("failrookie".equals(act)) {
+			PageMove.redirect(request, response, "/myinfo/chargefail.jsp");
+		} else if("cancelrookie".equals(act)) {
+			PageMove.redirect(request, response, "/myinfo/chargecancel.jsp");
+			
+		} else if("".equals(act)) {
 			PageMove.redirect(request, response, path);
-		}
-
+		} 
 	
 	}
 
