@@ -247,23 +247,36 @@ function categoryList(key, word, category1, category2, gudan, conpg, endpg, choi
 	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 	document.getElementById("auctionForm").submit();		
 }
-//입찰하기 버튼
+//입찰하기 버튼 - 유효성 검사
 function doBid() {
 	var bid = document.getElementById("inputbidprice").value;
 	var len = bid.length;
+	//아무것도 입력안했을경우
 	if(bid == ""){
 		alert("입찰금액을 입력하세요.");
 		return;
-	}else if(parseInt(bid) <= <%=bidPrice%>){
-		alert("<%=bidPrice%>원 이상부터 입찰 가능합니다.");
-		return;
 	}
+	// 숫자인지 유효성 검사
 	for(var i=0; i<len; i++){
-		if(parseInt(bid.charAt(i))<48 || parseInt(bid.charAt(i))> 57){
+		if(bid.charCodeAt(i)<48 || bid.charCodeAt(i)> 57){
 			alert("숫자만 입력 가능합니다.");
 			return;
 		}
 	}
+	// 입찰액보다 적은금액 입력했을 경우
+	if(parseInt(bid) <= <%=bidPrice%>){
+		alert("<%=bidPrice%>원 이상부터 입찰 가능합니다.");
+		return;
+	}
+	// 보유루키보다 많은 금액 입력했을 경우
+	if(parseInt(bid) > <%=memberDto.getRookie()%>){
+		alert("보유 루키가 부족합니다. 충전 후 다시 시도해 주세요.");
+		return;
+	}
+	document.getElementById("aact").value = "bidding";
+	document.getElementById("abidrookie").value = bid;
+	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+	document.getElementById("auctionForm").submit();
 }
 </script>
 <div class="container-fluid auction-category">
@@ -481,7 +494,7 @@ else
 							</tr>
 							<tr style="font-weight: 700px;">
 								<th scope="row">입찰루키</th>
-								<td><input type="text" class="form-control" id="inputbidprice" 
+								<td><input type="text" class="form-control" name="inputbidprice" id="inputbidprice" 
 								placeholder="입찰금액 입력" onkeydown="if(event.keyCode==13) return false;">
 								</td>
 							</tr>		
@@ -491,17 +504,15 @@ else
 					
 				</div>
 				<div class="modal-footer p-4" style="display: block;">
-					<button type="button" class="btn btn-primary btn-lg" onclick="javascript:doBid();"  onsubmit="return false";>
+					<button type="button" class="btn btn-primary btn-lg" onclick="javascript:doBid();">
 					입찰하기</button>
 					<button type="button" class="btn btn-secondary btn-lg"
 						data-dismiss="modal">닫기</button>
 				</div>
 			</form>
 		</div>
-
 	</div>
 </div>
-
 
 <!-- footer영역 -->
 <%@ include file="/common/footer.jsp"%>

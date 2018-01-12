@@ -315,6 +315,7 @@ for(int i=0; i<newListLen; i++)
 = "<font color=\"blue\"size=\"4\"><b>남은시간 : "+time+"시간 "+min+"분 "+sec+"초</b></font>";						
 				}
 			else if(min > 0)
+				
 				{
 				document.getElementById("newtime" + <%=i%>).innerHTML 
 = "<font color=\"blue\"size=\"4\"><b>남은시간 : "+min+"분 "+sec+"초</b></font>";

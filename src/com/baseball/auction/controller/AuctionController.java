@@ -11,10 +11,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.baseball.factory.AuctionActionFactory;
 import com.baseball.util.Constance;
 import com.baseball.util.PageMove;
+import com.baseball.member.action.LoginAction;
 
 @WebServlet("/auctioncontroller")
 
@@ -24,6 +26,8 @@ public class AuctionController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String act = request.getParameter("act");
 		String path = "/auction.jsp";
+		HttpSession session = request.getSession();
+		
 		if("mainlist".equals(act)) 
 		{
 			path = AuctionActionFactory.getAuctionMainListAction().execute(request, response);
@@ -50,6 +54,13 @@ public class AuctionController extends HttpServlet {
 		else if("biddetail".equals(act))
 		{
 			path = AuctionActionFactory.getAuctionBidDetailAction().execute(request, response);
+			PageMove.forward(request, response, path);
+		}
+		else if("bidding".equals(act))
+		{
+			System.out.println("bidrookie = " + request.getParameter("bidrookie"));
+			System.out.println("act = " + request.getParameter("act"));
+		//	path = AuctionActionFactory.getAuctionBidDetailAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		}
 		else 
