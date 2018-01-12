@@ -16,8 +16,11 @@ String endTime = auctionDetailDto.getEndTime();
 String startTimeArr[] = auctionDetailDto.getStartTime().split("\\.");
 String endTimeArr[] = auctionDetailDto.getEndTime().split("\\.");
 
-
 String gudanname ="";
+int rookie = 0;
+if(memberDto != null){
+	rookie = memberDto.getRookie();
+}
 
 if(gudan == 1)
 	gudanname = "KIA 타이거즈";
@@ -269,14 +272,16 @@ function doBid() {
 		return;
 	}
 	// 보유루키보다 많은 금액 입력했을 경우
-	if(parseInt(bid) > <%=memberDto.getRookie()%>){
+	if(parseInt(bid) > <%=rookie%>){
 		alert("보유 루키가 부족합니다. 충전 후 다시 시도해 주세요.");
 		return;
-	}
+	}			
+	if(confirm("정말 입찰 하시겠습니까?")){
 	document.getElementById("aact").value = "bidding";
 	document.getElementById("abidrookie").value = bid;
 	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
-	document.getElementById("auctionForm").submit();
+	document.getElementById("auctionForm").submit();		
+	}
 }
 </script>
 <div class="container-fluid auction-category">
@@ -486,7 +491,7 @@ else
 						<tbody>
 							<tr style="font-weight: 700px;">
 								<th scope="row">보유금액(루키)</th>
-								<td><%=memberDto.getRookie()%></td>
+								<td><%=rookie%></td>
 							</tr>							
 							<tr style="font-weight: 700px;">
 								<th scope="row">현재입찰가(루키)</th>

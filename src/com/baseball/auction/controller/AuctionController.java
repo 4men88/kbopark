@@ -60,7 +60,7 @@ public class AuctionController extends HttpServlet {
 		{
 			System.out.println("bidrookie = " + request.getParameter("bidrookie"));
 			System.out.println("act = " + request.getParameter("act"));
-		//	path = AuctionActionFactory.getAuctionBidDetailAction().execute(request, response);
+			path = AuctionActionFactory.getAuctionBiddingAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		}
 		else 
