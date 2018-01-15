@@ -20,7 +20,8 @@ public class MyinfoController extends HttpServlet {
 		String path = "/index.jsp";
 		
 		if("mvmyinfo".equals(act)) {
-			PageMove.redirect(request, response, "/myinfo/myinfo.jsp");
+			path = MyinfoActionFactory.getMoveMyinfoAction().execute(request, response);
+			PageMove.forward(request, response, path);
 			
 		} else if("mvpay".equals(act)) {
 			PageMove.redirect(request, response, "/myinfo/paycharge.jsp");

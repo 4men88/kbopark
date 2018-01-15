@@ -11,7 +11,8 @@ function mvnotice() {
 }
 
 function mvmyinfo() {
-	opener.location.reload();
+/* 	opener.location.reload(); */
+	window.opener.location.href = "<%=root%>/myinfo?act=mvmyinfo";
 	self.close();
 }
 
