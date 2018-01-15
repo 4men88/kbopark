@@ -1,11 +1,16 @@
 package com.baseball.myinfo.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 
 import com.baseball.action.Action;
+import com.baseball.auction.model.AuctionDetailDto;
+import com.baseball.board.model.BoardDto;
+import com.baseball.board.service.BoardServiceImpl;
+import com.baseball.gudan.service.GudanServiceImpl;
 import com.baseball.member.model.MemberDetailDto;
 import com.baseball.myinfo.service.MyinfoServiceImpl;
 import com.baseball.util.NullCheck;
@@ -33,6 +38,12 @@ public class MoveMyinfoAction implements Action {
 		if(mrookie >= 0) {
 		mdto.setRookie(mrookie);
 		}
+		
+		
+		List<BoardDto> hotBoard = BoardServiceImpl.getBoardService().hotBoardArticle(mtno); //¸®ºä¼ø
+		List<AuctionDetailDto> hotAuction = GudanServiceImpl.getGudanService().hotAuctionArticle(mtno);
+		request.setAttribute("hotboard", hotBoard);
+		request.setAttribute("hotauction", hotAuction);
 		
 		session.setAttribute("userInfo", mdto);
 		request.setAttribute("myemblem", myemblem);
