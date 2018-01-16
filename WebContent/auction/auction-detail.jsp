@@ -263,26 +263,33 @@ function doBid() {
 	for(var i=0; i<len; i++){
 		if(bid.charCodeAt(i)<48 || bid.charCodeAt(i)> 57){
 			alert("숫자만 입력 가능합니다.");
+			document.getElementById("inputbidprice").value = "";
 			return;
 		}
 	}
 	// 입찰액보다 적은금액 입력했을 경우
 	if(parseInt(bid) <= <%=bidPrice%>){
 		alert("<%=bidPrice%>원 이상부터 입찰 가능합니다.");
+		document.getElementById("inputbidprice").value = "";
 		return;
 	}
 	// 보유루키보다 많은 금액 입력했을 경우
 	if(parseInt(bid) > <%=rookie%>){
 		alert("보유 루키가 부족합니다. 충전 후 다시 시도해 주세요.");
+		document.getElementById("inputbidprice").value = "";
 		return;
 	}			
 	if(confirm("정말 입찰 하시겠습니까?")){
-	document.getElementById("aact").value = "bidding";
-	document.getElementById("abidrookie").value = bid;
-	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
-	document.getElementById("auctionForm").submit();		
+		bid = bid.replace(/(^0+)/, "");	//00001000 >> 1000
+		document.getElementById("aact").value = "bidding";
+		document.getElementById("abidrookie").value = bid;
+		document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+		document.getElementById("auctionForm").submit();		
+	}else{
+		document.getElementById("inputbidprice").value = "";
 	}
 }
+
 </script>
 <div class="container-fluid auction-category">
 	<div class="row row-offcanvas row-offcanvas-left">
