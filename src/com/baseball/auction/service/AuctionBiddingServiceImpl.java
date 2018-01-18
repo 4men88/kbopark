@@ -18,11 +18,11 @@ public class AuctionBiddingServiceImpl implements AuctionBiddingService {
 	}
 
 	@Override
-	public void auctionAddBid(int ano, int bidrookie, String id, int rookie) {
+	public void auctionAddBid(int ano, int bidRookie, String id, int rookie) {
 		
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("ano", ano + "");
-		map.put("bidrookie", bidrookie + "");
+		map.put("bidrookie", bidRookie + "");
 		map.put("id", id);
 		map.put("rookie", rookie + "");
 		AuctionBiddingDaoImpl.getAuctionBiddingDao().auctionAddBid(map);
