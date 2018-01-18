@@ -104,6 +104,13 @@ if(auctionDetailDto.getBidPrice() == 0){
 }else{
 	bidPrice = auctionDetailDto.getBidPrice();
 }
+
+//입찰 성공 실패 여부 확인
+int bidres = 2;
+if(request.getAttribute("bidres") != null)
+{
+	bidres = (Integer)request.getAttribute("bidres");
+}
 %>
 <script type="text/javascript" src="/kbopark/js/httpRequest.js"></script>
 <script type="text/javascript">
@@ -116,7 +123,8 @@ if(auctionDetailDto.getBidPrice() == 0){
 	})
 	
 	window.onload=function() {
-	   startTime();	   
+	   startTime();	
+	   bidresult();
 	}
 	
 	function startTime() {
@@ -282,6 +290,7 @@ function doBid() {
 	if(confirm("정말 입찰 하시겠습니까?")){
 		bid = bid.replace(/(^0+)/, "");	//00001000 >> 1000
 		document.getElementById("aact").value = "bidding";
+		document.getElementById("aano").value = "<%=auctionDetailDto.getAno()%>";
 		document.getElementById("abidrookie").value = bid;
 		document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 		document.getElementById("auctionForm").submit();		
@@ -289,7 +298,13 @@ function doBid() {
 		document.getElementById("inputbidprice").value = "";
 	}
 }
-
+//입찰 성공 실패 여부 출력해주는 합수
+function bidresult(){
+	if(<%=bidres%> == 0)
+		alert("입찰에 실패했습니다.");
+	else if(<%=bidres%> == 1)
+		alert("입찰에 성공했습니다.");		
+}
 </script>
 <div class="container-fluid auction-category">
 	<div class="row row-offcanvas row-offcanvas-left">

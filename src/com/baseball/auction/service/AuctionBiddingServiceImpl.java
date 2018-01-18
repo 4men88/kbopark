@@ -18,13 +18,14 @@ public class AuctionBiddingServiceImpl implements AuctionBiddingService {
 	}
 
 	@Override
-	public void auctionAddBid(int ano, int bidRookie, String id, int rookie) {
-		
+	public int auctionAddBid(int ano, int bidRookie, String id, int rookie) {
+		System.out.println("bidRookie = " + bidRookie);
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("ano", ano + "");
-		map.put("bidrookie", bidRookie + "");
+		map.put("bidRookie", bidRookie + "");
 		map.put("id", id);
 		map.put("rookie", rookie + "");
-		AuctionBiddingDaoImpl.getAuctionBiddingDao().auctionAddBid(map);
+		int res = AuctionBiddingDaoImpl.getAuctionBiddingDao().auctionAddBid(map);
+		return res;
 	}
 }

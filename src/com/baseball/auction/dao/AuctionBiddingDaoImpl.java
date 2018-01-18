@@ -23,7 +23,7 @@ private static AuctionBiddingDao auctionBiddingDao;
 	}
 	
 	@Override
-	public void auctionAddBid(Map<String, String> map) {
+	public int auctionAddBid(Map<String, String> map) {
 		int cnt = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -35,7 +35,7 @@ private static AuctionBiddingDao auctionBiddingDao;
 			StringBuffer rookie_change = new StringBuffer();
 			rookie_change.append("update member_detail \n");
 			rookie_change.append("set rookie = ? \n");
-			rookie_change.append("where id = ?");
+			rookie_change.append("where mid = ?");
 			pstmt = conn.prepareStatement(rookie_change.toString());			
 			String rookie = map.get("rookie");
 			String id = map.get("id");
@@ -79,6 +79,6 @@ private static AuctionBiddingDao auctionBiddingDao;
 			}
 		} finally {
 			DBClose.close(conn, pstmt);
-		}
+		}return cnt;
 	}
 }
