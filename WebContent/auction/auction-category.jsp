@@ -386,13 +386,12 @@ function mainDetail(ano,category1,category2,aname,starttime,endtime,bidprice,bid
 			<div class="row">
 				<div class="jumbotron"
 					style="min-height: 260px; width: 100%; background-image: url('<%=root%>/img/auction/category/uniform-cap.jpg'); background-size: cover;">
-
 				</div>
-				<div class="row">
-					<div id="auc-recommended" class="pb-5">
-						<div class="container py-5">
+				<div class="col-12">
+					<div id="auc-recommended" class="pb-5 col-12">
+						<div class="container py-5 col-12">
 							<!-- Nav tabs -->
-							<ul class="nav nav-tabs nav-justified" role="tablist">
+							<ul class="nav nav-tabs nav-justified col-12" role="tablist">
 								<li class="nav-item"><a class="nav-link <%=active1%>"
 									data-toggle="tab" href="#menu1">진행경매</a></li>
 								<li class="nav-item"><a class="nav-link <%=active2%>" 
@@ -433,10 +432,10 @@ if(categoryConList != null)
 							                  '<%=auctionDetailDto.getBidPrice()%>','<%=auctionDetailDto.getBidNum()%>','<%=auctionDetailDto.getAimage()%>','<%=auctionDetailDto.getAstatus()%>',
 							                  '<%=auctionDetailDto.getAcount()%>','<%=auctionDetailDto.getInitPrice()%>','<%=auctionDetailDto.getTno()%>','1');">
 													<img style="width:200px;height:250px;"class="img-fluid d-block mb-4 img-thumbnail"
-													src="<%=root%>/<%=auctionDetailDto.getAimage()%>" class="img-fluid">
+													src="<%=root%>/<%=auctionDetailDto.getAimage()%>">
 												 </a>	
 												</div>
-												<div class="col-md-12 col-8 align-self-center">
+												<div class="col-md-12 col-8">
 													<p class="mb-2">
 														<strong><%=auctionDetailDto.getAname()%></strong><br>입찰자수 : 
 														<%=auctionDetailDto.getBidNum()%>명<br>
@@ -475,7 +474,7 @@ if(categoryEndList != null)
 											<div class="row p-2">
 												<div class="col-md-12 col-4 align-self-center">
 													<img style="width:200px;height:250px;"class="img-fluid d-block mb-4 img-thumbnail"
-													src="<%=root%>/<%=auctionDetailDto.getAimage()%>" class="img-fluid">
+													src="<%=root%>/<%=auctionDetailDto.getAimage()%>">
 												</div>
 												<div class="col-md-12 col-8 align-self-center">
 													<p class="mb-2">
@@ -483,15 +482,15 @@ if(categoryEndList != null)
 														<br><div id="categoryendtime<%=i%>"></div>
 													</p>
 													<p style="color: red;">
-														<strong>현재입찰가 : <%=auctionDetailDto.getBidPrice()%>원</strong>
+														<strong>최종입찰가 : <%=auctionDetailDto.getBidPrice()%>원</strong>
 													</p>
 												</div>
 											</div>
-										</div>
+										</div>	
 <%
-	}
-	if(endPageNavigation != null)
-	{
+		}
+		if(endPageNavigation != null)
+		{
 %>
 									<div class="col-12 py-3" width="100%" align="center">
 									<%=endPageNavigation.getNavigator() %>
@@ -508,8 +507,6 @@ if(categoryEndList != null)
 					</div>
 				</div>
 			</div>
-
-
 
 			<!-- 구단별 로고 >> 링크 구단페이지로 -->
 			<div id="main-gudan-logo" class="py-5">
