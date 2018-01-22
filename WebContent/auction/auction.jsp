@@ -507,7 +507,7 @@ if(bestList != null)
 {
    for(int i=0; i<bestListLen; i++)
    {
-%>                   
+%>                        
             <div class="col-md-3" >
                <div class="row p-2" >
                   <div class="col-md-12 col-4 align-self-center" >
@@ -515,7 +515,7 @@ if(bestList != null)
                   '<%=bestList.get(i).getAname()%>','<%=bestList.get(i).getStartTime()%>','<%=bestList.get(i).getEndTime()%>',
                   '<%=bestList.get(i).getBidPrice()%>','<%=bestList.get(i).getBidNum()%>','<%=bestList.get(i).getAimage()%>','<%=bestList.get(i).getAstatus()%>',
                   '<%=bestList.get(i).getAcount()%>','<%=bestList.get(i).getInitPrice()%>','<%=bestList.get(i).getTno()%>');">
-                     <img style="max-height:200px;"
+                     <img style="width:200px;height:250px;" class="img-fluid d-block mb-4 img-thumbnail"
                       src="<%=root%>/<%=bestList.get(i).getAimage()%>" class="img-fluid">
                       </a>
                   </div>
@@ -555,7 +555,8 @@ if(endList != null)
                   '<%=endList.get(i).getAname()%>','<%=endList.get(i).getStartTime()%>','<%=endList.get(i).getEndTime()%>',
                   '<%=endList.get(i).getBidPrice()%>','<%=endList.get(i).getBidNum()%>','<%=endList.get(i).getAimage()%>','<%=endList.get(i).getAstatus()%>',
                   '<%=endList.get(i).getAcount()%>','<%=endList.get(i).getInitPrice()%>','<%=endList.get(i).getTno()%>','1');">       
-                     <img style="max-height:200px;" src="<%=root%>/<%=endList.get(i).getAimage()%>" class="img-fluid">   
+                     <img style="width:200px;height:250px;" class="img-fluid d-block mb-4 img-thumbnail"
+                     src="<%=root%>/<%=endList.get(i).getAimage()%>" class="img-fluid">   
                      </a>                                 
                   </div>
                   <div class="col-md-12 col-8 align-self-center">
@@ -593,7 +594,8 @@ if(hitList != null)
                   '<%=hitList.get(i).getAname()%>','<%=hitList.get(i).getStartTime()%>','<%=hitList.get(i).getEndTime()%>',
                   '<%=hitList.get(i).getBidPrice()%>','<%=hitList.get(i).getBidNum()%>','<%=hitList.get(i).getAimage()%>','<%=hitList.get(i).getAstatus()%>',
                   '<%=hitList.get(i).getAcount()%>','<%=hitList.get(i).getInitPrice()%>','<%=hitList.get(i).getTno()%>');">
-                     <img style="max-height:200px;" src="<%=root%>/<%=hitList.get(i).getAimage()%>" class="img-fluid">
+                     <img style="width:200px;height:250px;"class="img-fluid d-block mb-4 img-thumbnail"
+                      src="<%=root%>/<%=hitList.get(i).getAimage()%>" class="img-fluid">
                      </a>
                   </div>
                   <div class="col-md-12 col-8 align-self-center">
@@ -630,7 +632,8 @@ if(newList != null)
                   '<%=newList.get(i).getAname()%>','<%=newList.get(i).getStartTime()%>','<%=newList.get(i).getEndTime()%>',
                   '<%=newList.get(i).getBidPrice()%>','<%=newList.get(i).getBidNum()%>','<%=newList.get(i).getAimage()%>','<%=newList.get(i).getAstatus()%>',
                   '<%=newList.get(i).getAcount()%>','<%=newList.get(i).getInitPrice()%>','<%=newList.get(i).getTno()%>');">
-                     <img style="max-height:200px;" src="<%=root%>/<%=newList.get(i).getAimage()%>" class="img-fluid">
+                     <img style="width:200px;height:250px;"class="img-fluid d-block mb-4 img-thumbnail"
+                      src="<%=root%>/<%=newList.get(i).getAimage()%>" class="img-fluid">
                      </a>
                   </div>
                   <div class="col-md-12 col-8 align-self-center">

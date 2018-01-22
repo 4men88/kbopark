@@ -389,7 +389,6 @@ function mainDetail(ano,category1,category2,aname,starttime,endtime,bidprice,bid
 
 				</div>
 				<div class="row">
-
 					<div id="auc-recommended" class="pb-5">
 						<div class="container py-5">
 							<!-- Nav tabs -->
@@ -401,16 +400,13 @@ function mainDetail(ano,category1,category2,aname,starttime,endtime,bidprice,bid
 							</ul>
 
 							<!-- Tab panes -->
-							<div class="tab-content">							
-							
+							<div class="tab-content">													
 								<div id="menu1" class="container tab-pane <%=active1%>">
-								
 									<div class="row p-2 text-right">
 										<div class="dropdown show col-md-12 align-self-end">
 											<a class="btn dropdown-toggle btn-sm" href="#"
 												role="button" id="dropdownMenuLink" data-toggle="dropdown"
 												aria-haspopup="true" aria-expanded="false" style="width: 160px;"> 정렬보기 </a>
-
 											<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 												<a class="dropdown-item" href="javascript:auctionsort('1');">인기경매순</a>
 												<a class="dropdown-item" href="javascript:auctionsort('2');">마감임박순</a>
@@ -421,8 +417,7 @@ function mainDetail(ano,category1,category2,aname,starttime,endtime,bidprice,bid
 												<a class="dropdown-item" href="javascript:auctionsort('7');">낮은가격순</a>
 											</div>
 										</div>
-									</div>
-									
+									</div>									
 									<div class="row p-2 text-center">									
 <%
 if(categoryConList != null)
@@ -437,7 +432,7 @@ if(categoryConList != null)
 							                  '<%=auctionDetailDto.getAname()%>','<%=auctionDetailDto.getStartTime()%>','<%=auctionDetailDto.getEndTime()%>',
 							                  '<%=auctionDetailDto.getBidPrice()%>','<%=auctionDetailDto.getBidNum()%>','<%=auctionDetailDto.getAimage()%>','<%=auctionDetailDto.getAstatus()%>',
 							                  '<%=auctionDetailDto.getAcount()%>','<%=auctionDetailDto.getInitPrice()%>','<%=auctionDetailDto.getTno()%>','1');">
-													<img style="max-height:200px;"
+													<img style="width:200px;height:250px;"class="img-fluid d-block mb-4 img-thumbnail"
 													src="<%=root%>/<%=auctionDetailDto.getAimage()%>" class="img-fluid">
 												 </a>	
 												</div>
@@ -479,7 +474,7 @@ if(categoryEndList != null)
 										<div class="col-md-3">
 											<div class="row p-2">
 												<div class="col-md-12 col-4 align-self-center">
-													<img style="max-height:200px;"
+													<img style="width:200px;height:250px;"class="img-fluid d-block mb-4 img-thumbnail"
 													src="<%=root%>/<%=auctionDetailDto.getAimage()%>" class="img-fluid">
 												</div>
 												<div class="col-md-12 col-8 align-self-center">
@@ -585,7 +580,6 @@ if(categoryEndList != null)
 					</div>
 				</div>
 			</div>
-
 
 		</div>
 	</div>

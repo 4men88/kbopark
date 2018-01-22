@@ -370,7 +370,7 @@ function bidresult(){
 			<h2 class="text-primary mb-3"><%=auctionDetailDto.getAname()%></h2>
 			<div class="row">
 				<div class="col-md-5 align-self-center">
-					<img class="img-fluid d-block mb-4 img-thumbnail"
+					<img class="img-fluid d-block mb-4 img-thumbnail" style="width:400px;height:550px;"
 						src="<%=root%>/<%=auctionDetailDto.getAimage()%>">
 				</div>
 				<div class="col-md-7 align-self-center">
