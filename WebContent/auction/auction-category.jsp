@@ -483,10 +483,10 @@ if(categoryEndList != null)
 													</p>
 													<p style="color: red;">
 														<strong>최종입찰가 : <%=auctionDetailDto.getBidPrice()%>원</strong>
-													</p>
-												</div>
+													</p>								
+												</div>	
 											</div>
-										</div>	
+										</div>
 <%
 		}
 		if(endPageNavigation != null)
@@ -498,16 +498,14 @@ if(categoryEndList != null)
 <% 	
 	}
 }
-%>																		
-									</div>
+%>																						
 								</div>
-								
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
+		</div>
 			<!-- 구단별 로고 >> 링크 구단페이지로 -->
 			<div id="main-gudan-logo" class="py-5">
 				<div class="container">
@@ -577,10 +575,10 @@ if(categoryEndList != null)
 					</div>
 				</div>
 			</div>
-
 		</div>
-	</div>
+	</div>	
 </div>
+
 
 <!-- footer영역 -->
 <%@ include file="/common/footer.jsp"%>
