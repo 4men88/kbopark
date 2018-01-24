@@ -383,6 +383,14 @@ function mainDetail(ano,category1,category2,aname,starttime,endtime,bidprice,bid
 	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 	document.getElementById("auctionForm").submit();	
 }
+
+function moveWrite(){
+	if(<%=memberDto == null%>){
+		alert("로그인후 다시 시도해 주세요.");	
+	}else{	
+		location.href = "<%=root%>/auction/auction-add.jsp";
+	}
+}
 </script>
 
 <div id="auction-maincarousel">
@@ -391,62 +399,58 @@ function mainDetail(ano,category1,category2,aname,starttime,endtime,bidprice,bid
          <div class="align-self-center p-0 col-md-3">
 
             <ul class="list-group">
-               <li
-                  class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="javascript:categoryList('','','','','1','1','1');">
-                  전체보기 </a><span class="badge badge-primary badge-pill">
+               <a href="javascript:categoryList('','','','','1','1','1');">
+            	   <li class="list-group-item d-flex justify-content-between align-items-center">
+                   전체보기<span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
                   out.print(newNumArray.get(0).toString());
 %> 
-                  </span>
-               </li>
-               <li
-                  class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="javascript:categoryList('','','1','','1','1','1');">
-                  유니폼</a><span class="badge badge-primary badge-pill">
+               			  </span>
+            	   </li></a>
+               <a href="javascript:categoryList('','','1','','1','1','1');">
+               		<li class="list-group-item d-flex justify-content-between align-items-center">
+                  	유니폼<span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
                   out.print(newNumArray.get(1).toString());
 %> 
-                  </span>
-               </li>
-               <li
-                  class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="javascript:categoryList('','','2','','1','1','1');">
-                  경기용품 </a><span class="badge badge-primary badge-pill">
+                  		  </span>
+               		</li></a>
+               <a href="javascript:categoryList('','','2','','1','1','1');">
+               		<li class="list-group-item d-flex justify-content-between align-items-center">
+                  	경기용품<span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
                   out.print(newNumArray.get(2).toString());
 %>                   
-                  </span>
-               </li>
-               <li
-                  class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="javascript:categoryList('','','3','','1','1','1');">
-                  응원용품</a> <span class="badge badge-primary badge-pill">
+		                    </span>
+		             </li></a>
+               <a href="javascript:categoryList('','','3','','1','1','1');">
+               		<li class="list-group-item d-flex justify-content-between align-items-center">
+                  	응원용품<span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
                   out.print(newNumArray.get(3).toString());
 %>                  
-                  </span>
-               </li>
-               <li
-                  class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="javascript:categoryList('','','4','','1','1','1');">
-                  기타잡화</a> <span class="badge badge-primary badge-pill">
+		         		</span>
+		            </li></a>
+               <a href="javascript:categoryList('','','4','','1','1','1');">
+               		<li class="list-group-item d-flex justify-content-between align-items-center">
+                  	기타잡화<span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
                   out.print(newNumArray.get(4).toString());
 %>                  
-                  </span>
-               </li>
-               <li
-                  class="bg-pingendo list-group-item d-flex justify-content-between align-items-center">
-                  <span class="text-center" style="color: white; width:100%;">내물품 등록하기</span>
-               </li>
-            </ul>
-         </div>
+		                  	</span>
+		             </li></a>
+		     	<a href="javascript:moveWrite();">        
+               		<li class="bg-pingendo list-group-item d-flex justify-content-between align-items-center">
+                  		<span class="text-center" style="color: white; width:100%;">
+                 		 내물품 등록하기</span>
+               		</li></a>
+           		 </ul>
+         	</div>
          
          <!-- 이미지크기 꽉차게 맞춰야함..ㅠㅠㅠㅠ atl노란오류는 무시ㄱㄱ-->
          <div class="col-md-9 p-0">
