@@ -193,26 +193,10 @@ function onOnlyNumber(obj) {
 
 						<!-- 이미지 -->
 						<div class="form-group row px-3">
-							<label for="inputPassword1" class="col-sm-2 col-form-label">비밀번호</label>
+							<label class="col-sm-2 col-form-label">사진등록</label>
 							<div class="col-sm-10">
-
-								<input type="file" class="form-control-file mb-2"
-									id="exampleFormControlFile1">
-									 <label>대표이미지
-									300*300 사이즈에 최적화되어있습니다.(수정)</label> 
-									<label>이미지는 최대 3개까지 업로드
-									가능합니다.</label>
-									 <input type="file" class="form-control-file mb-2"
-									id="exampleFormControlFile1"> 
-									<input type="file"
-									class="form-control-file" id="exampleFormControlFile1">
-<!-- 왜안먹히지..ㅠㅠ
-								<label class="custom-file">
-								<input type="file" id="file2" class="custom-file-input mb-2"> <span
-									class="custom-file-control"></span>
-								</label>
-
- -->
+								<input multiple="multiple" type="file" name="filename[]" 
+								class="form-control-file" id="exampleFormControlFile1"/>
 							</div>
 						</div>
 						<!-- 이미지 -->
