@@ -76,6 +76,24 @@ function categoryList(key, word, category1, category2, gudan, conpg, endpg, choi
 	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 	document.getElementById("auctionForm").submit();		
 }
+//숫자만 입력 <input type="text" style="IME-MODE:disabled;" onKeyDown="onOnlyNumber(this);"
+function onOnlyNumber(obj) {
+ for (var i = 0; i < obj.value.length ; i++){
+  chr = obj.value.substr(i,1);  
+  chr = escape(chr);
+  key_eg = chr.charAt(1);
+  if (key_eg == "u"){
+   key_num = chr.substr(i,(chr.length-1));   
+   if((key_num < "AC00") || (key_num > "D7A3")) { 
+    event.returnValue = false;
+   }    
+  }
+ }
+ if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105) || event.keyCode == 8 || event.keyCode == 9) {
+ } else {
+  event.returnValue = false;
+ }
+} 
 </script>
 <div class="container-fluid auction-category">
 	<div class="row row-offcanvas row-offcanvas-left">
@@ -164,12 +182,12 @@ function categoryList(key, word, category1, category2, gudan, conpg, endpg, choi
 							<label class="col-sm-2 col-12 col-form-label">경매시작일</label>
 							<div class="col-sm-4 col-8">
 								<input type="text" class="form-control" id="mdatepicker1" 
-									placeholder="">
+									placeholder="" readonly>
 							</div>
 							<label class="col-sm-2 col-12 col-form-label">경매종료일</label>
 							<div class="col-sm-4 col-8">
 								<input type="text" class="form-control" id="mdatepicker2"
-									placeholder="">
+									placeholder="" readonly>
 							</div>
 						</div>
 
@@ -195,7 +213,6 @@ function categoryList(key, word, category1, category2, gudan, conpg, endpg, choi
 								</label>
 
  -->
-
 							</div>
 						</div>
 						<!-- 이미지 -->
@@ -204,8 +221,7 @@ function categoryList(key, word, category1, category2, gudan, conpg, endpg, choi
 							<label for="bidprice" class="col-sm-2 col-form-label">입찰시작가</label>
 							<div class="col-sm-4 input-group">
 								<input type="text" class="form-control" id="bidprice"
-									aria-label="Amount (to the nearest dollar)"> <span
-									class="input-group-addon">루키</span>
+								onKeyDown="onOnlyNumber(this);">루키(원)</span>
 							</div>
 						</div>
 

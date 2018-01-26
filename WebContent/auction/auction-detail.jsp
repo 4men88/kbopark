@@ -298,6 +298,24 @@ function doBid() {
 		document.getElementById("inputbidprice").value = "";
 	}
 }
+//숫자만 입력 <input type="text" style="IME-MODE:disabled;" onKeyDown="onOnlyNumber(this);">
+function onOnlyNumber(obj) {
+	 for (var i = 0; i < obj.value.length ; i++){
+	  chr = obj.value.substr(i,1);  
+	  chr = escape(chr);
+	  key_eg = chr.charAt(1);
+	  if (key_eg == "u"){
+	   key_num = chr.substr(i,(chr.length-1));   
+	   if((key_num < "AC00") || (key_num > "D7A3")) { 
+	    event.returnValue = false;
+	   }    
+	  }
+	 }
+	 if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105) || event.keyCode == 8 || event.keyCode == 9) {
+	 } else {
+	  event.returnValue = false;
+	 }
+	} 
 //입찰 성공 실패 여부 출력해주는 합수
 function bidresult(){
 	if(<%=bidres%> == 0)
@@ -522,7 +540,7 @@ else
 							<tr style="font-weight: 700px;">
 								<th scope="row">입찰루키</th>
 								<td><input type="text" class="form-control" name="inputbidprice" id="inputbidprice" 
-								placeholder="입찰금액 입력" onkeydown="if(event.keyCode==13) return false;">
+								placeholder="입찰금액 입력" onkeydown="if(event.keyCode==13) return false; onOnlyNumber(this);">
 								</td>
 							</tr>		
 						</tbody>
