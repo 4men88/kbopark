@@ -3,22 +3,43 @@
 <!-- 상품눌렀을때 뜨는 상세 페이지. -->
 <!-- header영역 -->
 <%@ include file="/common/header.jsp"%>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="<%=root%>/css/alice.css">
 <link rel="stylesheet" type="text/css" href="<%=root%>/css/oz.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript" src="<%=root%>/js/prototype.js"></script>
 <script type="text/javascript" src="<%=root%>/js/extprototype.js"></script>	
 <script type="text/javascript" src="<%=root%>/js/oz.js"></script>	
 <script type="text/javascript" src="<%=root%>/js/alice.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
+var j = jQuery.noConflict();
+j.datepicker.setDefaults({
+    dateFormat: 'yy-mm-dd',
+    prevText: '이전 달',
+    nextText: '다음 달',
+    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+    showMonthAfterYear: true,
+    yearSuffix: 'Year'
+});
 j( function() {
-	  j('#mdatepicker1').datepicker({
-	   minDate:0
-	     });
-	   });
+	  j( "#mdatepicker1").datepicker({dateFormat: 'yy.mm.dd', minDate: 0,
+		  onSelect: function(selected) {
+			  j("#mdatepicker2").datepicker("option","minDate", selected)
+			  }});
+	    });
+j( function() {
+	  j( "#mdatepicker2").datepicker({dateFormat: 'yy.mm.dd',
+		  onSelect: function(selected) {
+			  j("#mdatepicker1").datepicker("option","maxDate", selected)
+			  }});
+	   });	      
+	   
 function selectedchange(){
 	var selectcategory1 = document.getElementById("selectcategory1").selectedIndex;
 	var selectcategory2 = document.getElementById("selectcategory2");
@@ -34,17 +55,13 @@ function selectedchange(){
 		alert("에러");
 	}
 }
-var alice;
-Event.observe(window, "load", function() {
-	alice = Web.EditorManager.instance("editor",{type:'detail',width:600,height:600,limit:10,family:'돋움',size:'13px'});
-});
 
 $(function() {
 	'use strict'
 	$('[data-toggle="offcanvas"]').on('click', function() {
 		$('.row-offcanvas').toggleClass('active')
 	})
-})
+});
 	
 function categoryList(key, word, category1, category2, gudan, conpg, endpg, choice){
 	document.getElementById("aact").value = "categorylist";
@@ -144,14 +161,14 @@ function categoryList(key, word, category1, category2, gudan, conpg, endpg, choi
 							</div>
 						</div>
 						<div class="form-group row px-3">
-							<label for="startdate" class="col-sm-2 col-12 col-form-label">경매시작일</label>
+							<label class="col-sm-2 col-12 col-form-label">경매시작일</label>
 							<div class="col-sm-4 col-8">
-								<input type="text" class="form-control" id="mdatepicker1" name="mdatepicker1"
-									placeholder="" >
+								<input type="text" class="form-control" id="mdatepicker1" 
+									placeholder="">
 							</div>
-							<label for="enddate" class="col-sm-2 col-12 col-form-label">경매종료일</label>
+							<label class="col-sm-2 col-12 col-form-label">경매종료일</label>
 							<div class="col-sm-4 col-8">
-								<input type="text" class="form-control" id="enddate"
+								<input type="text" class="form-control" id="mdatepicker2"
 									placeholder="">
 							</div>
 						</div>
