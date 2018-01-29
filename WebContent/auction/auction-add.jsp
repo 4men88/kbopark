@@ -76,24 +76,22 @@ function categoryList(key, word, category1, category2, gudan, conpg, endpg, choi
 	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 	document.getElementById("auctionForm").submit();		
 }
-//숫자만 입력 <input type="text" style="IME-MODE:disabled;" onKeyDown="onOnlyNumber(this);"
-function onOnlyNumber(obj) {
- for (var i = 0; i < obj.value.length ; i++){
-  chr = obj.value.substr(i,1);  
-  chr = escape(chr);
-  key_eg = chr.charAt(1);
-  if (key_eg == "u"){
-   key_num = chr.substr(i,(chr.length-1));   
-   if((key_num < "AC00") || (key_num > "D7A3")) { 
-    event.returnValue = false;
-   }    
-  }
- }
- if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105) || event.keyCode == 8 || event.keyCode == 9) {
- } else {
-  event.returnValue = false;
- }
-} 
+function onlyNumber(event){
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				return false;
+}
+function removeChar(event) {
+	event = event || window.event;
+	var keyID = (event.which) ? event.which : event.keyCode;
+	if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+		return;
+	else
+		event.target.value = event.target.value.replace(/[^0-9]/g, "");
+}
 </script>
 <div class="container-fluid auction-category">
 	<div class="row row-offcanvas row-offcanvas-left">
@@ -200,12 +198,12 @@ function onOnlyNumber(obj) {
 							</div>
 						</div>
 						<!-- 이미지 -->
-
 						<div class="form-group row px-3">
 							<label for="bidprice" class="col-sm-2 col-form-label">입찰시작가</label>
 							<div class="col-sm-4 input-group">
 								<input type="text" class="form-control" id="bidprice"
-								onKeyDown="onOnlyNumber(this);">루키(원)</span>
+								onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' 
+								style='ime-mode:disabled;'>루키(원)</span>
 							</div>
 						</div>
 
