@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="<%=root%>/css/oz.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="<%=root%>/js/jquery-ui.js"></script>
 <script type="text/javascript" src="<%=root%>/js/prototype.js"></script>
 <script type="text/javascript" src="<%=root%>/js/extprototype.js"></script>	
 <script type="text/javascript" src="<%=root%>/js/oz.js"></script>	
@@ -194,7 +194,8 @@ function removeChar(event) {
 							<label class="col-sm-2 col-form-label">사진등록</label>
 							<div class="col-sm-10">
 								<input multiple="multiple" type="file" name="filename[]" 
-								class="form-control-file" id="exampleFormControlFile1"/>
+								class="form-control-file" id="exampleFormControlFile1"
+								/>
 							</div>
 						</div>
 						<!-- 이미지 -->
@@ -205,8 +206,7 @@ function removeChar(event) {
 								onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' 
 								style='ime-mode:disabled;'>루키(원)</span>
 							</div>
-						</div>
-
+						</div>						
 						<div class="form-group row px-3">
 							<label for="inputTeam" class="col-sm-2 col-form-label">구단선택</label>
 							<div class="col-sm-4">
