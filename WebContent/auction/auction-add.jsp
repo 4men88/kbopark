@@ -39,7 +39,13 @@ j( function() {
 			  j("#mdatepicker1").datepicker("option","maxDate", selected)
 			  }});
 	   });	      
-	   
+
+var alice;
+Event.observe(window, "load", function() {
+	alice = Web.EditorManager.instance("editor",{type:'detail',width:600,height:600,limit:1000,family:'돋움',size:'13px'});
+	alice.showAlice();
+});	
+
 function selectedchange(){
 	var selectcategory1 = document.getElementById("selectcategory1").selectedIndex;
 	var selectcategory2 = document.getElementById("selectcategory2");
@@ -230,8 +236,7 @@ function removeChar(event) {
 					<h5 class="border-b mb-5 p-3 pt-5">상세물품정보</h5>
 				</div>
 				<div class="form-group">
-					<textarea class="form-control" id="editor" name="editor"
-						rows="10"></textarea>
+					<textarea class="form-control" id="editor" name="editor"></textarea>
 				</div>
 				<div class="px-3 py-5 text-center">
 					<button type="button" class="btn btn-lg btn-primary"
