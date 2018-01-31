@@ -6,7 +6,7 @@ import java.util.Map;
 
 import com.baseball.auction.dao.AuctionCategoryDaoImpl;
 import com.baseball.auction.model.AuctionDetailDto;
-import com.baseball.util.AuctionPageNavigation;
+import com.baseball.auction.util.AuctionPageNavigation;
 import com.baseball.util.Constance;
 import com.baseball.util.PageNavigation;
 

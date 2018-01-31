@@ -11,7 +11,7 @@ import com.baseball.action.Action;
 import com.baseball.auction.dao.AuctionCategoryDaoImpl;
 import com.baseball.auction.model.AuctionDetailDto;
 import com.baseball.auction.service.AuctionCategoryServiceImpl;
-import com.baseball.util.AuctionPageNavigation;
+import com.baseball.auction.util.AuctionPageNavigation;
 import com.baseball.util.Constance;
 import com.baseball.util.NullCheck;
 import com.baseball.util.StringEncoder;
@@ -33,9 +33,7 @@ public class AuctionCategoryListAction implements Action {
 		String gudan = StringEncoder.isoToMain(request.getParameter("gudan"));	
 		
 		System.out.println("gudan =====================" + gudan);
-		// 경매상태 진행중 리스트
-		
-		
+		// 경매상태 진행중 리스트		
 		List<AuctionDetailDto> categoryConList = AuctionCategoryServiceImpl.getAuctionCategoryService().auctionCategoryList(category1, category2, conpg, 1, sort, gudan);
 		AuctionPageNavigation conPageNavigation = AuctionCategoryServiceImpl.getAuctionCategoryService().getAuctionCount(category1, category2, conpg, 1, sort, gudan);
 		conPageNavigation.setRoot(request.getContextPath());
@@ -45,6 +43,7 @@ public class AuctionCategoryListAction implements Action {
 		conPageNavigation.setWord(word);
 		conPageNavigation.setGudan(gudan);
 		conPageNavigation.setConNavigator();
+		
 		// 경매상태  완료 리스트
 		List<AuctionDetailDto> categoryEndList = AuctionCategoryServiceImpl.getAuctionCategoryService().auctionCategoryList(category1, category2, endpg, 2, sort, gudan);
 		AuctionPageNavigation endPageNavigation = AuctionCategoryServiceImpl.getAuctionCategoryService().getAuctionCount(category1, category2, endpg, 2, sort, gudan);

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR" import="com.baseball.auction.model.AuctionDetailDto,
-    java.text.*,java.io.*,java.util.*"%>
+    java.text.*,java.io.*,java.util.*, com.baseball.auction.util.DetailPageNavigation"%>
 <!-- 상품눌렀을때 뜨는 상세 페이지. -->
 <!-- header영역 -->
 <%@ include file="/common/header.jsp"%>
@@ -8,10 +8,19 @@
 <%
 List<AuctionDetailDto> list = (List<AuctionDetailDto>)request.getAttribute("list");
 AuctionDetailDto auctionDetailDto = (AuctionDetailDto)request.getAttribute("auctionDetailDto");
+DetailPageNavigation detailPageNavigation = (DetailPageNavigation) request.getAttribute("detailPageNavigation");
+
 int gudan = auctionDetailDto.getTno();
+
 String endTime = auctionDetailDto.getEndTime();
-String endTimeArr[] = auctionDetailDto.getStartTime().split("\\.");
+String startTimeArr[] = auctionDetailDto.getStartTime().split("\\.");
+String endTimeArr[] = auctionDetailDto.getEndTime().split("\\.");
+
 String gudanname ="";
+int rookie = 0;
+if(memberDto != null){
+	rookie = memberDto.getRookie();
+}
 
 if(gudan == 1)
 	gudanname = "KIA 타이거즈";
@@ -35,6 +44,73 @@ else if(gudan == 10)
 	gudanname = "KT 위즈";
 else
 	gudanname = "공통구단";
+
+String bigSubject ="";  //대분류 이름
+String smallSubject ="";//중분류 이름
+String category1 = auctionDetailDto.getCategory1();
+String category2 = auctionDetailDto.getCategory2();
+if(category1 != null)
+{
+   if(category1.equals("1")){
+	   bigSubject = "유니폼";
+	   if(category2.equals("1")){
+		   smallSubject = "상의";
+	   }else if(category2.equals("2")){
+		   smallSubject = "하의";
+	   }else if(category2.equals("3")){
+		   smallSubject = "모자";
+	   }else if(category2.equals("4")){
+		   smallSubject = "기타";
+	   }
+	}
+   else if(category1.equals("2")){
+	   bigSubject = "경기용품";
+	   if(category2.equals("1")){
+		   smallSubject = "야구공";
+	   }else if(category2.equals("2")){
+		   smallSubject = "배트";
+	   }else if(category2.equals("3")){
+		   smallSubject = "보호장비";
+	   }else if(category2.equals("4")){
+		   smallSubject = "기타";
+	   }
+   	}
+   else if(category1.equals("3")){
+	   bigSubject = "응원용품";
+	   if(category2.equals("1")){
+		   smallSubject = "피켓";
+	   }else if(category2.equals("2")){
+		   smallSubject = "LED피켓";
+	   }else if(category2.equals("3")){
+		   smallSubject = "기타";
+	   }
+   }
+   else if(category1.equals("4")){
+	   bigSubject = "기타잡화";
+	   if(category2.equals("1")){
+		   smallSubject = "사진";
+	   }else if(category2.equals("2")){
+		   smallSubject = "티켓";
+	   }else if(category2.equals("3")){
+		   smallSubject = "카드";
+	   }else if(category2.equals("4")){
+		   smallSubject = "기타";
+	   }
+   }
+}
+int bidPrice = 0;
+if(auctionDetailDto.getBidPrice() == 0){
+	bidPrice = auctionDetailDto.getInitPrice();
+}else{
+	bidPrice = auctionDetailDto.getBidPrice();
+}
+
+//입찰 성공 실패 여부 확인
+int bidres = 2;
+if(request.getAttribute("bidres") != null)
+{
+	bidres = (Integer)request.getAttribute("bidres");
+}
 %>
 <script type="text/javascript" src="/kbopark/js/httpRequest.js"></script>
 <script type="text/javascript">
@@ -47,7 +123,8 @@ else
 	})
 	
 	window.onload=function() {
-	   startTime();	   
+	   startTime();	
+	   bidresult();
 	}
 	
 	function startTime() {
@@ -133,46 +210,154 @@ else
 		}
 }
 	
-
+function mainDetail(category1,category2,aname,starttime,endtime,bidprice,bidnum,aimage,astatus, acount,initprice,tno){
+	document.getElementById("acategory1").value = category1;
+	document.getElementById("acategory2").value = category2;
+	document.getElementById("aaname").value = aname;
+	document.getElementById("astarttime").value = starttime;
+	document.getElementById("aendtime").value = endtime;
+	document.getElementById("abidprice").value = bidprice;
+	document.getElementById("abidnum").value = bidnum;
+	document.getElementById("aaimage").value = aimage;
+	document.getElementById("aastatus").value = astatus;
+	document.getElementById("aacount").value = acount;
+	document.getElementById("ainitprice").value = initprice;
+	document.getElementById("atno").value = tno;
+	}
+// 입찰 정보 리스트
+function bidInfoList(ano, pg, key, word){
+	mainDetail('<%=auctionDetailDto.getCategory1()%>','<%=auctionDetailDto.getCategory2()%>','<%=auctionDetailDto.getAname()%>','<%=auctionDetailDto.getStartTime()%>',
+			'<%=auctionDetailDto.getEndTime()%>','<%=auctionDetailDto.getBidPrice()%>', '<%=auctionDetailDto.getBidNum()%>', '<%=auctionDetailDto.getAimage()%>', 
+			'<%=auctionDetailDto.getAstatus()%>','<%=auctionDetailDto.getAcount()%>','<%=auctionDetailDto.getInitPrice()%>','<%=auctionDetailDto.getTno()%>');
+	document.getElementById("aact").value = "biddetail";
+	document.getElementById("aano").value = ano;
+//	document.getElementById("achoice").value = choice;
+//	document.getElementById("aconpg").value = conpg;
+//	document.getElementById("aendpg").value = endpg;
+	document.getElementById("dpg").value = pg;
+	document.getElementById("akey").value = "";
+	document.getElementById("aword").value = "";
+//	document.getElementById("acategory1").value = category1; 
+//	document.getElementById("acategory2").value = category2; 
+//	document.getElementById("agudan").value = gudan; 
+	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+	document.getElementById("auctionForm").submit();
+}
+//경매물품 카테고리별 
+function categoryList(key, word, category1, category2, gudan, conpg, endpg, choice)
+{
+	document.getElementById("aact").value = "categorylist";
+	document.getElementById("achoice").value = choice;
+	document.getElementById("aconpg").value = conpg;
+	document.getElementById("aendpg").value = endpg;
+	document.getElementById("akey").value = "";
+	document.getElementById("aword").value = "";
+	document.getElementById("acategory1").value = category1; 
+	document.getElementById("acategory2").value = category2; 
+	document.getElementById("agudan").value = gudan; 
+	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+	document.getElementById("auctionForm").submit();		
+}
+//입찰하기 버튼 - 유효성 검사
+function doBid() {
+	var bid = document.getElementById("inputbidprice").value;
+	var len = bid.length;
+	//아무것도 입력안했을경우
+	if(bid == ""){
+		alert("입찰금액을 입력하세요.");
+		return;
+	}
+	// 숫자인지 유효성 검사
+	for(var i=0; i<len; i++){
+		if(bid.charCodeAt(i)<48 || bid.charCodeAt(i)> 57){
+			alert("숫자만 입력 가능합니다.");
+			document.getElementById("inputbidprice").value = "";
+			return;
+		}
+	}
+	// 입찰액보다 적은금액 입력했을 경우
+	if(parseInt(bid) <= <%=bidPrice%>){
+		alert("<%=bidPrice%>원 이상부터 입찰 가능합니다.");
+		document.getElementById("inputbidprice").value = "";
+		return;
+	}
+	// 보유루키보다 많은 금액 입력했을 경우
+	if(parseInt(bid) > <%=rookie%>){
+		alert("보유 루키가 부족합니다. 충전 후 다시 시도해 주세요.");
+		document.getElementById("inputbidprice").value = "";
+		return;
+	}			
+	if(confirm("정말 입찰 하시겠습니까?")){
+		bid = bid.replace(/(^0+)/, "");	//00001000 >> 1000
+		document.getElementById("aact").value = "bidding";
+		document.getElementById("aano").value = "<%=auctionDetailDto.getAno()%>";
+		document.getElementById("abidrookie").value = bid;
+		document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+		document.getElementById("auctionForm").submit();		
+	}else{
+		document.getElementById("inputbidprice").value = "";
+	}
+}
+function onlyNumber(event){
+	event = event || window.event;
+	var keyID = (event.which) ? event.which : event.keyCode;
+	if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+		return;
+	else
+		return false;
+}
+function removeChar(event) {
+event = event || window.event;
+var keyID = (event.which) ? event.which : event.keyCode;
+if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+return;
+else
+event.target.value = event.target.value.replace(/[^0-9]/g, "");
+}
+//입찰 성공 실패 여부 출력해주는 합수
+function bidresult(){
+	if(<%=bidres%> == 0)
+		alert("입찰에 실패했습니다.");
+	else if(<%=bidres%> == 1)
+		alert("입찰에 성공했습니다.");		
+}
 </script>
 <div class="container-fluid auction-category">
 	<div class="row row-offcanvas row-offcanvas-left">
-		<nav class="col-6 col-md-2 bg-light sidebar-offcanvas pt-3 pb-5"
+	<nav class="col-6 col-md-2 bg-light sidebar-offcanvas pt-3 pb-5"
 			id="sidebar">
 			<div class="pb-5">
-				<a class="nav-link" href="#item-total">전체보기</a>
-				<a class="nav-link" href="#item-gudan">구단별보기</a> <a class="nav-link"
-					href="#item-1">유니폼</a>
+				<a class="nav-link" href="javascript:categoryList('','','','','','1','1','1');">전체보기</a>
+				<a class="nav-link" href="javascript:categoryList('','','1','','','1','1','1');">유니폼</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-1-1">상의</a> <a
-						class="nav-link ml-3" href="#item-1-2">하의</a> <a
-						class="nav-link ml-3" href="#item-1-3">모자</a> <a
-						class="nav-link ml-3" href="#item-1-4">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1','','1','1','1');">상의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','2','','1','1','1');">하의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','3','','1','1','1');">모자</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','4','','1','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="#item-2">경기용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','2','','','1','1','1');">경기용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-2-1">야구공</a> <a
-						class="nav-link ml-3" href="#item-2-2">배트</a> <a
-						class="nav-link ml-3" href="#item-2-3">글러브</a> <a
-						class="nav-link ml-3" href="#item-2-4">보호장구</a> <a
-						class="nav-link ml-3" href="#item-2-4">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','2','1','','1','1','1');">야구공</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','2','','1','1','1');">배트</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','3','','1','1','1');">글러브</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','4','','1','1','1');">보호장구</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','5','','1','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="#item-3">응원용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','3','1','','1','1','1');">응원용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-3-1">피켓</a> <a
-						class="nav-link ml-3" href="#item-3-2">LED피켓</a> <a
-						class="nav-link ml-3" href="#item-3-3">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1','','1','1','1');">피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','2','','1','1','1');">LED피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','3','','1','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="#item-3">기타잡화</a>
+				<a class="nav-link" href="javascript:categoryList('','','4','','','1','1','1');">기타잡화</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-4-1">사진</a> <a
-						class="nav-link ml-3" href="#item-4-2">티켓</a> <a
-						class="nav-link ml-3" href="#item-4-3">카드</a> <a
-						class="nav-link ml-3" href="#item-4-4">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1','','1','1','1');">사진</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','2','','1','1','1');">티켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','3','','1','1','1');">카드</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','4','','1','1','1');">기타</a>
 				</nav>
 			</div>
 		</nav>
-
 		<div>
 			<p class="float-left d-md-none">
 				<button type="button"
@@ -187,11 +372,11 @@ else
 
 			<div id="current-category">
 				<nav aria-label="breadcrumb" role="navigation">
-					<ol class="breadcrumb justify-content-end"
+					<ol class="breadcrumb justify-content-end mb-0"
 						style="background-color: white;">
 						<li class="breadcrumb-item"><a href="#">전체</a></li>
-						<li class="breadcrumb-item"><a href="#">경기용품</a></li>
-						<li class="breadcrumb-item active" aria-current="page">글러브</li>
+						<li class="breadcrumb-item"><a href="#"><%=bigSubject%></a></li>
+						<li class="breadcrumb-item active" aria-current="page"><%=smallSubject%></li>
 					</ol>
 				</nav>
 			</div>
@@ -201,7 +386,7 @@ else
 			<h2 class="text-primary mb-3"><%=auctionDetailDto.getAname()%></h2>
 			<div class="row">
 				<div class="col-md-5 align-self-center">
-					<img class="img-fluid d-block mb-4 img-thumbnail"
+					<img class="img-fluid d-block mb-4 img-thumbnail" style="width:400px;height:550px;"
 						src="<%=root%>/<%=auctionDetailDto.getAimage()%>">
 				</div>
 				<div class="col-md-7 align-self-center">
@@ -215,7 +400,7 @@ else
 							</tr>
 							<tr>
 								<th scope="row">경매기간</th>
-								<td><%=auctionDetailDto.getStartTime()%> - <%=endTimeArr[0]%>/<%=endTimeArr[1]%>/<%=endTimeArr[2]%> <%=endTimeArr[3]%>:<%=endTimeArr[4]%>:<%=endTimeArr[5]%></td>
+								<td><%=startTimeArr[0]%>/<%=startTimeArr[1]%>/<%=startTimeArr[2]%> <%=startTimeArr[3]%>:<%=startTimeArr[4]%>:<%=startTimeArr[5]%> 	- 	<%=endTimeArr[0]%>/<%=endTimeArr[1]%>/<%=endTimeArr[2]%> <%=endTimeArr[3]%>:<%=endTimeArr[4]%>:<%=endTimeArr[5]%></td>
 							</tr>
 							<tr>
 								<th scope="row">입찰자수</th>
@@ -226,12 +411,12 @@ else
 								<td><%=auctionDetailDto.getAcount() %> 회</td>
 							</tr>
 							<tr>
-								<th scope="row">최고가</th>
-								<td style="font-weight: 700;"><%=auctionDetailDto.getBidPrice()%> 원</td>
+								<th scope="row">입찰가</th>
+								<td style="font-weight: 700;"><%=bidPrice%> 원(루키)</td>
 							</tr>
 							<tr>
 								<th scope="row">시작가</th>
-								<td><%=auctionDetailDto.getInitPrice()%> 원</td>
+								<td><%=auctionDetailDto.getInitPrice()%> 원(루키)</td>
 							</tr>
 							<tr>
 								<th scope="row">구단분류</th>
@@ -244,10 +429,17 @@ else
 
 			<div class="row">
 				<div class="col-md-8"></div>
+<%
+if(memberDto != null)
+{	
+%>				
 				<div class="col-md-4">
 					<button type="button" class="btn btn-block btn-primary btn-lg"
 						data-toggle="modal" data-target="#enterbidModal">입찰하기</button>
 				</div>
+<%
+}
+%>				
 			</div>
 			<div class="border-b py-3"></div>
 
@@ -259,62 +451,54 @@ else
 
 			<div class="row">
 				<div class="col-12">
-					<table class="table table-sm table-responsive-md">
+					<table class="table table-sm table-responsive-md">			
 						<thead>
 							<tr>
-								<th scope="col">입찰번호</th>
-								<th scope="col">입찰자</th>
-								<th scope="col">입찰루키</th>
-								<th scope="col">입찰시각</th>
+								<th scope="col">입찰 번호</th>
+								<th scope="col">입찰 아이디</th>
+								<th scope="col">입찰액(루키)</th>
+								<th scope="col">입찰 시각</th>
 							</tr>
 						</thead>
+<%
+int len = list.size();
+if( len != 0){
+	for(int i=0; i<len; i++)
+	{
+		String bidTime[] = list.get(i).getBidDate().split("\\.");
+%>								
 						<tbody>
 							<tr style="font-weight: 700px;">
-								<th scope="row">5</th>
-								<td>boss**</td>
-								<td>40,000</td>
-								<td>2017.11.29</td>
+								<th scope="row"><%=list.get(i).getBno()%></th>
+								<td><%=list.get(i).getMid()%></td>
+								<td><%=list.get(i).getBidPrice()%></td>
+								<td><%=bidTime[0]%>/<%=bidTime[1]%>/<%=bidTime[2]%> <%=bidTime[3]%>:<%=bidTime[4]%>:<%=bidTime[5]%> </td>
 							</tr>
-							<tr>
-								<th scope="row">4</th>
-								<td>boss**</td>
-								<td>38,000</td>
-								<td>2017.11.29</td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>boss**</td>
-								<td>22,000</td>
-								<td>2017.11.29</td>
-							</tr>
-							<tr class="table-active">
-								<th scope="row">2</th>
-								<td>kore**</td>
-								<td>20,000</td>
-								<td>2017.11.28</td>
-							</tr>
-							<tr>
-								<th scope="row">1</th>
-								<td>boss**</td>
-								<td>5,000</td>
-								<td>2017.11.29</td>
-							</tr>
+<% 
+	}
+}
+else
+{
+%>							
 							<tr>
 								<td colspan="4" style="text-align: center;">입찰내역이 없습니다</td>
 							</tr>
+<% 
+}
+%>							
 						</tbody>
 					</table>
 				</div>
-				<!-- 개수가 정해져서 길이가 정해져야 대략적인 가운데 정렬을할수가 있음ㅠㅠ 가운데정렬안되면 수업시간에 했던걸로그냥쓰기..-->
-				<div class="col-12 py-3">
-					<ul class="pagination pagination-sm">
-						<li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-						<li class="page-item active"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#">Next</a></li>
-					</ul>
-				</div>
+<%
+	if(detailPageNavigation != null)
+	{
+%>
+									<div class="col-12 py-3" width="100%" align="center">
+									<%=detailPageNavigation.getNavigator() %>
+									</div>
+<% 	
+}
+%>						
 			</div>
 		</div>
 		<!--right section-->
@@ -340,36 +524,39 @@ else
 						불가능합니다.<br>신중하게 입찰에 참여해주시기 바랍니다.
 					</label>
 					
+				<!--<form id="bidrookie" name="bidrookie" method="post" onsubmit="return false";>-->
 					<table class="table table-sm table-responsive-md py-3">
 						<tbody>
 							<tr style="font-weight: 700px;">
-								<th scope="row">사용가능루키</th>
-								<td>80,000(루키)</td>
-							</tr>
+								<th scope="row">보유금액(루키)</th>
+								<td><%=rookie%></td>
+							</tr>							
 							<tr style="font-weight: 700px;">
-								<th scope="row">최소입찰루키</th>
-								<td>40,000(루키)</td>
+								<th scope="row">현재입찰가(루키)</th>
+								<td><%=bidPrice%></td>
 							</tr>
 							<tr style="font-weight: 700px;">
 								<th scope="row">입찰루키</th>
-								<td><input type="text" class="form-control"
-								id="enterbidFormControlInput1" placeholder=""></td>
-							</tr>
-							
+								<td><input type="text" class="form-control" name="inputbidprice" id="inputbidprice" 
+								placeholder="입찰금액 입력"onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' 
+								style='ime-mode:disabled;'>
+								</td>
+							</tr>		
 						</tbody>
 					</table>
+				<!--</form>-->			
+					
 				</div>
 				<div class="modal-footer p-4" style="display: block;">
-					<button type="button" class="btn btn-primary btn-lg">입찰하기</button>
+					<button type="button" class="btn btn-primary btn-lg" onclick="javascript:doBid();">
+					입찰하기</button>
 					<button type="button" class="btn btn-secondary btn-lg"
 						data-dismiss="modal">닫기</button>
 				</div>
 			</form>
 		</div>
-
 	</div>
 </div>
-
 
 <!-- footer영역 -->
 <%@ include file="/common/footer.jsp"%>

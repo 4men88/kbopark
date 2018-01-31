@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR" import="com.baseball.auction.model.AuctionDetailDto,
-   com.baseball.util.AuctionPageNavigation,java.util.*, java.text.*,java.io.*"%>
+   com.baseball.auction.util.AuctionPageNavigation,java.util.*, java.text.*,java.io.*"%>
 <!-- 상품눌렀을때 뜨는 상세 페이지. -->
 <!-- header영역 -->
 <%@ include file="/common/header.jsp"%>
@@ -303,6 +303,24 @@ function auctionsort(sort)
 	categoryList('','','<%=category1%>','<%=category2%>','','1','1','1');	
 }
 
+function mainDetail(ano,category1,category2,aname,starttime,endtime,bidprice,bidnum,aimage,astatus, acount,initprice,tno){
+	document.getElementById("aact").value = "biddetail";
+	document.getElementById("aano").value = ano;
+	document.getElementById("acategory1").value = category1;
+	document.getElementById("acategory2").value = category2;
+	document.getElementById("aaname").value = aname;
+	document.getElementById("astarttime").value = starttime;
+	document.getElementById("aendtime").value = endtime;
+	document.getElementById("abidprice").value = bidprice;
+	document.getElementById("abidnum").value = bidnum;
+	document.getElementById("aaimage").value = aimage;
+	document.getElementById("aastatus").value = astatus;
+	document.getElementById("aacount").value = acount;
+	document.getElementById("ainitprice").value = initprice;
+	document.getElementById("atno").value = tno;
+	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+	document.getElementById("auctionForm").submit();	
+}
 </script>
 <div class="container-fluid auction-category">
 	<div class="row row-offcanvas row-offcanvas-left">
@@ -368,14 +386,12 @@ function auctionsort(sort)
 			<div class="row">
 				<div class="jumbotron"
 					style="min-height: 260px; width: 100%; background-image: url('<%=root%>/img/auction/category/uniform-cap.jpg'); background-size: cover;">
-
 				</div>
-				<div class="row">
-
-					<div id="auc-recommended" class="pb-5">
-						<div class="container py-5">
+				<div class="col-12">
+					<div id="auc-recommended" class="pb-5 col-12">
+						<div class="container py-5 col-12">
 							<!-- Nav tabs -->
-							<ul class="nav nav-tabs nav-justified" role="tablist">
+							<ul class="nav nav-tabs nav-justified col-12" role="tablist">
 								<li class="nav-item"><a class="nav-link <%=active1%>"
 									data-toggle="tab" href="#menu1">진행경매</a></li>
 								<li class="nav-item"><a class="nav-link <%=active2%>" 
@@ -383,16 +399,13 @@ function auctionsort(sort)
 							</ul>
 
 							<!-- Tab panes -->
-							<div class="tab-content">							
-							
+							<div class="tab-content">													
 								<div id="menu1" class="container tab-pane <%=active1%>">
-								
 									<div class="row p-2 text-right">
 										<div class="dropdown show col-md-12 align-self-end">
 											<a class="btn dropdown-toggle btn-sm" href="#"
 												role="button" id="dropdownMenuLink" data-toggle="dropdown"
 												aria-haspopup="true" aria-expanded="false" style="width: 160px;"> 정렬보기 </a>
-
 											<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 												<a class="dropdown-item" href="javascript:auctionsort('1');">인기경매순</a>
 												<a class="dropdown-item" href="javascript:auctionsort('2');">마감임박순</a>
@@ -403,8 +416,7 @@ function auctionsort(sort)
 												<a class="dropdown-item" href="javascript:auctionsort('7');">낮은가격순</a>
 											</div>
 										</div>
-									</div>
-									
+									</div>									
 									<div class="row p-2 text-center">									
 <%
 if(categoryConList != null)
@@ -415,10 +427,15 @@ if(categoryConList != null)
 										<div class="col-md-3">
 											<div class="row p-2">
 												<div class="col-md-12 col-4 align-self-center">
-													<img style="max-height:200px;"
-													src="<%=root%>/<%=auctionDetailDto.getAimage()%>" class="img-fluid">
+												 <a href="javascript:mainDetail('<%=auctionDetailDto.getAno()%>','<%=auctionDetailDto.getCategory1()%>','<%=auctionDetailDto.getCategory2()%>',
+							                  '<%=auctionDetailDto.getAname()%>','<%=auctionDetailDto.getStartTime()%>','<%=auctionDetailDto.getEndTime()%>',
+							                  '<%=auctionDetailDto.getBidPrice()%>','<%=auctionDetailDto.getBidNum()%>','<%=auctionDetailDto.getAimage()%>','<%=auctionDetailDto.getAstatus()%>',
+							                  '<%=auctionDetailDto.getAcount()%>','<%=auctionDetailDto.getInitPrice()%>','<%=auctionDetailDto.getTno()%>','1');">
+													<img style="width:200px;height:250px;"class="img-fluid d-block mb-4 img-thumbnail"
+													src="<%=root%>/<%=auctionDetailDto.getAimage()%>">
+												 </a>	
 												</div>
-												<div class="col-md-12 col-8 align-self-center">
+												<div class="col-md-12 col-8">
 													<p class="mb-2">
 														<strong><%=auctionDetailDto.getAname()%></strong><br>입찰자수 : 
 														<%=auctionDetailDto.getBidNum()%>명<br>
@@ -427,6 +444,7 @@ if(categoryConList != null)
 													<p style="color: red;">
 														<strong>현재입찰가 : <%=auctionDetailDto.getBidPrice()%></strong>
 													</p>
+													 <p>조회수 : <%=auctionDetailDto.getAcount()%></p>
 												</div>
 											</div>
 										</div>
@@ -455,8 +473,8 @@ if(categoryEndList != null)
 										<div class="col-md-3">
 											<div class="row p-2">
 												<div class="col-md-12 col-4 align-self-center">
-													<img style="max-height:200px;"
-													src="<%=root%>/<%=auctionDetailDto.getAimage()%>" class="img-fluid">
+													<img style="width:200px;height:250px;"class="img-fluid d-block mb-4 img-thumbnail"
+													src="<%=root%>/<%=auctionDetailDto.getAimage()%>">
 												</div>
 												<div class="col-md-12 col-8 align-self-center">
 													<p class="mb-2">
@@ -464,15 +482,15 @@ if(categoryEndList != null)
 														<br><div id="categoryendtime<%=i%>"></div>
 													</p>
 													<p style="color: red;">
-														<strong>현재입찰가 : <%=auctionDetailDto.getBidPrice()%>원</strong>
-													</p>
-												</div>
+														<strong>최종입찰가 : <%=auctionDetailDto.getBidPrice()%>원</strong>
+													</p>								
+												</div>	
 											</div>
 										</div>
 <%
-	}
-	if(endPageNavigation != null)
-	{
+		}
+		if(endPageNavigation != null)
+		{
 %>
 									<div class="col-12 py-3" width="100%" align="center">
 									<%=endPageNavigation.getNavigator() %>
@@ -480,18 +498,14 @@ if(categoryEndList != null)
 <% 	
 	}
 }
-%>																		
-									</div>
+%>																						
 								</div>
-								
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-
-
+		</div>
 			<!-- 구단별 로고 >> 링크 구단페이지로 -->
 			<div id="main-gudan-logo" class="py-5">
 				<div class="container">
@@ -561,11 +575,10 @@ if(categoryEndList != null)
 					</div>
 				</div>
 			</div>
-
-
 		</div>
-	</div>
+	</div>	
 </div>
+
 
 <!-- footer영역 -->
 <%@ include file="/common/footer.jsp"%>

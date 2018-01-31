@@ -39,8 +39,8 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 			category_all.append("    from( \n");
 			category_all.append("    select rownum rn, r.*        \n");
 			category_all.append("    from( \n");
-			category_all.append("        select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, to_char(a_ad.starttime, 'yyyy/mm/dd hh24:mi:ss') as starttime,\n"); 
-			category_all.append("				a_ad.bidprice,a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano, a_ad.acount \n");
+			category_all.append("        select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, to_char(a_ad.starttime, 'yyyy.mm.dd.hh24.mi.ss') as starttime,\n"); 
+			category_all.append("				a_ad.bidprice,a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano, a_ad.acount, a_ad.initprice, a_ad.tno, a_ad.category1, a_ad.category2 \n");
 			category_all.append("        from auction_image ai,( \n");
 			category_all.append("                                select a.*, NVL(ad.bidprice,0)as bidprice, NVL(ad.bidnum,0) as bidnum \n");
 			category_all.append("                                from auction a,( \n");
@@ -105,9 +105,7 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 			}
 			pstmt.setString(++idx, map.get("end"));
 			pstmt.setString(++idx, map.get("start"));
-			System.out.println(category_all);
 			rs = pstmt.executeQuery();
-			System.out.println("rs       = " + rs );
 			int cnt = 0;
 			while(rs.next()) {
 				System.out.println("카테고리 넥스트");
@@ -120,6 +118,11 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 				auctionDetailDto.setAimage(rs.getString("aimage"));
 				auctionDetailDto.setAstatus(rs.getInt("astatus"));
 				auctionDetailDto.setAno(rs.getInt("ano"));
+				auctionDetailDto.setAcount(rs.getInt("acount"));
+				auctionDetailDto.setInitPrice(rs.getInt("initprice"));
+				auctionDetailDto.setTno(rs.getInt("tno"));
+				auctionDetailDto.setCategory1(rs.getString("category1"));
+				auctionDetailDto.setCategory2(rs.getString("category2"));
 				list.add(auctionDetailDto);				
 			}
 		} catch (SQLException e) {
@@ -127,7 +130,6 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 		} finally {
 			DBClose.close(conn, pstmt, rs);
 		}	
-		System.out.println("카테고리 사이즈 : " + list.size());
 		return list;
 	}
 	
@@ -209,7 +211,6 @@ public class AuctionCategoryDaoImpl implements AuctionCategoryDao {
 		} finally {
 			DBClose.close(conn, pstmt, rs);
 		}	
-		System.out.println("count = " + count);
 		return count;
 	}
 }

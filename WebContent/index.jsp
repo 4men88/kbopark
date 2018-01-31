@@ -21,7 +21,7 @@ function todaypl(){
 	sendRequest("<%=root%>/admin", params, viewlist, "GET");
 }
 
-function viewlist(){
+function viewlist(){	
 	//alert("viewlist");
 	if(httpRequest.readyState == 4) {
 		if(httpRequest.status == 200) {
