@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.baseball.auction.model.AuctionDetailDto;
 import com.baseball.gudan.model.GudanDto;
 import com.baseball.gudan.model.StadiumDto;
 import com.baseball.schedule.scheduleDto.ScheduleDto;
@@ -258,5 +259,51 @@ public class GudanDaoImpl implements GudanDao {
 		}
 		System.out.println("stadiumlist size >> " + list.size());
 		return list;
+	}
+
+	@Override
+	public List<AuctionDetailDto> hotAuctionArticle(int tno) {
+		List<AuctionDetailDto> hotlist = new ArrayList<AuctionDetailDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("SELECT A.*, i.aimage \n");
+			sql.append("FROM (SELECT a.ano, aname, endtime, category1, category2, astatus, acount, tno, \n");
+			sql.append("DECODE(maxprice, null, initprice, maxprice) maxprice \n");
+			sql.append("        FROM ( SELECT DISTINCT ano, MAX(bidprice) OVER(partition by ano) maxprice \n");
+			sql.append("                 FROM auction_detail ) d, auction a \n");
+			sql.append("        WHERE a.ano = d.ano(+) \n");
+			sql.append("        AND astatus = '1' AND tno = ?  \n");
+			sql.append("        ORDER BY acount desc) A, auction_image i \n");
+			sql.append("WHERE a.ano = i.ano \n");
+			sql.append("AND rownum <= 3");
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, tno);
+			rs = pstmt.executeQuery();
+			int cnt = 0;
+			while(rs.next()) {
+				AuctionDetailDto auctionDetailDto = new AuctionDetailDto();
+				auctionDetailDto.setAno(rs.getInt("ano"));
+				auctionDetailDto.setAname(rs.getString("aname"));
+				auctionDetailDto.setEndTime(rs.getString("endtime"));
+				auctionDetailDto.setCategory1(rs.getString("category1"));
+				auctionDetailDto.setCategory2(rs.getString("category2"));
+				auctionDetailDto.setAstatus(rs.getInt("astatus"));
+				auctionDetailDto.setAcount(rs.getInt("acount"));
+				auctionDetailDto.setTno(rs.getInt("tno"));
+				auctionDetailDto.setBidPrice(rs.getInt("maxprice"));
+				auctionDetailDto.setAimage(rs.getString("aimage"));
+				hotlist.add(auctionDetailDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}	
+		System.out.println("GudanDI hotlist >>>" + hotlist.size());
+		return hotlist;		
 	}
 }

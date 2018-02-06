@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
 <%@ include file="/common/header.jsp" %>
+
 <script type="text/javascript">
+
+
 function writenotice(){
 	if(document.getElementById("subject").value==""){
 		alert("제목을 입력하세요");
@@ -10,13 +13,16 @@ function writenotice(){
 		alert("내용을 입력하세요");
 		return;
 	}else{
+	
 		document.noticeForm.action ="<%=root%>/admin";
 		document.noticeForm.submit();	
 	}
 	
 }
 </script>
-
+<%
+if("gksdjf".equals(memberDto.getId())){
+%>
 <div class="col-md-8 py-5">
 	<div class="">
 		<h5>
@@ -31,13 +37,14 @@ function writenotice(){
 
 	<form id="noticeForm" name="noticeForm" method="post" action="">
 	<input type="hidden" name="act" id="act" value="writeno" >
+
 		<div class="form-group row px-3">
 			<label for="selectgudan" class="col-sm-2 col-4 col-form-label">구단</label>
 			<div class="col-sm-4 col-8">
 				<select id="notitype" name="notitype" class="form-control">
 					<option value="1">일반공지</option>
-					<option value="2">경매공지<option>
-					<option value="3">1:1답변<option>
+					<option value="2">경매공지</option>
+					<option value="3">1:1답변</option>
 				</select>
 			</div>
 		</div>
@@ -59,8 +66,7 @@ function writenotice(){
 
 		<div class="form-group row px-3">
 			<div class="col-md-12">
-				<textarea class="form-control" id="context" name="context"
-					rows="20"></textarea>
+				<textarea class="form-control" id="context" name="context" rows="20"></textarea>
 			</div>
 		</div>
 
@@ -98,4 +104,14 @@ function writenotice(){
 		</div>
 	</div>
 </div>
-<%@ include file="/common/footer.jsp" %>
+<%
+}else{
+%>
+<script>
+alert("관리자 전용 페이지 입니다");
+document.location.href="<%=root%>/index.jsp";
+</script>
+<%
+}
+%>
+<%@ include file="/common/footer.jsp"%>

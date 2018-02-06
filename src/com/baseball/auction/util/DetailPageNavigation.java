@@ -1,6 +1,8 @@
-package com.baseball.util;
+package com.baseball.auction.util;
 
-public class AuctionPageNavigation {
+import com.baseball.util.Constance;
+
+public class DetailPageNavigation {
 
 	private String root;
 	private boolean nowFirst;
@@ -9,28 +11,45 @@ public class AuctionPageNavigation {
 	private int newArticleCount;
 	private int totalPageCount;
 	private int pageNo;
+	private int ano;
 	private String navigator;
-	private String categoty1;
-	private String categoty2;
+	private String category1 = "";
+	private String category2 = "";
 	private String key;
 	private String word;
+	private String gudan;
 	
 	
 
-	public String getCategoty1() {
-		return categoty1;
+	public int getAno() {
+		return ano;
+	}
+	
+	public void setAno(int ano) {
+		this.ano = ano;
+	}
+	public String getGudan() {
+		return gudan;
 	}
 
-	public void setCategoty1(String categoty1) {
-		this.categoty1 = categoty1;
+	public void setGudan(String gudan) {
+		this.gudan = gudan;
 	}
 
-	public String getCategoty2() {
-		return categoty2;
+	public String getCategory1() {
+		return category1;
 	}
 
-	public void setCategoty2(String categoty2) {
-		this.categoty2 = categoty2;
+	public void setCategoty1(String category1) {
+		this.category1 = category1;
+	}
+
+	public String getCategory2() {
+		return category2;
+	}
+
+	public void setCategoty2(String category2) {
+		this.category2 = category2;
 	}
 
 	public String getRoot() {
@@ -109,7 +128,7 @@ public class AuctionPageNavigation {
 		return navigator;
 	}
 
-	public void setNavigator() {
+	public void setConNavigator() {
 		StringBuffer tmpNavigator = new StringBuffer();
 
 		int pageSize = Constance.CATEGORY_PAGE_SIZE;
@@ -117,16 +136,16 @@ public class AuctionPageNavigation {
 		tmpNavigator.append("<table cellpadding='0' cellspacing='0' border='0'>\n");
 		tmpNavigator.append(" <tr>\n");
 		if (this.isNowFirst()) {
-			tmpNavigator.append("  <td><font color='#999999'>\n<a href=\"javascript:listArticle('', '1', '', '');\">");
-			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev02.gif' width='7' height='11' border='0' align='absmiddle' hspace='3'>최신목록</a>\n");
-			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev01_dim.gif' width='3' height='11' border='0' align='absmiddle' hspace='3'>\n");
+			tmpNavigator.append("  <td><font color='#999999'>\n<a href=\"javascript:bidInfoList('"+ ano + "','1','','');\">");
+			tmpNavigator.append("   <img src='" + root + "/img/community/icon_prev02.gif' width='7' height='11' border='0' align='absmiddle' hspace='3'>최신목록</a>\n");
+			tmpNavigator.append("   <img src='" + root + "/img/community/icon_prev01.gif' width='3' height='11' border='0' align='absmiddle' hspace='3'>\n");
 			tmpNavigator.append("   이전</font>\n");
 		} else {
 			int prePage = (pageNo - 1) / pageSize * pageSize;
-			tmpNavigator.append("  <td>\n<a href=\"javascript:listArticle('', '1', '', '');\">");
-			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev02.gif' width='7' height='11' border='0' align='absmiddle' hspace='3'>최신목록 </a>\n");
-			tmpNavigator.append("   <a href=\"javascript:listArticle('', '" + prePage + "', '" + key + "', '" + word + "');\">");
-			tmpNavigator.append("   <img src='" + root + "/img/board/icon_prev01_dim.gif' width='3' height='11' border='0' align='absmiddle' hspace='3'>\n");
+			tmpNavigator.append("  <td>\n<a href=\"javascript:bidInfoList('"+ ano + "','1','','');\">");
+			tmpNavigator.append("   <img src='" + root + "/img/community/icon_prev02.gif' width='7' height='11' border='0' align='absmiddle' hspace='3'>최신목록 </a>\n");
+			tmpNavigator.append("   <a href=\"javascript:bidInfoList('"+ ano + "','" + prePage + "','','');\">");
+			tmpNavigator.append("   <img src='" + root + "/img/community/icon_prev01.gif' width='3' height='11' border='0' align='absmiddle' hspace='3'>\n");
 			tmpNavigator.append("   이전</a>");
 		}
 		tmpNavigator.append("  \n</td>\n");
@@ -148,7 +167,7 @@ public class AuctionPageNavigation {
 				tmpNavigator.append("     <td width='1' nowrap><img src='" + root + "/img/board/n_tab.gif' width='1'");
 				tmpNavigator.append(" height='11' border='0' align='absmiddle'><br>\n");
 			} else {
-				tmpNavigator.append("     <td style='padding:0 7 0 7;' nowrap><a href=\"javascript:listArticle('', '" + i + "', '" + key + "', '" + word + "');\">" + i + "</td>\n");
+				tmpNavigator.append("     <td style='padding:0 7 0 7;' nowrap><a href=\"javascript:bidInfoList('"+ ano + "','" + i + "','','');\">" + i + "</td>\n");
 				tmpNavigator.append("     <td width='1' nowrap><img src='" + root + "/img/board/n_tab.gif' width='1'");
 				tmpNavigator.append(" height='11' border='0' align='absmiddle'><br>\n");
 			}
@@ -161,16 +180,16 @@ public class AuctionPageNavigation {
 		
 		if (this.isNowEnd()) {
 			tmpNavigator.append("   <font color='#999999'>다음<img");
-			tmpNavigator.append("   src='" + root + "/img/board/icon_next01_dim.gif' width='3' height='11'");
+			tmpNavigator.append("   src='" + root + "/img/community/icon_next01.gif' width='3' height='11'");
 			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'> \n");
-			tmpNavigator.append("   끝목록<img src='" + root + "/img/board/icon_next02_dim.gif' width='7' height='11'");
+			tmpNavigator.append("   끝목록<img src='" + root + "/img/community/icon_next02.gif' width='7' height='11'");
 			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'></font>\n");
 		} else {
 			int nextPage = (pageNo - 1) / pageSize * pageSize + pageSize + 1;//(pageNo + pageSize - 1) / pageSize * pageSize + 1
-			tmpNavigator.append("   <a href=\"javascript:listArticle('', '" + nextPage + "', '" + key + "', '" + word + "');\">다음<img");
-			tmpNavigator.append(" src='" + root + "/img/board/icon_next01_dim.gif' width='3' height='11'");
+			tmpNavigator.append("   <a href=\"javascript:bidInfoList('"+ ano + "','" + nextPage +"','','');\">다음<img");
+			tmpNavigator.append(" src='" + root + "/img/community/icon_next01.gif' width='3' height='11'");
 			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'></a>\n");
-			tmpNavigator.append("   <a href=\"javascript:listArticle('', '" + totalPageCount + "', '" + key + "', '" + word + "');\">끝목록<img src='" + root + "/img/board/icon_next02_dim.gif' width='7' height='11'");
+			tmpNavigator.append("   <a href=\"javascript:bidInfoList('"+ ano + "','" + totalPageCount +"','','');\">끝목록<img src='" + root + "/img/board/icon_next02_dim.gif' width='7' height='11'");
 			tmpNavigator.append(" border='0' align='absmiddle' hspace='3'>\n");
 		}
 
@@ -180,8 +199,4 @@ public class AuctionPageNavigation {
 
 		this.navigator = tmpNavigator.toString();
 	}
-
 }
-
-// <<처음목록<이전목록 21 22 23 24 25 다음목록>끝목록>>
-

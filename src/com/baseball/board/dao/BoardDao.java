@@ -22,5 +22,6 @@ public interface BoardDao {
 	int getTotalArticleCount(Map<String, String> map);
 	int getPrevBno(int tno, int seq);
 	int getNextBno(int tno, int seq);
+	List<BoardDto> hotBoardArticle(int tno);
 
 }

@@ -14,13 +14,14 @@ if(memberDto != null) {
 <script type="text/javascript" src="<%=root %>/js/extprototype.js"></script>	
 <script type="text/javascript" src="<%=root %>/js/oz.js"></script>	
 <script type="text/javascript" src="<%=root %>/js/alice.js"></script>
+<script type="text/javascript" src="<%=root%>/js/httpRequest.js"></script>
 <script type="text/javascript">
 control = "/board";
 
 var alice;
 Event.observe(window, "load", function() {
+	startTime();
 	alice = Web.EditorManager.instance("editor",{type:'detail',width:'96%',height:'100%',limit:20,family:'돋움',size:'13px'});
-
 });	
 
 function writeArticle(){
@@ -32,52 +33,61 @@ function writeArticle(){
 		return;
 	}else{
 		document.getElementById("content").value = alice.getContent();
-		document.getElementById("boardtno").value = document.getElementById("selectgudan").value;
 		document.getElementById("writeForm").action = "<%=root%>/board";
 		document.getElementById("writeForm").submit();
 	}
 }
 
-</script>
-<div class="py-5 text-center opaque-overlay"
-	style="background-image: url(<%=root%>/img/etc/grass.jpg);">
-	<div class="container py-5">
-		<div class="row">
-			<div class="col-md-12 text-white">
-				<h1 class="display-3"><%=gudanDto.getEnname() %></h1>
-			</div>
-		</div>
-	</div>
-</div>
+function startTime() {
+	var params = "act=bestarticle&tno=<%=gudanDto.getTno()%>";
+	sendRequest("<%=root%>/board", params, bestList, "GET");
+}
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<div id="current-category">
-				<nav aria-label="breadcrumb" role="navigation">
-					<ol class="breadcrumb justify-content-end"
-						style="background-color: white;">
-						<li class="breadcrumb-item"><i class="fa fa-home mr-2"
-							aria-hidden="true"></i><a href="<%=root%>/gudan?act=viewgudan">구단</a></li>
-						<li class="breadcrumb-item"><a href="<%=root%>/gudan?act=mvhome&tno=<%=gudanDto.getTno() %>"><%=gudanDto.getTname() %></a></li>
-						<li class="breadcrumb-item active" aria-current="page">메인</li>
-					</ol>
-				</nav>
-			</div>
-		</div>
-	</div>
-</div>
-<div id="gudan-nav">
-	<div class="container">
-		<div class="d-flex justify-content-center">
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvhome&tno=<%=gudanDto.getTno() %>">메인</a></div>
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvstadium&sno=<%=gudanDto.getSno1() %>">구장안내</a></div>
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvweekly&tno=<%=gudanDto.getTno() %>">스케줄</a></div>
-			<div class="gudan-nav-inner p-3"><a href="javascript:listArticle('<%=gudanDto.getTno()%>');">커뮤니티</a></div>
-		</div>
-		<div class="border-b p-0"></div>
-	</div>
-</div>
+function bestList() {
+	if(httpRequest.readyState == 4) {
+		if(httpRequest.status == 200) {
+			var listxml = httpRequest.responseXML;
+		 	makelist(listxml);
+			window.setTimeout("startTime();", 5000);
+		} 
+	}
+}
+
+function makelist(data) {
+	var output = "";
+	var len = data.getElementsByTagName("board").length;
+	
+	if(len == 0) {
+		output = "<div class=\"col-md-12 text-center py-3\"><h6>베스트글이 존재하지 않습니다.</h6></div>";
+	} else {	
+		output += "<ul class=\"list-group\">";
+		for(var i=0;i<len;i++) {
+			var bno = data.getElementsByTagName("bno")[i].firstChild.data;
+			var bname = data.getElementsByTagName("bname")[i].firstChild.data;
+			var replycnt = data.getElementsByTagName("replycnt")[i].firstChild.data;
+			
+			output += "<li class=\"list-group-item over-subject\" style=\"border: none;\">";
+			output += "<span class=\"bestnum\" ";
+			if(i==0||i==1||i==2) {
+				output += "style=\"color: red;\"";
+			}
+			output += ">";
+			output += (i+1) + "</span>";
+			output += "<span id=\"bestsubject\">";
+			output += "<a href=\"javascript:viewArticle('<%=tno%>','1','','','" + bno + "');\">";
+			output += bname + "...(" + replycnt + ")</a>";
+			output += "</span>";
+			output += "</li>";
+		}
+		output += "</ul>";
+	}
+	document.getElementById("bestboard").innerHTML = output;
+}
+
+</script>
+
+<!-- 구단네비게이터 -->
+<%@ include file="/gudan/gudan_nav.jsp"%>
 
 <div id="comm-best">
 	<div class="container py-5">
@@ -103,18 +113,8 @@ function writeArticle(){
 					<div class="form-group row px-3">
 						<label for="selectgudan" class="col-sm-2 col-4 col-form-label">구단</label>
 						<div class="col-sm-4 col-8">
-							<select id="selectgudan" name="selectgudan" class="form-control">
-								<option value="2" selected>두산 베어스</option>
-								<option value="3">롯데 자이언츠</option>
-								<option value="1">KIA 타이거즈</option>
-								<option value="4">NC 다이노스</option>
-								<option value="5">SK 와이번스</option>
-								<option value="6">LG 트윈스</option>
-								<option value="7">넥센 히어로즈</option>
-								<option value="8">한화 이글스</option>
-								<option value="9">삼성 라이온즈</option>
-								<option value="10">KT 위즈</option>
-							</select>
+							<input type="text" class="form-control" id="gudanName" name="gudanName"
+								placeholder="<%=gudanDto.getTname()%>" readonly>
 						</div>
 					</div>
 
@@ -141,19 +141,19 @@ function writeArticle(){
 					</div>
 
 					<!-- 첨부파일 -->
-					<div class="form-group row px-3">
+<!-- 					<div class="form-group row px-3">
 						<label for="inputfile" class="col-sm-2 col-form-label">첨부파일</label>
 						<div class="col-sm-10">
 							<input type="file" class="form-control-file mb-2"
 								id="exampleFormControlFile1"> <label
 								style="font-size: 14px;">이미지 크기는 3MB이하로 제한됩니다.(수정)</label>
-							<!-- 왜안먹히지..ㅠㅠ
+							왜안먹히지..ㅠㅠ
 								<label class="custom-file">
 								<input type="file" id="file2" class="custom-file-input mb-2"> <span
 									class="custom-file-control"></span>
-								</label> -->
+								</label>
 						</div>
-					</div>
+					</div> -->
 
 					<!-- 캡챠 -->
 				</form>
@@ -173,11 +173,6 @@ function writeArticle(){
 							style="color: white !important;">수정</a>
 					</div>
 				</div>
-
-
-
-
-
 			</div>
 			<!-- col-md-8 -->
 
@@ -186,31 +181,8 @@ function writeArticle(){
 					<strong>실시간베스트</strong>
 				</h5>
 				<div class="border-b-strong"></div>
-				<ul class="list-group">
-					<li class="list-group-item" style="border: none;"><span
-						class="bestnum" style="color: red;">1</span> ㅇㅅㅇ들 일이 이렇게 커진...
-						(157)</li>
-					<li class="list-group-item"><span class="bestnum"
-						style="color: red;">2</span> 하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum"
-						style="color: red;">3</span> 하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum">4</span>
-						하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum">5</span>
-						하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item" style="border: none;"><span
-						class="bestnum">6</span> ㅇㅅㅇ들 일이 이렇게 커진... (157)</li>
-					<li class="list-group-item"><span class="bestnum">7</span>
-						하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum">8</span>
-						하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum">9</span>
-						하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum">10</span>
-						하하하하하 그러고보니 방... (65)</li>
-				</ul>
+				<div id="bestboard"></div>
 			</div>
-
 		</div>
 
 	</div>

@@ -686,7 +686,7 @@ html, body {
 	border-bottom: 3px solid white;
 }
 
-#gudan-nav .gudan-nav-inner:hover, .gudan-nav-inner:active {
+#gudan-nav .active {
 	border-bottom: 3px solid #066ED2;
 }
 
@@ -853,4 +853,25 @@ html, body {
 
 #listnav td>a, #listnav td>font>b {
 	margin: 3px;	
+}
+
+.over-detail {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3; /* 라인수 */
+	-webkit-box-orient: vertical;
+	word-wrap:break-word; 
+	line-height: 1.2em;
+	height: 3.6em;
+}
+.over-subject {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1; /* 라인수 */
+	-webkit-box-orient: vertical;
+	word-wrap:break-word; 
+	line-height: 49px;
+	height: 49px;
 }

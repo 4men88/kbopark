@@ -1,24 +1,14 @@
 package com.baseball.factory;
 
 import com.baseball.action.Action;
-import com.baseball.board.action.BoardDeleteAction;
-import com.baseball.board.action.BoardListAction;
-import com.baseball.board.action.BoardModifyAction;
-import com.baseball.board.action.BoardMoveModifyAction;
-import com.baseball.board.action.BoardNextAction;
-import com.baseball.board.action.BoardNotifyAction;
-import com.baseball.board.action.BoardPrevAction;
-import com.baseball.board.action.BoardViewAction;
-import com.baseball.board.action.BoardWriteAction;
-import com.baseball.board.action.ReplyDeleteAction;
-import com.baseball.board.action.ReplyListAction;
-import com.baseball.board.action.ReplyWriteAction;
+import com.baseball.board.action.*;
 
 public class BoardActionFactory {
 	
 	private static Action boardWriteAction;
 	private static Action boardViewAction;
 	private static Action boardListAction;
+	private static Action boardBestListAction;
 	private static Action boardDeleteAction;
 	private static Action boardModifyAction;
 	private static Action boardMoveModifyAction;
@@ -35,6 +25,7 @@ public class BoardActionFactory {
 		boardWriteAction = new BoardWriteAction();
 		boardViewAction = new BoardViewAction();
 		boardListAction = new BoardListAction();
+		boardBestListAction = new BoardBestListAction();
 		boardDeleteAction = new BoardDeleteAction();
 		boardModifyAction = new BoardModifyAction();
 		boardMoveModifyAction = new BoardMoveModifyAction();
@@ -45,6 +36,10 @@ public class BoardActionFactory {
 		replyWriteAction = new ReplyWriteAction();
 		replyListAction = new ReplyListAction();
 		replyDeleteAction = new ReplyDeleteAction();
+	}
+
+	public static Action getBoardBestListAction() {
+		return boardBestListAction;
 	}
 
 	public static Action getBoardNotifyAction() {

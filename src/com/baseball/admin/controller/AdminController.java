@@ -32,6 +32,7 @@ public class AdminController extends HttpServlet {
 		String key = StringEncoder.isoToMain(request.getParameter("key"));
 		String word = StringEncoder.isoToMain(request.getParameter("word"));
 		String queryString ="?ntype=" + ntype + "&pg=" + pg+ "&key=" + key+ "&word=" + StringEncoder.urlFormat(word);
+
 		if("usermanage".equals(act)) {
 			path = "/admin/user/adminuser.jsp";
 			PageMove.forward(request, response, path);
@@ -55,7 +56,8 @@ public class AdminController extends HttpServlet {
 			PageMove.forward(request, response, path);
 		
 		}else if("todaypl".equals(act)){
-			
+			path=AdminActionFactory.getMainScheduleAction().execute(request, response);
+			PageMove.forward(request, response, path);		
 		
 		}else if("mvnowrite".equals(act)){
 			path="/admin/notice/noticewrite.jsp"+ queryString;
@@ -74,11 +76,15 @@ public class AdminController extends HttpServlet {
 		}else if("community".equals(act)){
 			path=AdminActionFactory.getListBoardAction().execute(request, response);
 			PageMove.forward(request, response,path);
+		
 		}else if("deleteboard".equals(act)){
 			path = AdminActionFactory.getDeleteBoardAction().execute(request, response);
 			PageMove.redirect(request, response, path);
-		}else if("".equals(act)){
-			
+		
+		}else if("deleteNotice".equals(act)){
+			System.out.println("deleteno");
+			path=AdminActionFactory.getDeleteNoticeAction().execute(request, response);
+			PageMove.redirect(request, response, path);
 		}else if("".equals(act)){
 			
 		}else if("".equals(act)){

@@ -14,7 +14,6 @@ int hitListLen;
 int newListLen;
 
 %>
-
 <%
    List<AuctionDetailDto> bestList = (List<AuctionDetailDto>)request.getAttribute("bestList");
    List<AuctionDetailDto> endList = (List<AuctionDetailDto>)request.getAttribute("endList");
@@ -55,7 +54,7 @@ int newListLen;
    if(newList != null)
    {
 	   newListLen = newList.size();
-	   for(int i=0; i<bestListLen; i++)
+	   for(int i=0; i<newListLen; i++)
   		{
 		   newListTimeArr.add(i, newList.get(i).getEndTime());	//endTime만 빼서 따로 리스트 만듬
   		}
@@ -212,7 +211,7 @@ for(int i=0; i<endListLen; i++)
 			
 			}
 		}
-	<%            
+<%            
  }
 %>
 
@@ -316,6 +315,7 @@ for(int i=0; i<newListLen; i++)
 = "<font color=\"blue\"size=\"4\"><b>남은시간 : "+time+"시간 "+min+"분 "+sec+"초</b></font>";						
 				}
 			else if(min > 0)
+				
 				{
 				document.getElementById("newtime" + <%=i%>).innerHTML 
 = "<font color=\"blue\"size=\"4\"><b>남은시간 : "+min+"분 "+sec+"초</b></font>";
@@ -350,16 +350,46 @@ window.onload=function() {
    startTime();
 }
 
-function categoryList(key, word, category1, category2)
+function categoryList(key, word, category1, category2, conpg, endpg, choice)
 {
 	document.getElementById("aact").value = "categorylist";
-	document.getElementById("apg").value = "1";
+	document.getElementById("achoice").value = choice;
+	document.getElementById("aconpg").value = conpg;
+	document.getElementById("aendpg").value = endpg;
 	document.getElementById("akey").value = "";
 	document.getElementById("aword").value = "";
 	document.getElementById("acategory1").value = category1; 
 	document.getElementById("acategory2").value = category2; 
 	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
 	document.getElementById("auctionForm").submit();		
+}	
+
+function mainDetail(ano,category1,category2,aname,starttime,endtime,bidprice,bidnum,aimage,astatus, acount,initprice,tno,pg){
+	document.getElementById("aact").value = "biddetail";
+	document.getElementById("aano").value = ano;
+	document.getElementById("acategory1").value = category1;
+	document.getElementById("acategory2").value = category2;
+	document.getElementById("aaname").value = aname;
+	document.getElementById("astarttime").value = starttime;
+	document.getElementById("aendtime").value = endtime;
+	document.getElementById("abidprice").value = bidprice;
+	document.getElementById("abidnum").value = bidnum;
+	document.getElementById("aaimage").value = aimage;
+	document.getElementById("aastatus").value = astatus;
+	document.getElementById("aacount").value = acount;
+	document.getElementById("ainitprice").value = initprice;
+	document.getElementById("atno").value = tno;
+	document.getElementById("dpg").value = pg;
+	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+	document.getElementById("auctionForm").submit();	
+}
+
+function moveWrite(){
+	if(<%=memberDto == null%>){
+		alert("로그인후 다시 시도해 주세요.");	
+	}else{	
+		location.href = "<%=root%>/auction/auction-add.jsp";
+	}
 }
 </script>
 
@@ -369,62 +399,58 @@ function categoryList(key, word, category1, category2)
          <div class="align-self-center p-0 col-md-3">
 
             <ul class="list-group">
-               <li
-                  class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="javascript:categoryList('','','','');">
-                  전체보기 </a><span class="badge badge-primary badge-pill">
+               <a href="javascript:categoryList('','','','','1','1','1');">
+            	   <li class="list-group-item d-flex justify-content-between align-items-center">
+                   전체보기<span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
                   out.print(newNumArray.get(0).toString());
 %> 
-                  </span>
-               </li>
-               <li
-                  class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="javascript:categoryList('','','1','');">
-                  유니폼</a><span class="badge badge-primary badge-pill">
+               			  </span>
+            	   </li></a>
+               <a href="javascript:categoryList('','','1','','1','1','1');">
+               		<li class="list-group-item d-flex justify-content-between align-items-center">
+                  	유니폼<span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
                   out.print(newNumArray.get(1).toString());
 %> 
-                  </span>
-               </li>
-               <li
-                  class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="javascript:categoryList('','','2','');">
-                  경기용품 </a><span class="badge badge-primary badge-pill">
+                  		  </span>
+               		</li></a>
+               <a href="javascript:categoryList('','','2','','1','1','1');">
+               		<li class="list-group-item d-flex justify-content-between align-items-center">
+                  	경기용품<span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
                   out.print(newNumArray.get(2).toString());
 %>                   
-                  </span>
-               </li>
-               <li
-                  class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="javascript:categoryList('','','3','');">
-                  응원용품</a> <span class="badge badge-primary badge-pill">
+		                    </span>
+		             </li></a>
+               <a href="javascript:categoryList('','','3','','1','1','1');">
+               		<li class="list-group-item d-flex justify-content-between align-items-center">
+                  	응원용품<span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
                   out.print(newNumArray.get(3).toString());
 %>                  
-                  </span>
-               </li>
-               <li
-                  class="list-group-item d-flex justify-content-between align-items-center">
-                  <a href="javascript:categoryList('','','4','');">
-                  기타잡화</a> <span class="badge badge-primary badge-pill">
+		         		</span>
+		            </li></a>
+               <a href="javascript:categoryList('','','4','','1','1','1');">
+               		<li class="list-group-item d-flex justify-content-between align-items-center">
+                  	기타잡화<span class="badge badge-primary badge-pill">
 <%
 if(newNumArray != null)                  
                   out.print(newNumArray.get(4).toString());
 %>                  
-                  </span>
-               </li>
-               <li
-                  class="bg-pingendo list-group-item d-flex justify-content-between align-items-center">
-                  <span class="text-center" style="color: white; width:100%;">내물품 등록하기</span>
-               </li>
-            </ul>
-         </div>
+		                  	</span>
+		             </li></a>
+		     	<a href="javascript:moveWrite();">        
+               		<li class="bg-pingendo list-group-item d-flex justify-content-between align-items-center">
+                  		<span class="text-center" style="color: white; width:100%;">
+                 		 내물품 등록하기</span>
+               		</li></a>
+           		 </ul>
+         	</div>
          
          <!-- 이미지크기 꽉차게 맞춰야함..ㅠㅠㅠㅠ atl노란오류는 무시ㄱㄱ-->
          <div class="col-md-9 p-0">
@@ -485,12 +511,17 @@ if(bestList != null)
 {
    for(int i=0; i<bestListLen; i++)
    {
-%>                   
+%>                        
             <div class="col-md-3" >
                <div class="row p-2" >
                   <div class="col-md-12 col-4 align-self-center" >
-                     <img style="max-height:200px;"
+                  <a href="javascript:mainDetail('<%=bestList.get(i).getAno()%>','<%=bestList.get(i).getCategory1()%>','<%=bestList.get(i).getCategory2()%>',
+                  '<%=bestList.get(i).getAname()%>','<%=bestList.get(i).getStartTime()%>','<%=bestList.get(i).getEndTime()%>',
+                  '<%=bestList.get(i).getBidPrice()%>','<%=bestList.get(i).getBidNum()%>','<%=bestList.get(i).getAimage()%>','<%=bestList.get(i).getAstatus()%>',
+                  '<%=bestList.get(i).getAcount()%>','<%=bestList.get(i).getInitPrice()%>','<%=bestList.get(i).getTno()%>');">
+                     <img style="width:200px;height:250px;" class="img-fluid d-block mb-4 img-thumbnail"
                       src="<%=root%>/<%=bestList.get(i).getAimage()%>" class="img-fluid">
+                      </a>
                   </div>
                   <div class="col-md-12 col-8 align-self-center">
                      <p class="mb-2">
@@ -501,6 +532,7 @@ if(bestList != null)
                      <p style="color: red;">
                         <strong>현재입찰가 : <%=bestList.get(i).getBidPrice()%>원</strong>
                      </p>
+                     <p>조회수 : <%=bestList.get(i).getAcount()%></p>
                   </div>
                </div>
             </div>
@@ -522,8 +554,14 @@ if(endList != null)
 %>      
             <div class="col-md-3">
                <div class="row p-2">
-                  <div class="col-md-12 col-4 align-self-center">            
-                     <img src="<%=root%>/<%=endList.get(i).getAimage()%>" class="img-fluid">                                    
+                  <div class="col-md-12 col-4 align-self-center">     
+                  <a href="javascript:mainDetail('<%=endList.get(i).getAno()%>','<%=endList.get(i).getCategory1()%>','<%=endList.get(i).getCategory2()%>',
+                  '<%=endList.get(i).getAname()%>','<%=endList.get(i).getStartTime()%>','<%=endList.get(i).getEndTime()%>',
+                  '<%=endList.get(i).getBidPrice()%>','<%=endList.get(i).getBidNum()%>','<%=endList.get(i).getAimage()%>','<%=endList.get(i).getAstatus()%>',
+                  '<%=endList.get(i).getAcount()%>','<%=endList.get(i).getInitPrice()%>','<%=endList.get(i).getTno()%>','1');">       
+                     <img style="width:200px;height:250px;" class="img-fluid d-block mb-4 img-thumbnail"
+                     src="<%=root%>/<%=endList.get(i).getAimage()%>" class="img-fluid">   
+                     </a>                                 
                   </div>
                   <div class="col-md-12 col-8 align-self-center">
                      <p class="mb-2">
@@ -534,6 +572,7 @@ if(endList != null)
                      <p style="color: red;">
                         <strong>현재입찰가 : <%=endList.get(i).getBidPrice()%>원</strong>
                      </p>
+                     <p>조회수 : <%=endList.get(i).getAcount()%></p>
                   </div>
                </div>
             </div>
@@ -555,7 +594,13 @@ if(hitList != null)
             <div class="col-md-3">
                <div class="row p-2">
                   <div class="col-md-12 col-4 align-self-center">
-                     <img src="<%=root%>/<%=hitList.get(i).getAimage()%>" class="img-fluid">
+                  <a href="javascript:mainDetail('<%=hitList.get(i).getAno()%>','<%=hitList.get(i).getCategory1()%>','<%=hitList.get(i).getCategory2()%>',
+                  '<%=hitList.get(i).getAname()%>','<%=hitList.get(i).getStartTime()%>','<%=hitList.get(i).getEndTime()%>',
+                  '<%=hitList.get(i).getBidPrice()%>','<%=hitList.get(i).getBidNum()%>','<%=hitList.get(i).getAimage()%>','<%=hitList.get(i).getAstatus()%>',
+                  '<%=hitList.get(i).getAcount()%>','<%=hitList.get(i).getInitPrice()%>','<%=hitList.get(i).getTno()%>');">
+                     <img style="width:200px;height:250px;"class="img-fluid d-block mb-4 img-thumbnail"
+                      src="<%=root%>/<%=hitList.get(i).getAimage()%>" class="img-fluid">
+                     </a>
                   </div>
                   <div class="col-md-12 col-8 align-self-center">
                      <p class="mb-2">
@@ -565,6 +610,7 @@ if(hitList != null)
                      <p style="color: red;">
                         <strong>현재입찰가 : <%=hitList.get(i).getBidPrice()%>원</strong>
                      </p>
+                      <p>조회수 : <%=hitList.get(i).getAcount()%></p>
                   </div>
                </div>
             </div>
@@ -586,7 +632,13 @@ if(newList != null)
             <div class="col-md-3">
                <div class="row p-2">
                   <div class="col-md-12 col-4 align-self-center">
-                     <img src="<%=root%>/<%=newList.get(i).getAimage()%>" class="img-fluid">
+                  <a href="javascript:mainDetail('<%=newList.get(i).getAno()%>','<%=newList.get(i).getCategory1()%>','<%=newList.get(i).getCategory2()%>',
+                  '<%=newList.get(i).getAname()%>','<%=newList.get(i).getStartTime()%>','<%=newList.get(i).getEndTime()%>',
+                  '<%=newList.get(i).getBidPrice()%>','<%=newList.get(i).getBidNum()%>','<%=newList.get(i).getAimage()%>','<%=newList.get(i).getAstatus()%>',
+                  '<%=newList.get(i).getAcount()%>','<%=newList.get(i).getInitPrice()%>','<%=newList.get(i).getTno()%>');">
+                     <img style="width:200px;height:250px;"class="img-fluid d-block mb-4 img-thumbnail"
+                      src="<%=root%>/<%=newList.get(i).getAimage()%>" class="img-fluid">
+                     </a>
                   </div>
                   <div class="col-md-12 col-8 align-self-center">
                      <p class="mb-2">
@@ -596,6 +648,7 @@ if(newList != null)
                      <p style="color: red;">
                         <strong>현재입찰가 : <%=newList.get(i).getBidPrice()%>원</strong>
                      </p>
+                      <p>조회수 : <%=newList.get(i).getAcount()%></p>
                   </div>
                </div>
             </div>

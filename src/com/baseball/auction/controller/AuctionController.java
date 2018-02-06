@@ -11,10 +11,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.baseball.factory.AuctionActionFactory;
 import com.baseball.util.Constance;
 import com.baseball.util.PageMove;
+import com.baseball.member.action.LoginAction;
 
 @WebServlet("/auctioncontroller")
 
@@ -22,10 +24,10 @@ public class AuctionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	//	response.getWriter().append("Served at: ").append(request.getContextPath());
 		String act = request.getParameter("act");
-		System.out.println(act);
 		String path = "/auction.jsp";
+		HttpSession session = request.getSession();
+		
 		if("mainlist".equals(act)) 
 		{
 			path = AuctionActionFactory.getAuctionMainListAction().execute(request, response);
@@ -35,11 +37,9 @@ public class AuctionController extends HttpServlet {
 		{
 			DateFormat df = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
 			String time = df.format(new Date());
-			System.out.println(time);
 			response.setContentType("text/plain;charset=EUC-KR");
 			PrintWriter out = response.getWriter();
 			out.print(time);
-//			out.print("<font color='red' size='5'><b>" + time + "</b></font>");
 		}
 		else if("statuschange".equals(act))
 		{
@@ -49,6 +49,16 @@ public class AuctionController extends HttpServlet {
 		else if("categorylist".equals(act))
 		{
 			path = AuctionActionFactory.getAuctionCategoryListAction().execute(request, response);
+			PageMove.forward(request, response, path);
+		}
+		else if("biddetail".equals(act))
+		{
+			path = AuctionActionFactory.getAuctionBidDetailAction().execute(request, response);
+			PageMove.forward(request, response, path);
+		}
+		else if("bidding".equals(act))
+		{
+			path = AuctionActionFactory.getAuctionBiddingAction().execute(request, response);
 			PageMove.forward(request, response, path);
 		}
 		else 

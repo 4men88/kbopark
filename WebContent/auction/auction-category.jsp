@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR" import="com.baseball.auction.model.AuctionDetailDto,
-   java.util.*, java.text.*,java.io.*"%>
+   com.baseball.auction.util.AuctionPageNavigation,java.util.*, java.text.*,java.io.*"%>
 <!-- 상품눌렀을때 뜨는 상세 페이지. -->
 <!-- header영역 -->
 <%@ include file="/common/header.jsp"%>
@@ -11,15 +11,44 @@ int categoryConListLen;
 int categoryEndListLen;
 %>
 <%
+	// 경매 진행중인 리스트
 	List<AuctionDetailDto> categoryConList = (List<AuctionDetailDto>)request.getAttribute("categoryConList");
+	AuctionPageNavigation conPageNavigation = (AuctionPageNavigation) request.getAttribute("conPageNavigation");
+	// 경매 마감된 리스트
 	List<AuctionDetailDto> categoryEndList = (List<AuctionDetailDto>)request.getAttribute("categoryEndList");
+	AuctionPageNavigation endPageNavigation = (AuctionPageNavigation) request.getAttribute("endPageNavigation");
+	
+
  	//endTime만 따로 리스트에 담을 리스트
    List<String> categoryConListTimeArr = new ArrayList<String>();	//진행중 경매 종료시간만 리스트로
    List<String> categoryEndListTimeArr = new ArrayList<String>();	//마감 경매 종료시간만 리스트로
-   String category1 = (String)request.getAttribute("category1");	//대분류
-   String category2 = (String)request.getAttribute("category2");	//중분류
-   String bigSubject ="";
-   String smallSubject ="";
+   
+   
+   
+   String bigSubject ="";  //대분류 이름
+   String smallSubject ="";//중분류 이름
+   
+   String conpg = (String)request.getAttribute("conpg"); //진행중 경매 페이지
+   String endpg = (String)request.getAttribute("endpg"); //종료된 경매 페이지
+   
+	//진행중/마감 경매 선택 구분할 변수
+	String active1 = "active";
+	String active2 = "";
+	String choice = (String)request.getAttribute("choice");
+if(choice != null){	
+   if(choice.equals("1"))
+  {
+	   active1 = "active";   
+	   active2 = "";
+  }
+   else if(choice.equals("2"))
+   {
+	   active1 = "";	   
+	   active2 = "active";   
+   }
+}
+   String category1 = (String)request.getAttribute("category1");	//대분류 번호
+   String category2 = (String)request.getAttribute("category2");	//중분류 번호
 if(category1 != null)
 {
    if(category1.equals("1")){
@@ -245,7 +274,7 @@ for(int i=0; i<categoryEndListLen; i++)
    }
 }
 window.onload=function() {
-	   startTime();
+	   startTime();	   
 	}
 	
 	function startTime() {
@@ -254,10 +283,12 @@ window.onload=function() {
 }
 	
 	document.getElementById("asort").value = 4;
-function categoryList(key, word, category1, category2, gudan)
+function categoryList(key, word, category1, category2, gudan, conpg, endpg, choice)
 {
 	document.getElementById("aact").value = "categorylist";
-	document.getElementById("apg").value = "1";
+	document.getElementById("achoice").value = choice;
+	document.getElementById("aconpg").value = conpg;
+	document.getElementById("aendpg").value = endpg;
 	document.getElementById("akey").value = "";
 	document.getElementById("aword").value = "";
 	document.getElementById("acategory1").value = category1; 
@@ -269,7 +300,26 @@ function categoryList(key, word, category1, category2, gudan)
 function auctionsort(sort)
 {
 	document.getElementById("asort").value = sort;
-	categoryList('','','<%=category1%>','<%=category2%>','');	
+	categoryList('','','<%=category1%>','<%=category2%>','','1','1','1');	
+}
+
+function mainDetail(ano,category1,category2,aname,starttime,endtime,bidprice,bidnum,aimage,astatus, acount,initprice,tno){
+	document.getElementById("aact").value = "biddetail";
+	document.getElementById("aano").value = ano;
+	document.getElementById("acategory1").value = category1;
+	document.getElementById("acategory2").value = category2;
+	document.getElementById("aaname").value = aname;
+	document.getElementById("astarttime").value = starttime;
+	document.getElementById("aendtime").value = endtime;
+	document.getElementById("abidprice").value = bidprice;
+	document.getElementById("abidnum").value = bidnum;
+	document.getElementById("aaimage").value = aimage;
+	document.getElementById("aastatus").value = astatus;
+	document.getElementById("aacount").value = acount;
+	document.getElementById("ainitprice").value = initprice;
+	document.getElementById("atno").value = tno;
+	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+	document.getElementById("auctionForm").submit();	
 }
 </script>
 <div class="container-fluid auction-category">
@@ -277,34 +327,34 @@ function auctionsort(sort)
 		<nav class="col-6 col-md-2 bg-light sidebar-offcanvas pt-3 pb-5"
 			id="sidebar">
 			<div class="pb-5">
-				<a class="nav-link" href="javascript:categoryList('','','','','','');">전체보기</a>
-				<a class="nav-link" href="javascript:categoryList('','','1','','');">유니폼</a>
+				<a class="nav-link" href="javascript:categoryList('','','','','','1','1','1');">전체보기</a>
+				<a class="nav-link" href="javascript:categoryList('','','1','','','1','1','1');">유니폼</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1','');">상의</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','1','2','');">하의</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','1','3','');">모자</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','1','4','');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1','','1','1','1');">상의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','2','','1','1','1');">하의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','3','','1','1','1');">모자</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','4','','1','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','2','','');">경기용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','2','','','1','1','1');">경기용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','2','1','');">야구공</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','2','');">배트</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','3','');">글러브</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','4','');">보호장구</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','2','5');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','2','1','','1','1','1');">야구공</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','2','','1','1','1');">배트</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','3','','1','1','1');">글러브</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','4','','1','1','1');">보호장구</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','5','','1','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','3','');">응원용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','3','1','','1','1','1');">응원용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1','');">피켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','3','2','');">LED피켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','3','3','');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1','','1','1','1');">피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','2','','1','1','1');">LED피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','3','','1','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="javascript:categoryList('','','4','','');">기타잡화</a>
+				<a class="nav-link" href="javascript:categoryList('','','4','','','1','1','1');">기타잡화</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1','');">사진</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','2','');">티켓</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','3','');">카드</a> <a
-						class="nav-link ml-3" href="javascript:categoryList('','','4','4','');">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1','','1','1','1');">사진</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','2','','1','1','1');">티켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','3','','1','1','1');">카드</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','4','','1','1','1');">기타</a>
 				</nav>
 			</div>
 		</nav>
@@ -336,31 +386,26 @@ function auctionsort(sort)
 			<div class="row">
 				<div class="jumbotron"
 					style="min-height: 260px; width: 100%; background-image: url('<%=root%>/img/auction/category/uniform-cap.jpg'); background-size: cover;">
-
 				</div>
-				<div class="row">
-
-					<div id="auc-recommended" class="pb-5">
-						<div class="container py-5">
+				<div class="col-12">
+					<div id="auc-recommended" class="pb-5 col-12">
+						<div class="container py-5 col-12">
 							<!-- Nav tabs -->
-							<ul class="nav nav-tabs nav-justified" role="tablist">
-								<li class="nav-item"><a class="nav-link active"
+							<ul class="nav nav-tabs nav-justified col-12" role="tablist">
+								<li class="nav-item"><a class="nav-link <%=active1%>"
 									data-toggle="tab" href="#menu1">진행경매</a></li>
-								<li class="nav-item"><a class="nav-link" data-toggle="tab"
-									href="#menu2">종료경매</a></li>
+								<li class="nav-item"><a class="nav-link <%=active2%>" 
+									data-toggle="tab" href="#menu2">종료경매</a></li>
 							</ul>
 
 							<!-- Tab panes -->
-							<div class="tab-content">							
-							
-								<div id="menu1" class="container tab-pane active">
-								
+							<div class="tab-content">													
+								<div id="menu1" class="container tab-pane <%=active1%>">
 									<div class="row p-2 text-right">
 										<div class="dropdown show col-md-12 align-self-end">
 											<a class="btn dropdown-toggle btn-sm" href="#"
 												role="button" id="dropdownMenuLink" data-toggle="dropdown"
 												aria-haspopup="true" aria-expanded="false" style="width: 160px;"> 정렬보기 </a>
-
 											<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 												<a class="dropdown-item" href="javascript:auctionsort('1');">인기경매순</a>
 												<a class="dropdown-item" href="javascript:auctionsort('2');">마감임박순</a>
@@ -371,8 +416,7 @@ function auctionsort(sort)
 												<a class="dropdown-item" href="javascript:auctionsort('7');">낮은가격순</a>
 											</div>
 										</div>
-									</div>
-									
+									</div>									
 									<div class="row p-2 text-center">									
 <%
 if(categoryConList != null)
@@ -383,9 +427,15 @@ if(categoryConList != null)
 										<div class="col-md-3">
 											<div class="row p-2">
 												<div class="col-md-12 col-4 align-self-center">
-													<img src="<%=root%>/<%=auctionDetailDto.getAimage()%>" class="img-fluid">
+												 <a href="javascript:mainDetail('<%=auctionDetailDto.getAno()%>','<%=auctionDetailDto.getCategory1()%>','<%=auctionDetailDto.getCategory2()%>',
+							                  '<%=auctionDetailDto.getAname()%>','<%=auctionDetailDto.getStartTime()%>','<%=auctionDetailDto.getEndTime()%>',
+							                  '<%=auctionDetailDto.getBidPrice()%>','<%=auctionDetailDto.getBidNum()%>','<%=auctionDetailDto.getAimage()%>','<%=auctionDetailDto.getAstatus()%>',
+							                  '<%=auctionDetailDto.getAcount()%>','<%=auctionDetailDto.getInitPrice()%>','<%=auctionDetailDto.getTno()%>','1');">
+													<img style="width:200px;height:250px;"class="img-fluid d-block mb-4 img-thumbnail"
+													src="<%=root%>/<%=auctionDetailDto.getAimage()%>">
+												 </a>	
 												</div>
-												<div class="col-md-12 col-8 align-self-center">
+												<div class="col-md-12 col-8">
 													<p class="mb-2">
 														<strong><%=auctionDetailDto.getAname()%></strong><br>입찰자수 : 
 														<%=auctionDetailDto.getBidNum()%>명<br>
@@ -394,16 +444,25 @@ if(categoryConList != null)
 													<p style="color: red;">
 														<strong>현재입찰가 : <%=auctionDetailDto.getBidPrice()%></strong>
 													</p>
+													 <p>조회수 : <%=auctionDetailDto.getAcount()%></p>
 												</div>
 											</div>
 										</div>
 <%
 	}
+	if(conPageNavigation != null)
+	{
+%>
+									<div class="col-12 py-3" width="100%" align="center">
+									<%=conPageNavigation.getNavigator() %>
+									</div>
+<% 	
+	}
 }
 %>
 									</div>
 								</div>	
-								<div id="menu2" class="container tab-pane fade">
+								<div id="menu2" class="container tab-pane <%=active2%>">
 									<div class="row p-2 text-center">
 <%
 if(categoryEndList != null)
@@ -414,7 +473,8 @@ if(categoryEndList != null)
 										<div class="col-md-3">
 											<div class="row p-2">
 												<div class="col-md-12 col-4 align-self-center">
-													<img src="<%=root%>/<%=auctionDetailDto.getAimage()%>" class="img-fluid">
+													<img style="width:200px;height:250px;"class="img-fluid d-block mb-4 img-thumbnail"
+													src="<%=root%>/<%=auctionDetailDto.getAimage()%>">
 												</div>
 												<div class="col-md-12 col-8 align-self-center">
 													<p class="mb-2">
@@ -422,39 +482,30 @@ if(categoryEndList != null)
 														<br><div id="categoryendtime<%=i%>"></div>
 													</p>
 													<p style="color: red;">
-														<strong>현재입찰가 : <%=auctionDetailDto.getBidPrice()%>원</strong>
-													</p>
-												</div>
+														<strong>최종입찰가 : <%=auctionDetailDto.getBidPrice()%>원</strong>
+													</p>								
+												</div>	
 											</div>
 										</div>
 <%
+		}
+		if(endPageNavigation != null)
+		{
+%>
+									<div class="col-12 py-3" width="100%" align="center">
+									<%=endPageNavigation.getNavigator() %>
+									</div>
+<% 	
 	}
 }
-%>																				
-									</div>
+%>																						
 								</div>
-								
 							</div>
-						</div>
-
-						<div class="col-12 py-3" >
-							<ul class="pagination pagination-sm">
-								<li class="page-item disabled"><a class="page-link"
-									href="#">Previous</a></li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">Next</a></li>
-							</ul>
 						</div>
 					</div>
 				</div>
-				<!--right section-->
 			</div>
-			<!--/row-->
-
-
-
+		</div>
 			<!-- 구단별 로고 >> 링크 구단페이지로 -->
 			<div id="main-gudan-logo" class="py-5">
 				<div class="container">
@@ -524,11 +575,10 @@ if(categoryEndList != null)
 					</div>
 				</div>
 			</div>
-
-
 		</div>
-	</div>
+	</div>	
 </div>
+
 
 <!-- footer영역 -->
 <%@ include file="/common/footer.jsp"%>

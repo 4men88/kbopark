@@ -13,21 +13,14 @@
 <!--header 영역-->
 <%@ include file="/common/header.jsp"%>
 <%
-List<ScheduleDto> list = (List<ScheduleDto>)request.getAttribute("sch");
-
+	Map<String, List<ScheduleDto>> map = (Map<String, List<ScheduleDto>>) request.getAttribute("monthlymap");
 %>
-
-<!--리스트가아니라 map을 받아와요
-	map<String, list> 이 맵 안에는 지금 30개가 있어요.-->
 <%
 	Calendar cal = Calendar.getInstance();
-	//int year = cal.get(Calendar.YEAR);
-	//int month = cal.get(Calendar.MONTH)+1;
-	//int day = cal.get(Calendar.DAY_OF_WEEK);
-
-	int year = request.getParameter("y") == null ? cal.get(Calendar.YEAR)
+	System.out.println(request.getParameter("y") + " " + request.getParameter("m"));
+	int year = request.getParameter("y") == null || request.getParameter("y").isEmpty() ? cal.get(Calendar.YEAR)
 			: Integer.parseInt(request.getParameter("y"));
-	int month = request.getParameter("m") == null ? cal.get(Calendar.MONTH)
+	int month = request.getParameter("m") == null || request.getParameter("m").isEmpty() ? cal.get(Calendar.MONTH)
 			: (Integer.parseInt(request.getParameter("m")) - 1);
 	int day = request.getParameter("d") == null ? cal.get(Calendar.DAY_OF_MONTH)
 			: (Integer.parseInt(request.getParameter("d")));
@@ -52,8 +45,6 @@ List<ScheduleDto> list = (List<ScheduleDto>)request.getAttribute("sch");
 	String m = (cal.get(Calendar.MONTH) + 1) + "";
 	//String d = cal.get(Calendar.DATE)+"";
 	String ymd = y + m;
-	
-	
 %>
 
 <form id="searchForm" name="searchForm" method="get" action="">
@@ -74,10 +65,10 @@ List<ScheduleDto> list = (List<ScheduleDto>)request.getAttribute("sch");
 			<div class="row justify-content-between">
 				<div class="col-6 text-left">
 					<i class="fa fa-angle-left" aria-hidden="true"></i> <a
-						href="<%=root%>/schedule/monthly.jsp">월별일정/결과 </a>
+						href="<%=root%>/ScheduleController?act=monthlyview">월별일정/결과 </a>
 				</div>
 				<div class="col-6 text-right">
-					<a href="<%=root%>/schedule/daily.jsp">일별일정/결과 </a> <i
+					<a href="<%=root%>/ScheduleController?act=daliyview">일별일정/결과 </a> <i
 						class="fa fa-angle-right" aria-hidden="true"></i>
 				</div>
 			</div>
@@ -88,10 +79,9 @@ List<ScheduleDto> list = (List<ScheduleDto>)request.getAttribute("sch");
 					<div class="calendar">
 						<p class="text-center">
 							<a
-								href="<%=root%>/schedule/monthly.jsp?y=<%=preYear%>&m=<%=preMonth%>">
-								&lt;</a>
-							<span class="Ym"><%=year%>. <%=month + 1%></span> <a
-								href="<%=root%>/schedule/monthly.jsp?y=<%=nextYear%>&m=<%=nextMonth%>">
+								href="<%=root%>/ScheduleController?act=monthlyview&y=<%=preYear%>&m=<%=preMonth%>">
+								&lt;</a> <span class="Ym"><%=year%>. <%=month + 1%></span> <a
+								href="<%=root%>/ScheduleController?act=monthlyview&y=<%=nextYear%>&m=<%=nextMonth%>">
 								&gt;</a>
 						</p>
 
@@ -109,30 +99,40 @@ List<ScheduleDto> list = (List<ScheduleDto>)request.getAttribute("sch");
 
 							<li>
 								<%
-										for (int i = 1; i < bgnWeek; i++)
-											out.println("<div>&nbsp;</div>");
-										while (cal.get(Calendar.MONTH) == month) {
-											String d = (cal.get(Calendar.DATE)) + "";
-											if (d.length() == 1) {
-												d = "0" + d;
-											}
-											String cday = ymd + d;
+									for (int i = 1; i < bgnWeek; i++)
+										out.println("<div>&nbsp;</div>");
+									while (cal.get(Calendar.MONTH) == month) {
+										String d = (cal.get(Calendar.DATE)) + "";
+										if (d.length() == 1) {
+											d = "0" + d;
+										}
+										String cday = ymd + d;
 								%>
-								<div><%=d%>
-									<div>
-									<%= %>
-									
+								<div>
+									<%=d%> <%--01, 02 03 04  --%>
+									<%
+										List<ScheduleDto> daylist = map.get(d);
+										if(daylist != null) {
+											for(ScheduleDto sdto : daylist) {
+									%>
+									<div class="text-center">
+												<%=sdto.getHometeam().substring(0,sdto.getHometeam().indexOf(' '))%>&nbsp;<%=sdto.getScore1()%>&nbsp;:&nbsp;<%=sdto.getScore2()%>&nbsp;<%=sdto.getAwayteam().substring(0,sdto.getAwayteam().indexOf(' '))%>&nbsp;(<%=sdto.getSname().substring(0,2)%>)<br>
 									</div>
-							
-								</div> 
-<%
+									<%
+											}
+										} else {
+									%>
+									<p class="text-center py-3">예정 경기가 없습니다.</p>
+									<%
+										}
+									%>
+								</div> <%
  	if (cal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY)
- 				out.println("</li><li>");//토요일이면 엔터다음줄
- 			cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE) + 1);//년월일 넣고
- 		}
- 		for (int i = cal.get(Calendar.DAY_OF_WEEK); i <= 7; i++)
- 			out.println("<div>&nbsp;</div>");//일주일넣고
- 	
+ 			out.println("</li><li>");//토요일이면 엔터다음줄
+ 		cal.set(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE) + 1);//년월일 넣고
+ 	}
+ 	for (int i = cal.get(Calendar.DAY_OF_WEEK); i <= 7; i++)
+ 		out.println("<div>&nbsp;</div>");//일주일넣고
  %>
 							
 							<li>

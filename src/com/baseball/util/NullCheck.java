@@ -29,7 +29,7 @@ public class NullCheck {
 
    private static boolean isNumber(String tmp) {
       boolean flag = true;
-      if(tmp != null) {
+      if(tmp != null && !tmp.isEmpty()) {
          int len = tmp.length();
          for(int i=0;i<len;i++) {
             int x = tmp.charAt(i) - 48;

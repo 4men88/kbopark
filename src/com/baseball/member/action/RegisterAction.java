@@ -44,13 +44,11 @@ public class RegisterAction implements Action {
 		memberdto.setTel3(request.getParameter("tel3"));
 
 		int cnt = MemberServiceImpl.getMemberService().registMember(memberdto);
-		if(cnt!=0) {
-			request.setAttribute("registInfo", memberdto);
-			path="/member/join/joinok.jsp";
-		}else {
-			System.out.println(cnt);
-			path="/member/join/joinfail.jsp";
-		}
+		request.setAttribute("registInfo", memberdto);
+		path="/join/joinresult.jsp?cnt="+cnt;
+		
+		
+		
 		return path;
 	}
 

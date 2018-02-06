@@ -8,11 +8,13 @@ public class GudanActionFactory {
 	private static Action gudanAction;
 	private static Action stadiumAction;
 	private static Action weeklyAction;
+	private static Action timeAction;
 	
 	static {
 		gudanAction = new GudanAction();
 		stadiumAction = new StadiumAction();
 		weeklyAction = new WeeklyAction();
+		timeAction = new TimeAction();
 	}
 
 	public static Action getGudanAction() {
@@ -26,13 +28,9 @@ public class GudanActionFactory {
 	public static Action getWeeklyAction() {
 		return weeklyAction;
 	}
-	
-/*	private static Action boardWriteAction;
 
-	static {
-		boardWriteAction = new BoardWriteAction();
+	public static Action getTimeAction() {
+		return timeAction;
 	}
-	
-	getta
-*/
+
 }

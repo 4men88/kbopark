@@ -35,6 +35,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			StringBuffer sql = new StringBuffer();
 			//  입찰자 많은순
 			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano\n");
+			sql.append("	   ,to_char(a_ad.starttime, 'yyyy.mm.dd.hh24.mi.ss') as starttime, a_ad.acount, a_ad.initprice, a_ad.tno, a_ad.category1, a_ad.category2\n");
 			sql.append("from auction_image ai,( \n");
 			sql.append("                        select a.*, ad.bidprice, ad.bidnum\n");
 			sql.append("                        from auction a,( \n");
@@ -59,6 +60,12 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 				auctionDetailDto.setAimage(rs.getString("aimage"));
 				auctionDetailDto.setAstatus(rs.getInt("astatus"));
 				auctionDetailDto.setAno(rs.getInt("ano"));
+				auctionDetailDto.setStartTime(rs.getString("starttime"));
+				auctionDetailDto.setAcount(rs.getInt("acount"));
+				auctionDetailDto.setInitPrice(rs.getInt("initprice"));
+				auctionDetailDto.setTno(rs.getInt("tno"));
+				auctionDetailDto.setCategory1(rs.getString("category1"));
+				auctionDetailDto.setCategory2(rs.getString("category2"));
 				
 				list.add(auctionDetailDto);
 				if(++cnt == 4)
@@ -86,6 +93,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			StringBuffer sql = new StringBuffer();
 			//마감임박순
 			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano \n");
+			sql.append("	   ,to_char(a_ad.starttime, 'yyyy.mm.dd.hh24.mi.ss') as starttime, a_ad.acount, a_ad.initprice, a_ad.tno, a_ad.category1, a_ad.category2\n");
 			sql.append("from auction_image ai,( \n");
 			sql.append("                        select a.*, ad.bidprice, ad.bidnum \n");
 			sql.append("                        from auction a,( \n");
@@ -110,6 +118,12 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 				auctionDetailDto.setAimage(rs.getString("aimage"));
 				auctionDetailDto.setAstatus(rs.getInt("astatus"));
 				auctionDetailDto.setAno(rs.getInt("ano"));
+				auctionDetailDto.setStartTime(rs.getString("starttime"));
+				auctionDetailDto.setAcount(rs.getInt("acount"));
+				auctionDetailDto.setInitPrice(rs.getInt("initprice"));
+				auctionDetailDto.setTno(rs.getInt("tno"));
+				auctionDetailDto.setCategory1(rs.getString("category1"));
+				auctionDetailDto.setCategory2(rs.getString("category2"));
 				
 				list.add(auctionDetailDto);
 				if(++cnt == 4)
@@ -138,6 +152,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			StringBuffer sql = new StringBuffer();
 			//조회수 높은순
 			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano \n");
+			sql.append("	   ,to_char(a_ad.starttime, 'yyyy.mm.dd.hh24.mi.ss') as starttime, a_ad.acount, a_ad.initprice, a_ad.tno, a_ad.category1, a_ad.category2\n");
 			sql.append("from auction_image ai,( \n");
 			sql.append("                        select a.*, ad.bidprice, ad.bidnum \n");
 			sql.append("                        from auction a,( \n");
@@ -162,6 +177,12 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 				auctionDetailDto.setAimage(rs.getString("aimage"));
 				auctionDetailDto.setAstatus(rs.getInt("astatus"));
 				auctionDetailDto.setAno(rs.getInt("ano"));
+				auctionDetailDto.setStartTime(rs.getString("starttime"));
+				auctionDetailDto.setAcount(rs.getInt("acount"));
+				auctionDetailDto.setInitPrice(rs.getInt("initprice"));
+				auctionDetailDto.setTno(rs.getInt("tno"));
+				auctionDetailDto.setCategory1(rs.getString("category1"));
+				auctionDetailDto.setCategory2(rs.getString("category2"));
 				
 				list.add(auctionDetailDto);
 				if(++cnt == 4)
@@ -189,6 +210,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			StringBuffer sql = new StringBuffer();
 			// 등록시각 최신순
 			sql.append("select a_ad.aname, to_char(a_ad.endtime, 'yyyy.mm.dd.hh24.mi.ss') as endtime, a_ad.bidprice, a_ad.bidnum, ai.aimage, a_ad.astatus, a_ad.ano \n");
+			sql.append("	   ,to_char(a_ad.starttime, 'yyyy.mm.dd.hh24.mi.ss') as starttime, a_ad.acount, a_ad.initprice, a_ad.tno, a_ad.category1, a_ad.category2\n");
 			sql.append("from auction_image ai,( \n");
 			sql.append("                        select a.*, ad.bidprice, ad.bidnum \n");
 			sql.append("                        from auction a,( \n");
@@ -213,6 +235,12 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 				auctionDetailDto.setAimage(rs.getString("aimage"));
 				auctionDetailDto.setAstatus(rs.getInt("astatus"));
 				auctionDetailDto.setAno(rs.getInt("ano"));
+				auctionDetailDto.setStartTime(rs.getString("starttime"));
+				auctionDetailDto.setAcount(rs.getInt("acount"));
+				auctionDetailDto.setInitPrice(rs.getInt("initprice"));
+				auctionDetailDto.setTno(rs.getInt("tno"));
+				auctionDetailDto.setCategory1(rs.getString("category1"));
+				auctionDetailDto.setCategory2(rs.getString("category2"));
 				
 				list.add(auctionDetailDto);
 				if(++cnt == 4)
@@ -242,7 +270,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			// 전체보기 오늘 등록된 개수
 			sql.append("select count(*) as count \n");
 			sql.append("from auction \n");
-			sql.append("where starttime = sysdate \n");
+			sql.append("where to_char(starttime, 'yyyy.mm.dd') =to_char(sysdate, 'yyyy.mm.dd') \n");
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
 			rs.next();
@@ -252,7 +280,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			StringBuffer sql2 = new StringBuffer();
 			sql2.append("select count(*) as count\n");
 			sql2.append("from auction\n");
-			sql2.append("where starttime = sysdate and category1 = 1\n");
+			sql2.append("where  to_char(starttime, 'yyyy.mm.dd') =to_char(sysdate, 'yyyy.mm.dd') and category1 = 1\n");
 			pstmt = conn.prepareStatement(sql2.toString());
 			rs = pstmt.executeQuery();
 			rs.next();
@@ -262,7 +290,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			StringBuffer sql3 = new StringBuffer();
 			sql3.append("select count(*) as count\n");
 			sql3.append("from auction\n");
-			sql3.append("where starttime = sysdate and category1 = 2\n");
+			sql3.append("where  to_char(starttime, 'yyyy.mm.dd') =to_char(sysdate, 'yyyy.mm.dd') and category1 = 2\n");
 			pstmt = conn.prepareStatement(sql3.toString());
 			rs = pstmt.executeQuery();
 			rs.next();
@@ -272,7 +300,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			StringBuffer sql4 = new StringBuffer();
 			sql4.append("select count(*) as count\n");
 			sql4.append("from auction\n");
-			sql4.append("where starttime = sysdate and category1 = 3\n");
+			sql4.append("where  to_char(starttime, 'yyyy.mm.dd') =to_char(sysdate, 'yyyy.mm.dd') and category1 = 3\n");
 			pstmt = conn.prepareStatement(sql4.toString());
 			rs = pstmt.executeQuery();
 			rs.next();
@@ -282,7 +310,7 @@ public class AuctionMainDaoImpl implements AuctionMainDao {
 			StringBuffer sql5 = new StringBuffer();
 			sql5.append("select count(*) as count\n");
 			sql5.append("from auction\n");
-			sql5.append("where starttime = sysdate and category1 =4\n");
+			sql5.append("where  to_char(starttime, 'yyyy.mm.dd') =to_char(sysdate, 'yyyy.mm.dd') and category1 =4\n");
 			pstmt = conn.prepareStatement(sql5.toString());
 			rs = pstmt.executeQuery();
 			rs.next();

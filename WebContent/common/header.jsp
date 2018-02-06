@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+	pageEncoding="EUC-KR" import="java.util.*,java.text.*"%>
 <%@ include file="/common/setting.jsp"%>
 
 <header class="sticky-top" style="background-color: white;">
@@ -57,7 +57,8 @@ if(memberDto!=null){
 						<div class="col-md-12">
 							<span style="margin-right: 20px;"><%=memberDto.getName()%>님 반갑습니다</span>
 							<a href="<%=root %>/kbopark?act=logout" style="margin-right: 20px">로그아웃</a>
-							<a href="<%=root %>/kbopark?act=mvmypage">마이페이지</a>
+<%-- 							<a href="<%=root %>/mypage?act=mvmypage">마이페이지</a> --%>
+							<a href="<%=root %>/myinfo?act=mvmyinfo">마이페이지</a>
 						</div>
 					</div>
 				</div>
@@ -75,7 +76,7 @@ if(memberDto!=null){
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item mx-1"><a class="nav-link" id = "schedule" href="<%=root%>/ScheduleController?act=viewschedule">일정/결과</a></li>
+					<li class="nav-item mx-1"><a class="nav-link" id = "schedule" href="<%=root%>/ScheduleController?act=monthlyview&y=&m=">일정/결과</a></li>
 					<li class="nav-item mx-1"><a class="nav-link" href="<%=root%>/auctioncontroller?act=mainlist">루키경매</a></li>
 					<li class="nav-item mx-1"><a class="nav-link" href="#">NEWS</a></li>
 					<li class="nav-item mx-1"><a class="nav-link" href="<%=root%>/gudan?act=viewgudan">구단커뮤니티</a></li>
@@ -119,7 +120,7 @@ if(memberDto!=null){
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item mx-1"><a class="nav-link" id = "schedule" href="<%=root%>/ScheduleController?act=viewschedule">일정/결과</a></li>
+					<li class="nav-item mx-1"><a class="nav-link" id = "schedule" href="<%=root%>/ScheduleController?act=monthlyview&y=&m=">일정/결과</a></li>
 					<li class="nav-item mx-1"><a class="nav-link" href="<%=root%>/auctioncontroller?act=mainlist">루키경매</a></li>
 					<li class="nav-item mx-1"><a class="nav-link" href="#">NEWS</a></li>
 					<li class="nav-item mx-1"><a class="nav-link" href="<%=root%>/gudan?act=viewgudan">구단커뮤니티</a></li>

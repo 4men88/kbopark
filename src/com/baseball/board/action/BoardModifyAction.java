@@ -11,6 +11,7 @@ import com.baseball.board.model.BoardDto;
 import com.baseball.board.service.BoardServiceImpl;
 import com.baseball.factory.BoardActionFactory;
 import com.baseball.util.NullCheck;
+import com.baseball.util.StringEncoder;
 
 public class BoardModifyAction implements Action {
 
@@ -24,8 +25,8 @@ public class BoardModifyAction implements Action {
 		if(seq != 0) {
 			BoardDto BoardDto = new BoardDto();
 			BoardDto.setBno(seq);
-			BoardDto.setBname(request.getParameter("subject").replace("<", "&lt;").replace(">", "&gt"));
-			BoardDto.setBdetail(request.getParameter("content"));
+			BoardDto.setBname(StringEncoder.isoToMain(request.getParameter("subject").replace("<", "&lt;").replace(">", "&gt")));
+			BoardDto.setBdetail(StringEncoder.isoToMain(request.getParameter("content")));
 			int cnt = BoardServiceImpl.getBoardService().modifyArticle(BoardDto);
 			if(cnt != 0) {
 				path = BoardActionFactory.getBoardViewAction().execute(request, response);

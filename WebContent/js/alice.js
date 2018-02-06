@@ -12,7 +12,6 @@ Alice.config = {
 	uploadroot: ''
 };
 
-
 (function() {
 
 Web.EditorManager = {

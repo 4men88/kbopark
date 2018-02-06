@@ -16,6 +16,7 @@ public class DeleteBoardAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int seq = Integer.parseInt(request.getParameter("bno"));
+		System.out.println("delete board===="+seq);
 		int cnt = BoardDaoImpl.getBoardDao().deleteArticle(seq);
 		String path = "/admin/board/delboard.jsp?cnt="+cnt;
 		return path;

@@ -4,10 +4,10 @@
 <%@ include file="/common/header.jsp"%>
 <%
 List<BoardDto> list = (List<BoardDto>) request.getAttribute("articlelist");
-List<BoardDto> bestlist = (List<BoardDto>) request.getAttribute("bestlist");
 GudanDto gudanDto = (GudanDto) session.getAttribute("gudandto");
 PageNavigation navigator = (PageNavigation) request.getAttribute("navigator");
 %>
+<script type="text/javascript" src="<%=root%>/js/httpRequest.js"></script>
 <script type="text/javascript">
 control = "/board";
 
@@ -15,48 +15,67 @@ function searchArticle() {
 	document.getElementById("searchForm").action = "<%=root%>/board";
 	document.getElementById("searchForm").submit();
 }
+
+function startTime() {
+	var params = "act=bestarticle&tno=<%=gudanDto.getTno()%>";
+	sendRequest("<%=root%>/board", params, bestList, "GET");
+}
+
+function bestList() {
+	if(httpRequest.readyState == 4) {
+		if(httpRequest.status == 200) {
+			var listxml = httpRequest.responseXML;
+		 	makelist(listxml);
+			window.setTimeout("startTime();", 5000);
+		} 
+	}
+}
+
+function makelist(data) {
+	var output = "";
+	var len = data.getElementsByTagName("board").length;
+	
+	if(len == 0) {
+		output = "<div class=\"col-md-12 text-center py-3\"><h6>베스트글이 존재하지 않습니다.</h6></div>";
+	} else {	
+	for(var i=0;i<len;i++) {
+		var bno = data.getElementsByTagName("bno")[i].firstChild.data;
+		var bname = data.getElementsByTagName("bname")[i].firstChild.data;
+		var replycnt = data.getElementsByTagName("replycnt")[i].firstChild.data;
+		
+		if(i%5==0) {
+			output += "<div class=\"col-md-6\">";
+			output += "<ul class=\"list-group\">";
+		}
+		output += "<li class=\"list-group-item over-subject\" style=\"border: none;\">";
+		output += "<span class=\"bestnum\" ";
+		if(i==0||i==1||i==2) {
+			output += "style=\"color: red;\"";
+		}
+		output += ">";
+		output += (i+1) + "</span>";
+		output += "<span id=\"bestsubject\">";
+		output += "<a href=\"javascript:viewArticle('<%=tno%>','1','','','" + bno + "');\">";
+		output += bname + "...(" + replycnt + ")</a>";
+		output += "</span>";
+		output += "</li>";
+		if(i%5==4) {
+			output += "</ul>";
+			output += "</div>";
+		} 
+	}
+	}
+	document.getElementById("bestboard").innerHTML = output;
+}
+
+$(document).ready(function(){
+	startTime();
+});
+
 </script>
 
-<div class="py-5 text-center opaque-overlay"
-	style="background-image: url(<%=root%>/img/etc/grass.jpg);">
-	<div class="container py-5">
-		<div class="row">
-			<div class="col-md-12 text-white">
-				<h1 class="display-3"><%=gudanDto.getEnname() %></h1>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<div id="current-category">
-				<nav aria-label="breadcrumb" role="navigation">
-					<ol class="breadcrumb justify-content-end"
-						style="background-color: white;">
-						<li class="breadcrumb-item"><i class="fa fa-home mr-2"
-							aria-hidden="true"></i><a href="<%=root%>/gudan?act=viewgudan">구단</a></li>
-						<li class="breadcrumb-item"><a href="<%=root%>/gudan?act=mvhome&tno=<%=tno %>"><%=gudanDto.getTname() %></a></li>
-						<li class="breadcrumb-item active" aria-current="page">커뮤니티</li>
-					</ol>
-				</nav>
-			</div>
-		</div>
-	</div>
-</div>
-<div id="gudan-nav">
-	<div class="container">
-		<div class="d-flex justify-content-center">
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvhome&tno=<%=gudanDto.getTno() %>">메인</a></div>
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvstadium&sno=<%=gudanDto.getSno1() %>">구장안내</a></div>
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvweekly&tno=<%=gudanDto.getTno() %>">스케줄</a></div>
-			<div class="gudan-nav-inner p-3"><a href="javascript:listArticle('<%=gudanDto.getTno()%>','1','','');">커뮤니티</a></div>
-		</div>
-		<div class="border-b p-0"></div>
-	</div>
-</div>
-
+<!-- 구단네비게이터 -->
+<%@ include file="/gudan/gudan_nav.jsp"%>
 
 <div id="comm-best" class="py-5">
 	<div class="container py-5">
@@ -64,39 +83,11 @@ function searchArticle() {
 			<strong>실시간베스트</strong>
 		</h5>
 		<div class="border-b-strong"></div>
-		<div class="row">
-<%
-int len = bestlist.size();
-for(int i=0;i<len;i++) {
-	BoardDto bestBoardDto = bestlist.get(i);
-	if(i%5==0) {
-%>		
-			<div class="col-md-6 py-3">
-				<ul class="list-group">
-<%
-	} 
-%>
-				<li class="list-group-item" style="border: none;">
-				<span class="bestnum" 
-				<%if(i==0||i==1||i==2) {%>
-					style="color: red;"
-				<%} %>
-				><%=i+1%></span>
-				 <a href="javascript:viewArticle('<%=tno%>','<%=pg%>','','','<%=bestBoardDto.getBno()%>');"><%=bestBoardDto.getBname()%>...(<%=bestBoardDto.getTotalreply()%>)</a></li>
-<%
-	if(i%5==4) {
-%>		
-				</ul>
-			</div>
-<%
-	} 
-}
-%>		
-		</div> <!-- row -->
+		<div id="bestboard" class="row"></div> <!-- row -->
 	</div>
 </div>
 
-<div id="communitylist" class="pt-5">
+<div id="communitylist">
 	<div class="container">
 	<div class="d-flex">
 		<div class="mr-auto p-2">
@@ -106,7 +97,7 @@ for(int i=0;i<len;i++) {
 		<div class="p-2">
 				<form id="searchForm" name="searchForm" method="get">
 <input type="hidden" id="act" name="act" value="listarticle">
-<input type="hidden" id="tno" name="tno" value="<%=tno%>">
+<input type="hidden" id="tno" name="tno" value="<%=gudanDto.getTno()%>">
 <input type="hidden" id="pg" name="pg" value="1">
 					<div class="form-row">
 						<div class="form-group col-md-4">
@@ -141,15 +132,14 @@ if(size != 0) {
 %>	
 			<a href="javascript:viewArticle('<%=tno%>','<%=pg%>','<%=key%>','<%=word%>','<%=boardDto.getBno()%>');"
 				class="list-group-item list-group-item-action flex-column align-items-start">
-				<div class="row">
-					<div class="col-md-2 text-center align-self-center">
-						<img src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
-							width="100%" style="min-height: 100px; max-height: 100px;">
+				<div class="row" style="height: 140px;">
+					<div class="col-md-2 col-4 text-center align-self-center">
+						<img src="<%=root%>/img/gudan/emblem/emblem-doosan.png" class="img-fluid">
 					</div>
-					<div class="col-md-10">
+					<div class="col-md-10 col-8 align-self-center">
 						<h5 class="mb-1"><%=boardDto.getBname() %>...(<%=boardDto.getTotalreply() %>)</h5>
 						<small><%=boardDto.getMname() %> | <%=boardDto.getBdate() %> | 조회수: <%=boardDto.getBcount() %></small>
-						<p class="mt-2 mb-0"><%=boardDto.getBdetail() %></p>
+						<div class="over-detail" style="height: 65px;"><p class="mt-2 mb-0 over-detail"><%=boardDto.getBdetail().replaceAll("<div>", "<br>").replaceAll("</div>", "") %></p></div>
 					</div>
 				</div>
 			</a>			
@@ -158,7 +148,7 @@ if(size != 0) {
 } else {
 %>
 
-<h6>작성된 글이 없습니다.</h6>
+<h6 class="text-center py-3">작성된 글이 없습니다.</h6>
 
 <%
 }
@@ -193,7 +183,7 @@ if(size != 0) {
 		<div class="row">
 			<div class="p-0 col-md-1 col-12"></div>
 			<div class="p-0 col-md-1 col-12 text-center main-doosan-mobile">
-				<a href="#"> <img
+				<a href="<%=root%>/gudan?act=mvhome&tno=2"> <img
 					src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
 					class="img-fluid">
 				</a>
@@ -219,7 +209,7 @@ if(size != 0) {
 				</a>
 			</div>
 			<div class="p-0 col-md-1 col-12 text-center main-doosan-pc">
-				<a href="#"> <img
+				<a href="<%=root%>/gudan?act=mvhome&tno=2"> <img
 					src="<%=root%>/img/gudan/emblem/emblem-doosan.png"
 					class="img-fluid">
 				</a>
@@ -230,7 +220,7 @@ if(size != 0) {
 				</a>
 			</div>
 			<div class="p-0 col-md-1 col-12 text-center">
-				<a href="#"> <img
+				<a href="<%=root%>/gudan?act=mvhome&tno=8"> <img
 					src="<%=root%>/img/gudan/emblem/emblem-hanwha.png"
 					class="img-fluid">
 				</a>

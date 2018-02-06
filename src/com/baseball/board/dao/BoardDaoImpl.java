@@ -135,18 +135,18 @@ public class BoardDaoImpl implements BoardDao {
 		int cnt = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		System.out.println("BoardDI modifyArticle ¡¯¿‘");
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
 
 			sql.append("UPDATE board \n");
-			sql.append("SET bname = ?, bdetail = ?, tno = ? \n");
-			sql.append("WHERE bno = ? LIMIT 1");
+			sql.append("SET bname = ?, bdetail = ? \n");
+			sql.append("WHERE bno = ?");
 			pstmt = conn.prepareStatement(sql.toString());
 			int idx = 0;
 			pstmt.setString(++idx, boardDto.getBname());
 			pstmt.setString(++idx, boardDto.getBdetail());
-			pstmt.setInt(++idx, boardDto.getTno());
 			pstmt.setInt(++idx, boardDto.getBno());
 			cnt = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -208,7 +208,7 @@ public class BoardDaoImpl implements BoardDao {
 				else
 					sql.append("	  	  and " + key + " like '%'||?||'%' \n");
 			}
-			sql.append("	  	  order by bdate desc \n");
+			sql.append("	  	  order by bno desc \n");
 			sql.append("	 	  ) a \n");
 			sql.append("	  where rownum <= ? \n");
 			sql.append("	 ) b \n");
@@ -396,6 +396,47 @@ public class BoardDaoImpl implements BoardDao {
 		}
 		System.out.println("BoardDI nseq >> " + nseq);
 		return nseq;
+	}
+
+	@Override
+	public List<BoardDto> hotBoardArticle(int tno) {
+		List<BoardDto> hotlist = new ArrayList<BoardDto>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("select a.* \n");
+			sql.append("from (  \n");
+			sql.append("	select b.bno, mid, bname, bdetail, tno, bcount, bstatus, bdate, (SELECT COUNT(*) FROM board_reply r WHERE r.bno=b.bno) replycnt \n"); 
+			sql.append("	from board b \n");
+			sql.append("	where tno = ? \n");
+			sql.append("	order by replycnt desc, bcount desc) a  \n");
+			sql.append("where rownum <= 3");
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, tno);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				BoardDto boardDto = new BoardDto();
+				boardDto.setBno(rs.getInt("bno"));
+				boardDto.setMid(rs.getString("mid"));
+				boardDto.setBname(rs.getString("bname"));
+				boardDto.setBdetail(rs.getString("bdetail"));
+				boardDto.setTno(rs.getInt("tno"));
+				boardDto.setBcount(rs.getInt("bcount"));
+				boardDto.setBdate(rs.getString("bdate"));
+				boardDto.setBstatus(rs.getInt("bstatus"));
+				boardDto.setTotalreply(rs.getInt("replycnt"));
+				hotlist.add(boardDto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		System.out.println("BoardDI hotboardlist >> " + hotlist.size());
+		return hotlist;
 	}	
 	
 }

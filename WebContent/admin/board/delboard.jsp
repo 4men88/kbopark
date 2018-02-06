@@ -2,7 +2,7 @@
     pageEncoding="EUC-KR"%>
 <%@ include file="/common/header.jsp" %>
 <%
-int cnt = Integer.parseInt(request.getParameter("rs"));
+int cnt = Integer.parseInt(request.getParameter("cnt"));
 if(cnt!=0){
 %>
 <script>

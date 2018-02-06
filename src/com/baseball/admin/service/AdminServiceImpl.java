@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.baseball.admin.dao.AdminDao;
 import com.baseball.admin.dao.AdminDaoImpl;
 import com.baseball.admin.model.NoticeDto;
 import com.baseball.admin.util.PageNavi;
 import com.baseball.board.model.BoardDto;
 import com.baseball.member.model.MemberDetailDto;
+import com.baseball.schedule.scheduleDto.ScheduleDto;
 import com.baseball.util.Constance;
 
 
@@ -102,6 +104,27 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public List<BoardDto> boardlist() {
 		return AdminDaoImpl.getAdminDao().boardlist();
+	}
+
+
+
+	@Override
+	public List<NoticeDto> noticeList() {
+		return AdminDaoImpl.getAdminDao().noticeList();
+	}
+
+
+
+	@Override
+	public List<ScheduleDto> getPlayToday() {
+		return AdminDaoImpl.getAdminDao().getPlayToday();
+	}
+
+
+
+	@Override
+	public int deleteNotice(int nno) {
+		return AdminDaoImpl.getAdminDao().deleteNotice(nno);
 	}
 
 

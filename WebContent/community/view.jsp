@@ -10,6 +10,25 @@ BoardDto boardDto = (BoardDto) request.getAttribute("article");
 <script type="text/javascript">
 control = "/board";
 
+var bestHttpRequest = null;
+
+function sendBestRequest(url, params, callback, method){
+	bestHttpRequest = getXMLHttpRequest();
+	var httpMethod = method ? method : 'GET';
+	if(httpMethod != 'GET' && httpMethod != 'POST'){
+		httpMethod = 'GET';
+	}
+	var httpParams = (params == null || params == '') ? null : params;
+	var httpUrl = url;
+	if(httpMethod == 'GET' && httpParams != null){
+		httpUrl = httpUrl + "?" + httpParams;
+	}
+	bestHttpRequest.open(httpMethod, httpUrl, true);
+	bestHttpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	bestHttpRequest.onreadystatechange = callback;
+	bestHttpRequest.send(httpMethod == 'POST' ? httpParams : null);
+}
+
 function notifyArticle() {
 	document.getElementById("cact").value = "notifyarticle";
 	document.getElementById("ctno").value = "<%=tno%>";
@@ -36,13 +55,24 @@ function moveReply() {
 }
 
 function replyWrite(seq) {
+<%	
+	if(memberDto != null) {
+%>
 	var recontent = document.getElementById("recontent").value;
 	document.getElementById("recontent").value = "";
 	if(recontent != "") {
 		var url = "<%=root%>/reply";
 		var params = "act=writeReply&seq=" + seq + "&recontent=" + recontent;
-		sendRequest(url, params, replyList, "POST");
+		sendRequest(url, params, replyList, "GET");
 	}
+<%
+	} else {
+%>
+		alert("로그인이 필요합니다");
+		document.location.href = "<%=root%>/login/login.jsp";
+<%
+	}
+%>
 }
 
 function replyDelete(reno, seq) {
@@ -73,7 +103,7 @@ function makelist(data) {
 		
 		output += "<tr>";
 		output += "<td>" + data.getElementsByTagName("name")[i].firstChild.data + "</td>";
-		output += "<td nowrap colspan=\"3\">" + data.getElementsByTagName("recontent")[i].firstChild.data;
+		output += "<td colspan=\"3\" style=\"word-break: break-all\">" + data.getElementsByTagName("recontent")[i].firstChild.data;
 <%
 	if(memberDto != null) {
 %>		
@@ -91,51 +121,67 @@ function makelist(data) {
 	document.getElementById("replylist").innerHTML = output;
 }
 
-window.onload = function() {
-	var url = "<%=root%>/reply";
+function startReply() {
 	var params = "act=listReply&seq=<%=boardDto.getBno()%>";
-	sendRequest(url, params, replyList, "GET");
+	sendRequest("<%=root%>/reply", params, replyList, "GET");
 }
-</script>
-<div class="py-5 text-center opaque-overlay"
-	style="background-image: url(<%=root%>/img/etc/grass.jpg);">
-	<div class="container py-5">
-		<div class="row">
-			<div class="col-md-12 text-white">
-				<h1 class="display-3"><%=gudanDto.getEnname() %></h1>
-			</div>
-		</div>
-	</div>
-</div>
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<div id="current-category">
-				<nav aria-label="breadcrumb" role="navigation">
-					<ol class="breadcrumb justify-content-end"
-						style="background-color: white;">
-						<li class="breadcrumb-item"><i class="fa fa-home mr-2"
-							aria-hidden="true"></i><a href="<%=root%>/gudan?act=viewgudan">구단</a></li>
-						<li class="breadcrumb-item"><a href="<%=root%>/gudan?act=mvhome&tno=<%=tno %>"><%=gudanDto.getTname() %></a></li>
-						<li class="breadcrumb-item active" aria-current="page">메인</li>
-					</ol>
-				</nav>
-			</div>
-		</div>
-	</div>
-</div>
-<div id="gudan-nav">
-	<div class="container">
-		<div class="d-flex justify-content-center">
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvhome&tno=<%=tno %>">메인</a></div>
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvstadium&sno=<%=gudanDto.getSno1() %>">구장안내</a></div>
-			<div class="gudan-nav-inner p-3"><a href="<%=root%>/gudan?act=mvweekly&tno=<%=tno %>">스케줄</a></div>
-			<div class="gudan-nav-inner p-3"><a href="javascript:listArticle('<%=tno%>');">커뮤니티</a></div>
-		</div>
-		<div class="border-b p-0"></div>
-	</div>
-</div>
+$(document).ready(function(){
+	startReply();
+	startTime();
+});
+
+function startTime() {
+	var params = "act=bestarticle&tno=<%=gudanDto.getTno()%>";
+	sendBestRequest("<%=root%>/board", params, bestList, "GET");
+}
+
+function bestList() {
+	if(bestHttpRequest.readyState == 4) {
+		if(bestHttpRequest.status == 200) {
+			var listxml = bestHttpRequest.responseXML;
+			makebestlist(listxml);
+			window.setTimeout("startTime();", 5000);
+		} else {
+			alert("error: " + bestHttpRequest.status);
+		}
+	}
+}
+
+function makebestlist(data) {
+	var output = "";
+	var len = data.getElementsByTagName("board").length;
+	if(len == 0) {
+		output = "<div class=\"col-md-12 text-center py-3\"><h6>베스트글이 존재하지 않습니다.</h6></div>";
+	} else {	
+		output += "<ul class=\"list-group\">";
+		for(var i=0;i<len;i++) {
+			var bno = data.getElementsByTagName("bno")[i].firstChild.data;
+			var bname = data.getElementsByTagName("bname")[i].firstChild.data;
+			var replycnt = data.getElementsByTagName("replycnt")[i].firstChild.data;
+			
+			output += "<li class=\"list-group-item over-subject\" style=\"border: none;\">";
+			output += "<span class=\"bestnum\" ";
+			if(i==0||i==1||i==2) {
+				output += "style=\"color: red;\"";
+			}
+			output += ">";
+			output += (i+1) + "</span>";
+			output += "<span id=\"bestsubject\">";
+			output += "<a href=\"javascript:viewArticle('<%=tno%>','1','','','" + bno + "');\">";
+			output += bname + "...(" + replycnt + ")</a>";
+			output += "</span>";
+			output += "</li>";
+		}
+		output += "</ul>";
+	}
+	document.getElementById("bestboard").innerHTML = output;
+}
+
+</script>
+
+<!-- 구단네비게이터 -->
+<%@ include file="/gudan/gudan_nav.jsp"%>
 
 <div id="comm-best">
 	<div class="container py-5">
@@ -182,7 +228,7 @@ if(memberDto != null && memberDto.getId().equals(boardDto.getMid())) {
 				</div>
 
 				<div class="border-b my-2"></div>
-				<p class="p-3 my-0"><%=boardDto.getBdetail() %></p>
+				<div class="px-3"><p class="my-0"><%=boardDto.getBdetail() %></p></div>
 				<div class="border-b my-2"></div>
 				<div class="d-flex">
 					<div class="mr-auto px-2">
@@ -256,36 +302,9 @@ if(memberDto != null && memberDto.getId().equals(boardDto.getMid())) {
 					<strong>실시간베스트</strong>
 				</h5>
 				<div class="border-b-strong"></div>
-				<ul class="list-group">
-					<li class="list-group-item" style="border: none;"><span
-						class="bestnum" style="color: red;">1</span> ㅇㅅㅇ들 일이 이렇게 커진...
-						(157)</li>
-					<li class="list-group-item"><span class="bestnum"
-						style="color: red;">2</span> 하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum"
-						style="color: red;">3</span> 하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum">4</span>
-						하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum">5</span>
-						하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item" style="border: none;"><span
-						class="bestnum">6</span> ㅇㅅㅇ들 일이 이렇게 커진... (157)</li>
-					<li class="list-group-item"><span class="bestnum">7</span>
-						하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum">8</span>
-						하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum">9</span>
-						하하하하하 그러고보니 방탄소... (65)</li>
-					<li class="list-group-item"><span class="bestnum">10</span>
-						하하하하하 그러고보니 방... (65)</li>
-				</ul>
+				<div id="bestboard"></div>
 			</div>
-
 		</div>
-
-
-
-
 	</div>
 </div>
 

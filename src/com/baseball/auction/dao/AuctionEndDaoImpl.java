@@ -25,6 +25,7 @@ public class AuctionEndDaoImpl implements AuctionEndDao {
 	@Override
 	public int auctionStatusEnd(String ano) {
 		int cnt = 0;
+		int cnt_member = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -42,9 +43,8 @@ public class AuctionEndDaoImpl implements AuctionEndDao {
 			pstmt.executeUpdate();
 			pstmt.close();
 			
-			// 낙찰회원 찾기
+			// 낙찰회원 찾기, biddate 추가
 			StringBuffer successful_bid = new StringBuffer();	
-			 //biddate 추가
 			successful_bid.append("select  auction_detail.ano, auction_detail.mid,  auction_detail.bidprice\n");
 			successful_bid.append("from auction_detail, (\n");
 			successful_bid.append("                      select ano, max(bidprice) as bidprice \n");
@@ -74,31 +74,46 @@ public class AuctionEndDaoImpl implements AuctionEndDao {
 				pstmt.setInt(3,auctionDetailDto.getBidPrice());
 				pstmt.executeUpdate();
 				pstmt.close();
-				
+			}
+			
+			// 낙찰받지 못한 회원 루키 원래대로 + 
+			StringBuffer fail_bid = new StringBuffer();	
+			fail_bid.append("select ano, mid, bidprice\n");
+			fail_bid.append("from auction_detail \n");
+			fail_bid.append("where ano = ? \n");
+			pstmt = conn.prepareStatement(fail_bid.toString());
+			pstmt.setString(1,ano);
+			rs = pstmt.executeQuery();
+			while(rs.next())	//입찰자중 입찰받지 못한 목록 
+			{
+				if(++cnt_member == 1)	//낙찰자 제외하고 
+					continue;
+				AuctionDetailDto auctionDetailDto  = new AuctionDetailDto();
+				auctionDetailDto.setAno(rs.getInt("ano"));
+				auctionDetailDto.setMid(rs.getString("mid"));
+				auctionDetailDto.setBidPrice(rs.getInt("bidprice"));
 				//회원상세 테이블에서 낙찰자 루키 감소시키고
-				StringBuffer finalprice_minus = new StringBuffer();	
-				finalprice_minus.append("update member_detail \n");
-				finalprice_minus.append("set rookie = rookie - ?");
-				finalprice_minus.append("where mid = ?");
-				pstmt = conn.prepareStatement(finalprice_minus.toString());
+				StringBuffer fail_bid_member_detail = new StringBuffer();	
+				fail_bid_member_detail.append("update member_detail \n");
+				fail_bid_member_detail.append("set rookie = rookie + ?");
+				fail_bid_member_detail.append("where mid = ?");
+				pstmt = conn.prepareStatement(fail_bid_member_detail.toString());
 				pstmt.setInt(1,auctionDetailDto.getBidPrice());
 				pstmt.setString(2, auctionDetailDto.getMid());
 				pstmt.executeUpdate();
 				pstmt.close();
-				
-				//루키상세 테이블에 낙찰내역 인서트
-				StringBuffer insert_rookie_detail = new StringBuffer();	
-				insert_rookie_detail.append("insert into rookie_detail(mid, price, paydate, rtype, rdetail)");
-				insert_rookie_detail.append("values(?, ?, sysdate, '2', '낙찰')");
-				pstmt = conn.prepareStatement(insert_rookie_detail.toString());
+				//루키상세 테이블에 낙찰실패 내역 insert 
+				StringBuffer fail_bid_rookie_detail = new StringBuffer();	
+				fail_bid_rookie_detail.append("insert into rookie_detail(mid, price, paydate, rtype, rdetail)");
+				fail_bid_rookie_detail.append("values(?, ?, sysdate, '1', '낙찰실패')");
+				pstmt = conn.prepareStatement(fail_bid_rookie_detail.toString());
 				pstmt.setString(1, auctionDetailDto.getMid());
 				pstmt.setInt(2,auctionDetailDto.getBidPrice());
 				pstmt.executeUpdate();
 				pstmt.close();
-				
+			}
 				conn.commit();
 				cnt = 1;
-			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			try {

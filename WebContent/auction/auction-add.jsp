@@ -3,49 +3,135 @@
 <!-- 상품눌렀을때 뜨는 상세 페이지. -->
 <!-- header영역 -->
 <%@ include file="/common/header.jsp"%>
-
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="<%=root%>/css/alice.css">
+<link rel="stylesheet" type="text/css" href="<%=root%>/css/oz.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="<%=root%>/js/jquery-ui.js"></script>
+<script type="text/javascript" src="<%=root%>/js/prototype.js"></script>
+<script type="text/javascript" src="<%=root%>/js/extprototype.js"></script>	
+<script type="text/javascript" src="<%=root%>/js/oz.js"></script>	
+<script type="text/javascript" src="<%=root%>/js/alice.js"></script>
 <script type="text/javascript">
-	$(function() {
-		'use strict'
+var j = jQuery.noConflict();
+j.datepicker.setDefaults({
+    dateFormat: 'yy-mm-dd',
+    prevText: '이전 달',
+    nextText: '다음 달',
+    monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+    dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+    showMonthAfterYear: true,
+    yearSuffix: 'Year'
+});
+j( function() {
+	  j( "#mdatepicker1").datepicker({dateFormat: 'yy.mm.dd', minDate: 0,
+		  onSelect: function(selected) {
+			  j("#mdatepicker2").datepicker("option","minDate", selected)
+			  }});
+	    });
+j( function() {
+	  j( "#mdatepicker2").datepicker({dateFormat: 'yy.mm.dd',
+		  onSelect: function(selected) {
+			  j("#mdatepicker1").datepicker("option","maxDate", selected)
+			  }});
+	   });	      
 
-		$('[data-toggle="offcanvas"]').on('click', function() {
-			$('.row-offcanvas').toggleClass('active')
-		})
+var alice;
+Event.observe(window, "load", function() {
+	alice = Web.EditorManager.instance("editor",{type:'detail',width:600,height:600,limit:1000,family:'돋움',size:'13px'});
+	alice.showAlice();
+});	
+
+function selectedchange(){
+	var selectcategory1 = document.getElementById("selectcategory1").selectedIndex;
+	var selectcategory2 = document.getElementById("selectcategory2");
+	if(selectcategory1 == 1){
+		selectcategory2.innerHTML = "<option>상의</option><option>하의</option><option>모자</option><option>기타</option>";
+	}else if(selectcategory1 == 2){
+		selectcategory2.innerHTML = "<option>야구공</option><option>배트</option><option>글러브</option><option>보호장비</option><option>기타</option>";
+	}else if(selectcategory1 == 3){
+		selectcategory2.innerHTML = "<option>피켓</option><option>LED 피켓</option><option>기타</option>";
+	}else if(selectcategory1 == 4){
+		selectcategory2.innerHTML = "<option>사진</option><option>티켓</option><option>카드</option><option>기타</option>";
+	}else{
+		alert("에러");
+	}
+}
+
+$(function() {
+	'use strict'
+	$('[data-toggle="offcanvas"]').on('click', function() {
+		$('.row-offcanvas').toggleClass('active')
 	})
+});
+	
+function categoryList(key, word, category1, category2, gudan, conpg, endpg, choice){
+	document.getElementById("aact").value = "categorylist";
+	document.getElementById("achoice").value = choice;
+	document.getElementById("aconpg").value = conpg;
+	document.getElementById("aendpg").value = endpg;
+	document.getElementById("akey").value = "";
+	document.getElementById("aword").value = "";
+	document.getElementById("acategory1").value = category1; 
+	document.getElementById("acategory2").value = category2; 
+	document.getElementById("agudan").value = gudan; 
+	document.getElementById("auctionForm").action = "<%=root%>/auctioncontroller";
+	document.getElementById("auctionForm").submit();		
+}
+function onlyNumber(event){
+			event = event || window.event;
+			var keyID = (event.which) ? event.which : event.keyCode;
+			if ( (keyID >= 48 && keyID <= 57) || (keyID >= 96 && keyID <= 105) || keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+				return;
+			else
+				return false;
+}
+function removeChar(event) {
+	event = event || window.event;
+	var keyID = (event.which) ? event.which : event.keyCode;
+	if ( keyID == 8 || keyID == 46 || keyID == 37 || keyID == 39 ) 
+		return;
+	else
+		event.target.value = event.target.value.replace(/[^0-9]/g, "");
+}
 </script>
 <div class="container-fluid auction-category">
 	<div class="row row-offcanvas row-offcanvas-left">
-		<nav class="col-6 col-md-2 bg-light sidebar-offcanvas pt-3 pb-5"
+			<nav class="col-6 col-md-2 bg-light sidebar-offcanvas pt-3 pb-5"
 			id="sidebar">
 			<div class="pb-5">
-				<a class="nav-link" href="#item-total">전체보기</a> <a class="nav-link"
-					href="#item-gudan">구단별보기</a> <a class="nav-link" href="#item-1">유니폼</a>
+				<a class="nav-link" href="javascript:categoryList('','','','','','1','1','1');">전체보기</a>
+				<a class="nav-link" href="javascript:categoryList('','','1','','','1','1','1');">유니폼</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-1-1">상의</a> <a
-						class="nav-link ml-3" href="#item-1-2">하의</a> <a
-						class="nav-link ml-3" href="#item-1-3">모자</a> <a
-						class="nav-link ml-3" href="#item-1-4">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','1','1','','1','1','1');">상의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','2','','1','1','1');">하의</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','3','','1','1','1');">모자</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','1','4','','1','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="#item-2">경기용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','2','','','1','1','1');">경기용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-2-1">야구공</a> <a
-						class="nav-link ml-3" href="#item-2-2">배트</a> <a
-						class="nav-link ml-3" href="#item-2-3">글러브</a> <a
-						class="nav-link ml-3" href="#item-2-4">보호장구</a> <a
-						class="nav-link ml-3" href="#item-2-4">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','2','1','','1','1','1');">야구공</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','2','','1','1','1');">배트</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','3','','1','1','1');">글러브</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','4','','1','1','1');">보호장구</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','2','5','','1','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="#item-3">응원용품</a>
+				<a class="nav-link" href="javascript:categoryList('','','3','1','','1','1','1');">응원용품</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-3-1">피켓</a> <a
-						class="nav-link ml-3" href="#item-3-2">LED피켓</a> <a
-						class="nav-link ml-3" href="#item-3-3">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','3','1','','1','1','1');">피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','2','','1','1','1');">LED피켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','3','3','','1','1','1');">기타</a>
 				</nav>
-				<a class="nav-link" href="#item-3">기타잡화</a>
+				<a class="nav-link" href="javascript:categoryList('','','4','','','1','1','1');">기타잡화</a>
 				<nav class="nav nav-pills flex-column">
-					<a class="nav-link ml-3" href="#item-4-1">사진</a> <a
-						class="nav-link ml-3" href="#item-4-2">티켓</a> <a
-						class="nav-link ml-3" href="#item-4-3">카드</a> <a
-						class="nav-link ml-3" href="#item-4-4">기타</a>
+					<a class="nav-link ml-3" href="javascript:categoryList('','','4','1','','1','1','1');">사진</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','2','','1','1','1');">티켓</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','3','','1','1','1');">카드</a> <a
+						class="nav-link ml-3" href="javascript:categoryList('','','4','4','','1','1','1');">기타</a>
 				</nav>
 			</div>
 		</nav>
@@ -61,18 +147,8 @@
 		</div>
 
 		<div class="col-12 col-md-10 px-5 pt-2 pb-5">
-
-			<div id="current-category">
-				<nav aria-label="breadcrumb" role="navigation">
-					<ol class="breadcrumb justify-content-end mb-0"
-						style="background-color: white;">
-						<li class="breadcrumb-item"><a href="#">전체</a></li>
-						<li class="breadcrumb-item active" aria-current="page">내 물품등록</li>
-					</ol>
-				</nav>
-			</div>
-
-			<form id="addProductForm" class="">
+			<form id="writeForm" name="writeForm" method="post" action=""
+			  enctype="multipart/form-data" style="margin: 0px">
 				<div class="">
 					<h5 class="border-b mb-5 p-3">기본물품정보</h5>
 				</div>
@@ -85,7 +161,7 @@
 						<div class="form-group row px-3">
 							<label for="selectcategory" class="col-sm-2 col-form-label">물품분류</label>
 							<div class="col-sm-3">
-								<select id="selectcategory1" class="form-control">
+								<select id="selectcategory1" name="selectcategory1"class="form-control" onchange="javascript:selectedchange();">
 									<option selected>1차카테고리</option>
 									<option>유니폼</option>
 									<option>경기용품</option>
@@ -95,11 +171,7 @@
 							</div>
 							<div class="col-sm-3">
 								<select id="selectcategory2" class="form-control">
-									<option selected>2차카테고리</option>
-									<option>상의</option>
-									<option>하의</option>
-									<option>모자</option>
-									<option>기타</option>
+								<option selected>2차카테고리</option>
 								</select>
 							</div>
 						</div>
@@ -111,56 +183,38 @@
 							</div>
 						</div>
 						<div class="form-group row px-3">
-							<label for="startdate" class="col-sm-2 col-12 col-form-label">경매시작일</label>
+							<label class="col-sm-2 col-12 col-form-label">경매시작일</label>
 							<div class="col-sm-4 col-8">
-								<input type="text" class="form-control" id="startdate"
-									placeholder="2017.11.31" readonly>
+								<input type="text" class="form-control" id="mdatepicker1" 
+									placeholder="" readonly>
 							</div>
-							<label for="enddate" class="col-sm-2 col-12 col-form-label">경매종료일</label>
+							<label class="col-sm-2 col-12 col-form-label">경매종료일</label>
 							<div class="col-sm-4 col-8">
-								<input type="text" class="form-control" id="enddate"
-									placeholder="">
+								<input type="text" class="form-control" id="mdatepicker2"
+									placeholder="" readonly>
 							</div>
 						</div>
 
 						<!-- 이미지 -->
 						<div class="form-group row px-3">
-							<label for="inputPassword1" class="col-sm-2 col-form-label">비밀번호</label>
+							<label class="col-sm-2 col-form-label">사진등록</label>
 							<div class="col-sm-10">
-
-								<input type="file" class="form-control-file mb-2"
-									id="exampleFormControlFile1">
-									 <label>대표이미지
-									300*300 사이즈에 최적화되어있습니다.(수정)</label> 
-									<label>이미지는 최대 3개까지 업로드
-									가능합니다.</label>
-									 <input type="file" class="form-control-file mb-2"
-									id="exampleFormControlFile1"> 
-									<input type="file"
-									class="form-control-file" id="exampleFormControlFile1">
-<!-- 왜안먹히지..ㅠㅠ
-								<label class="custom-file">
-								<input type="file" id="file2" class="custom-file-input mb-2"> <span
-									class="custom-file-control"></span>
-								</label>
-
- -->
-
+								<input multiple="multiple" type="file" name="filename[]" 
+								class="form-control-file" id="exampleFormControlFile1"
+								/>
 							</div>
 						</div>
 						<!-- 이미지 -->
-
 						<div class="form-group row px-3">
 							<label for="bidprice" class="col-sm-2 col-form-label">입찰시작가</label>
 							<div class="col-sm-4 input-group">
 								<input type="text" class="form-control" id="bidprice"
-									aria-label="Amount (to the nearest dollar)"> <span
-									class="input-group-addon">루키</span>
+								onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' 
+								style='ime-mode:disabled;'>루키(원)</span>
 							</div>
-						</div>
-
+						</div>						
 						<div class="form-group row px-3">
-							<label for="inputTeam" class="col-sm-2 col-form-label">선호구단</label>
+							<label for="inputTeam" class="col-sm-2 col-form-label">구단선택</label>
 							<div class="col-sm-4">
 								<select id="inputTeamState" class="form-control">
 									<option selected>두산 베어스</option>
@@ -176,20 +230,14 @@
 								</select>
 							</div>
 						</div>
-
-
 					</div>
 				</div>
-
 				<div class="">
 					<h5 class="border-b mb-5 p-3 pt-5">상세물품정보</h5>
 				</div>
-
 				<div class="form-group">
-					<textarea class="form-control" id="exampleFormControlTextarea1"
-						rows="10"></textarea>
+					<textarea class="form-control" id="editor" name="editor"></textarea>
 				</div>
-
 				<div class="px-3 py-5 text-center">
 					<button type="button" class="btn btn-lg btn-primary"
 						data-dismiss="modal">물품등록</button>

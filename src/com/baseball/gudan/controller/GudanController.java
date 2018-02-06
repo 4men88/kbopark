@@ -1,6 +1,7 @@
 package com.baseball.gudan.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +13,6 @@ import com.baseball.factory.GudanActionFactory;
 import com.baseball.gudan.service.GudanServiceImpl;
 import com.baseball.util.NullCheck;
 import com.baseball.util.PageMove;
-import com.baseball.util.StringEncoder;
 
 @WebServlet("/gudan")
 public class GudanController extends HttpServlet {
@@ -37,10 +37,8 @@ public class GudanController extends HttpServlet {
 			path = GudanActionFactory.getStadiumAction().execute(request, response);
 			PageMove.forward(request, response, path);			
 		} else if ("mvweekly".equals(act)) {
-
 			path = GudanActionFactory.getWeeklyAction().execute(request, response);
 			PageMove.forward(request, response, path);			
-			
 		} else if ("mvcommunity".equals(act)) {
 			path = "/community/list.jsp";
 			PageMove.forward(request, response, path);			
@@ -54,14 +52,13 @@ public class GudanController extends HttpServlet {
 			path = GudanServiceImpl.getGudanService().getReservationWeb(tno);
 			System.out.println("GudanController path >>> " + path);
 			response.sendRedirect(path);		
+		} else if("timer".equals(act)) {
+			String restxt = GudanActionFactory.getTimeAction().execute(request, response);
+			response.setContentType("text/plain;charset=EUC-KR");
+			PrintWriter out = response.getWriter();
+			out.print(restxt);
+			System.out.println(restxt);
 		}
-//		} else if("deletearticle".equals(act)) {
-//			System.out.println("controller deletearticle ÁøÀÔ !");
-//			path = BoardActionFactory.getReboardDeleteAction().execute(request, response);
-//			path += queryString;
-//			System.out.println("controller deletearticle path >>>   " + path);
-//			PageMove.forward(request, response, path);
-		
 		else if("".equals(act)) {
 			PageMove.redirect(request, response, path);
 		}

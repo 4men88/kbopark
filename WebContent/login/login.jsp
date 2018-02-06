@@ -41,14 +41,14 @@ function idfind(){
 		<div class="col-md-4">
 			<h2 class="text-dark mb-5">로그인</h2>
 
-			<form class="" id="loginform" name="loginform" method="post" action="">
+			<form class="" id="loginform" name="loginform" method="post" action="" onsubmit="return false">
 			<input type="hidden" name="act" id="act" value="login">
 				<div class="form-group">
 					<input type="text" id="id" name="id" class="form-control" placeholder="아이디" value="<%= saveid %>">
 				</div>
 				<div class="form-group">
 					<input type="password" id="pass" name="pass" class="form-control"
-						placeholder="비밀번호">
+						placeholder="비밀번호" onkeypress="javascript:if(event.keyCode==13){login();}">
 				</div>
 
 				<input type="button" class="btn btn-block btn-lg btn-primary mb-3" value="로그인" onclick="javascript:login();">

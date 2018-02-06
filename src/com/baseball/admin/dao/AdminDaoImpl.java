@@ -11,6 +11,7 @@ import java.util.Map;
 import com.baseball.admin.model.NoticeDto;
 import com.baseball.board.model.BoardDto;
 import com.baseball.member.model.MemberDetailDto;
+import com.baseball.schedule.scheduleDto.ScheduleDto;
 import com.baseball.util.db.DBClose;
 import com.baseball.util.db.DBConnection;
 
@@ -419,9 +420,10 @@ public class AdminDaoImpl implements AdminDao {
 		try {
 			conn = DBConnection.makeConnection();
 			StringBuffer sql = new StringBuffer();
-			sql.append("select bno,mid,bname,bdetail,bcount,bstatus,\n");
+			sql.append("select bno,mid,bname,bdetail,bcount,bstatus,tno,\n");
 			sql.append("to_char(bdate,'yyyy-mm-dd') bdate\n");
-			sql.append("from board");
+			sql.append("from board\n");
+			sql.append("order by bstatus desc");
 			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -433,6 +435,7 @@ public class AdminDaoImpl implements AdminDao {
 				boardDto.setBcount(rs.getInt("bcount"));
 				boardDto.setBdate(rs.getString("bdate"));
 				boardDto.setBstatus(rs.getInt("bstatus"));
+				boardDto.setTno(rs.getInt("tno"));
 				
 				list.add(boardDto);
 			}
@@ -443,5 +446,114 @@ public class AdminDaoImpl implements AdminDao {
 			DBClose.close(conn, pstmt, rs);
 		}
 		return list;
+	}
+
+	@Override
+	public List<NoticeDto> noticeList() {
+		List<NoticeDto> list = new ArrayList<NoticeDto>();
+		
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("select no,subject,detail,count,ntype,\n");
+			sql.append("		case  \n");
+			sql.append("		when to_char(writedate, 'yymmdd') = to_char(sysdate, 'yymmdd')\n");
+			sql.append("		then to_char(writedate, 'hh24:mi:ss')\n");
+			sql.append("		else to_char(writedate, 'yy.mm.dd')\n");
+			sql.append("		end writedate\n");
+			sql.append("from notice order by no desc");
+			
+			pstmt = conn.prepareStatement(sql.toString());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				NoticeDto noticeDto = new NoticeDto();
+				noticeDto.setNo(rs.getInt("no"));
+				noticeDto.setSubject(rs.getString("subject"));
+				noticeDto.setContext(rs.getString("detail"));
+				noticeDto.setCount(rs.getInt("count"));
+				noticeDto.setWdate(rs.getString("writedate"));
+				noticeDto.setNtype(rs.getInt("ntype"));
+				
+				list.add(noticeDto);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		return list;
+	}
+
+	@Override
+	public List<ScheduleDto> getPlayToday() {
+		List<ScheduleDto> todaylist = new ArrayList<ScheduleDto>();
+		Connection conn=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs = null;
+		
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("select b.*,s.sname\n");
+			sql.append("from\n");
+			sql.append("	(select a.tname home, a.emblem hemblem,t1.tname away,t1.emblem aemblem,\n");
+			sql.append("	to_char(a.playdate,'yyyymmdd') playdate,to_char(a.playdate,'hh:mi') playtime,a.sno1\n");
+			sql.append("	from\n");
+			sql.append("		(select t.tno,t.tname,t.emblem,p.playdate,p.tno2,t.sno1\n");
+			sql.append("		from team t ,plan p\n");
+			sql.append("		where p.tno1=t.tno) a, team t1\n");
+			sql.append("	where t1.tno=a.tno2\n");
+			sql.append("	and to_char(playdate,'yyyymmdd')=to_char(sysdate,'yyyymmdd')) b, stadium s\n");
+			sql.append("where b.sno1=s.sno");
+			pstmt = conn.prepareStatement(sql.toString());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ScheduleDto scheduleDto = new ScheduleDto();
+				scheduleDto.setHometeam(rs.getString("home"));
+				scheduleDto.setAwayteam(rs.getString("away"));
+				scheduleDto.setHomeemblem(rs.getString("hemblem"));
+				scheduleDto.setAwayemblem(rs.getString("aemblem"));
+				scheduleDto.setPlaydate(rs.getString("playdate"));
+				scheduleDto.setPlaytime(rs.getString("playtime"));
+				scheduleDto.setSname(rs.getString("sname"));
+				todaylist.add(scheduleDto);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBClose.close(conn, pstmt, rs);
+		}
+		return todaylist;
+	}
+
+	@Override
+	public int deleteNotice(int nno) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int cnt=0;
+		try {
+			conn = DBConnection.makeConnection();
+			StringBuffer sql = new StringBuffer();
+			sql.append("delete notice \n");
+			sql.append("where no = ?");
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setInt(1, nno);
+			cnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBClose.close(conn, pstmt);
+		}	
+	return cnt;
 	}
 }
